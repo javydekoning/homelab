@@ -19,6 +19,8 @@ plugins=(
   git
 )
 
+# Disable OMZ auto update, OMZ installed via APK
+zstyle ':omz:update' mode disabled
 source $ZSH/oh-my-zsh.sh
 
 #aliases
