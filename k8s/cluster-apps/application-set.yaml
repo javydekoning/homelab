@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-apps
+spec:
+  generators:
+    - git:
+        repoURL: git@github.com:javydekoning/homelab.git
+        revision: HEAD
+        files:
+          - path: 'k8s/cluster-apps/**/config.json'
+  syncPolicy:
+    preserveResourcesOnDeletion: true
+  template:
+    metadata:
+      name: '{{path.basename}}'
+      annotations:
+        argocd.argoproj.io/manifest-generate-paths: '{{path}}'
+    spec:
+      project: cluster-apps
+      source:
+        path: '{{path.basename}}'
+        targetRevision: HEAD
+        repoURL: git@github.com:javydekoning/homelab.git
+        helm:
+          valueFiles:
+            - values.yaml
+            - '{{ valueFile }}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{path.basename}}'
+      syncPolicy:
+        # automated: {}
+        syncOptions:
+          - ApplyOutOfSyncOnly=true

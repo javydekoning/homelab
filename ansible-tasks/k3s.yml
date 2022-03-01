@@ -1,0 +1,49 @@
+---
+#Requires kubectl and jq to be installed.
+- name: Get installed version of k3s
+  register: k3sVersionInstalled
+  shell: kubectl version -o json | jq -r ".serverVersion.gitVersion"
+  changed_when: false
+
+- name: Get latest release of k3s-io/k3s
+  register: k3sVersionLatest
+  community.general.github_release:
+    user: k3s-io
+    repo: k3s
+    action: latest_release
+
+- name: Print k3s versions
+  ansible.builtin.debug:
+    msg: Latest {{ k3sVersionLatest.tag }} and {{ k3sVersionInstalled.stdout }} is installed.
+
+- name: Install or Upgrade k3s
+  register: k3sUpgrade
+  shell: |
+    curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest sh -s - server --cluster-init --disable=servicelb --snapshotter=native --data-dir /downloads/config/rancher/k3s
+  when: k3sVersionLatest.tag != k3sVersionInstalled.stdout
+
+- name: Create a directory if it does not exist
+  ansible.builtin.file:
+    path: ~{{ ansible_user }}/.kube/
+    state: directory
+    mode: "0755"
+
+- name: Wait until the file /etc/rancher/k3s/k3s.yaml is present before continuing
+  wait_for:
+    path: /etc/rancher/k3s/k3s.yaml
+
+- name: Copy config file to user home directory
+  copy:
+    src: /etc/rancher/k3s/k3s.yaml
+    dest: ~{{ ansible_user }}/.kube/config
+    remote_src: yes
+    owner: "{{ ansible_user }}"
+    mode: "u=rw,g=,o="
+
+- name: Replace https://localhost:6443 by https://master-ip:6443
+  register: kubectlcfg
+  command: >-
+    k3s kubectl config set-cluster default
+      --server=https://{{ ansible_default_ipv4.address }}:6443
+      --kubeconfig ~{{ ansible_user }}/.kube/config
+  changed_when: false

@@ -1,0 +1,5 @@
+---
+- name: copy cluster-tasks
+  ansible.builtin.copy:
+    src: ./k8s/cluster-apps
+    dest: /{{ansible_user}}/

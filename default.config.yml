@@ -1,0 +1,30 @@
+---
+apk_installed_packages:
+  - ansible
+  - cni-plugins
+  - curl
+  - git
+  - helm
+  - htop
+  - jq
+  - kubectl
+  - kubectl-zsh-completion
+  - libuser
+  - ncdu
+  - oh-my-zsh
+  - py3-pip
+  - rsync
+  - zsh
+
+pip_installed_packages:
+  - kubernetes
+  - github3.py
+
+dirs_to_create:
+  - /etc/default
+
+files_to_create:
+  - /etc/login.defs
+  - /etc/default/useradd
+
+metallb_pool: 192.168.1.200-192.168.1.254

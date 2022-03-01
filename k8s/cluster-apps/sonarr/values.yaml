@@ -1,0 +1,35 @@
+sonarr:
+  env:
+    TZ: Europe/Amsterdam
+
+  ingress:
+    # -- Enable and configure ingress settings for the chart under this key.
+    # @default -- See values.yaml
+    main:
+      enabled: true
+      hosts:
+        - host: sonarr.k8s.javydekoning.com
+          paths:
+            - path: /
+
+  # -- Configure persistence settings for the chart under this key.
+  ## Config persistence is required for the Prometheus exporter sidecar.
+  # @default -- See values.yaml
+  persistence:
+    config:
+      enabled: true
+      type: hostPath
+      accessMode: ReadWriteOnce
+      hostPath: /downloads/config/sonarr
+      mountPath: /config
+    downloads:
+      enabled: true
+      type: hostPath
+      accessMode: ReadWriteOnce
+      hostPath: /downloads
+      mountPath: /downloads
+
+  podSecurityContext:
+    runAsUser: 911
+    runAsGroup: 911
+    fsGroup: 911

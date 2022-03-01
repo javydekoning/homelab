@@ -1,0 +1,9 @@
+.DS_Store
+secrets_decrypted
+cdk.out
+.vscode
+package-lock.json
+node_modules
+*.schema.json
+aws/file:/Users/javy/Library/Application Support/Code/User/globalStorage/amazonwebservices.aws-toolkit-vscode/cloudformation.schema.json
+aws/file:/Users/javy/Library/Application Support/Code/User/globalStorage/amazonwebservices.aws-toolkit-vscode/sam.schema.json

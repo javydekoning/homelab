@@ -1,0 +1,45 @@
+---
+- name: Get latest release of metallb/metallb
+  register: release
+  community.general.github_release:
+    user: metallb
+    repo: metallb
+    action: latest_release
+
+- name: Download metallb manifest to the cluster.
+  ansible.builtin.get_url:
+    url: "{{ item.url }}"
+    dest: "{{ item.dest }}"
+    mode: "0664"
+  loop:
+    - url: "https://raw.githubusercontent.com/metallb/metallb/{{release.tag}}/manifests/namespace.yaml"
+      dest: ~/namespace.yaml
+    - url: https://raw.githubusercontent.com/metallb/metallb/{{release.tag}}/manifests/metallb.yaml
+      dest: ~/metallb.yaml
+
+- name: Apply metallb manifest to the cluster.
+  retries: 3
+  delay: 60
+  kubernetes.core.k8s:
+    state: present
+    src: "{{ item }}"
+  loop:
+    - ~/namespace.yaml
+    - ~/metallb.yaml
+
+- name: Create metallb configmap
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        namespace: metallb-system
+        name: config
+      data:
+        config: |
+          address-pools:
+          - name: default
+            protocol: layer2
+            addresses:
+            - "{{ metallb_pool }}"

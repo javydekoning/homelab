@@ -1,0 +1,19 @@
+- name: set repositories
+  copy:
+    dest: '/etc/apk/repositories'
+    content: |
+      http://dl-cdn.alpinelinux.org/alpine/edge/main
+      https://dl-cdn.alpinelinux.org/alpine/edge/community
+      https://dl-cdn.alpinelinux.org/alpine/edge/testing
+
+- name: install apk packages
+  become: true
+  community.general.apk:
+    name: '{{ apk_installed_packages }}'
+    state: latest
+    update_cache: yes
+
+- name: Update all installed packages to the latest versions
+  become: true
+  community.general.apk:
+    upgrade: yes
