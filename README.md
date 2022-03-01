@@ -30,3 +30,14 @@ cd <cluster-apps/name>
 helm dependency build
 helm install -f values.yaml <name> ./
 ```
+
+## Argo Applicationset
+
+Deploy it manually for now
+
+```sh
+kubectl apply -f application-set.yaml -n argocd
+```
+
+Todo: 
+- Automate through ansible :-).
