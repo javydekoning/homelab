@@ -5,30 +5,30 @@ metadata:
 spec:
   generators:
     - git:
-        repoURL: git@github.com:javydekoning/homelab.git
+        repoURL: https://github.com/javydekoning/homelab.git
         revision: HEAD
         files:
-          - path: 'k8s/cluster-apps/**/config.json'
+          - path: "k8s/cluster-apps/**/config.json"
   syncPolicy:
     preserveResourcesOnDeletion: true
   template:
     metadata:
-      name: '{{path.basename}}'
+      name: "{{ path.basename }}"
       annotations:
-        argocd.argoproj.io/manifest-generate-paths: '{{path}}'
+        argocd.argoproj.io/manifest-generate-paths: "{{ path }}"
     spec:
       project: cluster-apps
       source:
-        path: '{{path.basename}}'
+        path: "{{ path }}"
         targetRevision: HEAD
-        repoURL: git@github.com:javydekoning/homelab.git
+        repoURL: https://github.com/javydekoning/homelab.git
         helm:
           valueFiles:
             - values.yaml
-            - '{{ valueFile }}'
       destination:
+        # Pods can use the kubernetes.default.svc hostname to query the API server.
         server: https://kubernetes.default.svc
-        namespace: '{{path.basename}}'
+        namespace: "default"
       syncPolicy:
         # automated: {}
         syncOptions:
