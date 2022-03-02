@@ -22,9 +22,9 @@ spec:
         path: "{{ path }}"
         targetRevision: HEAD
         repoURL: https://github.com/javydekoning/homelab.git
-        helm:
-          valueFiles:
-            - values.yaml
+        # helm:
+        #   valueFiles:
+        #     - values.yaml
       destination:
         # Pods can use the kubernetes.default.svc hostname to query the API server.
         server: https://kubernetes.default.svc
