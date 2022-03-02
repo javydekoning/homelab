@@ -11,20 +11,24 @@ smokeping:
     pullPolicy: IfNotPresent
     tag: latest
 
-  strategy:
-    type: Recreate
-
-  service:
-    port:
-      port: 80
-
   # See more environment variables in the smokeping documentation
   # https://github.com/linuxserver/docker-smokeping#parameters
   env:
     TZ: Europe/Amsterdam
 
+  strategy:
+    type: Recreate
+
+  service:
+    main:
+      ports:
+        http:
+          port: 80
+
   ingress:
-    port:
+    # -- Enable and configure ingress settings for the chart under this key.
+    # @default -- See values.yaml
+    main:
       enabled: true
       hosts:
         - host: smokeping.k8s.javydekoning.com
