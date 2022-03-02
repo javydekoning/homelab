@@ -51,3 +51,5 @@ uptime-kuma:
     data:
       enabled: true
       mountPath: /app/data
+      type: hostPath
+      hostPath: /downloads/config/uptime-kuma
