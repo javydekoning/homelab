@@ -1,7 +1,7 @@
-name: duplicati
+name: organizr
 apiVersion: v2
-version: 5.2.0
+version: 7.2.0
 dependencies:
-  - name: duplicati
-    version: 5.2.0
+  - name: organizr
+    version: 7.2.0
     repository: https://k8s-at-home.com/charts/
