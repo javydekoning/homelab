@@ -16,10 +16,10 @@
     #   import_tasks: ansible-tasks/k3s.yml
     # - name: setup metallb
     #   import_tasks: ansible-tasks/metallb.yml
-    - name: setup argocd
-      import_tasks: ansible-tasks/argocd.yml
-    # - name: setup helm
-    #   import_tasks: ansible-tasks/helm.yml
+    # - name: setup argocd
+    #   import_tasks: ansible-tasks/argocd.yml
+    - name: setup helm
+      import_tasks: ansible-tasks/helm.yml
     # - name: copy cluster apps
     #   import_tasks: ansible-tasks/copy-cluster-apps.yml
   handlers:

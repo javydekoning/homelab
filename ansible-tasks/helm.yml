@@ -1,5 +1,10 @@
 ---
-- name: Add helm repo
+- name: Add k8s-at-home repo
   kubernetes.core.helm_repository:
     name: k8s-at-home
     repo_url: https://k8s-at-home.com/charts/
+
+- name: Add helm repo for smokeping
+  kubernetes.core.helm_repository:
+    name: nicholaswilde
+    repo_url: https://nicholaswilde.github.io/helm-charts/

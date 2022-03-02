@@ -1,0 +1,44 @@
+---
+smokeping:
+  # IMPORTANT NOTE
+  #
+  # This chart inherits from our common library chart. You can check the default values/options here:
+  # https://github.com/nicholaswilde/helm-charts/tree/main/charts/common/values.yaml
+  #
+
+  image:
+    repository: ghcr.io/linuxserver/smokeping
+    pullPolicy: IfNotPresent
+    tag: latest
+
+  strategy:
+    type: Recreate
+
+  service:
+    port:
+      port: 80
+
+  # See more environment variables in the smokeping documentation
+  # https://github.com/linuxserver/docker-smokeping#parameters
+  env:
+    TZ: Europe/Amsterdam
+
+  ingress:
+    port:
+      enabled: true
+      hosts:
+        - host: smokeping.k8s.javydekoning.com
+          paths:
+            - path: /
+
+  persistence:
+    config:
+      enabled: false
+      emptyDir: false
+      mountPath: /config
+    data:
+      enabled: false
+      emptyDir: false
+      mountPath: /data
+      accessMode: ReadWriteOnce
+      size: 1Gi
