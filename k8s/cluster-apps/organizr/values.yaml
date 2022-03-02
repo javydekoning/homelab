@@ -34,7 +34,8 @@ organizr:
   ingress:
     # -- Enable and configure ingress settings for the chart under this key.
     # @default -- See values.yaml
-    enabled: true
+    main:
+      enabled: true
       hosts:
         - host: dashboard.k8s.javydekoning.com
           paths:

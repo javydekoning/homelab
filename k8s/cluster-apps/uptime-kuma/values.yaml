@@ -38,9 +38,10 @@ uptime-kuma:
     ingress:
       # -- Enable and configure ingress settings for the chart under this key.
       # @default -- See values.yaml
-      enabled: true
+      main:
+        enabled: true
         hosts:
-          - host: uptimekuma.k8s.javydekoning.com
+          - host: uptime.k8s.javydekoning.com
             paths:
               - path: /
 
