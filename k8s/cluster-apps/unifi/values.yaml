@@ -102,6 +102,7 @@ unifi:
       enabled: true
       hosts:
         - host: unifi.k8s.javydekoning.com
+          servicePort: 8880
           paths:
             - path: /
 
