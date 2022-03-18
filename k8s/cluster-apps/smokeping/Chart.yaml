@@ -1,8 +1,0 @@
-# https://github.com/dirtycajunrice/gitops/blob/master/cluster-apps/plex/
-name: smokeping
-apiVersion: v2
-version: 0.1.24
-dependencies:
-  - name: smokeping
-    version: 0.1.24
-    repository: https://nicholaswilde.github.io/helm-charts/
