@@ -6,6 +6,8 @@
   tasks:
     - name: dump ipv4
       debug: var=ansible_default_ipv4.address
+    - name: Set DNS Conf
+      import_tasks: ansible-tasks/dns.yml
     - name: handle apk installs, update and upgrade
       import_tasks: ansible-tasks/apk.yml
     - name: handle pip installs, update and upgrade
@@ -16,14 +18,12 @@
       import_tasks: ansible-tasks/k3s.yml
     - name: setup metallb
       import_tasks: ansible-tasks/metallb.yml
-    - name: setup argocd
-      import_tasks: ansible-tasks/argocd.yml
     - name: setup helm
       import_tasks: ansible-tasks/helm.yml
-    - name: copy cluster apps
-      import_tasks: ansible-tasks/copy-cluster-apps.yml
-    # - name: intel driver
-    #   import_tasks: ansible-tasks/intel-driver.yml
+    - name: setup argocd
+      import_tasks: ansible-tasks/argocd.yml
+    # - name: copy cluster apps
+    #   import_tasks: ansible-tasks/copy-cluster-apps.yml
   handlers:
     - name: update extlinux
       shell: |-

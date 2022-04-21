@@ -25,7 +25,7 @@
     dest: ~/applicationset.yaml
     mode: "0664"
 
-- name: Create argocd k8s namespace
+- name: Ensure argocd k8s namespace
   kubernetes.core.k8s:
     name: argocd
     api_version: v1
@@ -40,10 +40,36 @@
     namespace: argocd
     src: ~/argocd.yaml
 
-- name: Apply argo applicationset manifests to the cluster.
+- name: Apply argo applicationset manifest to the cluster.
   retries: 3
   delay: 60
   kubernetes.core.k8s:
     state: present
     namespace: argocd
     src: ~/applicationset.yaml
+
+- name: Copy cluster-critical application set
+  ansible.builtin.copy:
+    src: ./k8s/cluster-critical/application-set.yaml
+    dest: /{{ansible_user}}/critical-apps-application-set.yaml
+
+- name: Apply cluster-critical application set
+  retries: 3
+  delay: 60
+  kubernetes.core.k8s:
+    state: present
+    namespace: argocd
+    src: ~/critical-apps-application-set.yaml
+
+- name: Copy cluster-apps application set
+  ansible.builtin.copy:
+    src: ./k8s/cluster-apps/application-set.yaml
+    dest: /{{ansible_user}}/cluster-apps-application-set.yaml
+
+- name: Apply cluster-apps application set
+  retries: 3
+  delay: 60
+  kubernetes.core.k8s:
+    state: present
+    namespace: argocd
+    src: ~/cluster-apps-application-set.yaml
