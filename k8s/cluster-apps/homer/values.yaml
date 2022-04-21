@@ -97,7 +97,40 @@ homer:
           # First level array represent a group.
           # Leave only a "items" key if not using group (group name, icon & tagstyle are optional, section separation will not be displayed).
           services:
-            - name: "Applications"
+            - name: "Media Apps"
+              icon: "fas fa-play"
+              items:
+                - name: "Plex"
+                  logo: "https://github.com/NX211/homer-icons/blob/master/png/plex.png?raw=true"
+                  subtitle: "Media"
+                  tag: "app"
+                  url: "http://plex.k8s.javydekoning.com"
+                  target: "_blank" # optional html a tag target attribute
+                - name: "Sonarr"
+                  logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/sonarr.png"
+                  subtitle: "TV Shows"
+                  tag: "app"
+                  url: "http://sonarr.k8s.javydekoning.com"
+                  target: "_blank" # optional html a tag target attribute
+                - name: "Radarr"
+                  logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/radarr.png"
+                  subtitle: "Movies"
+                  tag: "app"
+                  url: "http://radarr.k8s.javydekoning.com"
+                  target: "_blank" # optional html a tag target attribute
+                - name: "Bazarr"
+                  logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/bazarr.png"
+                  subtitle: "Subtitle management"
+                  tag: "app"
+                  url: "http://bazarr.k8s.javydekoning.com"
+                  target: "_blank" # optional html a tag target attribute
+                - name: "Prowlarr"
+                  logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/prowlarr.png"
+                  subtitle: "indexer manager"
+                  tag: "app"
+                  url: "http://prowlarr.k8s.javydekoning.com"
+                  target: "_blank" # optional html a tag target attribute                                    
+            - name: "Management"
               icon: "fas fa-cloud"
               items:
                 - name: "Plex"
@@ -106,10 +139,9 @@ homer:
                   tag: "app"
                   url: "http://plex.k8s.javydekoning.com"
                   target: "_blank" # optional html a tag target attribute
-                - name: "Duplicati"
-                  logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/duplicati.png"
-                  subtitle: "Backups"
+                - name: "AdGuard Home"
+                  logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/adguardhome.png"
+                  subtitle: "Block ads and tracking"
                   tag: "app"
-                  url: "http://duplicati.k8s.javydekoning.com"
+                  url: "http://adguard.k8s.javydekoning.com"
                   target: "_blank" # optional html a tag target attribute
-
