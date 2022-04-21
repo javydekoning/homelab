@@ -63,7 +63,7 @@ homer:
           title: "Homer dashboard"
           subtitle: "Running on k8s!"
           logo: "logo.png"
-          icon: "fas fa-docker" # Optional icon
+          icon: "fab fa-docker" # Optional icon
 
           header: true
           footer: 'Homelabbing rulez' 
@@ -141,7 +141,7 @@ homer:
                   url: "https://192.168.1.201/"
                   target: "_blank"
             - name: "Downloads"
-              icon: "fas download"
+              icon: "fas fa-download"
               items:
                 - name: "rutorrent"
                   logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/rutorrent.png"
