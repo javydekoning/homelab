@@ -117,7 +117,7 @@ unifi:
     main:
       enabled: true
       annotations:
-        nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+        ingress.kubernetes.io/protocol: "HTTPS"
       hosts:
         - host: unifi.k8s.javydekoning.com
           servicePort: 8443
