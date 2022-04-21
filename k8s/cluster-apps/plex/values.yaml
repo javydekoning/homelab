@@ -5,7 +5,7 @@ plex:
     # -- image tag
     tag: latest
     # -- image pull policy
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
 
   env:
     TZ: Europe/Amsterdam

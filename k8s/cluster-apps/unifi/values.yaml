@@ -1,8 +1,8 @@
 unifi:
   image:
     repository: jacobalberty/unifi
-    tag: latest
-    pullPolicy: IfNotPresent
+    tag: # chart.AppVersion
+    pullPolicy: Always
 
   env:
     TZ: Europe/Amsterdam
