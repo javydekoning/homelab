@@ -4,6 +4,22 @@ unifi:
     tag: # chart.AppVersion
     pullPolicy: Always
 
+  probes: 
+    startup:
+      # -- Enable the startup probe
+      enabled: true
+      # -- Set this to `true` if you wish to specify your own startupProbe
+      custom: true
+      # -- The spec field contains the values for the default startupProbe.
+      # If you selected `custom: true`, this field holds the definition of the startupProbe.
+      # @default -- See below
+      spec:
+        initialDelaySeconds: 300
+        timeoutSeconds: 1
+        ## This means it has a maximum of 5*30=150 seconds to start up before it fails
+        periodSeconds: 5
+        failureThreshold: 30
+
   env:
     TZ: Europe/Amsterdam
     # -- Run UniFi as root
