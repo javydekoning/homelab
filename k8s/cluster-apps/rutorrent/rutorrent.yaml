@@ -84,6 +84,10 @@ spec:
       containers:
         - name: rutorrent
           image: ghcr.io/linuxserver/rutorrent
+          resources:
+            limits:
+              memory: "1Gi"
+              cpu: "2000m"
           env:
             - name: TZ
               value: Europe/Amsterdam

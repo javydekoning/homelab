@@ -100,9 +100,11 @@ unifi:
     # @default -- See values.yaml
     main:
       enabled: true
+      annotations:
+        nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
       hosts:
         - host: unifi.k8s.javydekoning.com
-          servicePort: 8843
+          servicePort: 8443
           paths:
             - path: /
 
