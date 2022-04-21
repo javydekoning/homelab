@@ -60,44 +60,27 @@ homer:
           # Homepage configuration
           # See https://fontawesome.com/v5/search for icons options
 
-          title: "My dashboard"
-          subtitle: "Homer"
+          title: "Homer dashboard"
+          subtitle: "Running on k8s!"
           logo: "logo.png"
-          icon: "fas fa-skull-crossbones" # Optional icon
+          icon: "fas fa-docker" # Optional icon
 
           header: true
-          footer: '<p>Created with <span class="has-text-danger">❤️</span> with <a href="https://bulma.io/">bulma</a>, <a href="https://vuejs.org/">vuejs</a> & <a href="https://fontawesome.com/">font awesome</a> // Fork me on <a href="https://github.com/bastienwirtz/homer"><i class="fab fa-github-alt"></i></a></p>' 
+          footer: 'Homelabbing rulez' 
           # set false if you want to hide it.
-
-          # Optional message
-          message:
-            #url: https://b4bz.io
-            style: "is-dark" # See https://bulma.io/documentation/components/message/#colors for styling options.
-            title: "Demo !"
-            icon: "fa fa-grin"
-            content: "This is a dummy homepage demo."
 
           # Optional navbar
           # links: [] # Allows for navbar (dark mode, layout, and search) without any links
           links:
-            - name: "Contribute"
-              icon: "fab fa-github"
-              url: "https://github.com/bastienwirtz/homer"
-              target: "_blank" # optional html a tag target attribute
-            - name: "Wiki"
+            - name: "Inspired by"
               icon: "fas fa-book"
-              url: "https://www.wikipedia.org/"
-            # this will link to a second homer page that will load config from additional-page.yml and keep default config values as in config.yml file
-            # see url field and assets/additional-page.yml.dist used in this example:
-            - name: "another page!"
-              icon: "fas fa-file-alt"
-              url: "#additional-page" 
+              url: "https://www.reddit.com/r/selfhosted/comments/poca6i/selfhosting_all_these_services_on_two_raspberry/"
 
           # Services
           # First level array represent a group.
           # Leave only a "items" key if not using group (group name, icon & tagstyle are optional, section separation will not be displayed).
           services:
-            - name: "Media Apps"
+            - name: "Media"
               icon: "fas fa-play"
               items:
                 - name: "Plex"
@@ -105,43 +88,64 @@ homer:
                   subtitle: "Media"
                   tag: "app"
                   url: "http://plex.k8s.javydekoning.com"
-                  target: "_blank" # optional html a tag target attribute
+                  target: "_blank"
                 - name: "Sonarr"
                   logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/sonarr.png"
                   subtitle: "TV Shows"
                   tag: "app"
                   url: "http://sonarr.k8s.javydekoning.com"
-                  target: "_blank" # optional html a tag target attribute
+                  target: "_blank"
                 - name: "Radarr"
                   logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/radarr.png"
                   subtitle: "Movies"
                   tag: "app"
                   url: "http://radarr.k8s.javydekoning.com"
-                  target: "_blank" # optional html a tag target attribute
+                  target: "_blank"
                 - name: "Bazarr"
                   logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/bazarr.png"
                   subtitle: "Subtitle management"
                   tag: "app"
                   url: "http://bazarr.k8s.javydekoning.com"
-                  target: "_blank" # optional html a tag target attribute
+                  target: "_blank"
                 - name: "Prowlarr"
                   logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/prowlarr.png"
                   subtitle: "indexer manager"
                   tag: "app"
                   url: "http://prowlarr.k8s.javydekoning.com"
-                  target: "_blank" # optional html a tag target attribute                                    
+                  target: "_blank"                                    
             - name: "Management"
               icon: "fas fa-cloud"
               items:
-                - name: "Plex"
-                  logo: "https://github.com/NX211/homer-icons/blob/master/png/plex.png?raw=true"
-                  subtitle: "Media"
-                  tag: "app"
-                  url: "http://plex.k8s.javydekoning.com"
-                  target: "_blank" # optional html a tag target attribute
                 - name: "AdGuard Home"
                   logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/adguardhome.png"
                   subtitle: "Block ads and tracking"
                   tag: "app"
                   url: "http://adguard.k8s.javydekoning.com"
-                  target: "_blank" # optional html a tag target attribute
+                  target: "_blank"
+                - name: "Duplicati"
+                  logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/duplicati.png"
+                  subtitle: "Backups to s3"
+                  tag: "app"
+                  url: "http://duplicati.k8s.javydekoning.com"
+                  target: "_blank"
+                - name: "Unifi"
+                  logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/duplicati.png"
+                  subtitle: "Network things"
+                  tag: "app"
+                  url: "https://192.168.1.254:8443/"
+                  target: "_blank"
+                - name: "ArgoCD"
+                  logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/argo.png"
+                  subtitle: "GitOps"
+                  tag: "app"
+                  url: "https://192.168.1.201/"
+                  target: "_blank"
+            - name: "Downloads"
+              icon: "fas download"
+              items:
+                - name: "rutorrent"
+                  logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/rutorrent.png"
+                  subtitle: "Torrents"
+                  tag: "app"
+                  url: "http://rutorrent.k8s.javydekoning.com"
+                  target: "_blank"
