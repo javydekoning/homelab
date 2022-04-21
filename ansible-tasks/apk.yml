@@ -1,6 +1,6 @@
 - name: set repositories
   copy:
-    dest: '/etc/apk/repositories'
+    dest: "/etc/apk/repositories"
     content: |
       http://dl-cdn.alpinelinux.org/alpine/edge/main
       https://dl-cdn.alpinelinux.org/alpine/edge/community
@@ -8,8 +8,9 @@
 
 - name: install apk packages
   become: true
+  retries: 3 # If Python is upgraded, a retry might be needed.
   community.general.apk:
-    name: '{{ apk_installed_packages }}'
+    name: "{{ apk_installed_packages }}"
     state: latest
     update_cache: yes
 

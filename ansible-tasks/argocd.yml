@@ -1,4 +1,11 @@
 ---
+- name: Get latest release of argoproj/argo-cd
+  register: argocdLatestVersion
+  community.general.github_release:
+    user: argoproj
+    repo: argo-cd
+    action: latest_release
+
 - name: Get latest release of argoproj/applicationset
   register: argoApplicationsetLatestVersion
   community.general.github_release:
@@ -8,8 +15,14 @@
 
 - name: Download argo manifests to the cluster.
   ansible.builtin.get_url:
-    url: https://raw.githubusercontent.com/argoproj-labs/applicationset/{{argoApplicationsetLatestVersion.tag}}/manifests/install-with-argo-cd.yaml
-    dest: ~/argocd-install.yaml
+    url: https://raw.githubusercontent.com/argoproj/argo-cd/{{argocdLatestVersion.tag}}/manifests/install.yaml
+    dest: ~/argocd.yaml
+    mode: "0664"
+
+- name: Download argo manifests to the cluster.
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/argoproj/applicationset/{{argoApplicationsetLatestVersion.tag}}/manifests/install.yaml
+    dest: ~/applicationset.yaml
     mode: "0664"
 
 - name: Create argocd k8s namespace
@@ -19,10 +32,18 @@
     kind: Namespace
     state: present
 
-- name: Apply argo manifests to the cluster.
+- name: Apply argocd manifests to the cluster.
   retries: 3
   delay: 60
   kubernetes.core.k8s:
     state: present
     namespace: argocd
-    src: ~/argocd-install.yaml
+    src: ~/argocd.yaml
+
+- name: Apply argo applicationset manifests to the cluster.
+  retries: 3
+  delay: 60
+  kubernetes.core.k8s:
+    state: present
+    namespace: argocd
+    src: ~/applicationset.yaml

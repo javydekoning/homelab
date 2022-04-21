@@ -22,6 +22,8 @@
       import_tasks: ansible-tasks/helm.yml
     - name: copy cluster apps
       import_tasks: ansible-tasks/copy-cluster-apps.yml
+    # - name: intel driver
+    #   import_tasks: ansible-tasks/intel-driver.yml
   handlers:
     - name: update extlinux
       shell: |-
