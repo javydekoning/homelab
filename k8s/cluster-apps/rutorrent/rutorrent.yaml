@@ -103,7 +103,7 @@ spec:
           volumeMounts:
             - name: downloads
               mountPath: /config/
-              subPath: config
+              subPath: config/rtorrent-config
             - name: downloads
               mountPath: /downloads/
       volumes:

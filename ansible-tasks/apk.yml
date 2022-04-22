@@ -2,9 +2,8 @@
   copy:
     dest: "/etc/apk/repositories"
     content: |
-      http://dl-cdn.alpinelinux.org/alpine/edge/main
-      https://dl-cdn.alpinelinux.org/alpine/edge/community
-      https://dl-cdn.alpinelinux.org/alpine/edge/testing
+      http://dl-3.alpinelinux.org/alpine/latest-stable/main
+      http://dl-3.alpinelinux.org/alpine/latest-stable/community
 
 - name: install apk packages
   become: true

@@ -4,10 +4,56 @@
 
 **Automation:**
 
-- [ ] Move to Ansible Roles 
-- [ ] Automate creation of ArgoCD web UI ingress
-- [ ] Automate Argo Application Set bootstrap
-- [ ] Fix Unifi ingress (backend is SSL by default). I use LB IP for now.
+- [ ] Add init container to Plex which waits for Intel driver to be ready
+- [ ] Setup TLS 
+  - https://traefik.io/blog/traefik-proxy-kubernetes-101/
+  - https://sysadmins.co.za/https-using-letsencrypt-and-traefik-with-k3s/
+
+## In progress
+
+- [x] Change Traefik to accept insecure backend for unifi/argo.
+  - https://rancher.com/docs/k3s/latest/en/helm/#customizing-packaged-components-with-helmchartconfig
+  - https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml
+
+```yaml 
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: traefik
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    globalArguments:
+    - "--serversTransport.insecureSkipVerify=true"
+    - "--entrypoints.web.address=:80"
+    - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
+    - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
+    - "--entrypoints.websecure.address=:443"
+    logs:
+      access:
+        enabled: true
+```
+
+- [x] Automate creation of ArgoCD web UI ingress
+  - https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/#traefik-v22
+
+```
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: argocd-server
+  namespace: argocd
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`argocd.k8s.javydekoning.com`)
+      services:
+        - name: argocd-server
+          namespace: argocd
+          port: https
+```
 
 **Future improvements:**
 

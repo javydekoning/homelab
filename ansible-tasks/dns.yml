@@ -6,10 +6,3 @@
     content: |
       search lab.javydekoning.com
       nameserver 1.1.1.1
-
-- name: Ensure resolv.conf is immutable.
-  file:
-    path: /etc/resolv.conf
-    attr: +i
-  register: resolv_file
-  changed_when: "'i' not in resolv_file.diff.before.attributes"
