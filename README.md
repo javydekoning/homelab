@@ -25,13 +25,6 @@ spec:
   valuesContent: |-
     globalArguments:
     - "--serversTransport.insecureSkipVerify=true"
-    - "--entrypoints.web.address=:80"
-    - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
-    - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
-    - "--entrypoints.websecure.address=:443"
-    logs:
-      access:
-        enabled: true
 ```
 
 - [x] Automate creation of ArgoCD web UI ingress

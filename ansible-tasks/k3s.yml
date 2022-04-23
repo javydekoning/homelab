@@ -1,4 +1,6 @@
 ---
+
+
 #Requires kubectl and jq to be installed.
 - name: Get installed version of k3s
   register: k3sVersionInstalled
@@ -19,7 +21,7 @@
 - name: Install or Upgrade k3s
   register: k3sUpgrade
   shell: |
-    curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest sh -s - server --cluster-init --disable=servicelb --data-dir /downloads/config/rancher/k3s
+    curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest sh -s - server --cluster-init --disable=servicelb --data-dir {{ k3s_data_dir }}
   when: k3sVersionLatest.tag != k3sVersionInstalled.stdout
 
 - name: Create a directory if it does not exist
@@ -47,3 +49,23 @@
       --server=https://{{ ansible_default_ipv4.address }}:6443
       --kubeconfig ~{{ ansible_user }}/.kube/config
   changed_when: false
+
+# Set Traefik Configuration before installing k3s
+- name: Ensure Traefik content is set
+  copy:
+    dest: "{{ k3s_data_dir }}/server/manifests/traefik-config.yaml"
+    content: |
+      apiVersion: helm.cattle.io/v1
+      kind: HelmChartConfig
+      metadata:
+        name: traefik
+        namespace: kube-system
+      spec:
+        valuesContent: |-
+          globalArguments:
+          - "--serversTransport.insecureSkipVerify=true"
+  notify:
+    - k3s restart
+
+- name: Flush handlers
+  meta: flush_handlers
