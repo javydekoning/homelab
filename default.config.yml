@@ -11,9 +11,11 @@ apk_installed_packages:
   - kubectl-zsh-completion
   - libuser
   - ncdu
+  - neofetch
   - oh-my-zsh
   - py3-pip
   - rsync
+  - tmux
   - zsh
 
 pip_installed_packages:

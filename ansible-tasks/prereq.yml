@@ -36,6 +36,11 @@
     src: ./dotfiles/.zshrc
     dest: "/{{ ansible_user }}/.zshrc"
 
+- name: Set .tmux.conf
+  copy:
+    src: ./dotfiles/.tmux.conf
+    dest: "/{{ ansible_user }}/.tmux.conf"
+
 # Currently bugged: https://github.com/ansible/ansible/issues/61911
 - name: change user shell to zsh
   become: yes
