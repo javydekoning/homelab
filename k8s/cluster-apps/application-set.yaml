@@ -9,9 +9,8 @@ spec:
         revision: HEAD
         files:
           - path: "k8s/cluster-apps/**/gen-config.json"
-          - path: "k8s/cluster-apps/rutorrent/rutorrent.yaml"
   syncPolicy:
-    preserveResourcesOnDeletion: true
+    preserveResourcesOnDeletion: false
   template:
     metadata:
       name: "{{ path.basename }}"
