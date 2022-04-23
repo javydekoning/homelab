@@ -1,4 +1,4 @@
-node-red:
+overseerr:
   env:
     TZ: Europe/Amsterdam
 
