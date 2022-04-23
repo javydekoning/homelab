@@ -7,6 +7,7 @@ apk_installed_packages:
   - helm
   - htop
   - jq
+  - k9s
   - kubectl
   - kubectl-zsh-completion
   - libuser

@@ -1,5 +1,9 @@
 # Homelab
 
+My homelab! All running on an old, low power N3150!
+
+![Screenshot of running apps.](homelab.png)
+
 ## Todo
 
 **Automation:**
