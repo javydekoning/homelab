@@ -1,0 +1,19 @@
+node-red:
+  env:
+    TZ: Europe/Amsterdam
+
+  ingress:
+    main:
+      enabled: true
+      hosts:
+        - host: nodered.k8s.javydekoning.com
+          paths:
+            - path: /
+
+  persistence:
+    data:
+      enabled: true
+      type: hostPath
+      accessMode: ReadWriteOnce
+      hostPath: /downloads/config/nodered
+      mountPath: /data
