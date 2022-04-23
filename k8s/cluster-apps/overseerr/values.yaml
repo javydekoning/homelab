@@ -1,0 +1,19 @@
+node-red:
+  env:
+    TZ: Europe/Amsterdam
+
+  ingress:
+    main:
+      enabled: true
+      hosts:
+        - host: overseerr.k8s.javydekoning.com
+          paths:
+            - path: /
+
+  persistence:
+    config:
+      enabled: true
+      type: hostPath
+      accessMode: ReadWriteOnce
+      hostPath: /downloads/config/overseerr
+      mountPath: /app/config
