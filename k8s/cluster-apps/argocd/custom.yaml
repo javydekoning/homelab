@@ -1,7 +1,15 @@
 apiVersion: traefik.containo.us/v1alpha1
+kind: ServersTransport
+metadata:
+  name: argocd-serversTransport
+  namespace: argocd
+spec:
+  insecureSkipVerify: true
+---
+apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: argocd-server
+  name: argocd-ingressRoute
   namespace: argocd
 spec:
   entryPoints:
@@ -13,3 +21,4 @@ spec:
         - name: argocd-server
           namespace: argocd
           port: https
+          serversTransport: argocd-serversTransport
