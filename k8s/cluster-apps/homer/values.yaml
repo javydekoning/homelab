@@ -115,7 +115,7 @@ homer:
                   target: "_blank"
                 - name: "Overseerr"
                   logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/overseerr.png"
-                  subtitle: "indexer manager"
+                  subtitle: "Media request management"
                   tag: "app"
                   url: "http://overseerr.k8s.javydekoning.com"
                   target: "_blank"                  
