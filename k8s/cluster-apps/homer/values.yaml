@@ -60,10 +60,10 @@ homer:
           # Homepage configuration
           # See https://fontawesome.com/v5/search for icons options
 
-          title: "Homer dashboard"
+          title: "Javy's homelab!"
           subtitle: "Running on k8s!"
           logo: "logo.png"
-          icon: "fab fa-docker" # Optional icon
+          icon: "fas fa-server" # Optional icon
 
           header: true
           footer: 'Homelabbing rulez' 
