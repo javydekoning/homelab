@@ -1,8 +1,0 @@
-# https://github.com/dirtycajunrice/gitops/blob/master/cluster-apps/plex/
-name: intel-gpu-plugin
-apiVersion: v2
-version: 4.2.0
-dependencies:
-  - name: intel-gpu-plugin
-    version: 4.2.0
-    repository: https://k8s-at-home.com/charts/
