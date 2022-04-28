@@ -20,7 +20,7 @@ plex:
     PLEX_PREFERENCE_3: "HardwareAcceleratedCodecs=1"
     PLEX_PREFERENCE_4: "autoEmptyTrash=1"
     PLEX_PREFERENCE_5: "AcceptedEULA=1"
-    PLEX_PREFERENCE_6: "DisableTLSv1_0=1"
+    PLEX_PREFERENCE_6: "HardwareDevicePath=/dev/dri/renderD128"
     PLEX_PREFERENCE_7: "RelayEnabled=0"
     PLEX_PREFERENCE_8: "TreatWanIpAsLocal=0"
     PLEX_PREFERENCE_9: "customConnections=https://192.168.1.250:32400"
@@ -76,9 +76,9 @@ plex:
       hostPath: /downloads/education
       mountPath: /education
   podSecurityContext:
-    runAsUser: 911
-    runAsGroup: 911
-    fsGroup: 911
+    runAsUser: 0
+    runAsGroup: 0
+    fsGroup: 0
   resources:
     requests:
       memory: "2Gi"
