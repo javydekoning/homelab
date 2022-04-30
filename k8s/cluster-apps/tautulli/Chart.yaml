@@ -1,0 +1,8 @@
+# https://github.com/dirtycajunrice/gitops/blob/master/cluster-apps/tautulli/
+name: tautulli
+apiVersion: v2
+version: 1.0.0
+dependencies:
+  - name: tautulli
+    version: 11.2.0
+    repository: https://k8s-at-home.com/charts/
