@@ -1,7 +1,7 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: ServersTransport
 metadata:
-  name: argocd-servers-transport
+  name: argocd-server
   namespace: argocd
 spec:
   insecureSkipVerify: true
@@ -9,7 +9,7 @@ spec:
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: argocd-ingress-route
+  name: argocd-server
   namespace: argocd
 spec:
   entryPoints:
@@ -17,9 +17,9 @@ spec:
     - web
   routes:
     - kind: Rule
-      match: Host(`argocd.k8s.javydekoning.com`)
+      match: Host(`argocd.k8s.javydekoning.com`) && PathPrefix(`/`) 
       services:
         - name: argocd-server
           namespace: argocd
           port: https
-          serversTransport: argocd-servers-transport
+          serversTransport: argocd-server
