@@ -9,6 +9,8 @@ tautulli:
       enabled: true
       hosts:
         - host: tautulli.k8s.javydekoning.com
+          paths:
+            - path: /
 
   persistence:
     config:
