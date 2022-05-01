@@ -1,8 +1,8 @@
 # https://github.com/dirtycajunrice/gitops/blob/master/cluster-apps/plex/
 name: sonarr
 apiVersion: v2
-version: 16.2.0
+version: 16.2.1
 dependencies:
   - name: sonarr
-    version: 16.2.0
+    version: 16.2.1
     repository: https://k8s-at-home.com/charts/
