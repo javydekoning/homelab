@@ -1,8 +1,8 @@
 # https://github.com/dirtycajunrice/gitops/blob/master/cluster-apps/plex/
 name: adguard-home
 apiVersion: v2
-version: 5.2.0
+version: 5.3.0
 dependencies:
   - name: adguard-home
-    version: 5.2.0
+    version: 5.3.0
     repository: https://k8s-at-home.com/charts/

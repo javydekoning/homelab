@@ -1,7 +1,7 @@
 name: prowlarr
 apiVersion: v2
-version: 4.3.0
+version: 4.4.0
 dependencies:
   - name: prowlarr
-    version: 4.3.0
+    version: 4.4.0
     repository: https://k8s-at-home.com/charts/

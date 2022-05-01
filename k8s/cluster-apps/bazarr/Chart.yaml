@@ -1,7 +1,7 @@
 name: bazarr
 apiVersion: v2
-version: 10.3.0
+version: 10.5.0
 dependencies:
   - name: bazarr
-    version: 10.3.0
+    version: 10.5.0
     repository: https://k8s-at-home.com/charts/
