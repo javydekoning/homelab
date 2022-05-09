@@ -1,0 +1,12 @@
+{
+    "extends": [
+      "config:base"
+    ],
+    "packageRules": [
+      {
+        "matchManagers": ["helmv3"],
+        "matchFiles": ["Chart.yaml"],
+        "enabled": true
+      }
+    ]
+  }
