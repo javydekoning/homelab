@@ -128,7 +128,12 @@ homer:
                   logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/tautulli.png"
                   subtitle: "Plex monitoring"
                   url: "https://tautulli.k8s.javydekoning.com/"
-                  target: "_blank"                  
+                  target: "_blank"
+                - name: GitHub Repo
+                  logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/github.png"
+                  subtitle: "Link to homelab repo"
+                  url: "https://github.com/javydekoning/homelab"
+                  target: "_blank"
             - name: "Downloads"
               icon: "fas fa-download"
               items:
