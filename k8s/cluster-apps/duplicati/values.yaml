@@ -10,6 +10,14 @@ duplicati:
     PUID: "0"
     PGID: "0"
 
+  image: 
+    repository: ghcr.io/linuxserver/duplicati
+    # Duplicati standard image hasn't been updated in years
+    # Canary releases have many bugfixes, hence switched to
+    # :development as of 2022-05-11
+    tag: development
+    pullPolicy: IfNotPresent
+
   ingress:
     main:
       enabled: true
