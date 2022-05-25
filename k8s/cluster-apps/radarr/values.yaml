@@ -2,6 +2,14 @@ radarr:
   env:
     TZ: Europe/Amsterdam
 
+  image:
+    # -- image repository
+    repository: ghcr.io/k8s-at-home/radarr
+    # @default -- chart.appVersion
+    tag: latest
+    # -- image pull policy
+    pullPolicy: IfNotPresent
+
   ingress:
     # -- Enable and configure ingress settings for the chart under this key.
     # @default -- See values.yaml

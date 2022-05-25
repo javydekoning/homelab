@@ -2,6 +2,14 @@ overseerr:
   env:
     TZ: Europe/Amsterdam
 
+  image:
+    # -- image repository
+    repository: ghcr.io/sct/overseerr
+    # -- image tag
+    tag: latest
+    # -- image pull policy
+    pullPolicy: IfNotPresent
+
   ingress:
     main:
       enabled: true
