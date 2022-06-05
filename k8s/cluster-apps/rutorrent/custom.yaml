@@ -37,8 +37,8 @@ spec:
       targetPort: 8000
       protocol: TCP
     - name: torrent-tcp
-      port: 50000
-      targetPort: 50000
+      port: 51413
+      targetPort: 51413
       protocol: TCP
 ---
 apiVersion: v1
@@ -97,10 +97,12 @@ spec:
               value: "911"
             - name: RUTORRENT_PORT
               value: "8080"
+            - name: RT_INC_PORT
+              value: "51413"
           ports:
             - containerPort: 8080 # RUTORRENT_PORT
             - containerPort: 8000 # XMLRPC_PORT
-            - containerPort: 50000 # RT_INC_PORT
+            - containerPort: 51413 # RT_INC_PORT
             - containerPort: 6881 # DHT
           volumeMounts:
             - name: downloads
