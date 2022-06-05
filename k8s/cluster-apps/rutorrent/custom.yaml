@@ -99,6 +99,8 @@ spec:
               value: "8080"
             - name: RT_INC_PORT
               value: "51413"
+            - name: XMLRPC_PORT
+              value: "8000"
           ports:
             - containerPort: 8080 # RUTORRENT_PORT
             - containerPort: 8000 # XMLRPC_PORT
