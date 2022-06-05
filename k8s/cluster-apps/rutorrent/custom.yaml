@@ -95,6 +95,8 @@ spec:
               value: "911"
             - name: PGID
               value: "911"
+            - name: RUTORRENT_PORT
+              value: "8080"
           ports:
             - containerPort: 8080 # RUTORRENT_PORT
             - containerPort: 8000 # XMLRPC_PORT
