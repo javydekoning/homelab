@@ -9,7 +9,7 @@ prowlarr:
     # -- image repository
     repository: ghcr.io/k8s-at-home/prowlarr
     # -- image tag
-    tag:
+    tag: latest
     # -- image pull policy
     pullPolicy: IfNotPresent
 
