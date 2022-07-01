@@ -4,22 +4,24 @@ My Homelab! All running on an old, low power N3150!
 
 ![Screenshot of running apps.](homelab.png)
 
-**Pending improvements:**
+**Todo:**
 
 - [ ] Fix automated Ansible Shell change. Today this doesn't work on Alipine. 
   - [ ] Pending [ansible/issues/61911](https://github.com/ansible/ansible/issues/61911)
-- [ ] Leverage `MixedProtocolLBService`. Alpha since Kubernetes `1.20`.
-  - [ ] Pending move to beta. [k8s feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/)
+- [ ] Leverage `MixedProtocolLBService`. Beta since Kubernetes `1.24`.
+  - [X] Pending move to beta. [MixedProtocolLBService](https://github.com/kubernetes/enhancements/issues/1435)
   - [ ] Pending [metallb/issues/1050](https://github.com/metallb/metallb/issues/1050)
 - [ ] New hardware.
-  - [ ] Needs intel quick sync video for HW transcoding.
-  - [ ] NUC 8th gen i5 or better. 
+  - [ ] Needs Intel Quick Sync Video (QSV) for HW transcoding.
+  - [ ] 11th gen i5 or better (UHD 770 or Xe Graphics). 
+- [ ] Consider moving to Truenas Scale for ZFS benefits + Kubernetes support.
+  - [ ] Not an option today, Truenas Scale runs Linux kernel 5.10 which doesn't fully support Intel Gen 11/12. Bluefin will move Kernel to 5.15.
 
 ## Setup
 
-Automated via Ansible. Make sure to:
-- set correct IP in `inventory`. 
-- enable ssh key auth using `ssh-copy-id root@<ip>` 
+Today is automated via Ansible. Make sure to:
+- Set correct IP in `inventory`. 
+- Enable ssh key auth using `ssh-copy-id root@<ip>` 
 
 To kick of the configuration:
 

@@ -1,7 +1,5 @@
 ---
-
-
-#Requires kubectl and jq to be installed.
+# Requires kubectl and jq to be installed.
 - name: Get installed version of k3s
   register: k3sVersionInstalled
   shell: kubectl version -o json | jq -r ".serverVersion.gitVersion"

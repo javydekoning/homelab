@@ -10,7 +10,7 @@ volumeSpec:
   configMap:
     name: {{ include "common.names.fullname" . }}-config
     items:
-{{- if .Values.config.alerts }}    
+{{- if .Values.config.alerts }}
     - key: alerts
       path: Alerts
 {{ end }}

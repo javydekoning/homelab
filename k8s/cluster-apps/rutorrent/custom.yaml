@@ -102,10 +102,14 @@ spec:
             - name: XMLRPC_PORT
               value: "8000"
           ports:
-            - containerPort: 8080 # RUTORRENT_PORT
-            - containerPort: 8000 # XMLRPC_PORT
-            - containerPort: 51413 # RT_INC_PORT
-            - containerPort: 6881 # DHT
+            # RUTORRENT_PORT
+            - containerPort: 8080
+            # XMLRPC_PORT
+            - containerPort: 8000
+            # RT_INC_PORT
+            - containerPort: 51413
+            # DHT
+            - containerPort: 6881
           volumeMounts:
             - name: downloads
               mountPath: /data/
@@ -118,7 +122,3 @@ spec:
             path: /downloads
             type: DirectoryOrCreate
       restartPolicy: Always
-      # dnsPolicy: None
-      # dnsConfig:
-      #   nameservers:
-      #     - 1.1.1.1

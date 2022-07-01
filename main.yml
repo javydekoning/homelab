@@ -30,6 +30,6 @@
         update-extlinux
     - name: k3s restart
       shell: |-
-        service k3s restart        
+        service k3s restart
     - name: reboot
       reboot:

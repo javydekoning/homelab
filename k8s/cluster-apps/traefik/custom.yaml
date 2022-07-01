@@ -5,11 +5,11 @@ metadata:
   namespace: kube-system
 spec:
   entryPoints:
-  - websecure
+    - websecure
   routes:
-  - kind: Rule
-    match: Host(`traefik.k8s.javydekoning.com`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
-    services:
-    - kind: TraefikService
-      name: api@internal
-      namespace: kube-system
+    - kind: Rule
+      match: Host(`traefik.k8s.javydekoning.com`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
+      services:
+        - kind: TraefikService
+          name: api@internal
+          namespace: kube-system

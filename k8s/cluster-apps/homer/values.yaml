@@ -29,7 +29,7 @@ homer:
           icon: "fas fa-server" # Optional icon
 
           header: true
-          footer: 'Homelabbing rulez' 
+          footer: 'Homelabbing rulez'
           # set false if you want to hide it.
 
           # Optional navbar
@@ -81,12 +81,12 @@ homer:
                   subtitle: "Media request management"
                   tag: "app"
                   url: "http://overseerr.k8s.javydekoning.com"
-                  target: "_blank"                  
+                  target: "_blank"
                 - name: "Calibre-web"
                   logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/calibreweb.png"
                   subtitle: "Books"
                   url: "https://calibre.k8s.javydekoning.com/"
-                  target: "_blank"                                    
+                  target: "_blank"
             - name: "Management"
               icon: "fas fa-cloud"
               items:

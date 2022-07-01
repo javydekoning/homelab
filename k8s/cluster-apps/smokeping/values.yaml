@@ -10,21 +10,21 @@ controller:
   replicas: 1
 
 initContainers:
-# -- Configures an initContainer that copies the configmap to the smokeping conf directory
-# It does NOT overwrite when the file already exists.
-# @default -- See values.yaml
+  # -- Configures an initContainer that copies the configmap to the smokeping conf directory
+  # It does NOT overwrite when the file already exists.
+  # @default -- See values.yaml
   copy-configmap:
     image: busybox
     imagePullPolicy: IfNotPresent
     command:
-    - "sh"
-    - "-c"
-    - cp -n /tmp/* /config
+      - "sh"
+      - "-c"
+      - cp -n /tmp/* /config
     volumeMounts:
-    - name: smokeping-config
-      mountPath: /tmp
-    - name: config
-      mountPath: /config
+      - name: smokeping-config
+        mountPath: /tmp
+      - name: config
+        mountPath: /config
     securityContext:
       runAsUser: 0
 
@@ -82,7 +82,7 @@ config:
     title = Network Latency
     remark = Sample Remark
     probe = FPing
-    
+
     + FPing
     menu = FPing Latency
     title = FPing Latency
@@ -115,4 +115,4 @@ ingress:
     hosts:
       - host: smokeping.k8s.javydekoning.com
         paths:
-          - path: /    
+          - path: /

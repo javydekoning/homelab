@@ -17,7 +17,7 @@ spec:
     - web
   routes:
     - kind: Rule
-      match: Host(`argocd.k8s.javydekoning.com`) && PathPrefix(`/`) 
+      match: Host(`argocd.k8s.javydekoning.com`) && PathPrefix(`/`)
       services:
         - name: argocd-server
           namespace: argocd
