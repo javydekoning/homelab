@@ -161,3 +161,12 @@ homer:
                   tag: "app"
                   url: "http://librespeed.k8s.javydekoning.com"
                   target: "_blank"
+            - name: "Random"
+              icon: "fas fa-download"
+              items:
+                - name: "mealie"
+                  logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/mealie.png"
+                  subtitle: "Meal planner"
+                  tag: "app"
+                  url: "http://mealie.k8s.javydekoning.com"
+                  target: "_blank"

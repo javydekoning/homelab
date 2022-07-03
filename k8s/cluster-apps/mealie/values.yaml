@@ -1,0 +1,13 @@
+mealie:
+  ingress:
+    main:
+      enabled: true
+      hosts:
+        - host: mealie.k8s.javydekoning.com
+          paths:
+            - path: /
+              service: 
+                name: http
+
+  env:
+    TZ: Europe/Amsterdam
