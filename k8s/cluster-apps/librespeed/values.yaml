@@ -1,0 +1,11 @@
+librespeed:
+  ingress:
+    main:
+      enabled: true
+      hosts:
+        - host: librespeed.k8s.javydekoning.com
+          paths:
+            - path: /
+
+  env:
+    TZ: Europe/Amsterdam

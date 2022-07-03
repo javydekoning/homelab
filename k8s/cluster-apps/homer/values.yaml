@@ -7,6 +7,9 @@ homer:
           paths:
             - path: /
 
+  env:
+    TZ: Europe/Amsterdam
+
   persistence:
     config:
       enabled: false
@@ -151,4 +154,10 @@ homer:
                   subtitle: "Latency monitor"
                   tag: "app"
                   url: "http://smokeping.k8s.javydekoning.com"
+                  target: "_blank"
+                - name: "Librespeed"
+                  logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/librespeed.png"
+                  subtitle: "Internal up/down speedtest"
+                  tag: "app"
+                  url: "http://librespeed.k8s.javydekoning.com"
                   target: "_blank"
