@@ -1,0 +1,6 @@
+[
+  {
+    "name": "metallb",
+    "namespace": "metallb-system"
+  }
+]
