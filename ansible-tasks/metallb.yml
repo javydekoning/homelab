@@ -1,40 +1,30 @@
 ---
-# - name: Get latest release of metallb/metallb
-#   register: release
-#   community.general.github_release:
-#     user: metallb
-#     repo: metallb
-#     action: latest_release
-
-# - name: Download metallb manifest to the cluster.
-#   ansible.builtin.get_url:
-#     url: "{{ item.url }}"
-#     dest: "{{ item.dest }}"
-#     mode: "0664"
-#   loop:
-#     - url: "https://raw.githubusercontent.com/metallb/metallb/{{release.tag}}/manifests/namespace.yaml"
-#       dest: ~/namespace.yaml
-#     - url: https://raw.githubusercontent.com/metallb/metallb/v0.12.1/manifests/metallb.yaml
-#       dest: ~/metallb.yaml
-
-# - name: Apply metallb manifest to the cluster.
-#   retries: 3
-#   delay: 60
-#   kubernetes.core.k8s:
-#     state: present
-#     src: "{{ item }}"
-#   loop:
-#     - ~/namespace.yaml
-#     - ~/metallb.yaml
 
 - name: Ensure metallb-system k8s namespace
   kubernetes.core.k8s:
-    name: metallb-system
-    api_version: v1
-    kind: Namespace
     state: present
+    definition:
+      apiVersion: v1
+      kind: Namespace
+      metadata:
+        labels:
+          kubernetes.io/metadata.name: metallb-system
+          pod-security.kubernetes.io/audit: privileged
+          pod-security.kubernetes.io/enforce: privileged
+          pod-security.kubernetes.io/warn: privileged
+        name: metallb-system
 
-- name: Create metallb configmap
+- name: Create metallb l2 advertisement
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: metallb.io/v1beta1
+      kind: L2Advertisement
+      metadata:
+        name: l2
+        namespace: metallb-system
+
+- name: Create metallb addresspool
   kubernetes.core.k8s:
     state: present
     definition:
@@ -46,15 +36,3 @@
       spec:
         addresses:
           - "{{ metallb_pool }}"
-      # apiVersion: v1
-      # kind: ConfigMap
-      # metadata:
-      #   namespace: metallb-system
-      #   name: config
-      # data:
-      #   config: |
-      #     address-pools:
-      #     - name: default
-      #       protocol: layer2
-      #       addresses:
-      #       - "{{ metallb_pool }}"
