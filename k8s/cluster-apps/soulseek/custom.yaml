@@ -1,0 +1,90 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: soulseek-ingress
+spec:
+  rules:
+    - host: soulseek.k8s.javydekoning.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: soulseek
+                port:
+                  name: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: soulseek
+  namespace: default
+  annotations:
+    metallb.universe.tf/allow-shared-ip: soulseek
+spec:
+  selector:
+    app: soulseek
+  type: LoadBalancer
+  loadBalancerIP: 192.168.1.251
+  ports:
+    - name: http
+      port: 6080
+      targetPort: 6080
+      protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: soulseek
+  namespace: default
+  labels:
+    app: soulseek
+spec:
+  selector:
+    matchLabels:
+      app: soulseek
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: soulseek
+    spec:
+      containers:
+        - name: soulseek
+          image: realies/soulseek
+          env:
+            - name: TZ
+              value: Europe/Amsterdam
+            - name: PUID
+              value: "911"
+            - name: PGID
+              value: "911"
+          ports:
+            # soulseek_vnc
+            - containerPort: 6080
+            # Listening port
+            - containerPort: 57913
+            # Obfuscated port
+            - containerPort: 57914
+          volumeMounts:
+            - name: downloads
+              mountPath: /data/.SoulseekQt
+              subPath: config/soulseek-config
+            - name: downloads
+              mountPath: "/data/Soulseek Downloads"
+              subPath: soulseek/soulseek-downloads
+            - name: downloads
+              mountPath: "/data/Soulseek Shared Folder"
+              subPath: soulseek/soulseek-shared
+      volumes:
+        - name: downloads
+          hostPath:
+            path: /downloads
+            type: DirectoryOrCreate
+      restartPolicy: Always
