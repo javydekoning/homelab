@@ -74,13 +74,13 @@ spec:
             - containerPort: 57914
           volumeMounts:
             - name: downloads
-              mountPath: "/data/"
+              mountPath: "/data"
               subPath: config/soulseek-config
             - name: downloads
-              mountPath: "/downloads/"
+              mountPath: "/downloads"
               subPath: soulseek/soulseek-downloads
             - name: downloads
-              mountPath: "/shared-music/"
+              mountPath: "/shared"
               subPath: soulseek/soulseek-shared
       volumes:
         - name: downloads
