@@ -125,7 +125,7 @@ homer:
                 - name: "Node-red"
                   logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/nodered.png"
                   subtitle: "Automation tool"
-                  url: "https://nodered.k8s.javydekoning.com/"
+                  url: "https://nodered.javydekoning.com/"
                   target: "_blank"
                 - name: GitHub Repo
                   logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/github.png"
