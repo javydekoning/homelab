@@ -1,6 +1,0 @@
-dependencies:
-- name: kube-ops-view
-  repository: https://k8s-at-home.com/charts/
-  version: 1.2.2
-digest: sha256:b2ff4361a999e3560741279267652643f7a57a67cb5c99e8b52c6e5afe9964ac
-generated: "2022-08-15T16:47:53.74416+02:00"
