@@ -2,6 +2,7 @@
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import { NetworkStack } from '../lib/network-stack';
+import { StorageStack } from '../lib/storage-stack';
 import { EksLabStack } from '../lib/eks-lab-stack';
 import { CertificateManagerStack } from '../lib/cert-manager-stack';
 
@@ -15,6 +16,11 @@ const network = new NetworkStack(app, 'network-stack', {
 })
 
 const certStack = new CertificateManagerStack(app, 'cert-manager-stack', {
+  env
+})
+
+const storageStack = new StorageStack(app, 'eks-lab-storage-stack', {
+  vpc: network.vpc,
   env
 })
 

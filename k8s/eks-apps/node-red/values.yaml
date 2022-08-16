@@ -21,7 +21,8 @@ node-red:
   persistence:
     data:
       enabled: true
-      type: hostPath
+      type: pvc
+      storageClass: efs-sc
       accessMode: ReadWriteOnce
-      hostPath: /downloads/config/nodered
-      mountPath: /data
+      size: 1Gi
+      retain: true
