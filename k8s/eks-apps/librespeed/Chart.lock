@@ -1,0 +1,6 @@
+dependencies:
+- name: librespeed
+  repository: https://k8s-at-home.com/charts/
+  version: 5.4.2
+digest: sha256:b482bb204a05151d0160c7529afe8745307acb4b1c63fb85ae10b1b6be2ccf33
+generated: "2022-08-16T12:14:08.601797+02:00"
