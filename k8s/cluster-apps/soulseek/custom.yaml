@@ -77,10 +77,10 @@ spec:
               mountPath: "/data"
               subPath: config/soulseek
             - name: downloads
-              mountPath: "/downloads"
+              mountPath: "/data/downloads"
               subPath: soulseek/downloads
             - name: downloads
-              mountPath: "/shared"
+              mountPath: "/data/shared"
               subPath: soulseek/shared
       volumes:
         - name: downloads
