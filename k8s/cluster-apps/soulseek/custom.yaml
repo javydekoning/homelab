@@ -75,13 +75,13 @@ spec:
           volumeMounts:
             - name: downloads
               mountPath: "/data"
-              subPath: config/soulseek-config
+              subPath: config/soulseek
             - name: downloads
               mountPath: "/downloads"
-              subPath: soulseek/soulseek-downloads
+              subPath: soulseek/downloads
             - name: downloads
               mountPath: "/shared"
-              subPath: soulseek/soulseek-shared
+              subPath: soulseek/shared
       volumes:
         - name: downloads
           hostPath:
