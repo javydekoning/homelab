@@ -141,6 +141,12 @@ homer:
                   tag: "app"
                   url: "http://rutorrent.k8s.javydekoning.com"
                   target: "_blank"
+                - name: "Soulseek"
+                  logo: "https://user-images.githubusercontent.com/491117/35048338-06982370-fb9d-11e7-8109-1f63982b803d.png"
+                  subtitle: "qt"
+                  tag: "app"
+                  url: "http://soulseek.k8s.javydekoning.com"
+                  target: "_blank"
             - name: "Monitoring"
               icon: "fas fa-download"
               items:
