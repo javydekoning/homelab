@@ -35,7 +35,7 @@ export class EksLabStack extends Stack {
       new blueprints.addons.VpcCniAddOn(),
       new blueprints.addons.KarpenterAddOn({
         amiFamily: 'AL2',
-        // version: '0.14.0',
+        //version: '0.15.0',
         provisionerSpecs: {
           'karpenter.sh/capacity-type': ['spot'],
           "kubernetes.io/arch": ["amd64","arm64"],
