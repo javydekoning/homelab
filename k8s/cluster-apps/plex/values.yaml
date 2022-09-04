@@ -10,11 +10,16 @@ plex:
     additionalAdvertiseURL: "http://plex.k8s.javydekoning.com"
     disableGDM: false
 
-
   env:
     TZ: Europe/Amsterdam
     ADVERTISE_IP: 192.168.1.250
     ALLOWED_NETWORKS: "10.0.0.0/8,172.16.0.0/16,192.168.1.0/24"
+    PUID: 911
+    USER_ID: 911
+    UID: 911
+    PGID: 911
+    GROUP_ID: 911
+    GID: 911
 
   service:
     main:
