@@ -67,9 +67,9 @@ plex:
       hostPath: /downloads/education
       mountPath: /education
   podSecurityContext:
-    runAsUser: 0
-    runAsGroup: 0
-    fsGroup: 0
+    runAsUser: 911
+    runAsGroup: 911
+    fsGroup: 911
   resources:
     requests:
       memory: "2Gi"
