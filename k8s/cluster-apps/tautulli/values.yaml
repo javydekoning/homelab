@@ -2,6 +2,14 @@ tautulli:
   env:
     TZ: Europe/Amsterdam
 
+  image:
+    # -- image repository
+    repository: ghcr.io/onedr0p/tautulli
+    # @default -- chart.appVersion
+    tag: rolling
+    # -- image pull policy
+    pullPolicy: Always
+
   ingress:
     # -- Enable and configure ingress settings for the chart under this key.
     # @default -- See values.yaml

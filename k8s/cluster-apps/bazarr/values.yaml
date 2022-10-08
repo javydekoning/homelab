@@ -1,4 +1,12 @@
 bazarr:
+  image:
+    # -- image repository
+    repository: ghcr.io/onedr0p/bazarr
+    # @default -- chart.appVersion
+    tag: rolling
+    # -- image pull policy
+    pullPolicy: Always
+
   env:
     TZ: Europe/Amsterdam
 

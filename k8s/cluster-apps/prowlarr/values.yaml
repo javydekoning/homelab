@@ -9,7 +9,7 @@ prowlarr:
     # -- image repository
     repository: ghcr.io/onedr0p/prowlarr
     # -- image tag
-    tag: latest
+    tag: rolling
     # -- image pull policy
     pullPolicy: Always
 
