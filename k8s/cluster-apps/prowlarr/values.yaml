@@ -7,11 +7,11 @@ prowlarr:
   #
   image:
     # -- image repository
-    repository: ghcr.io/k8s-at-home/prowlarr
+    repository: ghcr.io/onedr0p/prowlarr
     # -- image tag
     tag: latest
     # -- image pull policy
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
 
   # -- environment variables.
   # @default -- See below

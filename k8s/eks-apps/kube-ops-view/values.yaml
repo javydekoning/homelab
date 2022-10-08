@@ -2,7 +2,7 @@ kube-ops-view:
   image:
     repository: hjacobs/kube-ops-view
     tag: latest
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
 
   env:
     TZ: Europe/
@@ -14,7 +14,7 @@ kube-ops-view:
     # @default -- chart.appVersion
     tag:
     # -- image pull policy
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
 
   # -- Configures service settings for the chart.
   # @default -- See values.yaml
@@ -41,7 +41,7 @@ kube-ops-view:
         alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-west-1:922457306128:certificate/5cc87467-fb3e-4878-aa6e-61bb4ffd21a5
         alb.ingress.kubernetes.io/target-type: ip
         alb.ingress.kubernetes.io/group.name: shared
-      hosts: 
+      hosts:
         - host: kubeops.javydekoning.com
           paths:
           - path: /

@@ -8,7 +8,7 @@ overseerr:
     # -- image tag
     tag: latest
     # -- image pull policy
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
 
   ingress:
     main:

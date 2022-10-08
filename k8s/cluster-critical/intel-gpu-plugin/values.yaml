@@ -5,4 +5,4 @@ intel-gpu-plugin:
     # -- image tag
     tag: 0.24.0
     # -- image pull policy
-    pullPolicy: IfNotPresent
+    pullPolicy: Always

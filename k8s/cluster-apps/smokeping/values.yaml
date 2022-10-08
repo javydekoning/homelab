@@ -15,7 +15,7 @@ initContainers:
   # @default -- See values.yaml
   copy-configmap:
     image: busybox
-    imagePullPolicy: IfNotPresent
+    imagepullPolicy: Always
     command:
       - "sh"
       - "-c"
@@ -34,7 +34,7 @@ image:
   # -- image tag
   tag: "2.7.3"
   # -- image pull policy
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 # -- environment variables. See more environment variables in the [beets documentation](https://beets.org/docs).
 # @default -- See below
@@ -45,7 +45,6 @@ env:
   PUID: "1000"
   # -- Set the container group id
   PGID: "1000"
-
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
