@@ -7,7 +7,7 @@ prowlarr:
   #
   image:
     # -- image repository
-    repository: ghcr.io/onedr0p/prowlarr
+    repository: ghcr.io/onedr0p/prowlarr-develop
     # -- image tag
     tag: rolling
     # -- image pull policy
