@@ -1,13 +1,16 @@
+# helm, kubectl, kubectl-zsh-completion, helm-zsh-completion
+# these packages are only available in edge/testing today
 - name: set repositories
   copy:
     dest: "/etc/apk/repositories"
     content: |
       http://dl-3.alpinelinux.org/alpine/latest-stable/main
       http://dl-3.alpinelinux.org/alpine/latest-stable/community
+      http://dl-3.alpinelinux.org/alpine/edge/testing
 
 - name: install apk packages
   become: true
-  retries: 3  # If Python is upgraded, a retry might be needed.
+  retries: 3 # If Python is upgraded, a retry might be needed.
   community.general.apk:
     name: "{{ apk_installed_packages }}"
     state: latest
