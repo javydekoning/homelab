@@ -15,7 +15,7 @@ initContainers:
   # @default -- See values.yaml
   copy-configmap:
     image: busybox
-    imagepullPolicy: Always
+    imagePullPolicy: Always
     command:
       - "sh"
       - "-c"
