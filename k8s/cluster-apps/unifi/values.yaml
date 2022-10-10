@@ -1,8 +1,7 @@
 unifi:
   image:
     repository: jacobalberty/unifi
-    # -- chart.AppVersion
-    tag: latest
+    tag: v7.2.94
     pullPolicy: Always
 
   # -- https://github.com/k8s-at-home/library-charts/blob/main/charts/stable/common/values.yaml#L176
@@ -16,10 +15,10 @@ unifi:
       # If you selected `custom: true`, this field holds the definition of the startupProbe.
       # @default -- See below
       spec:
-        initialDelaySeconds: 300
+        initialDelaySeconds: 600
         timeoutSeconds: 1
         ## This means it has a maximum of 5*30=150 seconds to start up before it fails
-        periodSeconds: 5
+        periodSeconds: 10
         failureThreshold: 30
 
   env:

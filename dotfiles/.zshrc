@@ -24,11 +24,13 @@ zstyle ':omz:update' mode disabled
 source $ZSH/oh-my-zsh.sh
 
 #aliases
-alias k=kubectl
 alias shutdown=poweroff
+alias kubectl=kubecolor
+alias k=kubecolor
 
 # Kubectl completion
 autoload -U compinit
 compinit
 
 source <(kubectl completion zsh)
+compdef kubecolor=kubectl

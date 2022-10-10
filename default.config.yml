@@ -4,6 +4,7 @@ apk_installed_packages:
   - cni-plugins
   - curl
   - git
+  - go
   - helm
   - htop
   - jq
