@@ -69,7 +69,9 @@ export class EksLabStack extends Stack {
         hostedZoneResources: [props.zone.zoneName],
       }),
       new blueprints.addons.KubeProxyAddOn(),
-      //new blueprints.addons.MetricsServerAddOn(),
+      new blueprints.addons.MetricsServerAddOn(),
+      // # Pending fix for: https://github.com/aws-quickstart/cdk-eks-blueprints/issues/441
+      // new blueprints.addons.AwsNodeTerminationHandlerAddOn(),
     ];
 
     const resourceProviders = new Map<
