@@ -262,3 +262,6 @@ adguard-home:
         - host: adguard.k8s.javydekoning.com
           paths:
             - path: /
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: web
+        traefik.ingress.kubernetes.io/router.middlewares: null
