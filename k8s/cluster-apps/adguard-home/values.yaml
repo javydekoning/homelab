@@ -23,7 +23,6 @@ adguard-home:
       volumeMounts:
       - name: adguard-home-config
         mountPath: /sourceconf
-        # subPath: AdGuardHome.yaml
       - name: config
         mountPath: /opt/adguardhome/conf
       securityContext:
