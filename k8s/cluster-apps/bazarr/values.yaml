@@ -1,18 +1,23 @@
 bazarr:
   image:
-    # -- image repository
-    repository: ghcr.io/onedr0p/bazarr
-    # @default -- chart.appVersion
-    tag: rolling
-    # -- image pull policy
-    pullPolicy: Always
+    repository: tccr.io/truecharts/bazarr
+    pullPolicy: IfNotPresent
+    tag: 1.1.2@sha256:6a0bc1f361061443531a662f8be671bb6df711824f7512553dc5ef413eac19e3
 
-  env:
-    TZ: Europe/Amsterdam
+  service:
+    main:
+      ports:
+        main:
+          port: 6767
+          targetPort: 6767
+
+  TZ: Europe/Amsterdam
 
   ingress:
     main:
       enabled: true
+      enableFixedMiddlewares: false
+      entrypoint: web
       hosts:
         - host: bazarr.k8s.javydekoning.com
           paths:
