@@ -9,7 +9,7 @@ export ZSH="/usr/share/oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="candy"
-ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="false"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -27,6 +27,7 @@ source $ZSH/oh-my-zsh.sh
 alias shutdown=poweroff
 alias kubectl=kubecolor
 alias k=kubecolor
+alias cat=bat
 
 # Kubectl completion
 autoload -U compinit

@@ -1,6 +1,8 @@
 ---
+# bat, k9s, kubectl latest is only in edge.
 apk_installed_packages:
   - ansible
+  - bat
   - cni-plugins
   - curl
   - git
