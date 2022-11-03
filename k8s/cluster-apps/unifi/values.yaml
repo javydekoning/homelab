@@ -1,7 +1,7 @@
 unifi:
   image:
     repository: jacobalberty/unifi
-    tag: v7.2.94
+    tag: v7.2.95
     pullPolicy: Always
 
   # -- https://github.com/k8s-at-home/library-charts/blob/main/charts/stable/common/values.yaml#L176
