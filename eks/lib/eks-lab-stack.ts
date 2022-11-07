@@ -15,7 +15,7 @@ export class EksLabStack extends Stack {
     super(scope, id, props);
 
     const clusterProvider = new blueprints.GenericClusterProvider({
-      version: eks.KubernetesVersion.V1_21,
+      version: eks.KubernetesVersion.V1_23,
       clusterLogging: [
         eks.ClusterLoggingTypes.API,
         eks.ClusterLoggingTypes.AUDIT,
@@ -35,7 +35,11 @@ export class EksLabStack extends Stack {
       new blueprints.addons.VpcCniAddOn(),
       new blueprints.addons.KarpenterAddOn({
         amiFamily: "AL2",
-        version: "0.16.2",
+        version: "v0.18.1",
+        repository: "oci://public.ecr.aws/karpenter/karpenter",
+        release: "karpenter",
+        chart: "karpenter",
+        ttlSecondsUntilExpired: 60*60*34*7,
         requirements: [
           {
             key: "karpenter.sh/capacity-type",
