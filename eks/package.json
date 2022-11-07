@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@aws-quickstart/eks-blueprints": "1.4.0",
-    "constructs": "10.1.138",
+    "constructs": "10.1.152",
     "source-map-support": "0.5.21"
   }
 }
