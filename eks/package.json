@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@types/jest": "29.2.x",
-    "@types/node": "16.x",
+    "@types/node": "18.x",
     "@types/prettier": "2.7.1",
     "jest": "29.2.x",
     "ts-jest": "29.0.3",
