@@ -2,13 +2,14 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: configurations
+  namespace: argocd
 spec:
   generators:
     - git:
         repoURL: https://github.com/javydekoning/homelab.git
         revision: HEAD
         files:
-          - path: "k8s/cluster-apps/**/config.yaml"
+          - path: "k8s/cluster-critical/**/config.yaml"
   syncPolicy:
     preserveResourcesOnDeletion: false
   template:
