@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   name: soulseek-ingress
 spec:
+  ingressClassName: nginx
   rules:
     - host: soulseek.k8s.javydekoning.com
       http:

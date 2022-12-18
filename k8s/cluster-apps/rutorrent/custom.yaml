@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   name: rutorrent-ingress
 spec:
+  ingressClassName: nginx
   rules:
     - host: rutorrent.k8s.javydekoning.com
       http:
