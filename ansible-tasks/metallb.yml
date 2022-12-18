@@ -1,38 +1,40 @@
 ---
 
-- name: Ensure metallb-system k8s namespace
-  kubernetes.core.k8s:
-    state: present
-    definition:
-      apiVersion: v1
-      kind: Namespace
-      metadata:
-        labels:
-          kubernetes.io/metadata.name: metallb-system
-          pod-security.kubernetes.io/audit: privileged
-          pod-security.kubernetes.io/enforce: privileged
-          pod-security.kubernetes.io/warn: privileged
-        name: metallb-system
+# Moved to Argo application set
 
-- name: Create metallb l2 advertisement
-  kubernetes.core.k8s:
-    state: present
-    definition:
-      apiVersion: metallb.io/v1beta1
-      kind: L2Advertisement
-      metadata:
-        name: l2
-        namespace: metallb-system
+# - name: Ensure metallb-system k8s namespace
+#   kubernetes.core.k8s:
+#     state: present
+#     definition:
+#       apiVersion: v1
+#       kind: Namespace
+#       metadata:
+#         labels:
+#           kubernetes.io/metadata.name: metallb-system
+#           pod-security.kubernetes.io/audit: privileged
+#           pod-security.kubernetes.io/enforce: privileged
+#           pod-security.kubernetes.io/warn: privileged
+#         name: metallb-system
 
-- name: Create metallb addresspool
-  kubernetes.core.k8s:
-    state: present
-    definition:
-      apiVersion: metallb.io/v1beta1
-      kind: IPAddressPool
-      metadata:
-        name: first-pool
-        namespace: metallb-system
-      spec:
-        addresses:
-          - "{{ metallb_pool }}"
+# - name: Create metallb l2 advertisement
+#   kubernetes.core.k8s:
+#     state: present
+#     definition:
+#       apiVersion: metallb.io/v1beta1
+#       kind: L2Advertisement
+#       metadata:
+#         name: l2
+#         namespace: metallb-system
+
+# - name: Create metallb addresspool
+#   kubernetes.core.k8s:
+#     state: present
+#     definition:
+#       apiVersion: metallb.io/v1beta1
+#       kind: IPAddressPool
+#       metadata:
+#         name: first-pool
+#         namespace: metallb-system
+#       spec:
+#         addresses:
+#           - "{{ metallb_pool }}"

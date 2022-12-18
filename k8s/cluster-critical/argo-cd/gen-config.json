@@ -1,6 +1,6 @@
 [
   {
     "name": "argo-cd",
-    "namespace": "argo-cd"
+    "namespace": "argocd"
   }
 ]
