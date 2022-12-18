@@ -14,7 +14,7 @@ export class NetworkStack extends Stack {
     super(scope, id, props);
 
     this.vpc = new ec2.Vpc(this, 'eks-lab-vpc', {
-      cidr: '10.100.0.0/16',
+      ipAddresses: ec2.IpAddresses.cidr('10.100.0.0/16'),
       maxAzs: 2,
       subnetConfiguration: [
         {

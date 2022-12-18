@@ -19,7 +19,7 @@
 - name: Install or Upgrade k3s
   register: k3sUpgrade
   shell: |
-    curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest sh -s - server --cluster-init --disable=servicelb --data-dir {{ k3s_data_dir }}
+    curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest sh -s - server --cluster-init --disable=servicelb,traefik --data-dir {{ k3s_data_dir }}
   when: k3sVersionLatest.tag != k3sVersionInstalled.stdout
 
 - name: Create a directory if it does not exist
