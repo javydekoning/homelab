@@ -16,6 +16,7 @@ bazarr:
   ingress:
     main:
       enabled: true
+      ingressClassName: "nginx"
       enableFixedMiddlewares: false
       entrypoint: web
       hosts:

@@ -15,6 +15,7 @@ radarr:
     # @default -- See values.yaml
     main:
       enabled: true
+      ingressClassName: "nginx"
       hosts:
         - host: radarr.k8s.javydekoning.com
           paths:

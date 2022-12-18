@@ -15,6 +15,7 @@ sonarr:
     # @default -- See values.yaml
     main:
       enabled: true
+      ingressClassName: "nginx"
       hosts:
         - host: sonarr.k8s.javydekoning.com
           paths:

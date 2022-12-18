@@ -258,8 +258,9 @@ adguard-home:
   ingress:
     main:
       enabled: true
-      enableFixedMiddlewares: false
-      entrypoint: web
+      ingressClassName: "nginx"
+      # enableFixedMiddlewares: false
+      # entrypoint: web
       hosts:
         - host: adguard.k8s.javydekoning.com
           paths:

@@ -13,6 +13,7 @@ overseerr:
   ingress:
     main:
       enabled: true
+      ingressClassName: "nginx"
       hosts:
         - host: overseerr.k8s.javydekoning.com
           paths:

@@ -111,6 +111,7 @@ config:
 ingress:
   main:
     enabled: true
+    ingressClassName: "nginx"
     hosts:
       - host: smokeping.k8s.javydekoning.com
         paths:

@@ -15,6 +15,7 @@ duplicati:
   ingress:
     main:
       enabled: true
+      ingressClassName: "nginx"
       hosts:
         - host: duplicati.k8s.javydekoning.com
           paths:

@@ -1,0 +1,23 @@
+argo-cd:
+  controller:
+    replicas: 1
+
+  server:
+    ingress:
+      enabled: true
+      ingressClassName: "nginx"
+      hosts: 
+        - argocd.k8s.javydekoning.com
+    autoscaling:
+      enabled: true
+      minReplicas: 1
+    service:
+      loadBalancerIP: 192.168.1.201
+
+  repoServer:
+    autoscaling:
+      enabled: true
+      minReplicas: 1
+
+  applicationSet:
+    replicaCount: 1

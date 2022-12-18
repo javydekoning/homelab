@@ -15,6 +15,7 @@ tautulli:
     # @default -- See values.yaml
     main:
       enabled: true
+      ingressClassName: "nginx"
       hosts:
         - host: tautulli.k8s.javydekoning.com
           paths:
