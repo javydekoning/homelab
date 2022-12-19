@@ -1,8 +1,0 @@
----
-- name: Install kubecolor
-  register: kubecolor
-  shell: go install github.com/kubecolor/kubecolor/cmd/kubecolor@latest
-- name: Add another bin dir to system-wide $PATH.
-  copy:
-    dest: /etc/profile.d/custom-path.sh
-    content: "PATH=$PATH:/root/go/bin"

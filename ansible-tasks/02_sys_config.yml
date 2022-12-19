@@ -1,0 +1,25 @@
+---
+- name: 02-PREP_mkdir_/etc/default
+  ansible.builtin.file:
+    path: /etc/default
+    state: directory
+    mode: "0755"
+
+- name: 02-PREP_touch_/etc/login.defs
+  ansible.builtin.file:
+    path: /etc/login.defs
+    state: touch
+    access_time: preserve
+
+- name: 02-PREP_touch_/etc/default/useradd
+  ansible.builtin.file:
+    path: /etc/default/useradd
+    state: touch
+    access_time: preserve
+
+- name: 02-PREP_set_net.ipv4.ip_forward=1
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: "1"
+    state: present
+    reload: yes

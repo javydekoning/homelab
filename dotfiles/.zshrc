@@ -17,6 +17,9 @@ COMPLETION_WAITING_DOTS="true"
 # Plugins to use.
 plugins=(
   git
+  brew
+  kubectl
+  helm
 )
 
 # Disable OMZ auto update, OMZ installed via APK
@@ -27,7 +30,6 @@ source $ZSH/oh-my-zsh.sh
 alias shutdown=poweroff
 alias kubectl=kubecolor
 alias k=kubecolor
-alias cat=bat
 
 # Kubectl completion
 autoload -U compinit

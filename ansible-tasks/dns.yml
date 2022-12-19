@@ -1,8 +1,0 @@
----
-
-- name: Ensure resolv.conf content
-  copy:
-    dest: "/etc/resolv.conf"
-    content: |
-      search lab.javydekoning.com
-      nameserver 1.1.1.1

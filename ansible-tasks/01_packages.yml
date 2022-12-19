@@ -1,0 +1,39 @@
+# helm, kubectl, kubectl-zsh-completion, helm-zsh-completion
+# these packages are only available in edge/testing today
+- name: 01-APK_set_repo_eu.edge.kernel.org
+  copy:
+    dest: "/etc/apk/repositories"
+    content: |
+      http://eu.edge.kernel.org/alpine/latest-stable/main
+      http://eu.edge.kernel.org/alpine/latest-stable/community
+      http://eu.edge.kernel.org/alpine/edge/testing
+
+- name: 01-APK_add
+  become: true
+  retries: 3 # If Python is upgraded, a retry might be needed.
+  community.general.apk:
+    name: "{{ apk_installed_packages }}"
+    state: latest
+    update_cache: yes
+
+- name: 01-APK_upgrade
+  become: true
+  community.general.apk:
+    upgrade: yes
+
+# Pip packages
+- name: 02-PIP_install
+  become: true
+  retries: 3
+  pip:
+    name: "{{ pip_installed_packages }}"
+    state: latest
+
+# Go packages
+- name: 03-GO_install_kubecolor
+  register: kubecolor
+  shell: go install github.com/kubecolor/kubecolor/cmd/kubecolor@latest
+- name: 03-GO_add_/root/go/bin_to_path
+  copy:
+    dest: /etc/profile.d/custom-path.sh
+    content: "PATH=$PATH:/root/go/bin"

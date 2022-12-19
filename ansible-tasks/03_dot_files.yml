@@ -1,0 +1,16 @@
+---
+- name: Set .zshrc
+  copy:
+    src: ./dotfiles/.zshrc
+    dest: "/{{ ansible_user }}/.zshrc"
+
+- name: Set .tmux.conf
+  copy:
+    src: ./dotfiles/.tmux.conf
+    dest: "/{{ ansible_user }}/.tmux.conf"
+
+- name: Replace /bin/ash -> /bin/zsh
+  ansible.builtin.replace:
+    path: /etc/passwd
+    regexp: '/bin/ash'
+    replace: '/bin/zsh'

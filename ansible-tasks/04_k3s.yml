@@ -1,38 +1,40 @@
 ---
 # Requires kubectl and jq to be installed.
-- name: Get installed version of k3s
+- name: 04-k3s_get_installed_version
   register: k3sVersionInstalled
   shell: kubectl version -o json | jq -r ".serverVersion.gitVersion"
   changed_when: false
 
-- name: Get latest release of k3s-io/k3s
+- name: 04-k3s_get_latest_version
   register: k3sVersionLatest
   community.general.github_release:
     user: k3s-io
     repo: k3s
     action: latest_release
 
-- name: Print k3s versions
+- name: 04-k3s_print_versions
   ansible.builtin.debug:
-    msg: Latest {{ k3sVersionLatest.tag }} and {{ k3sVersionInstalled.stdout }} is installed.
+    msg: |-
+      Latest    : {{ k3sVersionLatest.tag }} 
+      Installed : {{ k3sVersionInstalled.stdout }}
 
-- name: Install or Upgrade k3s
+- name: 04-k3s_install_or_upgrade
   register: k3sUpgrade
   shell: |
     curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest sh -s - server --cluster-init --disable=servicelb,traefik --data-dir {{ k3s_data_dir }}
   when: k3sVersionLatest.tag != k3sVersionInstalled.stdout
 
-- name: Create a directory if it does not exist
+- name: 04-k3s_mkdir_/user/.kube/
   ansible.builtin.file:
     path: ~{{ ansible_user }}/.kube/
     state: directory
     mode: "0755"
 
-- name: Wait until the file /etc/rancher/k3s/k3s.yaml is present before continuing
+- name: 04-k3s_wait_for_/etc/rancher/k3s/k3s.yaml_to_be_created
   wait_for:
     path: /etc/rancher/k3s/k3s.yaml
 
-- name: Copy config file to user home directory
+- name: 04-k3s_copy_kube_config_to_homedir
   copy:
     src: /etc/rancher/k3s/k3s.yaml
     dest: ~{{ ansible_user }}/.kube/config
@@ -40,30 +42,13 @@
     owner: "{{ ansible_user }}"
     mode: "u=rw,g=,o="
 
-- name: Replace https://localhost:6443 by https://master-ip:6443
+- name: 04-k3s_set_kubecfg_server_https://{{ ansible_default_ipv4.address }}:6443
   register: kubectlcfg
   command: >-
     k3s kubectl config set-cluster default
       --server=https://{{ ansible_default_ipv4.address }}:6443
       --kubeconfig ~{{ ansible_user }}/.kube/config
   changed_when: false
-
-# Set Traefik Configuration before installing k3s
-- name: Ensure Traefik content is set
-  copy:
-    dest: "{{ k3s_data_dir }}/server/manifests/traefik-config.yaml"
-    content: |
-      apiVersion: helm.cattle.io/v1
-      kind: HelmChartConfig
-      metadata:
-        name: traefik
-        namespace: kube-system
-      spec:
-        valuesContent: |-
-          globalArguments:
-          - "--serversTransport.insecureSkipVerify=true"
-  notify:
-    - k3s restart
 
 - name: Flush handlers
   meta: flush_handlers

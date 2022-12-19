@@ -2,7 +2,6 @@
 # bat, k9s, kubectl latest is only in edge.
 apk_installed_packages:
   - ansible
-  - bat
   - cni-plugins
   - curl
   - git
@@ -25,13 +24,6 @@ apk_installed_packages:
 pip_installed_packages:
   - kubernetes
   - github3.py
-
-dirs_to_create:
-  - /etc/default
-
-files_to_create:
-  - /etc/login.defs
-  - /etc/default/useradd
 
 metallb_pool: 192.168.1.200-192.168.1.254
 

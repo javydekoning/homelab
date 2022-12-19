@@ -1,7 +1,0 @@
----
-- name: install pip packages
-  become: true
-  retries: 3
-  pip:
-    name: "{{ pip_installed_packages }}"
-    state: latest
