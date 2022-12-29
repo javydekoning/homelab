@@ -6,7 +6,7 @@ sonarr:
     # -- image repository
     repository: ghcr.io/onedr0p/sonarr
     # @default -- chart.appVersion
-    tag: rolling
+    tag: "3.0.9.1549"
     # -- image pull policy
     pullPolicy: Always
 

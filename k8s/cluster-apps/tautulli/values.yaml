@@ -6,7 +6,7 @@ tautulli:
     # -- image repository
     repository: ghcr.io/onedr0p/tautulli
     # @default -- chart.appVersion
-    tag: rolling
+    tag: "2.11.1"
     # -- image pull policy
     pullPolicy: Always
 
