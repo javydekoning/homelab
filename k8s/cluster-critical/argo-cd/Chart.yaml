@@ -1,5 +1,5 @@
 name: argo-cd
-apiVersion: v3
+apiVersion: v2
 version: 1.0.0
 dependencies:
   - name: argo-cd

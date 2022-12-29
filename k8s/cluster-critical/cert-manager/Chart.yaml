@@ -1,6 +1,6 @@
 # https://artifacthub.io/packages/helm/cert-manager/cert-manager
 name: cert-manager
-apiVersion: v3
+apiVersion: v2
 version: 1.0.0
 dependencies:
   - name: cert-manager
