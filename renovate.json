@@ -2,6 +2,9 @@
   "extends": [
     "config:base"
   ],
+  "kubernetes": {
+    "fileMatch": ["k8s/.+/custom\\.yaml$"]
+  },
   "packageRules": [
     {
       "matchManagers": ["helmv3"],
