@@ -3,4 +3,4 @@ intel-device-plugins-gpu:
     hub: intel
 
   nodeSelector:
-    intel.feature.node.kubernetes.io/gpu: 'true'
+    kubernetes.io/hostname: sb
