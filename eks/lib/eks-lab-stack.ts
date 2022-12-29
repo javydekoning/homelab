@@ -35,10 +35,10 @@ export class EksLabStack extends Stack {
       new blueprints.addons.VpcCniAddOn(),
       new blueprints.addons.KarpenterAddOn({
         amiFamily: "AL2",
-        version: "v0.20.0",
-        repository: "oci://public.ecr.aws/karpenter/karpenter",
-        release: "karpenter",
-        chart: "karpenter",
+        // version: "v0.20.0",
+        // repository: "oci://public.ecr.aws/karpenter/karpenter",
+        // release: "karpenter",
+        // chart: "karpenter",
         ttlSecondsUntilExpired: 60*60*34*7,
         requirements: [
           {

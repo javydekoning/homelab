@@ -49,7 +49,7 @@ export class NetworkStack extends Stack {
     // Connect to TGW
     const tgwSubnets = this.vpc.selectSubnets({subnetGroupName: 'tgw'})
 
-    new ec2.CfnTransitGatewayAttachment(this, 'eks-lab-vpc-tgw-attach', {
+    const attach = new ec2.CfnTransitGatewayAttachment(this, 'eks-lab-vpc-tgw-attach', {
       subnetIds: tgwSubnets.subnetIds,
       vpcId: this.vpc.vpcId,
       transitGatewayId: props.transitGatewayId
@@ -62,7 +62,7 @@ export class NetworkStack extends Stack {
         destinationCidrBlock: '192.168.1.0/24',
         routeTableId: subnet.routeTable.routeTableId,
         transitGatewayId: props.transitGatewayId
-      })
+      }).addDependsOn(attach)
     })
 
     // EKS Security Group

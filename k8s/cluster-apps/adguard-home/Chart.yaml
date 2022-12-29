@@ -1,8 +1,0 @@
-# https://github.com/dirtycajunrice/gitops/blob/master/cluster-apps/plex/
-name: adguard-home
-apiVersion: v2
-version: 1.0.0
-dependencies:
-  - name: adguard-home
-    version: 3.0.2
-    repository: https://charts.truecharts.org
