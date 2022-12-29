@@ -14,6 +14,7 @@ apk_installed_packages:
   - kubectl-zsh-completion
   - libuser
   - ncdu
+  - ncurses
   - neofetch
   - oh-my-zsh
   - py3-pip
