@@ -1,4 +1,4 @@
-gpu-device-plugin:
+intel-device-plugins-gpu:
   image:
     hub: intel
 
