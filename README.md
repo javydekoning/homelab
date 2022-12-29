@@ -18,14 +18,14 @@ ansible-playbook play.yml
 
 ## Todo
 
-- [ ] Leverage `MixedProtocolLBService`. Beta since Kubernetes `1.24`.
-  - [X] Pending move to beta. [MixedProtocolLBService](https://github.com/kubernetes/enhancements/issues/1435)
-  - [X] Pending [metallb/issues/1050](https://github.com/metallb/metallb/issues/1050)
 - [ ] New hardware.
   - [ ] Needs Intel Quick Sync Video (QSV) for HW transcoding.
-  - [ ] Odroid H3+ ?
-- [x] Make Plex wait for Intel
-  - `gpu.intel.com/i915: "1"`
+  - [ ] Odroid H3(+). With:
+    - [ ] 2TB NVME 
+    - [ ] 32GB (2x16GB)
+    - [ ] Sata+PowerCable
+    - [ ] DC Adapter
+    - [ ] Case (Type 3 for HDD? Or will 2TB suffice?)
 
 ## Notes
 
