@@ -1,0 +1,6 @@
+gpu-device-plugin:
+  image:
+    hub: intel
+
+  nodeSelector:
+    intel.feature.node.kubernetes.io/gpu: 'true'

@@ -1,0 +1,7 @@
+name: gpu-device-plugin
+apiVersion: v2
+version: 1.0.0
+dependencies:
+  - name: gpu-device-plugin
+    version: 0.25.1
+    repository: https://intel.github.io/helm-charts/
