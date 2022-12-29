@@ -80,10 +80,11 @@ plex:
     runAsUser: 0
     runAsGroup: 0
     fsGroup: 0
+
   resources:
     requests:
       memory: "2Gi"
-      cpu: "1"
+      cpu: "500m"
       gpu.intel.com/i915: 1
     limits:
       memory: "8Gi"
