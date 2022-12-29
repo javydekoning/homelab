@@ -1,4 +1,3 @@
-# https://github.com/dirtycajunrice/gitops/blob/master/cluster-apps/plex/
 name: unifi
 apiVersion: v2
 version: 4.9.0
