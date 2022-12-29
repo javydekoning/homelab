@@ -1,4 +1,3 @@
-# https://github.com/dirtycajunrice/gitops/blob/master/cluster-apps/plex/
 name: sonarr
 apiVersion: v2
 version: 16.2.1
