@@ -2,5 +2,6 @@ intel-device-plugins-gpu:
   image:
     hub: intel
 
-  nodeSelector:
-    kubernetes.io/hostname: sb
+intel-device-plugins-operator:
+  image:
+    hub: intel
