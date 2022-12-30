@@ -28,12 +28,12 @@ kube-ops-view:
         #kubernetes.io/ingress.class: alb
         alb.ingress.kubernetes.io/scheme: internal
         alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
-        alb.ingress.kubernetes.io/ssl-redirect: '443'
+        alb.ingress.kubernetes.io/ssl-redirect: "443"
         alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-west-1:922457306128:certificate/5cc87467-fb3e-4878-aa6e-61bb4ffd21a5
         alb.ingress.kubernetes.io/target-type: ip
         alb.ingress.kubernetes.io/group.name: shared
       hosts:
         - host: kubeops.javydekoning.com
           paths:
-          - path: /
-            pathType: Prefix
+            - path: /
+              pathType: Prefix

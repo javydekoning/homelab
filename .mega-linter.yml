@@ -1,15 +1,15 @@
 APPLY_FIXES: none
 
 ENABLE:
-  # - ANSIBLE
-  # - BASH
+  - ANSIBLE
+  - BASH
   - DOCKERFILE
   - EDITORCONFIG
   - JSON
-  # - KUBERNETES
-  # - MARKDOWN
-  # - SPELL
-  # - YAML
+  - KUBERNETES
+  - MARKDOWN
+  - SPELL
+  - YAML
 
 ENABLE_LINTERS:
   - ANSIBLE_ANSIBLE_LINT
@@ -23,6 +23,12 @@ ANSIBLE_ANSIBLE_LINT_FILE_NAMES_REGEX:
   - "ansible.\\d{2}_.+\\.yml"
 
 JSON_V8R_FILTER_REGEX_EXCLUDE: "gen\\-config.json"
+
+KUBERNETES_DIRECTORY: k8s
+KUBERNETES_KUBEVAL_ARGUMENTS: --ignore-missing-schemas -s https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master
+KUBERNETES_KUBECONFORM_ARGUMENTS: -ignore-missing-schemas -schema-location https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master
+KUBERNETES_KUBEVAL_FILTER_REGEX_EXCLUDE: "Chart\\.yaml"
+KUBERNETES_KUBECONFORM_FILTER_REGEX_EXCLUDE: "Chart\\.yaml"
 
 MARKDOWN_MARKDOWN_LINK_CHECK_ARGUMENTS: "-q"
 MARKDOWN_MARKDOWNLINT_DISABLE_ERRORS: false
