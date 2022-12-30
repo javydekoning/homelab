@@ -21,9 +21,10 @@
   kubernetes.core.helm:
     name: argo-cd
     chart_ref: /{{ansible_user}}/k8s/cluster-critical/argo-cd/
-    # Waiting for kubernetes.core 2.4 https://github.com/ansible-collections/kubernetes.core/issues/525
+    # Waiting for kubernetes.core 2.4
+    # https://github.com/ansible-collections/kubernetes.core/issues/525
     # https://github.com/ansible-collections/kubernetes.core/tags
-    # dependency_update: true 
+    # dependency_update: true
     release_namespace: argocd
     create_namespace: true
     values_files:

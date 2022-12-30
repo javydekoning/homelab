@@ -9,18 +9,18 @@ spec:
     privateKeySecretRef:
       name: letsencrypt-prod
     solvers:
-    - selector:
-        dnsZones:
-        - 'javydekoning.com'
-      dns01:
-        cnameStrategy: Follow
-        route53:
-          region: eu-west-1
-          accessKeyID: AKIA5NRV5OQIHPB2DLGI
-          hostedZoneID: Z1PFB973I1H5E0
-          secretAccessKeySecretRef:
-            name: route53-credentials-secret
-            key: secret-access-key
+      - selector:
+          dnsZones:
+            - "javydekoning.com"
+        dns01:
+          cnameStrategy: Follow
+          route53:
+            region: eu-west-1
+            accessKeyID: AKIA5NRV5OQIHPB2DLGI
+            hostedZoneID: Z1PFB973I1H5E0
+            secretAccessKeySecretRef:
+              name: route53-credentials-secret
+              key: secret-access-key
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
@@ -33,5 +33,5 @@ spec:
     name: letsencrypt-prod
     kind: ClusterIssuer
   dnsNames:
-  - '*.javydekoning.com'
-  - '*.k8s.javydekoning.com'
+    - "*.javydekoning.com"
+    - "*.k8s.javydekoning.com"

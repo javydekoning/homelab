@@ -8,7 +8,7 @@ import { CertificateManagerStack } from '../lib/cert-manager-stack';
 
 const app = new cdk.App();
 
-const env  = { account: '922457306128', region: 'eu-west-1' };
+const env = { account: '922457306128', region: 'eu-west-1' };
 
 const network = new NetworkStack(app, 'network-stack', {
   transitGatewayId: 'tgw-0747750a334b263d5',

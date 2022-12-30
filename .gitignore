@@ -5,8 +5,8 @@ cdk.out
 package-lock.json
 node_modules
 *.schema.json
-aws/file:/Users/javy/Library/Application Support/Code/User/globalStorage/amazonwebservices.aws-toolkit-vscode/cloudformation.schema.json
-aws/file:/Users/javy/Library/Application Support/Code/User/globalStorage/amazonwebservices.aws-toolkit-vscode/sam.schema.json
+cloudformation.schema.json
+sam.schema.json
 
 *.js
 !jest.config.js
@@ -22,3 +22,6 @@ cdk.context.json
 k8s/**/charts/*.tgz
 k8s/**/charts/
 k8s/**/Chart.lock
+
+# MegaLinter
+megalinter-reports/

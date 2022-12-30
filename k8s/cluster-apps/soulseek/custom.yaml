@@ -58,7 +58,7 @@ spec:
     spec:
       containers:
         - name: soulseek
-          image: realies/soulseek
+          image: realise/soulseek
           env:
             - name: TZ
               value: Europe/Amsterdam

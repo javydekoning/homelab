@@ -12,5 +12,5 @@
 - name: Replace /bin/ash -> /bin/zsh
   ansible.builtin.replace:
     path: /etc/passwd
-    regexp: '/bin/ash'
-    replace: '/bin/zsh'
+    regexp: "/bin/ash"
+    replace: "/bin/zsh"

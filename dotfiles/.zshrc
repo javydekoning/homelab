@@ -11,7 +11,7 @@ export ZSH="/usr/share/oh-my-zsh"
 ZSH_THEME="candy"
 ENABLE_CORRECTION="false"
 
-# Uncomment the following line to display red dots whilst waiting for completion.
+# Uncomment the following line to display red dots whilst waiting for completion
 COMPLETION_WAITING_DOTS="true"
 
 # Plugins to use.

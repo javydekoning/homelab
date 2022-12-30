@@ -1,19 +1,21 @@
 homer:
+  image:
+    repository: b4bz/homer
+    tag: v22.11.2
+    pullPolicy: IfNotPresent
+
   ingress:
     main:
       enabled: true
-      ingressClassName: alb
-      annotations:
-        alb.ingress.kubernetes.io/scheme: internal
-        alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
-        alb.ingress.kubernetes.io/ssl-redirect: '443'
-        alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-west-1:922457306128:certificate/5cc87467-fb3e-4878-aa6e-61bb4ffd21a5
-        alb.ingress.kubernetes.io/target-type: ip
-        alb.ingress.kubernetes.io/group.name: shared
+      ingressClassName: nginx
       hosts:
-        - host: homer.javydekoning.com
+        - host: homer.k8s.javydekoning.com
           paths:
             - path: /
+      tls:
+        - hosts:
+            - homer.k8s.javydekoning.com
+          secretName: javydekoning-com-tls
 
   env:
     TZ: Europe/Amsterdam
@@ -27,7 +29,9 @@ homer:
     config:
       # -- Store homer configuration as a ConfigMap
       enabled: true
-      # -- Homer configuration. See [image documentation](https://github.com/bastienwirtz/homer/blob/main/docs/configuration.md) for more information.
+      # -- Homer configuration. See
+      # https://github.com/bastienwirtz/homer/blob/main/docs/configuration.md
+      # for more information.
       # @default -- See values.yaml
       data:
         config.yml: |-
@@ -44,7 +48,7 @@ homer:
           # set false if you want to hide it.
 
           # Optional navbar
-          # links: [] # Allows for navbar (dark mode, layout, and search) without any links
+          # links: [] # Allows for navbar (dark mode, layout, and search)
           links:
             - name: "Inspired by"
               icon: "fas fa-book"
@@ -52,7 +56,8 @@ homer:
 
           # Services
           # First level array represent a group.
-          # Leave only a "items" key if not using group (group name, icon & tagstyle are optional, section separation will not be displayed).
+          # Leave only a "items" key if not using group (group name, icon &
+          # tagstyle are optional, section separation will not be displayed).
           services:
             - name: "Media"
               icon: "fas fa-play"
@@ -158,12 +163,6 @@ homer:
             - name: "Monitoring"
               icon: "fas fa-download"
               items:
-                - name: "Smokeping"
-                  logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/pingdom.png"
-                  subtitle: "Latency monitor"
-                  tag: "app"
-                  url: "http://smokeping.k8s.javydekoning.com"
-                  target: "_blank"
                 - name: "Librespeed"
                   logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/librespeed.png"
                   subtitle: "Internal up/down speedtest"

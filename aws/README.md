@@ -2,7 +2,7 @@
 
 Creates s3 bucket for storing homelab app configuration backups.
 
-Bucket policy enforces SSL as per: 
+Bucket policy enforces SSL as per:
 
 ```yaml
 Statement:

@@ -36,18 +36,18 @@ export class NetworkStack extends Stack {
     });
 
     // Tag Private Subnets
-    this.vpc.privateSubnets.forEach( (subnet) => {
-      Tags.of(subnet).add("kubernetes.io/role/internal-elb","1")
-      Tags.of(subnet).add("karpenter.sh/discovery","eks-lab")
+    this.vpc.privateSubnets.forEach((subnet) => {
+      Tags.of(subnet).add("kubernetes.io/role/internal-elb", "1")
+      Tags.of(subnet).add("karpenter.sh/discovery", "eks-lab")
     })
 
     // Tag Public Subnets
-    this.vpc.publicSubnets.forEach( (subnet) => {
-      Tags.of(subnet).add("kubernetes.io/role/elb","1")
+    this.vpc.publicSubnets.forEach((subnet) => {
+      Tags.of(subnet).add("kubernetes.io/role/elb", "1")
     })
 
     // Connect to TGW
-    const tgwSubnets = this.vpc.selectSubnets({subnetGroupName: 'tgw'})
+    const tgwSubnets = this.vpc.selectSubnets({ subnetGroupName: 'tgw' })
 
     const attach = new ec2.CfnTransitGatewayAttachment(this, 'eks-lab-vpc-tgw-attach', {
       subnetIds: tgwSubnets.subnetIds,
@@ -57,7 +57,7 @@ export class NetworkStack extends Stack {
 
     // Add route to homelab
     const allSubnets = this.vpc.privateSubnets.concat(this.vpc.isolatedSubnets)
-    allSubnets.forEach( (subnet, index) => {
+    allSubnets.forEach((subnet, index) => {
       new CfnRoute(this, 'OnPremRoute' + index, {
         destinationCidrBlock: '192.168.1.0/24',
         routeTableId: subnet.routeTable.routeTableId,
@@ -72,9 +72,9 @@ export class NetworkStack extends Stack {
       securityGroupName: id,
     })
     sg.addIngressRule(ec2.Peer.ipv4('10.100.0.0/16'), ec2.Port.allTraffic())
-    
+
     Tags.of(sg).add("karpenter.sh/discovery", "eks-lab")
 
-    new CfnOutput(this, 'eks-lab-vpcid', {exportName: 'vpcId', value: this.vpc.vpcId})
+    new CfnOutput(this, 'eks-lab-vpcid', { exportName: 'vpcId', value: this.vpc.vpcId })
   }
 }

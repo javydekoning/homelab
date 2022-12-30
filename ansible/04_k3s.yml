@@ -15,13 +15,15 @@
 - name: 04-k3s_print_versions
   ansible.builtin.debug:
     msg: |-
-      Latest    : {{ k3sVersionLatest.tag }} 
+      Latest    : {{ k3sVersionLatest.tag }}
       Installed : {{ k3sVersionInstalled.stdout }}
 
 - name: 04-k3s_install_or_upgrade
   register: k3sUpgrade
   shell: |
-    curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest sh -s - server --cluster-init --disable=servicelb,traefik --data-dir {{ k3s_data_dir }}
+    curl -sfL https://get.k3s.io | \
+    INSTALL_K3S_CHANNEL=latest sh -s - server --cluster-init \
+    --disable=servicelb,traefik --data-dir {{ k3s_data_dir }}
   when: k3sVersionLatest.tag != k3sVersionInstalled.stdout
 
 - name: 04-k3s_mkdir_/user/.kube/
@@ -42,7 +44,7 @@
     owner: "{{ ansible_user }}"
     mode: "u=rw,g=,o="
 
-- name: 04-k3s_set_kubecfg_server_https://{{ ansible_default_ipv4.address }}:6443
+- name: 04-k3s_set_kubecfg_https://{{ ansible_default_ipv4.address }}:6443
   register: kubectlcfg
   command: >-
     k3s kubectl config set-cluster default

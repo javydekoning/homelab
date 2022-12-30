@@ -7,15 +7,6 @@ kube-ops-view:
   env:
     TZ: Europe/
 
-  image:
-    # -- image repository
-    repository: hjacobs/kube-ops-view
-    # -- image tag
-    # @default -- chart.appVersion
-    tag:
-    # -- image pull policy
-    pullPolicy: Always
-
   # -- Configures service settings for the chart.
   # @default -- See values.yaml
   service:

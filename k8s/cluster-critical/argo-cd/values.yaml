@@ -6,7 +6,7 @@ argo-cd:
     ingress:
       enabled: true
       ingressClassName: "nginx"
-      hosts: 
+      hosts:
         - argocd.k8s.javydekoning.com
     autoscaling:
       enabled: true

@@ -1,19 +1,14 @@
 {
-  "extends": [
-    "config:base"
-  ],
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base"],
   "kubernetes": {
     "fileMatch": ["k8s/.+/custom\\.yaml$"]
   },
-  "packageRules": [
-    {
-      "matchManagers": ["helmv3"],
-      "matchFiles": ["Chart.yaml"],
-      "enabled": true,
-      "matchPackagePatterns": [
-        "*"
-      ],
-      "rangeStrategy": "replace"
-    }
-  ]
+  "helmv3": {
+    "registryAliases": {
+      "stable": "https://charts.helm.sh/stable"
+    },
+    "commitMessageTopic": "helm chart {{depName}}",
+    "fileMatch": ["(^|/)Chart\\.yaml$"]
+  }
 }

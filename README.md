@@ -21,9 +21,9 @@ ansible-playbook play.yml
 - [ ] New hardware.
   - [ ] Needs Intel Quick Sync Video (QSV) for HW transcoding.
   - [ ] Odroid H3(+). With:
-    - [ ] 2TB NVME 
+    - [ ] 2TB NVME
     - [ ] 32GB (2x16GB)
-    - [ ] Sata+PowerCable
+    - [ ] SATA + PowerCable
     - [ ] DC Adapter
     - [ ] Case (Type 3 for HDD? Or will 2TB suffice?)
 
