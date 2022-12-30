@@ -1,3 +1,5 @@
+[![MegaLinter](https://github.com/javydekoning/homelab/workflows/MegaLinter/badge.svg?branch=main)](https://github.com/javydekoning/homelab/actions?query=workflow%3AMegaLinter+branch%3Amain)
+
 # Homelab
 
 My Homelab! All running on an old, low power N3150!
