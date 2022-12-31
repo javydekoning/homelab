@@ -1,0 +1,7 @@
+name: authelia
+apiVersion: v2
+version: 1.0.0
+dependencies:
+  - name: authelia
+    version: 0.8.51
+    repository: https://charts.authelia.com
