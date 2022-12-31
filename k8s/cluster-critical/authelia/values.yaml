@@ -506,6 +506,7 @@ authelia:
     ## Notifications are sent to users when they require a password reset, a u2f registration or a TOTP registration.
     ## The available providers are: filesystem, smtp. You must use one and only one of these providers.
     notifier:
+      disable_startup_check: true
       smtp:
         enabled: false
 
