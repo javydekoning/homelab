@@ -71,6 +71,10 @@ metadata:
   name: bazarr-ingress
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - bazarr.k8s.javydekoning.com
+      secretName: javydekoning-com-tls
   rules:
     - host: bazarr.k8s.javydekoning.com
       http:

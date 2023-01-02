@@ -20,6 +20,10 @@ duplicati:
         - host: duplicati.k8s.javydekoning.com
           paths:
             - path: /
+      tls:
+        - hosts:
+            - duplicati.k8s.javydekoning.com
+          secretName: javydekoning-com-tls
 
   persistence:
     config:

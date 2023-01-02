@@ -222,6 +222,10 @@ metadata:
   name: adguard-ingress
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - adguard.k8s.javydekoning.com
+      secretName: javydekoning-com-tls
   rules:
     - host: adguard.k8s.javydekoning.com
       http:
