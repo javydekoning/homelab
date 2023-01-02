@@ -1,0 +1,34 @@
+kube-ops-view:
+  image:
+    repository: hjacobs/kube-ops-view
+    tag: latest
+    pullPolicy: Always
+
+  env:
+    TZ: Europe/
+
+  # -- Configures service settings for the chart.
+  # @default -- See values.yaml
+  service:
+    main:
+      ports:
+        http:
+          port: 8080
+          protocol: HTTP
+        # https:
+        #   primary: false
+        #   port: 8080
+        #   protocol: HTTPS
+
+  ingress:
+    main:
+      enabled: true
+      ingressClassName: nginx
+      hosts:
+        - host: kubeops.k8s.javydekoning.com
+          paths:
+            - path: /
+      tls:
+        - hosts:
+            - kubeops.k8s.javydekoning.com
+          secretName: javydekoning-com-tls

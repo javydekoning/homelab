@@ -8,6 +8,11 @@ argo-cd:
       ingressClassName: "nginx"
       hosts:
         - argocd.k8s.javydekoning.com
+      tls:
+        - hosts:
+            - argocd.k8s.javydekoning.com
+          secretName: javydekoning-com-tls
+
     autoscaling:
       enabled: true
       minReplicas: 1

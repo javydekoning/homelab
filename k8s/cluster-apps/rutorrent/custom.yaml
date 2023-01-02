@@ -15,6 +15,10 @@ spec:
                 name: rutorrent
                 port:
                   name: http
+      tls:
+        - hosts:
+            - rutorrent.k8s.javydekoning.com
+          secretName: javydekoning-com-tls
 ---
 apiVersion: v1
 kind: Service

@@ -18,7 +18,10 @@ overseerr:
         - host: overseerr.k8s.javydekoning.com
           paths:
             - path: /
-
+      tls:
+        - hosts:
+            - overseerr.k8s.javydekoning.com
+          secretName: javydekoning-com-tls
   persistence:
     config:
       enabled: true

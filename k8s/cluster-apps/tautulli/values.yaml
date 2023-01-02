@@ -20,6 +20,10 @@ tautulli:
         - host: tautulli.k8s.javydekoning.com
           paths:
             - path: /
+      tls:
+        - hosts:
+            - tautulli.k8s.javydekoning.com
+          secretName: javydekoning-com-tls
 
   persistence:
     config:
