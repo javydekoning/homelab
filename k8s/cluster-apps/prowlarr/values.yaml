@@ -9,7 +9,7 @@ prowlarr:
     # -- image repository
     repository: ghcr.io/onedr0p/prowlarr-develop
     # -- image tag
-    tag: "1.0.1.2210"
+    tag: "1.0.1.2220"
     # -- image pull policy
     pullPolicy: Always
 
