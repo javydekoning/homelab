@@ -58,7 +58,14 @@ spec:
     spec:
       containers:
         - name: soulseek
-          image: realise/soulseek
+          image: realies/soulseek:latest
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
           env:
             - name: TZ
               value: Europe/Amsterdam
