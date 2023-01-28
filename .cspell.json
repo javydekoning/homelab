@@ -1,7 +1,16 @@
 {
   "version": "0.2",
   "language": "en",
-  "dictionaries": ["bash", "python", "en-US", "corp-terms", "softwareTerms", "typescript", "node", "npm"],
+  "dictionaries": [
+    "bash",
+    "python",
+    "en-US",
+    "corp-terms",
+    "softwareTerms",
+    "typescript",
+    "node",
+    "npm"
+  ],
   "ignorePaths": [".cspell.json", ".gitignore"],
   "allowCompoundWords": true
 }
