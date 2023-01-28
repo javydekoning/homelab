@@ -4,6 +4,10 @@ metadata:
   name: rutorrent-ingress
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - rutorrent.k8s.javydekoning.com
+      secretName: javydekoning-com-tls
   rules:
     - host: rutorrent.k8s.javydekoning.com
       http:
@@ -15,10 +19,7 @@ spec:
                 name: rutorrent
                 port:
                   name: http
-      tls:
-        - hosts:
-            - rutorrent.k8s.javydekoning.com
-          secretName: javydekoning-com-tls
+
 ---
 apiVersion: v1
 kind: Service
