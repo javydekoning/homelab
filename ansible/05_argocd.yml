@@ -4,9 +4,10 @@
     if helm plugin list | grep diff; then
         helm plugin update diff
     else
-        helm plugin update https://github.com/databus23/helm-diff
+        helm plugin install https://github.com/databus23/helm-diff
     fi
 
+# Needs if statement. If argo is already installed via helm, argocd takes over.
 - name: 05-Argo_copy_k8s_folder_to_host_homedir
   ansible.builtin.copy:
     src: ./k8s/
