@@ -1,7 +1,7 @@
 homer:
   image:
     repository: b4bz/homer
-    tag: v22.11.2
+    tag: v23.02.1
     pullPolicy: IfNotPresent
 
   ingress:
