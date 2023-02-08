@@ -20,6 +20,7 @@ apk_installed_packages:
   - py3-pip
   - rsync
   - tmux
+  - wireguard-tools
   - zsh
 
 pip_installed_packages:

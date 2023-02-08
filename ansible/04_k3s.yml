@@ -23,7 +23,8 @@
   shell: |
     curl -sfL https://get.k3s.io | \
     INSTALL_K3S_CHANNEL=latest sh -s - server --cluster-init \
-    --disable=servicelb,traefik --data-dir {{ k3s_data_dir }}
+    --disable=servicelb,traefik --data-dir {{ k3s_data_dir }} \
+    --kubelet-arg="allowed-unsafe-sysctls=net.ipv4.conf.*""
   when: k3sVersionLatest.tag != k3sVersionInstalled.stdout
 
 - name: 04-k3s_mkdir_/user/.kube/

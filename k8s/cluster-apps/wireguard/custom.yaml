@@ -16,6 +16,24 @@ spec:
       targetPort: 51820
       protocol: UDP
 ---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wireguard-configmap
+  namespace: default
+data:
+  PUID: "1000"
+  PGID: "1000"
+  TZ: "Europe/Amsterdam"
+  SERVERURL: "wg.javydekoning.com"
+  SERVERPORT: "51820"
+  PEERS: "3"
+  PEERDNS: "192.168.1.253"
+  ALLOWEDIPS: "0.0.0.0/0, ::/0"
+  INTERNAL_SUBNET: "10.13.13.0"
+  PERSISTENTKEEPALIVE_PEERS: "25"
+  LOG_CONFS: "true"
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -38,16 +56,18 @@ spec:
       labels:
         app: wireguard
     spec:
+      securityContext:
+        sysctls:
+        - name: net.ipv4.conf.all.src_valid_mark
+          value: "1"
       containers:
         - name: wireguard
-          image: lscr.io/linuxserver/wireguard:latest
+          image: lscr.io/linuxserver/wireguard:alpine
           imagePullPolicy: Always
           securityContext:
-            sysctls:
-            - name: net.ipv4.conf.all.src_valid_mark
-              value: "1"
             capabilities:
               add: ["NET_ADMIN", "SYS_MODULE"]
+            privileged: true
           resources:
             requests:
               memory: "1Gi"
@@ -55,37 +75,24 @@ spec:
             limits:
               memory: "1Gi"
               cpu: "500m"
-          env:
-            - name: TZ
-              value: Europe/Amsterdam
-            - name: PUID
-              value: "1000"
-            - name: PGID
-              value: "1000"
-            - name: SERVERURL
-              value: "wg.javydekoning.com"
-            - name: SERVERPORT
-              value: "51820"
-            - name: PEERS
-              value: "1"
-            - name: PEERDNS
-              value: "192.168.1.253"
-            - name: INTERNAL_SUBNET
-              value: "10.13.13.0"
-            - name: ALLOWEDIPS
-              value: 0.0.0.0/0
-            - name: PERSISTENTKEEPALIVE_PEERS
-              value: "25"
-            - name: LOG_CONFS
-              value: "true"
+          envFrom:
+          - configMapRef:
+              name: wireguard-configmap
           ports:
             - containerPort: 51820
+              protocol: UDP
           volumeMounts:
             - name: config
               mountPath: /config/
+            - name: modules
+              mountPath: /lib/modules
       volumes:
-        - name: downloads
+        - name: config
           hostPath:
             path: /downloads/config/wireguard-config/
             type: DirectoryOrCreate
+        - name: modules
+          hostPath:
+            path: /lib/modules
+            type: Directory
       restartPolicy: Always
