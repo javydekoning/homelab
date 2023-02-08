@@ -58,8 +58,8 @@ spec:
     spec:
       securityContext:
         sysctls:
-        - name: net.ipv4.conf.all.src_valid_mark
-          value: "1"
+          - name: net.ipv4.conf.all.src_valid_mark
+            value: "1"
       containers:
         - name: wireguard
           image: lscr.io/linuxserver/wireguard:alpine
@@ -76,8 +76,8 @@ spec:
               memory: "1Gi"
               cpu: "500m"
           envFrom:
-          - configMapRef:
-              name: wireguard-configmap
+            - configMapRef:
+                name: wireguard-configmap
           ports:
             - containerPort: 51820
               protocol: UDP
