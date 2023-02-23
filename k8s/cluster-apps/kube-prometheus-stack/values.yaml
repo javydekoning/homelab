@@ -4,9 +4,9 @@ kube-prometheus-stack:
       enabled: true
       ingressClassName: nginx
       hosts:
-        - host: alertmanager.k8s.javydekoning.com
-          paths:
-            - path: /
+        - alertmanager.k8s.javydekoning.com
+      paths:
+        - /
       tls:
         - hosts:
             - alertmanager.k8s.javydekoning.com
@@ -17,12 +17,10 @@ kube-prometheus-stack:
       enabled: true
       ingressClassName: nginx
       hosts:
-        - host: grafana.k8s.javydekoning.com
-          paths:
-            - path: /
+        - grafana.k8s.javydekoning.com
+      paths:
+        - /
       tls:
         - hosts:
             - grafana.k8s.javydekoning.com
           secretName: javydekoning-com-tls
-
-    adminPassword: prom-operator
