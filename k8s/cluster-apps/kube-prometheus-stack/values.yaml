@@ -24,3 +24,7 @@ kube-prometheus-stack:
         - hosts:
             - grafana.k8s.javydekoning.com
           secretName: javydekoning-com-tls
+
+  prometheus-node-exporter:
+    hostRootFsMount:
+      enabled: false
