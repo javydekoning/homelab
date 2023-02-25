@@ -38,19 +38,20 @@ homer:
           # Homepage configuration
           # See https://fontawesome.com/v5/search for icons options
 
-          title: "Javy's homelab!"
-          subtitle: "Running on k8s!"
+          title: "My homelab!"
+          subtitle: "Running on k3s!"
           logo: "logo.png"
           icon: "fas fa-server" # Optional icon
 
           header: true
-          footer: 'Homelabbing rulez'
+          footer: false
+
           # set false if you want to hide it.
 
           # Optional navbar
           # links: [] # Allows for navbar (dark mode, layout, and search)
           links:
-            - name: "Inspired by"
+            - name: "Github"
               icon: "fas fa-book"
               url: "https://www.reddit.com/r/selfhosted/comments/poca6i/selfhosting_all_these_services_on_two_raspberry/"
 
@@ -100,8 +101,13 @@ homer:
                   target: "_blank"
                 - name: "Tautulli"
                   logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/tautulli.png"
-                  subtitle: "Plex monitoring"
+                  subtitle: "Plex monitoring app"
                   url: "https://tautulli.k8s.javydekoning.com/"
+                  target: "_blank"
+                - name: "Audiobook shelf"
+                  logo: "https://audiobookshelf.k8s.javydekoning.com/_nuxt/img/icon.14e26ae.svg"
+                  subtitle: "Self-hosted audiobook and podcast server"
+                  url: "https://audiobookshelf.k8s.javydekoning.com/"
                   target: "_blank"
             - name: "Management"
               icon: "fas fa-cloud"
