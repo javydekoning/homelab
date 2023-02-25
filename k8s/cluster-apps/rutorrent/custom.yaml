@@ -19,7 +19,6 @@ spec:
                 name: rutorrent
                 port:
                   name: http
-
 ---
 apiVersion: v1
 kind: Service
