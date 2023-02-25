@@ -84,16 +84,16 @@ spec:
             - containerPort: 80
               protocol: TCP
           volumeMounts:
-            - name: config
+            - name: downloads
               mountPath: /config
               subPath: config/audiobookshelf/config/
-            - name: metadata
+            - name: downloads
               mountPath: /metadata
               subPath: config/audiobookshelf/metadata/
-            - name: podcasts
+            - name: downloads
               mountPath: /podcasts
               subPath: podcasts
-            - name: audiobooks
+            - name: downloads
               mountPath: /audiobooks
               subPath: audiobooks
       volumes:
