@@ -1,7 +1,7 @@
 kube-ops-view:
   image:
     repository: hjacobs/kube-ops-view
-    tag: latest
+    tag: 23.2.0
     pullPolicy: Always
 
   env:

@@ -6,7 +6,7 @@ overseerr:
     # -- image repository
     repository: ghcr.io/sct/overseerr
     # -- image tag
-    tag: latest
+    tag: 1.32.5
     # -- image pull policy
     pullPolicy: Always
 
