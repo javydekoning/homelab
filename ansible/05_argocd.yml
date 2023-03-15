@@ -1,34 +1,14 @@
----
+# ---
 - name: 05-Argo_copy_k8s_folder_to_host_homedir
   ansible.builtin.copy:
-    src: ./k8s/cluster-critical/
-    dest: /{{ansible_user}}/cluster-critical/
-
-- name: 05-Argo_create_namespace
-  kubernetes.core.k8s:
-    name: argocd
-    api_version: v1
-    kind: Namespace
-    state: present
-
-# using helm template | kubectl apply
-# because Argo will self update without using helm
-# See cluster-critical application-set
-- name: 05-Argo_build
-  shell: |-
-    cd /{{ansible_user}}/cluster-critical/argo-cd/
-    helm dependency update
-  # helm template argo-cd . --values ./values.yaml | \
-  # kubectl apply -n argocd -f -
+    src: ./k8s/cluster-critical/argo-cd/
+    dest: /{{ansible_user}}/cluster-critical/argo-cd/
 
 - name: 05-Argo_install_chart
   kubernetes.core.helm:
     name: argo-cd
     chart_ref: /{{ansible_user}}/cluster-critical/argo-cd/
-    # Waiting for kubernetes.core 2.4
-    # https://github.com/ansible-collections/kubernetes.core/issues/525
-    # https://github.com/ansible-collections/kubernetes.core/tags
-    # dependency_update: true
+    dependency_update: true
     release_namespace: argocd
     create_namespace: true
     values_files:
@@ -37,11 +17,19 @@
 - name: 05-Argo_apply_/cluster-critical/application-set.yaml
   kubernetes.core.k8s:
     state: present
-    #src: /{{ansible_user}}/cluster-critical/application-set.yaml
     src: https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/cluster-critical/application-set.yaml
 
 - name: 05-Argo_apply_/cluster-critical/config-application-set.yaml
   kubernetes.core.k8s:
     state: present
-    #src: /{{ansible_user}}/cluster-critical/config-application-set.yaml
     src: https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/cluster-critical/config-application-set.yaml
+
+- name: 05-Argo_apply_/cluster-apps/application-set.yaml
+  kubernetes.core.k8s:
+    state: present
+    src: https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/cluster-apps/application-set.yaml
+
+- name: 05-Argo_apply_/cluster-apps/custom-application-set.yaml
+  kubernetes.core.k8s:
+    state: present
+    src: https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/cluster-apps/custom-application-set.yaml
