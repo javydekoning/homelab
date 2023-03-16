@@ -1,6 +1,5 @@
 intel-device-plugins-gpu:
-  image:
-    hub: intel
+  nodeFeatureRule: true
 
 intel-device-plugins-operator:
   image:
