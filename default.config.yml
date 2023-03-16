@@ -8,11 +8,13 @@ apk_installed_packages:
   - go
   - helm
   - htop
+  - igt-gpu-tools
   - jq
   - k9s
   - kubectl
   - kubectl-zsh-completion
   - libuser
+  - linux-firmware-intel
   - ncdu
   - ncurses
   - neofetch
