@@ -28,5 +28,4 @@ pip_installed_packages:
   - github3.py
 
 metallb_pool: 192.168.1.200-192.168.1.254
-
 # k3s_data_dir: /downloads/config/rancher/k3s # /var/lib/rancher/k3s
