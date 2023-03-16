@@ -2,9 +2,7 @@
 
 [![MegaLinter](https://github.com/javydekoning/homelab/workflows/MegaLinter/badge.svg?branch=main)](https://github.com/javydekoning/homelab/actions?query=workflow%3AMegaLinter+branch%3Amain)
 
-My Homelab! All running on an old, low power N3150!
-
-![Screenshot of running apps.](homelab.png)
+My Homelab!
 
 ## Setup
 
@@ -18,23 +16,9 @@ To kick of the configuration:
 ansible-playbook play.yml
 ```
 
-## Todo
+## ToDo (Not yet automated)
 
-- [ ] New hardware.
-  - [ ] Needs Intel Quick Sync Video (QSV) for HW transcoding.
-  - [ ] Odroid H3(+). With:
-    - [ ] 2TB NVME
-    - [ ] 32GB (2x16GB)
-    - [ ] SATA + PowerCable
-    - [ ] DC Adapter
-    - [ ] Case (Type 3 for HDD? Or will 2TB suffice?)
-
-## Notes
-
-To deploy helm charts manually
-
-```sh
-cd <cluster-apps/name>
-helm dependency build
-helm install -f values.yaml <name> ./
-```
+- Automated deployment of Intel NFD Rules:
+  - `kubectl apply -k 'https://github.com/intel/intel-device-plugins-for-kubernetes/deployments/nfd/overlays/node-feature-rules?ref=v0.26.0'`
+  - See [this issue](https://github.com/intel/helm-charts/issues/31)
+- Deploy Secret for cert-manager (`k8s/cluster-critical/cert-manager-issuer`)

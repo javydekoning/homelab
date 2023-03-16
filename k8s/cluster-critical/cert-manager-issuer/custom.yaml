@@ -2,6 +2,7 @@ apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
   name: letsencrypt-prod
+  namespace: cert-manager
 spec:
   acme:
     email: letsencrypt@javydekoning.com
@@ -16,7 +17,7 @@ spec:
           cnameStrategy: Follow
           route53:
             region: eu-west-1
-            accessKeyID: AKIA5NRV5OQIHPB2DLGI
+            accessKeyID: AKIA5NRV5OQIP3HAE67N
             hostedZoneID: Z1PFB973I1H5E0
             secretAccessKeySecretRef:
               name: route53-credentials-secret
