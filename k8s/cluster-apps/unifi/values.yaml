@@ -125,6 +125,10 @@ unifi:
           servicePort: 8443
           paths:
             - path: /
+      tls:
+        - hosts:
+            - unifi.k8s.javydekoning.com
+          secretName: javydekoning-com-tls
 
   # -- Configure persistence settings for the chart under this key.
   # @default -- See values.yaml

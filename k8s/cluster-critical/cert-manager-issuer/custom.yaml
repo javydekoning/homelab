@@ -17,11 +17,22 @@ spec:
           cnameStrategy: Follow
           route53:
             region: eu-west-1
-            accessKeyID: AKIA5NRV5OQIP3HAE67N
+            accessKeyID: AKIA1234567890 # Populate me
             hostedZoneID: Z1PFB973I1H5E0
             secretAccessKeySecretRef:
               name: route53-credentials-secret
               key: secret-access-key
+---
+apiVersion: v1
+data:
+  # echo 'yoursecretgoeshere' | base64
+  # Populate below, and kubectl apply -f
+  secret-access-key: <>
+kind: Secret
+metadata:
+  name: route53-credentials-secret
+  namespace: cert-manager
+type: Opaque
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate

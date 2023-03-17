@@ -18,7 +18,5 @@ ansible-playbook play.yml
 
 ## ToDo (Not yet automated)
 
-- Automated deployment of Intel NFD Rules:
-  - `kubectl apply -k 'https://github.com/intel/intel-device-plugins-for-kubernetes/deployments/nfd/overlays/node-feature-rules?ref=v0.26.0'`
-  - See [this issue](https://github.com/intel/helm-charts/issues/31)
-- Deploy Secret for cert-manager (`k8s/cluster-critical/cert-manager-issuer`)
+- Deploy `ClusterIssuer`, `Certificate` and `Secret`
+  for cert-manager (`k8s/cluster-critical/cert-manager-issuer/custom.yaml`)
