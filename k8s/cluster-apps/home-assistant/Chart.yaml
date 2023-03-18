@@ -1,0 +1,7 @@
+name: home-assistant
+apiVersion: v2
+version: 1.0.0
+dependencies:
+  - name: home-assistant
+    version: 13.5.0
+    repository: https://geek-cookbook.github.io/charts/
