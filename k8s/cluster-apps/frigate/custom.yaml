@@ -65,9 +65,9 @@ data:
               roles:
                 - rtmp
                 - record
-            - path: rtsp://hass:Welcome123!@192.168.1.3:554/h264Preview_01_sub
-              roles:
-                - detect
+            # - path: rtsp://hass:Welcome123!@192.168.1.3:554/h264Preview_01_sub
+            #   roles:
+            #     - detect
 
         rtmp:
           enabled: False
@@ -82,6 +82,10 @@ data:
           retain:
             days: 7
             mode: motion
+          events:
+            retain:
+              default: 14
+              mode: motion
 ---
 apiVersion: apps/v1
 kind: Deployment
