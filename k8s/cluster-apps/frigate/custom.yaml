@@ -53,6 +53,7 @@ data:
     cameras:
       camera_1:
         ffmpeg:
+          hwaccel_args: -c:v h264_qsv
           inputs:
             - path: rtsp://hass:Welcome123!@192.168.1.3:554
               roles:
@@ -62,6 +63,11 @@ data:
         detect:
           width: 2560
           height: 1440
+        record:
+          enabled: True
+          retain:
+            days: 7
+            mode: motion
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -89,6 +95,11 @@ spec:
         - name: frigate
           image: ghcr.io/blakeblackshear/frigate:0.12.0-beta10
           imagePullPolicy: Always
+          resources:
+            limits:
+              gpu.intel.com/i915: 1
+              cpu: 500m
+              memory: 1Gi
           env:
             - name: FRIGATE_RTSP_PASSWORD
               value: "ThisIsFakeObviously!"
