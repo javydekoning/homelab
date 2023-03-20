@@ -88,5 +88,5 @@ plex:
   resources:
     limits:
       memory: "2Gi"
-      cpu: "4"
+      cpu: "1"
       gpu.intel.com/i915: 1

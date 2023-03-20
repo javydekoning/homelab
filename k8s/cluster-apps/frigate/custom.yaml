@@ -93,7 +93,7 @@ spec:
           resources:
             limits:
               memory: "1Gi"
-              cpu: "4"
+              cpu: "1"
               # https://docs.frigate.video/configuration/hardware_acceleration/#intel-based-cpus-10th-generation-via-quicksync-1
               gpu.intel.com/i915: 1
           env:
