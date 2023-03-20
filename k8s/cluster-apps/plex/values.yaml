@@ -86,11 +86,7 @@ plex:
     fsGroup: 0
 
   resources:
-    requests:
-      memory: "2Gi"
-      cpu: "500m"
-      gpu.intel.com/i915: 1
     limits:
-      memory: "8Gi"
+      memory: "2Gi"
       cpu: "4"
       gpu.intel.com/i915: 1
