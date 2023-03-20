@@ -51,18 +51,32 @@ data:
       host: 192.168.1.248
 
     cameras:
-      camera_1:
+      E1ProBabyRoom:
         ffmpeg:
-          hwaccel_args: -c:v h264_qsv
+          hwaccel_args:
+            - -hwaccel
+            - qsv
+            - -c:v
+            - h264_qsv
+          input_args: -avoid_negative_ts make_zero -fflags nobuffer -flags low_delay -strict experimental -fflags +genpts+discardcorrupt -rw_timeout 5000000 -use_wallclock_as_timestamps 1 -f live_flv
+
           inputs:
-            - path: rtsp://hass:Welcome123!@192.168.1.3:554
+            - path: rtsp://hass:Welcome123!@192.168.1.3:554/h264Preview_01_main
               roles:
                 - rtmp
+                - record
+            - path: rtsp://hass:Welcome123!@192.168.1.3:554/h264Preview_01_sub
+              roles:
+                - detect
+
         rtmp:
           enabled: False
+
         detect:
-          width: 2560
-          height: 1440
+          width: 640
+          height: 360
+          fps: 5
+
         record:
           enabled: True
           retain:
