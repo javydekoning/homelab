@@ -91,11 +91,9 @@ spec:
           image: ghcr.io/blakeblackshear/frigate:0.12.0-beta10
           imagePullPolicy: Always
           resources:
-            limits:
-              memory: "1Gi"
-              cpu: "1"
+            requests:
               # https://docs.frigate.video/configuration/hardware_acceleration/#intel-based-cpus-10th-generation-via-quicksync-1
-              gpu.intel.com/i915: 1
+              gpu.intel.com/i915: 0.5
           env:
             - name: FRIGATE_RTSP_PASSWORD
               value: "ThisIsFakeObviously!"

@@ -96,7 +96,7 @@ spec:
               cpu: "500m"
             limits:
               memory: "1Gi"
-              cpu: "4"
+              cpu: "2000m"
           env:
             - name: TZ
               value: Europe/Amsterdam
