@@ -87,4 +87,10 @@ plex:
 
   resources:
     requests:
-      gpu.intel.com/i915: 0.5
+      memory: "2Gi"
+      cpu: "500m"
+      gpu.intel.com/i915: 1
+    limits:
+      memory: "2Gi"
+      cpu: "4"
+      gpu.intel.com/i915: 1
