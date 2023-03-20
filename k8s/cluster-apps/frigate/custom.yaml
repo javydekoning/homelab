@@ -116,6 +116,8 @@ spec:
               mountPath: /tmp/cache
             - name: config
               mountPath: /config/
+            - name: shm
+              mountPath: /dev/shm
       volumes:
         - name: downloads
           hostPath:
@@ -127,4 +129,8 @@ spec:
         - name: config
           configMap:
             name: frigate-config
+        - emptyDir:
+            medium: Memory
+            sizeLimit: 128Mi
+          name: shm
       restartPolicy: Always
