@@ -1,0 +1,126 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: frigate-ingress
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - frigate.k8s.javydekoning.com
+      secretName: javydekoning-com-tls
+  rules:
+    - host: frigate.k8s.javydekoning.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frigate
+                port:
+                  name: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frigate
+  namespace: default
+spec:
+  selector:
+    app: frigate
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 5000
+      targetPort: 5000
+      protocol: TCP
+    - name: rtmp
+      port: 1935
+      targetPort: 1935
+      protocol: TCP
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frigate-config
+  labels:
+    app: frigate
+data:
+  config.yml: |-
+    mqtt:
+      host: 192.168.1.248
+
+    cameras:
+      camera_1:
+        ffmpeg:
+          hwaccel_args: -c:v h264_qsv
+          inputs:
+            - path: rtsp://hass:Welcome123!@192.168.1.2:554/rtsp
+              roles:
+                - rtmp
+        rtmp:
+          enabled: False
+        detect:
+          width: 2560
+          height: 1440
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frigate
+  namespace: default
+  labels:
+    app: frigate
+spec:
+  selector:
+    matchLabels:
+      app: frigate
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: frigate
+    spec:
+      containers:
+        - name: frigate
+          image: ghcr.io/blakeblackshear/frigate:0.12.0-beta10
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: "1Gi"
+              cpu: "4"
+              # https://docs.frigate.video/configuration/hardware_acceleration/#intel-based-cpus-10th-generation-via-quicksync-1
+              gpu.intel.com/i915: 1
+          env:
+            - name: FRIGATE_RTSP_PASSWORD
+              value: "ThisIsFakeObviously!"
+          ports:
+            # http
+            - containerPort: 5000
+            # rtmp
+            - containerPort: 1935
+          volumeMounts:
+            - name: downloads
+              mountPath: /media/frigate
+              subPath: frigate/
+            - name: cache
+              mountPath: /tmp/cache
+            - name: config
+              mountPath: /config/
+      volumes:
+        - name: downloads
+          hostPath:
+            path: /downloads
+            type: DirectoryOrCreate
+        - name: cache
+          emptyDir:
+            sizeLimit: 1Gi
+        - name: config
+          configMap:
+            name: frigate-config
+      restartPolicy: Always
