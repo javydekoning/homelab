@@ -17,8 +17,8 @@ spec:
           cnameStrategy: Follow
           route53:
             region: eu-west-1
-            accessKeyID: AKIA1234567890 # Populate me
-            hostedZoneID: Z1PFB973I1H5E0
+            accessKeyID: ${AWS_ACCESS_KEY_ID}
+            hostedZoneID: ${AWS_R53_ZONE_ID}
             secretAccessKeySecretRef:
               name: route53-credentials-secret
               key: secret-access-key
@@ -27,7 +27,7 @@ apiVersion: v1
 data:
   # echo 'yoursecretgoeshere' | base64
   # Populate below, and kubectl apply -f
-  secret-access-key: <>
+  secret-access-key: ${AWS_SECRET_ACCESS_KEY_BASE64}
 kind: Secret
 metadata:
   name: route53-credentials-secret
