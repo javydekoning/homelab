@@ -30,3 +30,18 @@
     minute: "0"
     hour: "2"
     job: "k3s crictl rmi --prune"
+
+- name: O2-PREP_daily_apk_updates
+  ansible.builtin.cron:
+    name: "updates"
+    minute: "0"
+    hour: "3"
+    job: "apk update && apk upgrade && rm -rf /var/cache/apk/*"
+
+- name: O2-PREP_weekly_reboot
+  ansible.builtin.cron:
+    name: "Reboot"
+    weekday: "0"
+    minute: "0"
+    hour: "6"
+    job: "reboot 0"
