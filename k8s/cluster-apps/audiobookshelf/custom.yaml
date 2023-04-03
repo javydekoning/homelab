@@ -68,7 +68,7 @@ spec:
     spec:
       containers:
         - name: audiobookshelf
-          image: ghcr.io/advplyr/audiobookshelf:2.2.17
+          image: ghcr.io/advplyr/audiobookshelf:2.2.18
           imagePullPolicy: Always
           resources:
             requests:
