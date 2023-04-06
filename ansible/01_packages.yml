@@ -10,7 +10,7 @@
 
 - name: 01-APK_add
   become: true
-  retries: 3 # If Python is upgraded, a retry might be needed.
+  retries: 3
   community.general.apk:
     name: "{{ apk_installed_packages }}"
     state: latest

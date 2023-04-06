@@ -24,21 +24,21 @@
     state: present
     reload: yes
 
-- name: O2-PREP_daily_rmi_prune
+- name: O2-CRON_daily_rmi_prune
   ansible.builtin.cron:
     name: "prune"
     minute: "0"
     hour: "2"
     job: "k3s crictl rmi --prune"
 
-- name: O2-PREP_daily_apk_updates
+- name: O2-CRON_daily_apk_updates
   ansible.builtin.cron:
     name: "updates"
     minute: "0"
     hour: "3"
     job: "apk update && apk upgrade && rm -rf /var/cache/apk/*"
 
-- name: O2-PREP_weekly_reboot
+- name: O2-CRON_weekly_reboot
   ansible.builtin.cron:
     name: "Reboot"
     weekday: "0"
