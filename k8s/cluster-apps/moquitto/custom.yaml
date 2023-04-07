@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mosquitto
+  name: mosquito
   namespace: default
 spec:
   selector:
-    app: mosquitto
+    app: mosquito
   type: LoadBalancer
   loadBalancerIP: 192.168.1.248
   ports:
@@ -21,10 +21,10 @@ spec:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: mosquitto-config
+  name: mosquito-config
   namespace: default
   labels:
-    app: mosquitto
+    app: mosquito
 data:
   mosquitto.conf: |-
     persistence true
@@ -37,14 +37,14 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mosquitto
+  name: mosquito
   namespace: default
   labels:
-    app: mosquitto
+    app: mosquito
 spec:
   selector:
     matchLabels:
-      app: mosquitto
+      app: mosquito
   replicas: 1
   strategy:
     rollingUpdate:
@@ -54,11 +54,11 @@ spec:
   template:
     metadata:
       labels:
-        app: mosquitto
+        app: mosquito
     spec:
       containers:
-        - name: mosquitto
-          image: eclipse-mosquitto:2.0.15
+        - name: mosquito
+          image: eclipse-mosquito:2.0.15
           imagePullPolicy: Always
           ports:
             - containerPort: 9001
@@ -77,7 +77,7 @@ spec:
             type: DirectoryOrCreate
         - name: config
           configMap:
-            name: mosquitto-config
+            name: mosquito-config
         - name: log
           emptyDir: {}
       restartPolicy: Always
