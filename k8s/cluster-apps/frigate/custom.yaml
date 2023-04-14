@@ -60,7 +60,7 @@ data:
     cameras:
       E1ProBabyRoom:
         ffmpeg:
-          hwaccel_args: preset-intel-qsv-h264
+          hwaccel_args: preset-vaapi
 
           input_args: preset-rtsp-generic
 
@@ -115,6 +115,20 @@ spec:
       labels:
         app: frigate
     spec:
+      # use initContainer to make config.yml rw (editable in browser)
+      initContainers:
+        - name: copyconfig
+          image: busybox
+          command:
+            - "sh"
+            - "-c"
+            - |
+              cp /sourceconf/config.yml /config/config.yml
+          volumeMounts:
+            - name: config-map
+              mountPath: /sourceconf/
+            - name: config
+              mountPath: /config/
       containers:
         - name: frigate
           image: ghcr.io/blakeblackshear/frigate:0.12.0
@@ -153,11 +167,13 @@ spec:
         - name: cache
           emptyDir:
             sizeLimit: 1Gi
-        - name: config
+        - name: config-map
           configMap:
             name: frigate-config
-        - emptyDir:
+        - name: config
+          emptyDir: {}
+        - name: shm
+          emptyDir:
             medium: Memory
             sizeLimit: 128Mi
-          name: shm
       restartPolicy: Always
