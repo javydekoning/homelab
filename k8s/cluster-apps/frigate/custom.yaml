@@ -71,7 +71,7 @@ data:
 
           input_args: preset-rtsp-generic
 
-          output_args: 
+          output_args:
             record: preset-record-generic-audio-aac
 
           inputs:
@@ -99,7 +99,7 @@ data:
           events:
             retain:
               default: 14
-              mode: motion
+              mode: active_objects
 ---
 apiVersion: apps/v1
 kind: Deployment
