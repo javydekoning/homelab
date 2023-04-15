@@ -6,7 +6,7 @@ radarr:
     # -- image repository
     repository: ghcr.io/onedr0p/radarr
     # @default -- chart.appVersion
-    tag: "4.3.2.6857"
+    tag: "4.4.4.7068"
     # -- image pull policy
     pullPolicy: Always
 
