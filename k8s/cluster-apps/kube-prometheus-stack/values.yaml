@@ -26,6 +26,8 @@ kube-prometheus-stack:
           secretName: javydekoning-com-tls
 
   prometheus:
+    prometheusSpec:
+      serviceMonitorSelectorNilUsesHelmValues: false
     ingress:
       enabled: true
       ingressClassName: nginx
