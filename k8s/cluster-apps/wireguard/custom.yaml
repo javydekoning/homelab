@@ -68,13 +68,6 @@ spec:
             capabilities:
               add: ["NET_ADMIN", "SYS_MODULE"]
             privileged: true
-          resources:
-            requests:
-              memory: "1Gi"
-              cpu: "500m"
-            limits:
-              memory: "1Gi"
-              cpu: "500m"
           envFrom:
             - configMapRef:
                 name: wireguard-configmap

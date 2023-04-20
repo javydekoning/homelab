@@ -90,13 +90,6 @@ spec:
         - name: rutorrent
           image: ghcr.io/crazy-max/rtorrent-rutorrent:4.0-0.9.8-0.13.8
           imagePullPolicy: Always
-          resources:
-            requests:
-              memory: "1Gi"
-              cpu: "500m"
-            limits:
-              memory: "1Gi"
-              cpu: "2000m"
           env:
             - name: TZ
               value: Europe/Amsterdam

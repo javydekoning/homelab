@@ -28,10 +28,6 @@ spec:
         - name: bazarr
           image: ghcr.io/onedr0p/bazarr:1.2.0
           imagePullPolicy: Always
-          resources:
-            limits:
-              memory: "1Gi"
-              cpu: "500m"
           env:
             - name: TZ
               value: Europe/Amsterdam
