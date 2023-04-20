@@ -25,6 +25,19 @@ kube-prometheus-stack:
             - grafana.k8s.javydekoning.com
           secretName: javydekoning-com-tls
 
+  prometheus:
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      hosts:
+        - prometheus.k8s.javydekoning.com
+      paths:
+        - /
+      tls:
+        - hosts:
+            - prometheus.k8s.javydekoning.com
+          secretName: javydekoning-com-tls
+
   prometheus-node-exporter:
     hostRootFsMount:
       enabled: false
