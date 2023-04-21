@@ -13,5 +13,5 @@
   ],
   "ignorePaths": [".cspell.json", ".gitignore"],
   "allowCompoundWords": true,
-  "words": ["duplicati", "helmv"]
+  "words": ["duplicati", "helmv","javydekoning","onedr0p"]
 }

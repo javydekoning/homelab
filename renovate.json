@@ -11,7 +11,7 @@
     {
       "matchManagers": ["helm-values"],
       "matchPackageNames": ["ghcr.io/linuxserver/duplicati"],
-      "extractVersion": "^development\\-(?<version>.+?)$",
+      "extractVersion": "^development\\-v(?<version>.*)$",
       "versioning": "loose"
     },
     {
