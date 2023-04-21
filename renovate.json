@@ -7,7 +7,8 @@
     "packageRules": [
       {
         "matchPackageNames": ["ghcr.io/linuxserver/duplicati"],
-        "extractVersion": "^development\\-v(?<version>.*)$"
+        "extractVersion": "^development\\-v(?<version>.*)$",
+        "versioning:": "loose"
       }
     ]
   },
