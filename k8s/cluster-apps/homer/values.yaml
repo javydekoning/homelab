@@ -38,22 +38,23 @@ homer:
           # Homepage configuration
           # See https://fontawesome.com/v5/search for icons options
 
-          title: "My homelab!"
+          title: "Homelab app dashboard"
           subtitle: "Running on k3s!"
           logo: "logo.png"
           icon: "fas fa-server" # Optional icon
 
           header: true
           footer: false
+          columns: auto
 
-          # set false if you want to hide it.
-
-          # Optional navbar
-          # links: [] # Allows for navbar (dark mode, layout, and search)
           links:
             - name: "Github"
               icon: "fas fa-book"
-              url: "https://www.reddit.com/r/selfhosted/comments/poca6i/selfhosting_all_these_services_on_two_raspberry/"
+              url: "https://github.com/javydekoning/homelab"
+
+          defaults:
+            layout: columns # Either 'columns', or 'list'
+            colorTheme: auto # One of 'auto', 'light', or 'dark'
 
           # Services
           # First level array represent a group.
@@ -146,30 +147,15 @@ homer:
                   subtitle: "Link to homelab repo"
                   url: "https://github.com/javydekoning/homelab"
                   target: "_blank"
-            - name: "Downloads"
-              icon: "fas fa-download"
-              items:
                 - name: "ruTorrent"
                   logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/rutorrent.png"
-                  subtitle: "Torrents"
+                  subtitle: "Manage Torrents"
                   tag: "app"
                   url: "https://rutorrent.k8s.javydekoning.com"
                   target: "_blank"
-                - name: "Soulseek"
-                  logo: "https://user-images.githubusercontent.com/491117/35048338-06982370-fb9d-11e7-8109-1f63982b803d.png"
-                  subtitle: "qt"
-                  tag: "app"
-                  url: "https://soulseek.k8s.javydekoning.com"
-                  target: "_blank"
-            - name: "Monitoring"
+            - name: "Monitoring and automation"
               icon: "fas fa-download"
               items:
-                - name: "Librespeed"
-                  logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/librespeed.png"
-                  subtitle: "Internal up/down speedtest"
-                  tag: "app"
-                  url: "https://speedtest.k8s.javydekoning.com"
-                  target: "_blank"
                 - name: "Kube-ops-view"
                   logo: "https://raw.githubusercontent.com/hjacobs/kube-ops-view/master/kube-ops-view-logo.png"
                   subtitle: "k8s dashboard"
@@ -181,4 +167,28 @@ homer:
                   subtitle: "Home automation and monitoring"
                   tag: "app"
                   url: "https://hass.k8s.javydekoning.com"
+                  target: "_blank"
+                - name: "Grafana"
+                  logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/grafana.png"
+                  subtitle: "Monitoring dashboards"
+                  tag: "app"
+                  url: "https://grafana.k8s.javydekoning.com"
+                  target: "_blank"
+                - name: "Prometheus"
+                  logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/prometheus.png"
+                  subtitle: "Prometheus metric collection"
+                  tag: "app"
+                  url: "https://prometheus.k8s.javydekoning.com"
+                  target: "_blank"
+                - name: "Alert Manager"
+                  logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/Alert Manager.png"
+                  subtitle: "Monitoring alerts"
+                  tag: "app"
+                  url: "https://alertmanager.k8s.javydekoning.com"
+                  target: "_blank"
+                - name: "Frigate"
+                  logo: "https://github.com/walkxcode/dashboard-icons/raw/main/png/frigate.png"
+                  subtitle: "Network Video Recorder"
+                  tag: "app"
+                  url: "https://frigate.k8s.javydekoning.com"
                   target: "_blank"
