@@ -4,16 +4,17 @@
   "helm-values": {
     "commitMessagePrefix": "Helm-values:",
     "fileMatch": ["(^|/)values\\.yaml$"],
-    "versioning": "loose",
-    "packageRules": [
-      {
-        "matchPackageNames": ["duplicati"],
-        "extractVersion": "^development-v(?<version>.*)$"
-      }
-    ]
+    "versioning": "loose"
   },
   "kubernetes": {
     "fileMatch": ["k8s/.+/custom\\.yaml$"],
     "versioning": "loose"
-  }
+  },
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["duplicati"],
+      "extractVersion": "development\\-v(?<version>.*)",
+      "versioning": "loose"
+    }
+  ]
 }
