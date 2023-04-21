@@ -197,7 +197,7 @@ spec:
               mountPath: /opt/adguardhome/conf
       containers:
         - name: adguard
-          image: adguard/adguardhome:v0.108.0-b.30
+          image: adguard/adguardhome:v0.108.0-b.33
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
