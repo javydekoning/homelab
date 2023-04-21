@@ -62,7 +62,7 @@ spec:
             value: "1"
       containers:
         - name: wireguard
-          image: lscr.io/linuxserver/wireguard:1.0.20210914-alpine
+          image: lscr.io/linuxserver/wireguard:1.0.20210914
           imagePullPolicy: Always
           securityContext:
             capabilities:
