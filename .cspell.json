@@ -11,6 +11,13 @@
     "node",
     "npm"
   ],
-  "ignorePaths": [".cspell.json", ".gitignore"],
-  "allowCompoundWords": true
+  "ignorePaths": [
+    ".cspell.json",
+    ".gitignore"
+  ],
+  "allowCompoundWords": true,
+  "words": [
+    "duplicati",
+    "helmv"
+  ]
 }
