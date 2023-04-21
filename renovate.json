@@ -13,7 +13,8 @@
       "matchPackageNames": ["ghcr.io/linuxserver/duplicati"],
       "extractVersion": "^development\\-(?<version>.+?)$",
       "versioning": "loose"
-    }, {
+    },
+    {
       "matchManagers": ["helm-values"],
       "matchPackageNames": ["ghcr.io/onedr0p/plex"],
       "versioning": "loose"
