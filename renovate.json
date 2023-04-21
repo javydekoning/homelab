@@ -2,18 +2,21 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base"],
   "helm-values": {
-    "fileMatch": ["(^|/)values\\.yaml$"],
-    "versioning": "loose",
-    "packageRules": [
-      {
-        "matchPackageNames": ["ghcr.io/linuxserver/duplicati"],
-        "extractVersion": "^development-(?<version>.*)$",
-        "versioning": "loose"
-      }
-    ]
+    "fileMatch": ["(^|/)values\\.yaml$"]
   },
   "kubernetes": {
-    "fileMatch": ["k8s/.+/custom\\.yaml$"],
-    "versioning": "loose"
-  }
+    "fileMatch": ["k8s/.+/custom\\.yaml$"]
+  },
+  "packageRules": [
+    {
+      "matchManagers": ["helm-values"],
+      "matchPackageNames": ["ghcr.io/linuxserver/duplicati"],
+      "extractVersion": "^development\\-(?<version>.+?)$",
+      "versioning": "loose"
+    }, {
+      "matchManagers": ["helm-values"],
+      "matchPackageNames": ["ghcr.io/onedr0p/plex"],
+      "versioning": "loose"
+    }
+  ]
 }
