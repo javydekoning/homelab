@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - $(MY_SERVICE_NAME).k8s.javydekoning.com
+      secretName: javydekoning-com-tls
+  rules:
+    - host: $(MY_SERVICE_NAME).k8s.javydekoning.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: $(MY_SERVICE_NAME)-service
+                port:
+                  name: http
