@@ -181,7 +181,7 @@ homer:
                   url: "https://prometheus.k8s.javydekoning.com"
                   target: "_blank"
                 - name: "Alert Manager"
-                  logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/Alert Manager.png"
+                  logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/alertmanager.png"
                   subtitle: "Monitoring alerts"
                   tag: "app"
                   url: "https://alertmanager.k8s.javydekoning.com"
