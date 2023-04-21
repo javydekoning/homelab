@@ -1,28 +1,20 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:base"
-  ],
+  "extends": ["config:base"],
   "packageRules": [
     {
-      "matchPackageNames": [
-        "duplicati"
-      ],
+      "matchPackageNames": ["duplicati"],
       "extractVersion": "^development-v(?<version>.*)$",
       "versioning": "loose"
     }
   ],
   "helm-values": {
     "commitMessagePrefix": "Helm-values:",
-    "fileMatch": [
-      "(^|/)values\\.yaml$"
-    ],
+    "fileMatch": ["(^|/)values\\.yaml$"],
     "versioning": "loose"
   },
   "kubernetes": {
-    "fileMatch": [
-      "k8s/.+/custom\\.yaml$"
-    ],
+    "fileMatch": ["k8s/.+/custom\\.yaml$"],
     "versioning": "loose"
   }
 }
