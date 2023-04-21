@@ -7,18 +7,12 @@ kube-ops-view:
   env:
     TZ: Europe/
 
-  # -- Configures service settings for the chart.
-  # @default -- See values.yaml
   service:
     main:
       ports:
         http:
           port: 8080
           protocol: HTTP
-        # https:
-        #   primary: false
-        #   port: 8080
-        #   protocol: HTTPS
 
   ingress:
     main:
