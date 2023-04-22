@@ -2,29 +2,29 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-- ../../base/
+  - ../../base/
 
 namePrefix: sonarr-
 
 namespace: arr
 
 patches:
-- patch: |-
-    - op: replace
-      path: /spec/tls/0/hosts/0
-      value: sonarr.k8s.javydekoning.com
-    - op: replace
-      path: /spec/rules/0/host
-      value: sonarr.k8s.javydekoning.com
-    - op: replace
-      path: /spec/rules/0/http/paths/0/backend/service/name
-      value: sonarr-service
-  target:
-    kind: Ingress
-    name: ingress
-- path: service.yaml
+  - patch: |-
+      - op: replace
+        path: /spec/tls/0/hosts/0
+        value: sonarr.k8s.javydekoning.com
+      - op: replace
+        path: /spec/rules/0/host
+        value: sonarr.k8s.javydekoning.com
+      - op: replace
+        path: /spec/rules/0/http/paths/0/backend/service/name
+        value: sonarr-service
+    target:
+      kind: Ingress
+      name: ingress
+  - path: service.yaml
 
 labels:
-- includeSelectors: true
-  pairs:
-    app: sonarr
+  - includeSelectors: true
+    pairs:
+      app: sonarr
