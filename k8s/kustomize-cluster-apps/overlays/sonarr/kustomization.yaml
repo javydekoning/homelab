@@ -6,7 +6,7 @@ resources:
 
 images:
 - name: app
-  newName: ghcr.io/linuxserver/sonarr:4.0.0-develop
+  newName: ghcr.io/linuxserver/sonarr
   newTag: 4.0.0-develop@sha256:4df34fd1b16514ded9e57c48818390f1e625c575ee3878ee41bb950d5fdd576a
 
 configMapGenerator:
