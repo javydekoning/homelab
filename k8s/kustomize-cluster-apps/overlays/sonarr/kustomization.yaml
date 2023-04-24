@@ -6,8 +6,15 @@ resources:
 
 images:
 - name: app
-  newName: ghcr.io/onedr0p/sonarr
-  newTag: 3.0.10.1567@sha256:7f5b3a5e21cf5ed57f690fc655db0fd3c3dab9152641338dc7fa22c5f6943670
+  newName: ghcr.io/linuxserver/sonarr:4.0.0-develop
+  newTag: 4.0.0-develop@sha256:4df34fd1b16514ded9e57c48818390f1e625c575ee3878ee41bb950d5fdd576a
+
+configMapGenerator:
+  - name: env-configmap
+    literals:
+      - PUID=911
+      - PGID=911
+      - TZ=Europe/Amsterdam
 
 namePrefix: sonarr-
 
