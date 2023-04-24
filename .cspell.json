@@ -11,7 +11,18 @@
     "node",
     "npm"
   ],
-  "ignorePaths": [".cspell.json", ".gitignore"],
+  "ignorePaths": [
+    ".cspell.json",
+    ".gitignore"
+  ],
   "allowCompoundWords": true,
-  "words": ["duplicati", "helmv", "javydekoning", "onedr0p"]
+  "words": [
+    "argoproj",
+    "duplicati",
+    "helmv",
+    "javydekoning",
+    "kustomization",
+    "kustomize",
+    "onedr0p"
+  ]
 }

@@ -11,7 +11,8 @@ images:
 
 namePrefix: sonarr-
 
-namespace: arr
+# sticking to default because: https://github.com/argoproj/argo-cd/issues/11625
+namespace: default
 
 labels:
 - includeSelectors: true
