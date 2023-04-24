@@ -4,27 +4,28 @@ kind: Kustomization
 resources:
   - ../../base/
 
+images:
+- name: app
+  newName: ghcr.io/onedr0p/sonarr
+  newTag: 3.0.10.1567@sha256:7f5b3a5e21cf5ed57f690fc655db0fd3c3dab9152641338dc7fa22c5f6943670
+
 namePrefix: sonarr-
 
 namespace: arr
 
-patches:
-  - patch: |-
-      - op: replace
-        path: /spec/tls/0/hosts/0
-        value: sonarr.k8s.javydekoning.com
-      - op: replace
-        path: /spec/rules/0/host
-        value: sonarr.k8s.javydekoning.com
-      - op: replace
-        path: /spec/rules/0/http/paths/0/backend/service/name
-        value: sonarr-service
-    target:
-      kind: Ingress
-      name: ingress
-  - path: service.yaml
-
 labels:
-  - includeSelectors: true
-    pairs:
-      app: sonarr
+- includeSelectors: true
+  pairs:
+    app: sonarr
+
+patches:
+- path: deployment-patch.yaml
+- path: service-patch.yaml
+- path: ingress-patch.yaml
+- patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/name
+      value: sonarr
+  target:
+    kind: Deployment
+    name: deployment

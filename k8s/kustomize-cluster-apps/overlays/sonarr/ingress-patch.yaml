@@ -3,19 +3,18 @@ kind: Ingress
 metadata:
   name: ingress
 spec:
-  ingressClassName: nginx
   tls:
-    - hosts:
-        - appname.k8s.javydekoning.com
-      secretName: javydekoning-com-tls
+  - hosts:
+    - sonarr.k8s.javydekoning.com
+    secretName: javydekoning-com-tls
   rules:
-    - host: appname.k8s.javydekoning.com
+    - host: sonarr.k8s.javydekoning.com
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: appname-service
+                name: sonarr-service
                 port:
                   name: http

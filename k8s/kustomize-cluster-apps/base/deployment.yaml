@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment
+spec:
+  template:
+    spec:
+      securityContext:
+        runAsUser: 911
+        runAsGroup: 911
+        fsGroup: 911
+      containers:
+        - name: app
+          image: app:latest
+          imagePullPolicy: Always
+          ports: []
+          volumeMounts:
+            - name: downloads
+              mountPath: /downloads
+          env:
+            - name: TZ
+              value: Europe/Amsterdam
+      volumes:
+        - name: downloads
+          hostPath:
+            path: /downloads
+            type: DirectoryOrCreate
+      restartPolicy: Always
