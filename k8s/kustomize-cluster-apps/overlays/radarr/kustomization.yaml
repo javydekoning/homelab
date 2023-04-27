@@ -1,0 +1,39 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base/
+
+images:
+- name: app
+  newName: ghcr.io/linuxserver/radarr
+  newTag: 4.4.4@sha256:f8ce49aba7ccc5696790989b91bb7e4b86189861383410641cad110c7abc6832
+
+configMapGenerator:
+  - name: env-configmap
+    literals:
+      - PUID=911
+      - PGID=911
+      - TZ=Europe/Amsterdam
+
+namePrefix: radarr-
+
+# sticking to default because: https://github.com/argoproj/argo-cd/issues/11625
+namespace: default
+
+labels:
+- includeSelectors: true
+  pairs:
+    app: radarr
+
+patches:
+- path: deployment-patch.yaml
+- path: service-patch.yaml
+- path: ingress-patch.yaml
+- patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/name
+      value: radarr
+  target:
+    kind: Deployment
+    name: deployment
