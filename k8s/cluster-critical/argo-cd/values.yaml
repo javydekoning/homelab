@@ -1,9 +1,12 @@
 argo-cd:
+  configs:
+    params:
+      server.insecure: true
+
   controller:
     replicas: 1
 
   server:
-    extraArgs: ["--insecure"]
     ingress:
       enabled: true
       ingressClassName: "nginx"
