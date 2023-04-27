@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bazarr
+  namespace: default
+  labels:
+    app: bazarr
+spec:
+  selector:
+    matchLabels:
+      app: bazarr
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: bazarr
+    spec:
+      securityContext:
+        runAsUser: 911
+        runAsGroup: 911
+        fsGroup: 911
+      containers:
+        - name: bazarr
+          image: ghcr.io/onedr0p/bazarr:1.2.0@sha256:b28859eb34c3d4710004cbdbd0117cc39e257786f4273a0b68f85ad56c0e6a7f
+          imagePullPolicy: Always
+          env:
+            - name: TZ
+              value: Europe/Amsterdam
+          ports:
+            - containerPort: 6767
+          volumeMounts:
+            - name: downloads
+              mountPath: /config
+              subPath: config/bazarr
+            - name: downloads
+              mountPath: /downloads
+      volumes:
+        - name: downloads
+          hostPath:
+            path: /downloads
+            type: DirectoryOrCreate
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bazarr
+  namespace: default
+spec:
+  selector:
+    app: bazarr
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 6767
+      targetPort: 6767
+      protocol: TCP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bazarr-ingress
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - bazarr.k8s.javydekoning.com
+      secretName: javydekoning-com-tls
+  rules:
+    - host: bazarr.k8s.javydekoning.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: bazarr
+                port:
+                  name: http
