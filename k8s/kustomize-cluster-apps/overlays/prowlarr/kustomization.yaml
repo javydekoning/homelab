@@ -1,0 +1,39 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base/
+
+images:
+- name: app
+  newName: ghcr.io/linuxserver/prowlarr
+  newTag: 1.4.0-develop@sha256:e119fd07c61ad17c36721ea1bef4c6c66920f8b001d11c4862b177490610bc72
+
+configMapGenerator:
+  - name: env-configmap
+    literals:
+      - PUID=911
+      - PGID=911
+      - TZ=Europe/Amsterdam
+
+namePrefix: prowlarr-
+
+# sticking to default because: https://github.com/argoproj/argo-cd/issues/11625
+namespace: default
+
+labels:
+- includeSelectors: true
+  pairs:
+    app: prowlarr
+
+patches:
+- path: deployment-patch.yaml
+- path: service-patch.yaml
+- path: ingress-patch.yaml
+- patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/name
+      value: prowlarr
+  target:
+    kind: Deployment
+    name: deployment
