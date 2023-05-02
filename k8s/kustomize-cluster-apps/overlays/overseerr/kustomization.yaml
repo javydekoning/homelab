@@ -5,9 +5,9 @@ resources:
   - ../../base/
 
 images:
-- name: app
-  newName: ghcr.io/linuxserver/overseerr
-  newTag: latest@sha256:c21530a90c539226cb778ef7c8241391d9b0bf3c64c5cd42e02095bc16468886
+  - name: app
+    newName: ghcr.io/linuxserver/overseerr
+    newTag: latest@sha256:c21530a90c539226cb778ef7c8241391d9b0bf3c64c5cd42e02095bc16468886
 
 configMapGenerator:
   - name: env-configmap
@@ -22,18 +22,18 @@ namePrefix: overseerr-
 namespace: default
 
 labels:
-- includeSelectors: true
-  pairs:
-    app: overseerr
+  - includeSelectors: true
+    pairs:
+      app: overseerr
 
 patches:
-- path: deployment-patch.yaml
-- path: service-patch.yaml
-- path: ingress-patch.yaml
-- patch: |-
-    - op: replace
-      path: /spec/template/spec/containers/0/name
-      value: overseerr
-  target:
-    kind: Deployment
-    name: deployment
+  - path: deployment-patch.yaml
+  - path: service-patch.yaml
+  - path: ingress-patch.yaml
+  - patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/name
+        value: overseerr
+    target:
+      kind: Deployment
+      name: deployment
