@@ -5,9 +5,9 @@ resources:
   - ../../base/
 
 images:
-- name: app
-  newName: ghcr.io/linuxserver/sonarr
-  newTag: 3.0.10@sha256:d7ae9070a398b9a51cf83af3ec5655403336256e7900defc40559e9b26de889d
+  - name: app
+    newName: ghcr.io/linuxserver/sonarr
+    newTag: 3.0.10@sha256:d7ae9070a398b9a51cf83af3ec5655403336256e7900defc40559e9b26de889d
 
 configMapGenerator:
   - name: env-configmap
@@ -22,18 +22,18 @@ namePrefix: sonarr-
 namespace: default
 
 labels:
-- includeSelectors: true
-  pairs:
-    app: sonarr
+  - includeSelectors: true
+    pairs:
+      app: sonarr
 
 patches:
-- path: deployment-patch.yaml
-- path: service-patch.yaml
-- path: ingress-patch.yaml
-- patch: |-
-    - op: replace
-      path: /spec/template/spec/containers/0/name
-      value: sonarr
-  target:
-    kind: Deployment
-    name: deployment
+  - path: deployment-patch.yaml
+  - path: service-patch.yaml
+  - path: ingress-patch.yaml
+  - patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/name
+        value: sonarr
+    target:
+      kind: Deployment
+      name: deployment

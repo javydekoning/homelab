@@ -5,9 +5,9 @@ resources:
   - ../../base/
 
 images:
-- name: app
-  newName: ghcr.io/linuxserver/radarr
-  newTag: 4.4.4@sha256:f8ce49aba7ccc5696790989b91bb7e4b86189861383410641cad110c7abc6832
+  - name: app
+    newName: ghcr.io/linuxserver/radarr
+    newTag: 4.4.4@sha256:f8ce49aba7ccc5696790989b91bb7e4b86189861383410641cad110c7abc6832
 
 configMapGenerator:
   - name: env-configmap
@@ -22,18 +22,18 @@ namePrefix: radarr-
 namespace: default
 
 labels:
-- includeSelectors: true
-  pairs:
-    app: radarr
+  - includeSelectors: true
+    pairs:
+      app: radarr
 
 patches:
-- path: deployment-patch.yaml
-- path: service-patch.yaml
-- path: ingress-patch.yaml
-- patch: |-
-    - op: replace
-      path: /spec/template/spec/containers/0/name
-      value: radarr
-  target:
-    kind: Deployment
-    name: deployment
+  - path: deployment-patch.yaml
+  - path: service-patch.yaml
+  - path: ingress-patch.yaml
+  - patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/name
+        value: radarr
+    target:
+      kind: Deployment
+      name: deployment

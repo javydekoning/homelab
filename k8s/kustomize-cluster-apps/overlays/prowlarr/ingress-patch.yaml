@@ -4,9 +4,9 @@ metadata:
   name: ingress
 spec:
   tls:
-  - hosts:
-    - prowlarr.k8s.javydekoning.com
-    secretName: javydekoning-com-tls
+    - hosts:
+        - prowlarr.k8s.javydekoning.com
+      secretName: javydekoning-com-tls
   rules:
     - host: prowlarr.k8s.javydekoning.com
       http:
