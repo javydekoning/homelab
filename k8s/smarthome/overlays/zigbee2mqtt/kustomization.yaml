@@ -1,0 +1,37 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base/
+
+images:
+  - name: app
+    newName: ghcr.io/koenkk/zigbee2mqtt
+    newTag: latest@sha256:908df7fd7a592d89a3dee8208cd95a96b389d5eba65b475fa24784f4f34ec33f
+
+configMapGenerator:
+  - name: env-configmap
+    literals:
+      - TZ=Europe/Amsterdam
+
+namePrefix: zigbee2mqtt-
+
+# sticking to default because: https://github.com/argoproj/argo-cd/issues/11625
+namespace: smarthome
+
+labels:
+  - includeSelectors: true
+    pairs:
+      app: zigbee2mqtt
+
+patches:
+  - path: deployment-patch.yaml
+  - path: service-patch.yaml
+  - path: ingress-patch.yaml
+  - patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/name
+        value: zigbee2mqtt
+    target:
+      kind: Deployment
+      name: deployment

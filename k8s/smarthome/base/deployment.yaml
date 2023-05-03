@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment
+spec:
+  template:
+    spec:
+      containers:
+        - name: app
+          image: app:latest
+          imagePullPolicy: Always
+          ports: []
+          volumeMounts:
+            - name: downloads
+              mountPath: /downloads
+          envFrom:
+            - configMapRef:
+                name: env-configmap
+      volumes:
+        - name: downloads
+          hostPath:
+            path: /downloads
+            type: DirectoryOrCreate
+      restartPolicy: Always

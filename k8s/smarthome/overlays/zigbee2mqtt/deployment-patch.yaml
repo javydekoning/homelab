@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment
+spec:
+  template:
+    spec:
+      containers:
+        - name: app
+          ports:
+            - name: http
+              containerPort: 8080
+          volumeMounts:
+            - name: downloads
+              mountPath: /config
+              subPath: config/zigbee2mqtt
