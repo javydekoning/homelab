@@ -10,6 +10,8 @@ images:
     newName: ghcr.io/blakeblackshear/frigate
     newTag: 0.12.0@sha256:c862771e38e8a4b62a80bc79be35b24bde3e8c067fd46d3a732ff2e3f39b857f
 
+namespace: smarthome
+
 configMapGenerator:
   - name: env-configmap
     literals:
