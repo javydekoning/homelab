@@ -7,6 +7,8 @@ spec:
     spec:
       containers:
         - name: app
+          securityContext:
+            privileged: true
           ports:
             - name: http
               containerPort: 8080
@@ -14,3 +16,14 @@ spec:
             - name: downloads
               mountPath: /config
               subPath: config/zigbee2mqtt
+            - name: usb
+              mountPath: /dev/ttyACM0
+            - name: udev
+              mountPath: /run/udev
+      volumes:
+        - name: usb
+          hostPath:
+            path: /dev/ttyUSB0
+        - name: udev
+          hostPath:
+            path: /run/udev

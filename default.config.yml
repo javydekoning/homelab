@@ -25,6 +25,10 @@ apk_installed_packages:
   - tmux
   - wireguard-tools
   - zsh
+  - pciutils
+  - usbutils
+  - libusb
+  - eudev
 
 pip_installed_packages:
   - kubernetes
