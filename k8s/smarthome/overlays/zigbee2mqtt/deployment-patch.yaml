@@ -14,7 +14,7 @@ spec:
               containerPort: 8080
           volumeMounts:
             - name: downloads
-              mountPath: /config
+              mountPath: /app/data
               subPath: config/zigbee2mqtt
             - name: usb
               mountPath: /dev/ttyACM0
