@@ -9,7 +9,8 @@ spec:
         repoURL: https://github.com/javydekoning/homelab.git
         revision: HEAD
         files:
-          - path: "k8s/kustomize-cluster-apps/overlays/**/kustomization.yaml"
+          - path: "k8s/dvr/overlays/**/kustomization.yaml"
+          - path: "k8s/dvr/namespace.yaml"
   syncPolicy:
     preserveResourcesOnDeletion: false
   template:

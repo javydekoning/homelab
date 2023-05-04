@@ -6,8 +6,8 @@ resources:
 
 images:
   - name: app
-    newName: ghcr.io/linuxserver/bazarr
-    newTag: 1.2.1@sha256:f32dcad8c0a93479f2fe72c2692a14e30800201f454faa2d4b6ca0a87d880a13
+    newName: ghcr.io/linuxserver/prowlarr
+    newTag: 1.4.0-develop@sha256:e119fd07c61ad17c36721ea1bef4c6c66920f8b001d11c4862b177490610bc72
 
 configMapGenerator:
   - name: env-configmap
@@ -16,15 +16,12 @@ configMapGenerator:
       - PGID=911
       - TZ=Europe/Amsterdam
 
-namePrefix: bazarr-
-
-# sticking to default because: https://github.com/argoproj/argo-cd/issues/11625
-namespace: default
+namePrefix: prowlarr-
 
 labels:
   - includeSelectors: true
     pairs:
-      app: bazarr
+      app: prowlarr
 
 patches:
   - path: deployment-patch.yaml
@@ -33,7 +30,7 @@ patches:
   - patch: |-
       - op: replace
         path: /spec/template/spec/containers/0/name
-        value: bazarr
+        value: prowlarr
     target:
       kind: Deployment
       name: deployment

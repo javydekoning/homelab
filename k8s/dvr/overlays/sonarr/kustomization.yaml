@@ -6,8 +6,8 @@ resources:
 
 images:
   - name: app
-    newName: ghcr.io/linuxserver/radarr
-    newTag: 4.4.4@sha256:f8ce49aba7ccc5696790989b91bb7e4b86189861383410641cad110c7abc6832
+    newName: ghcr.io/linuxserver/sonarr
+    newTag: 3.0.10@sha256:d7ae9070a398b9a51cf83af3ec5655403336256e7900defc40559e9b26de889d
 
 configMapGenerator:
   - name: env-configmap
@@ -16,15 +16,12 @@ configMapGenerator:
       - PGID=911
       - TZ=Europe/Amsterdam
 
-namePrefix: radarr-
-
-# sticking to default because: https://github.com/argoproj/argo-cd/issues/11625
-namespace: default
+namePrefix: sonarr-
 
 labels:
   - includeSelectors: true
     pairs:
-      app: radarr
+      app: sonarr
 
 patches:
   - path: deployment-patch.yaml
@@ -33,7 +30,7 @@ patches:
   - patch: |-
       - op: replace
         path: /spec/template/spec/containers/0/name
-        value: radarr
+        value: sonarr
     target:
       kind: Deployment
       name: deployment

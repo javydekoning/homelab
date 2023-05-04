@@ -16,9 +16,6 @@ configMapGenerator:
 
 namePrefix: zigbee2mqtt-
 
-# sticking to default because: https://github.com/argoproj/argo-cd/issues/11625
-namespace: smarthome
-
 labels:
   - includeSelectors: true
     pairs:

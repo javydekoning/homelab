@@ -6,8 +6,8 @@ resources:
 
 images:
   - name: app
-    newName: ghcr.io/linuxserver/overseerr
-    newTag: latest@sha256:c21530a90c539226cb778ef7c8241391d9b0bf3c64c5cd42e02095bc16468886
+    newName: ghcr.io/linuxserver/bazarr
+    newTag: 1.2.1@sha256:f32dcad8c0a93479f2fe72c2692a14e30800201f454faa2d4b6ca0a87d880a13
 
 configMapGenerator:
   - name: env-configmap
@@ -16,15 +16,12 @@ configMapGenerator:
       - PGID=911
       - TZ=Europe/Amsterdam
 
-namePrefix: overseerr-
-
-# sticking to default because: https://github.com/argoproj/argo-cd/issues/11625
-namespace: default
+namePrefix: bazarr-
 
 labels:
   - includeSelectors: true
     pairs:
-      app: overseerr
+      app: bazarr
 
 patches:
   - path: deployment-patch.yaml
@@ -33,7 +30,7 @@ patches:
   - patch: |-
       - op: replace
         path: /spec/template/spec/containers/0/name
-        value: overseerr
+        value: bazarr
     target:
       kind: Deployment
       name: deployment
