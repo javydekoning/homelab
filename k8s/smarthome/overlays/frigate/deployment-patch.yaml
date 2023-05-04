@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment
+spec:
+  template:
+    spec:
+      # use initContainer to make config.yml rw (editable in browser)
+      initContainers:
+        - name: copyconfig
+          image: busybox
+          command:
+            - "sh"
+            - "-c"
+            - |
+              cp /sourceconf/config.yml /config/config.yml
+          volumeMounts:
+            - name: config-map
+              mountPath: /sourceconf/
+            - name: config
+              mountPath: /config/
+      containers:
+        - name: app
+          securityContext:
+            capabilities:
+              add: ["PERFMON"]
+          resources:
+            limits:
+              gpu.intel.com/i915: 1
+              cpu: 500m
+              memory: 1Gi
+          ports:
+            - name: http
+              containerPort: 5000
+            - name: rtmp
+              containerPort: 1935
+          volumeMounts:
+            - name: downloads
+              mountPath: /media/frigate
+              subPath: frigate/
+            - name: cache
+              mountPath: /tmp/cache
+            - name: config
+              mountPath: /config/
+            - name: shm
+              mountPath: /dev/shm
+      volumes:
+        - name: cache
+          emptyDir:
+            sizeLimit: 1Gi
+        - name: config-map
+          configMap:
+            name: frigate-config
+        - name: config
+          emptyDir: {}
+        - name: shm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 128Mi

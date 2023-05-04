@@ -10,6 +10,7 @@ spec:
         revision: HEAD
         files:
           - path: "k8s/smarthome/overlays/**/kustomization.yaml"
+          - path: "k8s/smarthome/namespace.yaml"
   syncPolicy:
     preserveResourcesOnDeletion: false
   template:

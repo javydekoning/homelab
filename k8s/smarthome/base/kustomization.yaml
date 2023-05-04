@@ -5,4 +5,3 @@ resources:
   - deployment.yaml
   - ingress.yaml
   - service.yaml
-  - ns.yaml
