@@ -1,0 +1,38 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: dvr
+
+resources:
+  - ../../base/
+
+images:
+  - name: app
+    newName: ghcr.io/advplyr/audiobookshelf
+    newTag: latest@sha256:bc9c6819b74fcf93193e8674175e03004cb7bbf6309cd7e8a251f8eebfffe058
+
+configMapGenerator:
+  - name: env-configmap
+    literals:
+      - AUDIOBOOKSHELF_UID="911"
+      - AUDIOBOOKSHELF_GID="911"
+      - TZ=Europe/Amsterdam
+
+namePrefix: audiobookshelf-
+
+labels:
+  - includeSelectors: true
+    pairs:
+      app: audiobookshelf
+
+patches:
+  - path: deployment-patch.yaml
+  - path: service-patch.yaml
+  - path: ingress-patch.yaml
+  - patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/name
+        value: audiobookshelf
+    target:
+      kind: Deployment
+      name: deployment

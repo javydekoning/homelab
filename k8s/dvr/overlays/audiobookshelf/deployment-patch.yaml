@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment
+spec:
+  template:
+    spec:
+      containers:
+        - name: app
+          ports:
+            - name: http
+              containerPort: 80
+          volumeMounts:
+            - name: downloads
+              mountPath: /config
+              subPath: config/audiobookshelf/config/
+            - name: downloads
+              mountPath: /metadata
+              subPath: config/audiobookshelf/metadata/
+            - name: downloads
+              mountPath: /podcasts
+              subPath: podcasts
+            - name: downloads
+              mountPath: /audiobooks
+              subPath: audiobooks

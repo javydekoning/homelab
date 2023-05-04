@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+spec:
+  tls:
+    - hosts:
+        - audiobookshelf.k8s.javydekoning.com
+      secretName: javydekoning-com-tls
+  rules:
+    - host: audiobookshelf.k8s.javydekoning.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: audiobookshelf-service
+                port:
+                  name: http
