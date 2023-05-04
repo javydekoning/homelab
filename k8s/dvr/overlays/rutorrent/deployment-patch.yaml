@@ -10,11 +10,11 @@ spec:
           ports:
             - name: http
               containerPort: 8080
-            - name: XMLRPC_PORT
+            - name: xmlrpc
               containerPort: 8000
-            - name: RT_INC_PORT
+            - name: rtorrent
               containerPort: 51413
-            - name: DHT
+            - name: dht
               containerPort: 6881
           volumeMounts:
             - name: downloads
