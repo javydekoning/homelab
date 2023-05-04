@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment
+spec:
+  template:
+    spec:
+      containers:
+        - name: app
+          ports:
+            - name: http
+              containerPort: 8080
+            - name: XMLRPC_PORT
+              containerPort: 8000
+            - name: RT_INC_PORT
+              containerPort: 51413
+            - name: DHT
+              containerPort: 6881
+          volumeMounts:
+            - name: downloads
+              mountPath: /data/
+              subPath: config/rtorrent-config
+            - name: downloads
+              mountPath: /downloads/

@@ -3,18 +3,17 @@ kind: Ingress
 metadata:
   name: ingress
 spec:
-  ingressClassName: nginx
   tls:
     - hosts:
-        - appname.k8s.javydekoning.com
+        - rutorrent.k8s.javydekoning.com
   rules:
-    - host: appname.k8s.javydekoning.com
+    - host: rutorrent.k8s.javydekoning.com
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: appname-service
+                name: rutorrent-service
                 port:
                   name: http
