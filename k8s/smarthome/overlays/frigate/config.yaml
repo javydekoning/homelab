@@ -5,7 +5,7 @@ metadata:
 data:
   config.yml: |-
     mqtt:
-      host: 192.168.1.248
+      host: 192.168.1.251
 
     detectors:
       ov:

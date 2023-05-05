@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment
+spec:
+  template:
+    spec:
+      containers:
+        - name: app
+          securityContext:
+            privileged: true
+          ports:
+            - name: websockets
+              containerPort: 9001
+            - name: mqtt
+              containerPort: 1883
+          volumeMounts:
+            - name: downloads
+              mountPath: /mosquitto/data
+              subPath: config/mosquitto
+            - name: config
+              mountPath: /mosquitto/config/
+            - name: log
+              mountPath: /mosquitto/log
+      volumes:
+        - name: config
+          configMap:
+            name: mosquitto-config
+        - name: log
+          emptyDir: {}

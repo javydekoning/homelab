@@ -1,0 +1,43 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base/
+  - config.yaml
+
+images:
+  - name: app
+    newName: eclipse-mosquitto
+    newTag: 2.0.15
+
+configMapGenerator:
+  - name: env-configmap
+    namespace: smarthome
+    literals:
+      - TZ=Europe/Amsterdam
+
+namePrefix: mosquitto-
+
+labels:
+  - includeSelectors: true
+    pairs:
+      app: mosquitto
+
+patches:
+  - path: deployment-patch.yaml
+  - path: service-patch.yaml
+  - patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/name
+        value: mosquitto
+    target:
+      kind: Deployment
+      name: deployment
+  - target:
+      kind: Ingress
+    patch: |
+      $patch: delete
+      apiVersion: networking.k8s.io/v1
+      kind: Ingress
+      metadata:
+        name: ingress

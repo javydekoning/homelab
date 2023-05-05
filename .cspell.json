@@ -11,7 +11,10 @@
     "node",
     "npm"
   ],
-  "ignorePaths": [".cspell.json", ".gitignore"],
+  "ignorePaths": [
+    ".cspell.json",
+    ".gitignore"
+  ],
   "allowCompoundWords": true,
   "words": [
     "argoproj",
@@ -20,6 +23,7 @@
     "javydekoning",
     "kustomization",
     "kustomize",
+    "mosquitto",
     "onedr0p"
   ]
 }
