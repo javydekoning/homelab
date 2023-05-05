@@ -10,6 +10,8 @@ images:
     newName: eclipse-mosquitto
     newTag: 2.0.15
 
+namespace: smarthome
+
 configMapGenerator:
   - name: env-configmap
     namespace: smarthome
