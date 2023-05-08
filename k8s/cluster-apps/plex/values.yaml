@@ -62,24 +62,12 @@ plex:
       enabled: true
       type: emptyDir
       mountPoint: /transcode
-    tv:
+    downloads:
       enabled: true
       type: hostPath
       accessMode: ReadWriteOnce
-      hostPath: /downloads/tv
-      mountPath: /tv
-    movies:
-      enabled: true
-      type: hostPath
-      accessMode: ReadWriteOnce
-      hostPath: /downloads/movies
-      mountPath: /movies
-    education:
-      enabled: true
-      type: hostPath
-      accessMode: ReadWriteOnce
-      hostPath: /downloads/education
-      mountPath: /education
+      hostPath: /downloads
+      mountPath: /downloads
   podSecurityContext:
     runAsUser: 0
     runAsGroup: 0
