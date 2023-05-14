@@ -20,7 +20,7 @@
     {
       "matchDepTypes": ["devDependencies"],
       "automerge": true
-    },
+    }
   ],
   "platformAutomerge": true
 }
