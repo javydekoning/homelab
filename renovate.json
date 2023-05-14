@@ -12,13 +12,15 @@
       "matchManagers": ["helm-values"],
       "matchPackageNames": ["ghcr.io/onedr0p/plex"],
       "versioning": "loose"
-    }, {
-      "automerge": true,
-      "automergeType": "pr",
-      "platformAutomerge": true,
-      "major": {
-        "automerge": false
-      }
-    }
-  ]
+    },
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
+    },
+    {
+      "matchDepTypes": ["devDependencies"],
+      "automerge": true
+    },
+  ],
+  "platformAutomerge": true
 }
