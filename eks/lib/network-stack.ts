@@ -1,4 +1,3 @@
-import { cdkpipelines } from '@aws-quickstart/eks-blueprints';
 import { Stack, StackProps, aws_ec2 as ec2, Tags, CfnOutput } from 'aws-cdk-lib';
 import { CfnRoute } from 'aws-cdk-lib/aws-ec2';
 import { Construct } from 'constructs';
