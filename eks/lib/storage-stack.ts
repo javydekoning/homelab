@@ -9,7 +9,7 @@ export class StorageStack extends Stack {
   constructor(scope: Construct, id: string, props: StorageStackProps) {
     super(scope, id, props);
 
-    const fs = new efs.FileSystem(this, 'efs-for-eks-lab', {
+    const fs = new efs.FileSystem(this, 'efs-for-eks-blueprint', {
         vpc: props.vpc,
         vpcSubnets: props.vpc.selectSubnets({subnetType: ec2.SubnetType.PRIVATE_WITH_NAT})
     })

@@ -7,14 +7,15 @@ export interface NetworkStackProps extends StackProps {
 }
 
 export class NetworkStack extends Stack {
-  vpc: ec2.IVpc
+  vpc: ec2.IVpc;
+  sg: ec2.ISecurityGroup;
   vpcId: string;
   constructor(scope: Construct, id: string, props: NetworkStackProps) {
     super(scope, id, props);
 
-    this.vpc = new ec2.Vpc(this, 'eks-lab-vpc', {
+    this.vpc = new ec2.Vpc(this, 'eks-blueprint-vpc', {
       ipAddresses: ec2.IpAddresses.cidr('10.100.0.0/16'),
-      maxAzs: 2,
+      maxAzs: 3,
       subnetConfiguration: [
         {
           cidrMask: 24,
@@ -24,7 +25,7 @@ export class NetworkStack extends Stack {
         {
           cidrMask: 20,
           name: 'workers',
-          subnetType: ec2.SubnetType.PRIVATE_WITH_NAT,
+          subnetType: ec2.SubnetType.PRIVATE_WITH_EGRESS,
         },
         {
           cidrMask: 28,
@@ -37,7 +38,7 @@ export class NetworkStack extends Stack {
     // Tag Private Subnets
     this.vpc.privateSubnets.forEach((subnet) => {
       Tags.of(subnet).add("kubernetes.io/role/internal-elb", "1")
-      Tags.of(subnet).add("karpenter.sh/discovery", "eks-lab")
+      Tags.of(subnet).add("karpenter.sh/discovery", "eks-blueprint")
     })
 
     // Tag Public Subnets
@@ -48,7 +49,7 @@ export class NetworkStack extends Stack {
     // Connect to TGW
     const tgwSubnets = this.vpc.selectSubnets({ subnetGroupName: 'tgw' })
 
-    const attach = new ec2.CfnTransitGatewayAttachment(this, 'eks-lab-vpc-tgw-attach', {
+    const attach = new ec2.CfnTransitGatewayAttachment(this, 'eks-blueprint-vpc-tgw-attach', {
       subnetIds: tgwSubnets.subnetIds,
       vpcId: this.vpc.vpcId,
       transitGatewayId: props.transitGatewayId
@@ -61,19 +62,19 @@ export class NetworkStack extends Stack {
         destinationCidrBlock: '192.168.1.0/24',
         routeTableId: subnet.routeTable.routeTableId,
         transitGatewayId: props.transitGatewayId
-      }).addDependsOn(attach)
+      }).addDependency(attach)
     })
 
     // EKS Security Group
-    const sg = new ec2.SecurityGroup(this, 'eks-lab-workers-sh', {
+    this.sg = new ec2.SecurityGroup(this, 'eks-blueprint-workers-sh', {
       vpc: this.vpc,
       allowAllOutbound: true,
       securityGroupName: id,
     })
-    sg.addIngressRule(ec2.Peer.ipv4('10.100.0.0/16'), ec2.Port.allTraffic())
+    this.sg.addIngressRule(ec2.Peer.ipv4('10.100.0.0/16'), ec2.Port.allTraffic())
 
-    Tags.of(sg).add("karpenter.sh/discovery", "eks-lab")
-
-    new CfnOutput(this, 'eks-lab-vpcid', { exportName: 'vpcId', value: this.vpc.vpcId })
+    Tags.of(this.sg).add("karpenter.sh/discovery", "eks-blueprint")
+    Tags.of(this.sg).add("kubernetes.io/cluster/eks-blueprint", "owned")
+    new CfnOutput(this, 'eks-blueprint-vpcid', { exportName: 'vpcId', value: this.vpc.vpcId })
   }
 }

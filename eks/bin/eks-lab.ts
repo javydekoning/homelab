@@ -26,26 +26,28 @@ const storageStack = new StorageStack(app, 'eks-bp-storage-stack', {
 })
 
 const clusterProvider = new blueprints.GenericClusterProvider({
-  version: eks.KubernetesVersion.V1_25,
+  version: eks.KubernetesVersion.V1_26,
+  securityGroup: network.sg,
   fargateProfiles: {
     karpenter: {
       fargateProfileName: "karpenter",
       selectors: [{ namespace: "karpenter" }],
-      vpc: network.vpc
     },
   },
 });
 
 const addOns: blueprints.ClusterAddOn[] = [
-  new blueprints.addons.VpcCniAddOn(),
+  new blueprints.VpcCniAddOn(),
   new blueprints.addons.KarpenterAddOn({
+    version: "v0.27.5",
     amiFamily: "AL2",
-    ttlSecondsUntilExpired: 60 * 60 * 34 * 7,
+    interruptionHandling: true,
+    ttlSecondsUntilExpired: 60 * 60 * 24 * 7, // 1 week
     requirements: [
       {
         key: "karpenter.sh/capacity-type",
         op: "In",
-        vals: ["spot"],
+        vals: ["spot", "on-demand"],
       },
       {
         key: "kubernetes.io/arch",
@@ -55,15 +57,19 @@ const addOns: blueprints.ClusterAddOn[] = [
       {
         key: "topology.kubernetes.io/zone",
         op: "In",
-        vals: ["eu-west-1a", "eu-west-1b"],
-      },
+        vals: ["eu-west-1a", "eu-west-1b", "eu-west-1c"],
+      },{
+        key: "karpenter.k8s.aws/instance-generation",
+        op: "In",
+        vals: ["3","4","5","6","7"]
+      }
     ],
     consolidation: { enabled: true },
     subnetTags: {
-      "karpenter.sh/discovery": "eks-lab",
+      "karpenter.sh/discovery": "eks-blueprint",
     },
     securityGroupTags: {
-      "kubernetes.io/cluster/eks-cluster": "owned",
+      "kubernetes.io/cluster/eks-blueprint": "owned",
     },
   }),
   new blueprints.addons.AwsLoadBalancerControllerAddOn(),
