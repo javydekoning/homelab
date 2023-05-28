@@ -9,7 +9,7 @@ resources:
 images:
   - name: app
     newName: ghcr.io/crazy-max/rtorrent-rutorrent
-    newTag: 4.1.5-0.9.8-0.13.8
+    newTag: latest@sha256:2076fe06299ea47c211cd2ab0b2a5cfa4edb7d4b7b62a78be28279d6331ac528
 
 configMapGenerator:
   - name: env-configmap
