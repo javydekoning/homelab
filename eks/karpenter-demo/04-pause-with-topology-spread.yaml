@@ -15,15 +15,15 @@ spec:
         app: pause-with-resources
     spec:
       containers:
-      - name: pause-with-resources
-        image: registry.k8s.io/pause:3.1
-        resources:
-          requests:
-            memory: "128Mi"
-            cpu: "500m"
-          limits:
-            memory: "256Mi"
-            cpu: "1000m"
+        - name: pause-with-resources
+          image: registry.k8s.io/pause:3.1
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "500m"
+            limits:
+              memory: "256Mi"
+              cpu: "1000m"
       topologySpreadConstraints:
         - maxSkew: 1
           topologyKey: "topology.kubernetes.io/zone"
@@ -40,7 +40,7 @@ spec:
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchLabels:
-                app: pause-with-resources
-            topologyKey: kubernetes.io/hostname
+            - labelSelector:
+                matchLabels:
+                  app: pause-with-resources
+              topologyKey: kubernetes.io/hostname
