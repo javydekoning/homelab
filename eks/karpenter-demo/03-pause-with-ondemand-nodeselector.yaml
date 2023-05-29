@@ -17,12 +17,12 @@ spec:
       nodeSelector:
         karpenter.sh/capacity-type: "on-demand"
       containers:
-      - name: pause-with-resources
-        image: registry.k8s.io/pause:3.1
-        resources:
-          requests:
-            memory: "128Mi"
-            cpu: "500m"
-          limits:
-            memory: "256Mi"
-            cpu: "1000m"
+        - name: pause-with-resources
+          image: registry.k8s.io/pause:3.1
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "500m"
+            limits:
+              memory: "256Mi"
+              cpu: "1000m"
