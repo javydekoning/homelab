@@ -1,0 +1,20 @@
+{
+  "name": "tsweb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Javy de Koning",
+  "dependencies": {
+    "@types/pino-http": "^5.4.2",
+    "pino-http": "^5.6.0",
+    "pretty-print-json": "1.1.0",
+    "ts-node": "^10.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.6.1"
+  }
+}

@@ -20,13 +20,13 @@ const certStack = new CertificateManagerStack(app, 'eks-bp-cert-manager-stack', 
   env
 })
 
-const storageStack = new StorageStack(app, 'eks-bp-storage-stack', {
-  vpc: network.vpc,
-  env
-})
+// const storageStack = new StorageStack(app, 'eks-bp-storage-stack', {
+//   vpc: network.vpc,
+//   env
+// })
 
 const clusterProvider = new blueprints.GenericClusterProvider({
-  version: eks.KubernetesVersion.V1_26,
+  version: eks.KubernetesVersion.V1_25,
   securityGroup: network.sg,
   fargateProfiles: {
     karpenter: {
@@ -39,7 +39,7 @@ const clusterProvider = new blueprints.GenericClusterProvider({
 const addOns: blueprints.ClusterAddOn[] = [
   new blueprints.VpcCniAddOn(),
   new blueprints.addons.KarpenterAddOn({
-    version: "v0.27.5",
+    // version: "v0.27.5",
     amiFamily: "AL2",
     interruptionHandling: true,
     ttlSecondsUntilExpired: 60 * 60 * 24 * 7, // 1 week
@@ -74,8 +74,8 @@ const addOns: blueprints.ClusterAddOn[] = [
   }),
   new blueprints.addons.AwsLoadBalancerControllerAddOn(),
   new blueprints.addons.CoreDnsAddOn(),
-  new blueprints.addons.EfsCsiDriverAddOn(),
-  new blueprints.addons.EbsCsiDriverAddOn(),
+  // new blueprints.addons.EfsCsiDriverAddOn(),
+  // new blueprints.addons.EbsCsiDriverAddOn(),
   new blueprints.addons.ExternalDnsAddOn({
     hostedZoneResources: [certStack.zone.zoneName],
   }),
