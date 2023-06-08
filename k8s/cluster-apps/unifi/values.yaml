@@ -1,7 +1,7 @@
 unifi:
   image:
     repository: ghcr.io/jacobalberty/unifi-docker
-    tag: v7.3.83
+    tag: v7.4.156
     pullPolicy: Always
 
   # -- https://github.com/k8s-at-home/library-charts/blob/main/charts/stable/common/values.yaml#L176
