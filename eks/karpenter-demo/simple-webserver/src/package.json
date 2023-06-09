@@ -10,7 +10,7 @@
   "author": "Javy de Koning",
   "dependencies": {
     "@types/pino-http": "^5.4.2",
-    "pino-http": "^5.6.0",
+    "pino-http": "^8.0.0",
     "pretty-print-json": "2.0.1",
     "ts-node": "^10.2.0"
   },
