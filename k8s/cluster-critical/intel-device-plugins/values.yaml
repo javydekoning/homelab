@@ -1,6 +1,6 @@
 intel-device-plugins-gpu:
   nodeFeatureRule: true
-  sharedDevNum: 2 # Allow 2 pods to share i915
+  sharedDevNum: 4
 
 intel-device-plugins-operator:
   image:

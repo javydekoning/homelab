@@ -1,0 +1,43 @@
+apiVersion: karpenter.sh/v1alpha5
+kind: Provisioner
+metadata:
+  name: default
+spec:
+  consolidation:
+    enabled: true
+  provider:
+    amiFamily: Bottlerocket
+    securityGroupSelector:
+      kubernetes.io/cluster/eks-blueprint: owned
+    subnetSelector:
+      karpenter.sh/discovery: eks-blueprint
+  requirements:
+  - key: karpenter.sh/capacity-type
+    operator: In
+    values:
+    - spot
+    - on-demand
+  - key: kubernetes.io/arch
+    operator: In
+    values:
+    - amd64
+    - arm64
+  - key: topology.kubernetes.io/zone
+    operator: In
+    values:
+    - eu-west-1a
+    - eu-west-1b
+    - eu-west-1c
+  - key: karpenter.k8s.aws/instance-generation
+    operator: In
+    values:
+    - "3"
+    - "4"
+    - "5"
+    - "6"
+    - "7"
+  - key: kubernetes.io/os
+    operator: In
+    values:
+    - linux
+  ttlSecondsUntilExpired: 604800

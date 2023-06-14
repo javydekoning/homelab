@@ -14,9 +14,14 @@ export class CertificateManagerStack extends Stack {
         domainName: 'javydekoning.com'
     })
 
-    const cert = new acm.DnsValidatedCertificate(this, 'eksCert', {
+    const cert = new acm.Certificate(this, 'eksCert', {
       domainName: '*.javydekoning.com',
-      hostedZone
+      validation: {
+        method: acm.ValidationMethod.DNS,
+        props: {
+          hostedZone
+        }
+      }
     })
     this.certificateArn = cert.certificateArn
     this.zone = hostedZone

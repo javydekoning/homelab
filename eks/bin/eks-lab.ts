@@ -6,6 +6,10 @@ import * as blueprints from "@aws-quickstart/eks-blueprints";
 import { NetworkStack } from '../lib/network-stack';
 import { StorageStack } from '../lib/storage-stack';
 import { CertificateManagerStack } from '../lib/cert-manager-stack';
+import { Construct } from 'constructs';
+import { dependable } from '@aws-quickstart/eks-blueprints/dist/utils';
+
+
 
 const app = new cdk.App();
 
@@ -36,56 +40,36 @@ const clusterProvider = new blueprints.GenericClusterProvider({
   },
 });
 
+class MyKarpenterProvisionersAddOn implements blueprints.ClusterAddOn {
+  @blueprints.utils.dependable(blueprints.addons.KarpenterAddOn.name)
+  deploy(clusterInfo: blueprints.ClusterInfo): void | Promise<Construct> {
+    const cluster = clusterInfo.cluster;
+    const docArray = blueprints.utils.readYamlDocument(__dirname + '/provisioner.default.yaml')
+    const manifest = docArray.split("---").map(e => blueprints.utils.loadYaml(e));
+    new eks.KubernetesManifest(cluster.stack, "karpenter-provisioner", {
+      cluster,
+      manifest,
+      overwrite: true
+    });
+  }
+}
+
 const addOns: blueprints.ClusterAddOn[] = [
   new blueprints.VpcCniAddOn(),
-  new blueprints.addons.KarpenterAddOn({
-    // version: "v0.27.5",
-    amiFamily: "AL2",
-    interruptionHandling: true,
-    ttlSecondsUntilExpired: 60 * 60 * 24 * 7, // 1 week
-    requirements: [
-      {
-        key: "karpenter.sh/capacity-type",
-        op: "In",
-        vals: ["spot", "on-demand"],
-      },
-      {
-        key: "kubernetes.io/arch",
-        op: "In",
-        vals: ["amd64", "arm64"],
-      },
-      {
-        key: "topology.kubernetes.io/zone",
-        op: "In",
-        vals: ["eu-west-1a", "eu-west-1b", "eu-west-1c"],
-      },{
-        key: "karpenter.k8s.aws/instance-generation",
-        op: "In",
-        vals: ["3","4","5","6","7"]
-      }
-    ],
-    consolidation: { enabled: true },
-    subnetTags: {
-      "karpenter.sh/discovery": "eks-blueprint",
-    },
-    securityGroupTags: {
-      "kubernetes.io/cluster/eks-blueprint": "owned",
-    },
-  }),
+  new blueprints.addons.KarpenterAddOn(),
   new blueprints.addons.AwsLoadBalancerControllerAddOn(),
   new blueprints.addons.CoreDnsAddOn(),
-  // new blueprints.addons.EfsCsiDriverAddOn(),
-  // new blueprints.addons.EbsCsiDriverAddOn(),
   new blueprints.addons.ExternalDnsAddOn({
     hostedZoneResources: [certStack.zone.zoneName],
   }),
   new blueprints.addons.KubeProxyAddOn(),
   new blueprints.addons.MetricsServerAddOn(),
+  new MyKarpenterProvisionersAddOn()
 ]
 
 new blueprints.BlueprintBuilder()
   .addOns(
-    ...addOns
+    ...addOns,
   )
   .resourceProvider(
     blueprints.GlobalResources.Vpc,
