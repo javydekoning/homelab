@@ -5,12 +5,8 @@ metadata:
 spec:
   consolidation:
     enabled: true
-  provider:
-    amiFamily: Bottlerocket
-    securityGroupSelector:
-      kubernetes.io/cluster/eks-blueprint: owned
-    subnetSelector:
-      karpenter.sh/discovery: eks-blueprint
+  providerRef:
+    name: default
   requirements:
     - key: karpenter.sh/capacity-type
       operator: In
@@ -29,15 +25,22 @@ spec:
         - eu-west-1b
         - eu-west-1c
     - key: karpenter.k8s.aws/instance-generation
-      operator: In
+      operator: Gt
       values:
         - "3"
-        - "4"
-        - "5"
-        - "6"
-        - "7"
     - key: kubernetes.io/os
       operator: In
       values:
         - linux
   ttlSecondsUntilExpired: 604800
+---
+apiVersion: karpenter.k8s.aws/v1alpha1
+kind: AWSNodeTemplate
+metadata:
+  name: default
+spec:
+  amiFamily: Bottlerocket
+  securityGroupSelector:
+    kubernetes.io/cluster/eks-blueprint: owned
+  subnetSelector:
+    karpenter.sh/discovery: eks-blueprint
