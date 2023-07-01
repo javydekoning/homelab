@@ -9,7 +9,7 @@ resources:
 images:
   - name: app
     newName: ghcr.io/linuxserver/sonarr
-    newTag: 3.0.10@sha256:d0719900bd91e0ad9c7f4169455abff908e00b4a29ceedf89b5d7b7287d9cf2f
+    newTag: 3.0.10@sha256:b82eb17e244a03b480de5566df75c107d9789fd0fb5b29ae4fab9c6df020a495
 
 configMapGenerator:
   - name: env-configmap
