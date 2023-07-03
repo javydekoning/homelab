@@ -1,0 +1,7 @@
+name: duplicati
+apiVersion: v2
+version: 1.0.0
+dependencies:
+  - name: openspeedtest
+    version: 0.1.1
+    repository: https://openspeedtest.github.io/Helm-chart/
