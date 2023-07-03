@@ -9,6 +9,8 @@ openspeedtest:
   ingress:
     enabled: true
     className: nginx
+    annotations:
+      nginx.ingress.kubernetes.io/proxy-body-size: 35m
     hosts:
       - host: openspeedtest.k8s.javydekoning.com
         paths:
