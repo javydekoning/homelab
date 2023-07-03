@@ -175,7 +175,7 @@ homer:
                   subtitle: "Network Video Recorder"
                   url: "https://frigate.k8s.javydekoning.com"
                   target: "_blank"
-                - name: "Frigate"
+                - name: "OpenSpeedtest"
                   logo: "https://github.com/walkxcode/dashboard-icons/raw/main/png/openspeedtest.png"
                   subtitle: "Local Speedtest"
                   url: "https://openspeedtest.k8s.javydekoning.com"
