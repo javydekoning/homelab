@@ -21,6 +21,11 @@ data:
       input_pixel_format: bgr
       labelmap_path: /openvino-model/coco_91cl_bkgr.txt
 
+    # Include all cameras with motion in last 30s
+    birdseye:
+      enabled: True
+      mode: motion
+
     cameras:
       E1ProBabyRoom:
         ffmpeg:
