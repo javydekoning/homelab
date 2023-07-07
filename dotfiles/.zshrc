@@ -30,6 +30,7 @@ source $ZSH/oh-my-zsh.sh
 alias shutdown=poweroff
 alias kubectl=kubecolor
 alias k=kubecolor
+alias kgp='kubectl get pods --sort-by=.metadata.creationTimestamp -A'
 
 # Kubectl completion
 autoload -U compinit
