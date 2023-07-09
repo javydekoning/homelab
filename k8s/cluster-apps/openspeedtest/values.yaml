@@ -4,7 +4,7 @@ openspeedtest:
   image:
     repository: openspeedtest/latest
     pullPolicy: Always
-    tag: "v2.0.0@sha256:0e920082b6e971618bfb7c7294d0600810e7b10152bf733f4555645e35076be4"
+    tag: "v2.0.1@sha256:8a5b0003b9148818dbadb5968857adcabb290ca3020af302e8e06b7d9ecb1389"
 
   ingress:
     enabled: true
