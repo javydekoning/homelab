@@ -203,7 +203,7 @@ spec:
               mountPath: /opt/adguardhome/conf
       containers:
         - name: adguard
-          image: adguard/adguardhome:beta@sha256:c471a46ec272d1c889537a476daacceab5585bcb7a4af193836e97b7d67e570d
+          image: adguard/adguardhome:beta@sha256:2a650538ca482db6a11d3985694534eca9dc2f56dbc66145a05bd887c0ac2f29
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
