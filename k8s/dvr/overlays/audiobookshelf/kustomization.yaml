@@ -9,7 +9,7 @@ resources:
 images:
   - name: app
     newName: ghcr.io/advplyr/audiobookshelf
-    newTag: latest@sha256:50ce52c311755a49b4b24c33061d42855fc67c9def54c7cbc727e5e07ac2a942
+    newTag: latest@sha256:af7bb9721592e25fe80a6535f09fe22bc524056476b49be1340d65e64cc052f6
 
 configMapGenerator:
   - name: env-configmap
