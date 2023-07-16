@@ -35,3 +35,4 @@ spec:
         syncOptions:
           - ApplyOutOfSyncOnly=true
           - CreateNamespace=true
+          - Replace=true
