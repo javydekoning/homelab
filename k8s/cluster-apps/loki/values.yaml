@@ -4,7 +4,10 @@ loki:
     commonConfig:
       replication_factor: 1
     storage:
-      type: filesystem
+      type: 'filesystem'
+
+  singleBinary:
+    replicas: 1
 
   ingress:
     enabled: true
@@ -15,6 +18,3 @@ loki:
       - hosts:
           - loki.k8s.javydekoning.com
         secretName: javydekoning-com-tls
-
-  singleBinary:
-    replicas: 1
