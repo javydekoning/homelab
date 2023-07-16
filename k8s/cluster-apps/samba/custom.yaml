@@ -1,0 +1,92 @@
+# https://github.com/linuxserver/docker-wireguard/pkgs/container/wireguard
+apiVersion: v1
+kind: Service
+metadata:
+  name: wireguard
+  namespace: default
+  annotations:
+    metallb.universe.tf/allow-shared-ip: wireguard
+spec:
+  selector:
+    app: wireguard
+  type: LoadBalancer
+  loadBalancerIP: 192.168.1.249
+  ports:
+    - name: http
+      port: 51820
+      targetPort: 51820
+      protocol: UDP
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wireguard-configmap
+  namespace: default
+data:
+  PUID: "1000"
+  PGID: "1000"
+  TZ: "Europe/Amsterdam"
+  SERVERURL: "wg.javydekoning.com"
+  SERVERPORT: "51820"
+  PEERS: "3"
+  PEERDNS: "192.168.1.253"
+  ALLOWEDIPS: "0.0.0.0/0, ::/0"
+  INTERNAL_SUBNET: "10.13.13.0"
+  PERSISTENTKEEPALIVE_PEERS: "25"
+  LOG_CONFS: "true"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wireguard
+  namespace: default
+  labels:
+    app: wireguard
+spec:
+  selector:
+    matchLabels:
+      app: wireguard
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: wireguard
+    spec:
+      securityContext:
+        sysctls:
+          - name: net.ipv4.conf.all.src_valid_mark
+            value: "1"
+      containers:
+        - name: wireguard
+          image: ghcr.io/linuxserver/wireguard:1.0.20210914@sha256:6c4b5b7bbccdefb27ec540e280450e35e5ff66ed0a1cf2b60bd18e2351dd1a76
+          imagePullPolicy: Always
+          securityContext:
+            capabilities:
+              add: ["NET_ADMIN", "SYS_MODULE"]
+            privileged: true
+          envFrom:
+            - configMapRef:
+                name: wireguard-configmap
+          ports:
+            - containerPort: 51820
+              protocol: UDP
+          volumeMounts:
+            - name: config
+              mountPath: /config/
+            - name: modules
+              mountPath: /lib/modules
+      volumes:
+        - name: config
+          hostPath:
+            path: /downloads/config/wireguard-config/
+            type: DirectoryOrCreate
+        - name: modules
+          hostPath:
+            path: /lib/modules
+            type: Directory
+      restartPolicy: Always

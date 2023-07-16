@@ -1,0 +1,20 @@
+loki:
+  loki:
+    auth_enabled: false
+    commonConfig:
+      replication_factor: 1
+    storage:
+      type: filesystem
+
+  ingress:
+    enabled: true
+    ingressClassName: "nginx"
+    hosts:
+      - loki.k8s.javydekoning.com
+    tls:
+      - hosts:
+          - loki.k8s.javydekoning.com
+        secretName: javydekoning-com-tls
+
+  singleBinary:
+    replicas: 1
