@@ -1,6 +1,6 @@
 [
   {
-    "name": "loki",
+    "name": "promtail",
     "namespace": "monitoring"
   }
 ]
