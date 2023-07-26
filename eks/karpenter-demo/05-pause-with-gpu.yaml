@@ -26,4 +26,3 @@ spec:
               memory: "256Mi"
               cpu: "1000m"
               nvidia.com/gpu: "1"
-
