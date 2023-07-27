@@ -15,7 +15,9 @@ loki:
         preferredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchLabels:
-                {{- include "loki.gatewaySelectorLabels" . | nindent 10 }}
+                app.kubernetes.io/component: gateway
+                app.kubernetes.io/instance: loki
+                app.kubernetes.io/name: loki
             topologyKey: kubernetes.io/hostname
   ingress:
     enabled: true
