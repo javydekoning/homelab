@@ -10,21 +10,4 @@ loki:
     replicas: 1
 
   gateway:
-    affinity: |
-      podAntiAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchLabels:
-                app.kubernetes.io/component: gateway
-                app.kubernetes.io/instance: loki
-                app.kubernetes.io/name: loki
-            topologyKey: kubernetes.io/hostname
-  ingress:
-    enabled: true
-    ingressClassName: "nginx"
-    hosts:
-      - loki.k8s.javydekoning.com
-    tls:
-      - hosts:
-          - loki.k8s.javydekoning.com
-        secretName: javydekoning-com-tls
+    enabled: false
