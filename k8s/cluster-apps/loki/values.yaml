@@ -9,6 +9,14 @@ loki:
   singleBinary:
     replicas: 1
 
+  gateway:
+    affinity: |
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels:
+                {{- include "loki.gatewaySelectorLabels" . | nindent 10 }}
+            topologyKey: kubernetes.io/hostname
   ingress:
     enabled: true
     ingressClassName: "nginx"
