@@ -63,7 +63,7 @@ spec:
             value: "1"
       containers:
         - name: wireguard
-          image: ghcr.io/linuxserver/wireguard:1.0.20210914@sha256:592a059400b2f6f7a7b55bdde02f79b526e2e9d46918221979227c319016cf94
+          image: ghcr.io/linuxserver/wireguard:1.0.20210914@sha256:b66e18f6f92055ed08bb5428cf3972b276374123d2d5afb512bd38f2d79497cd
           imagePullPolicy: Always
           securityContext:
             capabilities:
