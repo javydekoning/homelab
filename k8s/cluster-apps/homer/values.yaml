@@ -180,3 +180,8 @@ homer:
                   subtitle: "Local Speedtest"
                   url: "https://openspeedtest.k8s.javydekoning.com"
                   target: "_blank"
+                - name: "Gatus"
+                  logo: "https://raw.githubusercontent.com/TwiN/gatus/master/.github/assets/logo.png"
+                  subtitle: "Status page"
+                  url: "https://gatus.k8s.javydekoning.com"
+                  target: "_blank"
