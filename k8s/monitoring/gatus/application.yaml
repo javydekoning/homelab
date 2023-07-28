@@ -4,6 +4,8 @@ kind: Application
 metadata:
   name: gatus
   namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     namespace: monitoring
@@ -26,11 +28,31 @@ spec:
               secretName: javydekoning-com-tls
         config:
           endpoints:
-            - name: landing page
+            - name: "Latency to Google < 50ms"
+              url: "https://google.com"
+              interval: 1m
+              conditions:
+                - "[RESPONSE_TIME] < 50"
+            - name: "homer.k8s.javydekoning.com"
               url: "https://homer.k8s.javydekoning.com"
               interval: 1m
               conditions:
                 - "[STATUS] == 200"
                 - "[RESPONSE_TIME] < 300"
+                - "[CERTIFICATE_EXPIRATION] > 48h"
+            - name: "unifi.k8s.javydekoning.com"
+              url: "https://unifi.k8s.javydekoning.com"
+              interval: 1m
+              conditions:
+                - "[STATUS] == 200"
+                - "[RESPONSE_TIME] < 300"
+                - "[CERTIFICATE_EXPIRATION] > 48h"
+            - name: "argocd.k8s.javydekoning.com"
+              url: "https://argocd.k8s.javydekoning.com"
+              interval: 1m
+              conditions:
+                - "[STATUS] == 200"
+                - "[RESPONSE_TIME] < 300"
+                - "[CERTIFICATE_EXPIRATION] > 48h"
   syncPolicy:
     automated: {}
