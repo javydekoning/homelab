@@ -1,7 +1,6 @@
 .DS_Store
 secrets_decrypted
 cdk.out
-.vscode
 package-lock.json
 node_modules
 *.schema.json
