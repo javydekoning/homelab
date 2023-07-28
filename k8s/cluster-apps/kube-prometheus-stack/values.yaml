@@ -59,6 +59,10 @@ kube-prometheus-stack:
             - prometheus.k8s.javydekoning.com
           secretName: javydekoning-com-tls
 
+  prometheusOperator:
+    admissionWebhooks:
+      failurePolicy: Ignore
+
   prometheus-node-exporter:
     hostRootFsMount:
       enabled: false
