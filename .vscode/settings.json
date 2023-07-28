@@ -1,8 +1,8 @@
 {
   "ansible.validation.lint.arguments": "-c .ansible-lint",
   "files.associations": {
-      "**/ansible/**/*.yaml": "ansible",
-      "**/ansible/**/*.yml": "ansible",
+    "**/ansible/**/*.yaml": "ansible",
+    "**/ansible/**/*.yml": "ansible"
   },
   "yaml.schemaStore.enable": true,
   "yaml.schemas": {
@@ -15,11 +15,8 @@
   "editor.guides.highlightActiveBracketPair": true,
   "editor.hover.delay": 1500,
   "editor.stickyScroll.enabled": false,
-  "editor.rulers": [
-    80,
-    120
-  ],
+  "editor.rulers": [80, 120],
   "explorer.autoReveal": false,
   "files.trimTrailingWhitespace": true,
-  "ansible.python.interpreterPath": "/usr/bin/python3",
+  "ansible.python.interpreterPath": "/usr/bin/python3"
 }
