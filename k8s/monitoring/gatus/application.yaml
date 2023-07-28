@@ -1,0 +1,36 @@
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gatus
+  namespace: argocd
+spec:
+  destination:
+    namespace: monitoring
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: gatus
+    repoURL: https://minicloudlabs.github.io/helm-charts
+    targetRevision: 3.3.5
+    helm:
+      values: |-
+        ingress:
+          enabled: true
+          ingressClassName: nginx
+          hosts:
+            - gatus.k8s.javydekoning.com
+          tls:
+            - hosts:
+                - gatus.k8s.javydekoning.com
+              secretName: javydekoning-com-tls
+        config:
+          endpoints:
+            - name: landing page
+              url: "https://homer.k8s.javydekoning.com"
+              interval: 1m
+              conditions:
+                - "[STATUS] == 200"
+                - "[RESPONSE_TIME] < 300"
+  syncPolicy:
+    automated: {}
