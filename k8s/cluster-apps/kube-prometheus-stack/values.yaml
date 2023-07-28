@@ -61,7 +61,8 @@ kube-prometheus-stack:
 
   prometheusOperator:
     admissionWebhooks:
-      failurePolicy: Ignore
+      enabled: false
+      #failurePolicy: Ignore
 
   prometheus-node-exporter:
     hostRootFsMount:
