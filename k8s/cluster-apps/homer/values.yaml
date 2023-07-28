@@ -107,6 +107,11 @@ homer:
             - name: "Management"
               icon: "fas fa-cloud"
               items:
+                - name: "Kubernetes Dashboard"
+                  logo: "https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.svg"
+                  subtitle: "Container management"
+                  url: "https://dash.k8s.javydekoning.com"
+                  target: "_blank"
                 - name: "AdGuard Home"
                   logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/adguardhome.png"
                   subtitle: "Block ads and tracking"
