@@ -1,51 +1,23 @@
 kube-prometheus-stack:
   alertmanager:
-    config:
-      global:
-        resolve_timeout: 5m
-        inhibit_rules:
-          - source_matchers:
-              - "severity = critical"
-            target_matchers:
-              - "severity =~ warning|info"
-            equal:
-              - "namespace"
-              - "alertname"
-          - source_matchers:
-              - "severity = warning"
-            target_matchers:
-              - "severity = info"
-            equal:
-              - "namespace"
-              - "alertname"
-          - source_matchers:
-              - "alertname = InfoInhibitor"
-            target_matchers:
-              - "severity = info"
-            equal:
-              - "namespace"
-        route:
-          group_by: ["namespace"]
-          group_wait: 30s
-          group_interval: 5m
-          repeat_interval: 12h
-          receiver: "monitoring/telegram-alerts/telegram"
-          routes:
-            - receiver: "monitoring/telegram-alerts/telegram"
-              matchers:
-                - 'alertname =~ "InfoInhibitor|Watchdog"'
-            - receiver: "monitoring/telegram-alerts/telegram"
-              matchers:
-                - 'severity =~ "warning|info"'
-        receivers:
-          - name: "monitoring/telegram-alerts/telegram"
-        templates:
-          - "/etc/alertmanager/config/*.tmpl"
-
+    # config:
+    #   receivers:
+    #   - name: 'null'
+    #     telegram_configs:
+    #       bot_token_file: /etc/alertmanager/secrets/token
+    #       chat_id: -1001375636328
+    #       message: |
+    #         **summary:**
+    #         {{ .CommonAnnotations.summary }}
+    #         **description:**
+    #         {{ .CommonAnnotations.description }}
+    #       parse_mode: MarkdownV2
     alertmanagerSpec:
-      alertmanagerConfigSelector:
-        matchLabels:
-          alertmanagerConfig: telegram-alerts
+      ## Secrets is a list of Secrets in the same namespace as the Alertmanager object, which shall be mounted into the
+      ## Alertmanager Pods. The Secrets are mounted into /etc/alertmanager/secrets/.
+      ##
+      secrets:
+        - telegram-bot-token
 
     ingress:
       enabled: true
