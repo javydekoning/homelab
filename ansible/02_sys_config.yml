@@ -38,10 +38,10 @@
     hour: "3"
     job: "apk update && apk upgrade && rm -rf /var/cache/apk/*"
 
-- name: O2-CRON_weekly_reboot
-  ansible.builtin.cron:
-    name: "Reboot"
-    weekday: "0"
-    minute: "0"
-    hour: "6"
-    job: "reboot 0"
+# - name: O2-CRON_weekly_reboot
+#   ansible.builtin.cron:
+#     name: "Reboot"
+#     weekday: "0"
+#     minute: "0"
+#     hour: "6"
+#     job: "reboot 0"
