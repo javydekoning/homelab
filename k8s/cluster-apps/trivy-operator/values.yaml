@@ -1,3 +1,5 @@
 trivy-operator:
   serviceMonitor:
     enabled: true
+  operator:
+    sbomGenerationEnabled: false
