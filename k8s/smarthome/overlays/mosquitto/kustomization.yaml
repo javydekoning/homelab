@@ -8,7 +8,7 @@ resources:
 images:
   - name: app
     newName: eclipse-mosquitto
-    newTag: 2.0.15@sha256:ed9f8616d33ce45caca6f6c0fa18e631d9291ceeff0ecb31b6f24a9589c30038
+    newTag: 2.0.16@sha256:ee16fd69886bafcffe7d11611e6201d505b6d7e6cd976dac0fa3af0d6973c961
 
 namespace: smarthome
 
