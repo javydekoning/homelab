@@ -21,13 +21,8 @@ const certStack = new CertificateManagerStack(app, 'eks-bp-cert-manager-stack', 
   env
 })
 
-// const storageStack = new StorageStack(app, 'eks-bp-storage-stack', {
-//   vpc: network.vpc,
-//   env
-// })
-
 const clusterProvider = new blueprints.GenericClusterProvider({
-  version: eks.KubernetesVersion.V1_26,
+  version: eks.KubernetesVersion.V1_27,
   securityGroup: network.sg,
   fargateProfiles: {
     karpenter: {
@@ -58,7 +53,7 @@ new blueprints.BlueprintBuilder()
     new blueprints.addons.KarpenterAddOn(),
     new MyKarpenterManifestsAddOn(),
     new blueprints.addons.AwsLoadBalancerControllerAddOn(),
-    new blueprints.addons.CoreDnsAddOn(),
+    //ew blueprints.addons.CoreDnsAddOn(),
     new blueprints.addons.ExternalDnsAddOn({
       hostedZoneResources: [certStack.zone.zoneName],
     }),
@@ -80,4 +75,4 @@ new blueprints.BlueprintBuilder()
     ),
   )
   .clusterProvider(clusterProvider)
-  .build(app, "eks-blueprint");
+  .build(app, "eks-blueprint", {env});
