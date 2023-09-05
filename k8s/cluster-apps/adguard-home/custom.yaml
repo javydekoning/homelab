@@ -81,7 +81,9 @@ data:
         - domain: '*.k8s.javydekoning.com'
           answer: 192.168.1.200
         - domain: 'unifi'
-          answer: 192.168.1.254
+          answer: 192.168.1.1
+        - domain: 'unifi.k8s.javydekoning.com'
+          answer: 192.168.1.1
       blocked_services: []
       upstream_timeout: 10s
       private_networks: []
