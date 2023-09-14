@@ -3,7 +3,7 @@ plex:
     # -- image repository
     repository: ghcr.io/onedr0p/plex
     # -- image tag
-    tag: "1.32.5.7349-8f4248874"
+    tag: "1.32.6.7468-07e0d4a7e"
     # -- image pull policy
     pullPolicy: Always
 
