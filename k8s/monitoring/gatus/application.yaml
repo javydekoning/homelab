@@ -39,13 +39,6 @@ spec:
                 - "[STATUS] == 200"
                 - "[RESPONSE_TIME] < 300"
                 - "[CERTIFICATE_EXPIRATION] > 48h"
-            - name: "unifi.k8s.javydekoning.com"
-              url: "https://unifi.k8s.javydekoning.com"
-              interval: 1m
-              conditions:
-                - "[STATUS] == 200"
-                - "[RESPONSE_TIME] < 300"
-                - "[CERTIFICATE_EXPIRATION] > 48h"
             - name: "argocd.k8s.javydekoning.com"
               url: "https://argocd.k8s.javydekoning.com"
               interval: 1m
