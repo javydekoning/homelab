@@ -9,7 +9,7 @@ resources:
 images:
   - name: app
     newName: ghcr.io/linuxserver/bazarr
-    newTag: 1.2.4@sha256:2602106124e6d674f7af7856e7c94342410c40c9f45348336e90d90df8c6a1e3
+    newTag: 1.2.4@sha256:3bbca992fb21dceeada33163531e0e166b47bbb6c39af54fbb83af5bf0a0a72c
 
 configMapGenerator:
   - name: env-configmap
