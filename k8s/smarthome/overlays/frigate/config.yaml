@@ -28,6 +28,12 @@ data:
 
     cameras:
       E1ProBabyRoom:
+        audio:
+          enabled: True
+          listen:
+            - crying
+            - babbling
+            - fart
         ffmpeg:
           hwaccel_args: preset-vaapi
 
