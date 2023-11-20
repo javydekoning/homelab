@@ -47,9 +47,8 @@ data:
                 - record
             - path: rtsp://hass:Welcome123!@192.168.1.3:554/h264Preview_01_sub
               roles:
-                - detect
                 - audio
-
+                - detect
         rtmp:
           enabled: False
 
@@ -59,8 +58,10 @@ data:
           fps: 5
 
         record:
-          sync_recordings: True
           enabled: True
-          retain:
-            days: 14
-            mode: motion
+          events:
+            retain:
+              default: 1
+              mode: motion
+              objects:
+                crying: 14
