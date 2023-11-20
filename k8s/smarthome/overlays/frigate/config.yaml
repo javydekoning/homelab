@@ -32,8 +32,6 @@ data:
           enabled: True
           listen:
             - crying
-            - babbling
-            - fart
         ffmpeg:
           hwaccel_args: preset-vaapi
 
@@ -61,11 +59,8 @@ data:
           fps: 5
 
         record:
+          sync_recordings: True
           enabled: True
           retain:
-            days: 7
+            days: 14
             mode: motion
-          events:
-            retain:
-              default: 14
-              mode: active_objects
