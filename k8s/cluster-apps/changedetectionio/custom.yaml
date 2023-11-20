@@ -21,12 +21,20 @@ spec:
         app: changedetection
     spec:
       containers:
+        - name: selenium
+          image: selenium/standalone-chrome-debug:3.141.59
+          ports: 4444
+          volumeMounts:
+            - name: shm
+              mountPath: /dev/shm
         - name: changedetection
           image: ghcr.io/dgtlmoon/changedetection.io:latest@sha256:6b971422252eb7a3e1e6838069de074a0bc0ff8bfbf80fe155774fa201f1f08f
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
               value: Europe/Amsterdam
+            - name: WEBDRIVER_URL
+              value: "http://localhost:4444/wd/hub"
           ports:
             - containerPort: 5000
           volumeMounts:
@@ -37,6 +45,10 @@ spec:
           hostPath:
             path: /datastore/config/changedetection
             type: DirectoryOrCreate
+        - name: shm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 2048Mi
       restartPolicy: Always
 ---
 apiVersion: networking.k8s.io/v1
