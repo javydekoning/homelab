@@ -23,7 +23,9 @@ spec:
       containers:
         - name: selenium
           image: selenium/standalone-chrome-debug:3.141.59
-          ports: 4444
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 4444
           volumeMounts:
             - name: shm
               mountPath: /dev/shm
