@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: changedetection
+  namespace: default
+  labels:
+    app: changedetection
+spec:
+  selector:
+    matchLabels:
+      app: changedetection
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: changedetection
+    spec:
+      containers:
+        - name: changedetection
+          image: ghcr.io/dgtlmoon/changedetection.io:latest@sha256:6b971422252eb7a3e1e6838069de074a0bc0ff8bfbf80fe155774fa201f1f08f
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: TZ
+              value: Europe/Amsterdam
+          ports:
+            - containerPort: 5000
+          volumeMounts:
+            - name: datastore
+              mountPath: /datastore
+      volumes:
+        - name: datastore
+          hostPath:
+            path: /datastore/config/changedetection
+            type: DirectoryOrCreate
+      restartPolicy: Always
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: changedetection-ingress
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - changedetection.k8s.javydekoning.com
+      secretName: javydekoning-com-tls
+  rules:
+    - host: changedetection.k8s.javydekoning.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: changedetection
+                port:
+                  name: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: changedetection
+  namespace: default
+spec:
+  selector:
+    app: changedetection
+  ports:
+    - name: http
+      port: 5000
+      targetPort: 5000
+      protocol: TCP
