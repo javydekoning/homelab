@@ -37,13 +37,13 @@
   wait_for:
     path: /etc/rancher/k3s/k3s.yaml
 
-- name: 04-k3s_copy_kube_config_to_homedir
-  copy:
+- name: 04-k3s_link_kube_config_to_homedir
+  ansible.builtin.file:
     src: /etc/rancher/k3s/k3s.yaml
     dest: ~{{ ansible_user }}/.kube/config
-    remote_src: yes
     owner: "{{ ansible_user }}"
-    mode: "u=rw,g=,o="
+    group: "{{ ansible_user }}"
+    state: link
 
 - name: 04-k3s_set_kubecfg_https://{{ ansible_default_ipv4.address }}:6443
   register: kubectlcfg

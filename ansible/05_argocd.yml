@@ -1,18 +1,32 @@
 # ---
+- name: 05-Argo_ensure_namespace
+  kubernetes.core.k8s:
+    name: argocd
+    api_version: v1
+    kind: Namespace
+    state: present
+
 - name: 05-Argo_copy_k8s_folder_to_host_homedir
   ansible.builtin.copy:
     src: ./k8s/cluster-critical/argo-cd/
     dest: /{{ansible_user}}/cluster-critical/argo-cd/
 
-- name: 05-Argo_install_chart
-  kubernetes.core.helm:
+- name: 05-Argo_render_chart
+  kubernetes.core.helm_template:
     name: argo-cd
     chart_ref: /{{ansible_user}}/cluster-critical/argo-cd/
     dependency_update: true
     release_namespace: argocd
-    create_namespace: true
     values_files:
       - /{{ansible_user}}/cluster-critical/argo-cd/values.yaml
+  register: result
+  changed_when: False
+
+- name: 05-Argo_apply_rendered_chart
+  kubernetes.core.k8s:
+    state: present
+    definition: "{{ result.stdout }}"
+    wait: true
 
 - name: 05-Argo_apply_/cluster-critical/application-set.yaml
   kubernetes.core.k8s:

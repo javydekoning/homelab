@@ -20,6 +20,9 @@ apk_installed_packages:
   - ncurses
   - neofetch
   - oh-my-zsh
+  - py3-cchardet
+  - py3-chardet
+  - py3-github3
   - py3-pip
   - rsync
   - tmux
@@ -29,9 +32,10 @@ apk_installed_packages:
   - usbutils
   - libusb
   - eudev
+  - py3-kubernetes
 
 pip_installed_packages:
-  - kubernetes
-  - github3.py
+  # Controlled via APK.
+  # - github3.py
 
 metallb_pool: 192.168.1.200-192.168.1.254

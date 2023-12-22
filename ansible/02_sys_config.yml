@@ -10,12 +10,14 @@
     path: /etc/login.defs
     state: touch
     access_time: preserve
+    modification_time: preserve
 
 - name: 02-PREP_touch_/etc/default/useradd
   ansible.builtin.file:
     path: /etc/default/useradd
     state: touch
     access_time: preserve
+    modification_time: preserve
 
 - name: 02-PREP_set_net.ipv4.ip_forward=1
   sysctl:

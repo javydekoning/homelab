@@ -22,7 +22,7 @@
     upgrade: yes
 
 # Pip packages
-- name: 02-PIP_install
+- name: 01-PIP_install
   become: true
   retries: 3
   pip:
@@ -30,9 +30,11 @@
     state: latest
 
 # Go packages
-- name: 03-GO_install_kubecolor
+- name: 01-GO_install_kubecolor
   register: kubecolor
-  shell: go install github.com/kubecolor/kubecolor/cmd/kubecolor@latest
+  shell: go install github.com/kubecolor/kubecolor@latest
+  changed_when: kubecolor.stdout | length > 0
+
 - name: 03-GO_add_/root/go/bin_to_path
   copy:
     dest: /etc/profile.d/custom-path.sh
