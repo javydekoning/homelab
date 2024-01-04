@@ -37,6 +37,8 @@ spec:
               value: Europe/Amsterdam
             - name: WEBDRIVER_URL
               value: "http://localhost:4444/wd/hub"
+            - name: BASE_URL
+              value: https://changedetection.k8s.javydekoning.com
           ports:
             - containerPort: 5000
           volumeMounts:
