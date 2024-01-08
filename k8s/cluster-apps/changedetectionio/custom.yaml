@@ -21,6 +21,11 @@ spec:
         app: changedetection
     spec:
       containers:
+        - name: playwright-chrome
+          image: browserless/chrome:latest@sha256:5080f14e7e34f79611d11f51acc0ea08cee511bba99991a2b438f762eb6e0715
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
         - name: selenium
           image: selenium/standalone-chrome:latest@sha256:110a6571a46ed188a7c067312c7c63fa039c7be29a723228ab2befbe039f6d22
           imagePullPolicy: IfNotPresent
@@ -39,6 +44,8 @@ spec:
               value: "http://localhost:4444/wd/hub"
             - name: BASE_URL
               value: https://changedetection.k8s.javydekoning.com
+            - name: PLAYWRIGHT_DRIVER_URL
+              value: "ws://localhost:3000"
           ports:
             - containerPort: 5000
           volumeMounts:
