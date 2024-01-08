@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: selenium
-          image: selenium/standalone-chrome-debug:3.141.59
+          image: selenium/standalone-chrome:latest@sha256:110a6571a46ed188a7c067312c7c63fa039c7be29a723228ab2befbe039f6d22
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 4444
