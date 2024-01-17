@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment
+spec:
+  template:
+    spec:
+      containers:
+        - name: app
+          resources:
+            requests:
+              gpu.intel.com/i915: 1
+            limits:
+              gpu.intel.com/i915: 1
+          ports:
+            - name: http
+              containerPort: 8096
+            - name: discovery
+              containerPort: 7359
+          volumeMounts:
+            - name: downloads
+              mountPath: /downloads
+            - name: downloads
+              mountPath: /cache
+              subPath: config/jellyfin/cache
+            - name: downloads
+              mountPath: /config
+              subPath: config/jellyfin/config

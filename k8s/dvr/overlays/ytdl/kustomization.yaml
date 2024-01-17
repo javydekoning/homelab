@@ -1,0 +1,40 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: dvr
+
+resources:
+  - ../../base/
+
+images:
+  - name: app
+    newName: ghcr.io/tzahi12345/youtubedl-material
+    newTag: nightly@sha256:28629f0f2bb6b0a44c7646dbae8ba6060f5a2d3e3b399967c4c5139e9dd76e56
+
+configMapGenerator:
+  - name: env-configmap
+    literals:
+      - UID=911
+      - GID=911
+      - ytdl_mongodb_connection_string='mongodb://localhost:27017'
+      - ytdl_use_local_db='false'
+      - write_ytdl_config='true'
+
+namePrefix: ytdl-
+
+labels:
+  - includeSelectors: true
+    pairs:
+      app: ytdl
+
+patches:
+  - path: deployment-patch.yaml
+  - path: service-patch.yaml
+  - path: ingress-patch.yaml
+  - patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/name
+        value: ytdl
+    target:
+      kind: Deployment
+      name: deployment

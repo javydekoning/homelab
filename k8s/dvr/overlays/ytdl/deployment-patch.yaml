@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment
+spec:
+  strategy:
+    type: Recreate
+  template:
+    spec:
+      containers:
+        - name: app
+          ports:
+            - name: http
+              containerPort: 17442
+          volumeMounts:
+            - name: downloads
+              mountPath: /downloads
+            - name: downloads
+              mountPath: /app/appdata
+              subPath: config/ytdl/appdata
+        - name: mongo
+          image: mongo:4
+          volumeMounts:
+            - name: downloads
+              mountPath: /data/db
+              subPath: config/ytdl/db
