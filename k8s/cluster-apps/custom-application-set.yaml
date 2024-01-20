@@ -36,4 +36,4 @@ spec:
           kind: PodLogs
           name: loki
           jqPathExpressions:
-            - '.spec.relabelings[]'
+            - ".spec.relabelings[]"
