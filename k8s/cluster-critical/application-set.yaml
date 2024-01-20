@@ -34,7 +34,8 @@ spec:
         automated: {}
         syncOptions:
           - CreateNamespace=true
-          - Replace=true
+          # - Replace=true
+          - ServerSideApply=true
       ignoreDifferences: # https://github.com/metallb/metallb/issues/1681
         - group: "deviceplugin.intel.com"
           kind: GpuDevicePlugin
