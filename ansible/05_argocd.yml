@@ -38,12 +38,12 @@
     state: present
     src: https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/cluster-critical/config-application-set.yaml
 
-- name: 05-Argo_apply_/cluster-apps/application-set.yaml
-  kubernetes.core.k8s:
-    state: present
-    src: https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/cluster-apps/application-set.yaml
+# - name: 05-Argo_apply_/cluster-apps/application-set.yaml
+#   kubernetes.core.k8s:
+#     state: present
+#     src: https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/cluster-apps/application-set.yaml
 
-- name: 05-Argo_apply_/cluster-apps/custom-application-set.yaml
-  kubernetes.core.k8s:
-    state: present
-    src: https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/cluster-apps/custom-application-set.yaml
+# - name: 05-Argo_apply_/cluster-apps/custom-application-set.yaml
+#   kubernetes.core.k8s:
+#     state: present
+#     src: https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/cluster-apps/custom-application-set.yaml

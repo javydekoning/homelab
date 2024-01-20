@@ -14,8 +14,8 @@
       import_tasks: ansible/03_dot_files.yml
     - name: 04-k3s_setup
       import_tasks: ansible/04_k3s.yml
-    - name: 05-Argo_setup
-      import_tasks: ansible/05_argocd.yml
+    # - name: 05-Argo_setup
+    #   import_tasks: ansible/05_argocd.yml
     - name: 06-KubeCfg_copy_local
       import_tasks: ansible/06_kubeconfig_to_local.yml
 
