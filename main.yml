@@ -4,16 +4,16 @@
     - default.config.yml
 
   tasks:
-    - name: 00-dump_ipv4
-      debug: var=ansible_default_ipv4.address
-    - name: 01-packages
-      import_tasks: ansible/01_packages.yml
-    - name: 02-sys_config
-      import_tasks: ansible/02_sys_config.yml
-    - name: 03-dot_files
-      import_tasks: ansible/03_dot_files.yml
-    - name: 04-k3s_setup
-      import_tasks: ansible/04_k3s.yml
+    # - name: 00-dump_ipv4
+    #   debug: var=ansible_default_ipv4.address
+    # - name: 01-packages
+    #   import_tasks: ansible/01_packages.yml
+    # - name: 02-sys_config
+    #   import_tasks: ansible/02_sys_config.yml
+    # - name: 03-dot_files
+    #   import_tasks: ansible/03_dot_files.yml
+    # - name: 04-k3s_setup
+    #   import_tasks: ansible/04_k3s.yml
     - name: 05-Argo_setup
       import_tasks: ansible/05_argocd.yml
     - name: 06-KubeCfg_copy_local

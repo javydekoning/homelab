@@ -28,10 +28,10 @@ spec:
         config:
           endpoints:
             - name: "Latency to Google < 15ms"
-              url: "icmp://google.com"
+              url: "https://google.com"
               interval: 1m
               conditions:
-                - "[RESPONSE_TIME] < 15"
+                - "[RESPONSE_TIME] < 200"
             - name: "homer.k8s.javydekoning.com"
               url: "https://homer.k8s.javydekoning.com"
               interval: 1m

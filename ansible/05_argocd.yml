@@ -48,12 +48,17 @@
     state: present
     src: https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/cluster-apps/custom-application-set.yaml
 
-- name: 05-Argo_apply_/cluster-apps/application-set.yaml
+- name: 05-Argo_apply_/dvr/kustomize-application-set.yaml
   kubernetes.core.k8s:
     state: present
     src: https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/dvr/kustomize-application-set.yaml
 
-- name: 05-Argo_apply_/cluster-apps/application-set.yaml
+- name: 05-Argo_apply_/smarthome/kustomize-applicationset.yaml
   kubernetes.core.k8s:
     state: present
-    src: https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/smarthome/kustomize-application-set.yaml
+    src: https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/smarthome/kustomize-applicationset.yaml
+
+- name: 05-Argo_apply_/monitoring/gatus/application.yaml
+  kubernetes.core.k8s:
+    state: present
+    src: https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/monitoring/gatus/application.yaml
