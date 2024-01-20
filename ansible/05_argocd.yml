@@ -22,11 +22,11 @@
   register: result
   changed_when: False
 
-# - name: 05-Argo_apply_rendered_chart
-#   kubernetes.core.k8s:
-#     state: present
-#     definition: "{{ result.stdout }}"
-#     wait: true
+- name: 05-Argo_apply_rendered_chart
+  kubernetes.core.k8s:
+    state: present
+    definition: "{{ result.stdout }}"
+    wait: true
 
 - name: 05-Argo_apply_/cluster-critical/application-set.yaml
   kubernetes.core.k8s:
