@@ -31,3 +31,9 @@ spec:
         automated: {}
         syncOptions:
           - ApplyOutOfSyncOnly=true
+      ignoreDifferences:
+        - group: "monitoring.grafana.com"
+          kind: PodLogs
+          name: loki
+          jqPathExpressions:
+            - '.spec.relabelings[]'
