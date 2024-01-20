@@ -21,7 +21,7 @@ ansible-playbook play.yml
 Deploy `ClusterIssuer`, `Certificate` and `Secret` for cert-manager.
 
 ```sh
-export AWS_ACCESS_KEY=
+export AWS_ACCESS_KEY_ID=
 export AWS_SECRET_ACCESS_KEY_BASE64=$(echo 'yoursecretgoeshere' | base64)
 export AWS_R53_ZONE_ID=
 envsubst < ./k8s/cluster-critical/cert-manager-issuer/custom.yaml | kubectl apply -f -
