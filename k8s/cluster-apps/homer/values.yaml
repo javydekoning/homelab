@@ -64,6 +64,11 @@ homer:
             - name: "Media"
               icon: "fas fa-play"
               items:
+                - name: "Jellyfin"
+                  logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/jellyfin.png"
+                  subtitle: "Media"
+                  url: "https://jellyfin.k8s.javydekoning.com"
+                  target: "_blank"
                 - name: "Plex"
                   logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/plex.png"
                   subtitle: "Media"
