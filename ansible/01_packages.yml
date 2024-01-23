@@ -6,7 +6,7 @@
     content: |
       http://eu.edge.kernel.org/alpine/v3.19/main
       http://eu.edge.kernel.org/alpine/v3.19/community
-      http://eu.edge.kernel.org/alpine/v3.19/testing
+      http://eu.edge.kernel.org/alpine/edge/testing
 
 - name: 01-APK_add
   become: true
@@ -32,7 +32,9 @@
 # Go packages
 - name: 01-GO_install_kubecolor
   register: kubecolor
-  shell: go install github.com/kubecolor/kubecolor@latest
+  shell: |-
+    export GOPROXY=direct
+    go install github.com/kubecolor/kubecolor@latest
   changed_when: kubecolor.stdout | length > 0
 
 - name: 03-GO_add_/root/go/bin_to_path

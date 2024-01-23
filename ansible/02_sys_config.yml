@@ -1,4 +1,13 @@
 ---
+- name: 02-PREP_isContainerTest
+  shell: |-
+    if [ -n "$DOCKER_CONTAINER" ] || [ -f "/.dockerenv" ]; then
+        echo "Running inside a container."
+    else
+        echo "Not running inside a container."
+    fi
+  register: container_check_result
+
 - name: 02-PREP_mkdir_/etc/default
   ansible.builtin.file:
     path: /etc/default
@@ -28,6 +37,7 @@
     sysctl_set: true
 
 - name: 02-PREP_set_fs.inotify.max_user_watches=655360
+  when: container_check_result.stdout_lines[0] == "Not running inside a container"
   sysctl:
     name: fs.inotify.max_user_watches
     value: "655360"
@@ -36,6 +46,7 @@
     sysctl_set: true
 
 - name: 02-PREP_set_fs.inotify.max_user_instances=1280
+  when: container_check_result.stdout_lines[0] == "Not running inside a container"
   sysctl:
     name: fs.inotify.max_user_instances
     value: "1280"

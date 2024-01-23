@@ -1,0 +1,60 @@
+apiVersion: v1
+metadata:
+  name: r53creds
+data:
+  HOSTED_ZONE_ID:
+  RECORD_NAME:
+  AWS_ACCESS_KEY_ID:
+  AWS_SECRET_ACCESS_KEY:
+  AWS_DEFAULT_REGION:
+kind: Secret
+type: Opaque
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: ddns
+spec:
+  schedule: "*/15 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+          - name: ddns
+            image: alpine
+            imagePullPolicy: IfNotPresent
+            envFrom:
+              - secretRef:
+                  name: r53creds
+            command: ["/bin/sh", "-c"]
+            args:
+              - |-
+                apk add aws-cli curl jq --no-cache && \
+                RECORD_TYPE="A" && \
+                TTL=300 && \
+                NEW_IP_ADDRESS=$(curl https://ipv4.icanhazip.com/) && \
+                # Define the JSON in a multi-line variable
+                CHANGE_BATCH=$(cat <<EOF
+                {
+                  "Changes": [
+                    {
+                      "Action": "UPSERT",
+                      "ResourceRecordSet": {
+                        "Name": "${RECORD_NAME}",
+                        "Type": "${RECORD_TYPE}",
+                        "TTL": ${TTL},
+                        "ResourceRecords": [
+                          {"Value": "${NEW_IP_ADDRESS}"}
+                        ]
+                      }
+                    }
+                  ]
+                }
+                EOF
+                )
+
+                aws route53 change-resource-record-sets \
+                    --hosted-zone-id "$HOSTED_ZONE_ID" \
+                    --change-batch "$CHANGE_BATCH" | jq -r '.ChangeInfo.Status'

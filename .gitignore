@@ -22,5 +22,6 @@ k8s/**/charts/*.tgz
 k8s/**/charts/
 k8s/**/Chart.lock
 
-# MegaLinter
+# Others
 megalinter-reports/
+.vagrant/
