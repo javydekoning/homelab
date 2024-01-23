@@ -1,8 +1,8 @@
+# hadolint ignore=DL3029
 FROM --platform=linux/amd64 alpine:3.19
 
 # Add sudo and openssh-server
-RUN apk update && \
-    apk add python3 openssh-server && \
+RUN apk add --no-cache python3 openssh-server && \
     echo "PermitRootLogin yes" >> /etc/ssh/sshd_config && \
     mkdir ~/.ssh && chmod -R 700 ~/.ssh && \
     ssh-keygen -A
