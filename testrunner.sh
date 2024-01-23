@@ -53,7 +53,7 @@ EOL
 }
 
 function run_ansible_playbook() {
-    ANSIBLE_CONFIG="${base_dir}/ansible.cfg"
+    export ANSIBLE_CONFIG="${base_dir}/ansible.cfg"
     ansible-playbook -i "${TEMP_INVENTORY_FILE}" "${base_dir}/main.yml" #-vvv
 }
 
