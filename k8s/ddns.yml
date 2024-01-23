@@ -22,39 +22,39 @@ spec:
         spec:
           restartPolicy: Never
           containers:
-          - name: ddns
-            image: alpine
-            imagePullPolicy: IfNotPresent
-            envFrom:
-              - secretRef:
-                  name: r53creds
-            command: ["/bin/sh", "-c"]
-            args:
-              - |-
-                apk add aws-cli curl jq --no-cache && \
-                RECORD_TYPE="A" && \
-                TTL=300 && \
-                NEW_IP_ADDRESS=$(curl https://ipv4.icanhazip.com/) && \
-                # Define the JSON in a multi-line variable
-                CHANGE_BATCH=$(cat <<EOF
-                {
-                  "Changes": [
-                    {
-                      "Action": "UPSERT",
-                      "ResourceRecordSet": {
-                        "Name": "${RECORD_NAME}",
-                        "Type": "${RECORD_TYPE}",
-                        "TTL": ${TTL},
-                        "ResourceRecords": [
-                          {"Value": "${NEW_IP_ADDRESS}"}
-                        ]
+            - name: ddns
+              image: alpine
+              imagePullPolicy: IfNotPresent
+              envFrom:
+                - secretRef:
+                    name: r53creds
+              command: ["/bin/sh", "-c"]
+              args:
+                - |-
+                  apk add aws-cli curl jq --no-cache && \
+                  RECORD_TYPE="A" && \
+                  TTL=300 && \
+                  NEW_IP_ADDRESS=$(curl https://ipv4.icanhazip.com/) && \
+                  # Define the JSON in a multi-line variable
+                  CHANGE_BATCH=$(cat <<EOF
+                  {
+                    "Changes": [
+                      {
+                        "Action": "UPSERT",
+                        "ResourceRecordSet": {
+                          "Name": "${RECORD_NAME}",
+                          "Type": "${RECORD_TYPE}",
+                          "TTL": ${TTL},
+                          "ResourceRecords": [
+                            {"Value": "${NEW_IP_ADDRESS}"}
+                          ]
+                        }
                       }
-                    }
-                  ]
-                }
-                EOF
-                )
+                    ]
+                  }
+                  EOF
+                  )
 
-                aws route53 change-resource-record-sets \
-                    --hosted-zone-id "$HOSTED_ZONE_ID" \
-                    --change-batch "$CHANGE_BATCH" | jq -r '.ChangeInfo.Status'
+                  aws route53 change-resource-record-sets \
+                      --hosted-zone-id "$HOSTED_ZONE_ID" \
+                      --change-batch "$CHANGE_BATCH" | jq -r '.ChangeInfo.Status'
