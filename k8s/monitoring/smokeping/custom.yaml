@@ -1,0 +1,343 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: smokeping-config
+  namespace: monitoring
+  labels:
+    app: smokeping
+data:
+  Targets: |-
+    *** Targets ***
+
+    probe = FPing
+
+    menu = Top
+    title = Network Latency Grapher
+    remark = Welcome to the SmokePing website.
+
+    + InternetSites
+
+    menu = Internet Sites
+    title = Internet Sites
+
+    ++ Facebook
+    menu = Facebook
+    title = Facebook
+    host = facebook.com
+
+    ++ Youtube
+    menu = YouTube
+    title = YouTube
+    host = youtube.com
+
+    ++ GoogleSearch
+    menu = Google
+    title = google.com
+    host = google.com
+
+    ++ GoogleSearchIpv6
+    menu = Google
+    probe = FPing6
+    title = ipv6.google.com
+    host = ipv6.google.com
+
+    ++ Tweakers
+    menu = tweakers.net
+    title = tweakers.net
+    host = tweakers.net
+
+    + DNS
+    menu = DNS
+    title = DNS
+
+    ++ GoogleDNS1
+    menu = Google DNS 1
+    title = Google DNS 8.8.8.8
+    host = 8.8.8.8
+
+    ++ GoogleDNS2
+    menu = Google DNS 2
+    title = Google DNS 8.8.4.4
+    host = 8.8.4.4
+
+    ++ OpenDNS1
+    menu = OpenDNS1
+    title = OpenDNS1
+    host = 208.67.222.222
+
+    ++ OpenDNS2
+    menu = OpenDNS2
+    title = OpenDNS2
+    host = 208.67.220.220
+
+    ++ CloudflareDNS1
+    menu = Cloudflare DNS 1
+    title = Cloudflare DNS 1.1.1.1
+    host = 1.1.1.1
+
+    ++ CloudflareDNS2
+    menu = Cloudflare DNS 2
+    title = Cloudflare DNS 1.0.0.1
+    host = 1.0.0.1
+
+    ++ L3-1
+    menu = Level3 DNS 1
+    title = Level3 DNS 4.2.2.1
+    host = 4.2.2.1
+
+    ++ L3-2
+    menu = Level3 DNS 2
+    title = Level3 DNS 4.2.2.2
+    host = 4.2.2.2
+
+    ++ Quad9
+    menu = Quad9
+    title = Quad9 DNS 9.9.9.9
+    host = 9.9.9.9
+
+    + DNSProbes
+    menu = DNS Probes
+    title = DNS Probes
+    probe = DNS
+
+    ++ GoogleDNS1
+    menu = Google DNS 1
+    title = Google DNS 8.8.8.8
+    host = 8.8.8.8
+
+    ++ GoogleDNS2
+    menu = Google DNS 2
+    title = Google DNS 8.8.4.4
+    host = 8.8.4.4
+
+    ++ OpenDNS1
+    menu = OpenDNS1
+    title = OpenDNS1
+    host = 208.67.222.222
+
+    ++ OpenDNS2
+    menu = OpenDNS2
+    title = OpenDNS2
+    host = 208.67.220.220
+
+    ++ CloudflareDNS1
+    menu = Cloudflare DNS 1
+    title = Cloudflare DNS 1.1.1.1
+    host = 1.1.1.1
+
+    ++ CloudflareDNS2
+    menu = Cloudflare DNS 2
+    title = Cloudflare DNS 1.0.0.1
+    host = 1.0.0.1
+
+    ++ L3-1
+    menu = Level3 DNS 1
+    title = Level3 DNS 4.2.2.1
+    host = 4.2.2.1
+
+    ++ L3-2
+    menu = Level3 DNS 2
+    title = Level3 DNS 4.2.2.2
+    host = 4.2.2.2
+
+    ++ Quad9
+    menu = Quad9
+    title = Quad9 DNS 9.9.9.9
+    host = 9.9.9.9
+
+    + SpeedTest
+    menu = Speed Tests
+    title = Speed Tests
+
+    ++ Download
+    menu = Download
+    title = Download
+    probe = speedtest-download
+    measurement = download
+    host = dummy.com
+    #server = 1737
+
+    ++ Upload
+    menu = Upload
+    title = Upload
+    probe = speedtest-upload
+    measurement = upload
+    host = dummy.com
+    #server = 1737
+
+    ++ Download-XS-News-BV-Amsterdam
+    menu = Download
+    title = Download
+    probe = speedtest-download
+    measurement = download
+    host = dummy.com
+    server = 29076
+
+    ++ Upload-XS-News-BV-Amsterdam
+    menu = Upload
+    title = Upload
+    probe = speedtest-upload
+    measurement = upload
+    host = dummy.com
+    server = 29076
+
+    ++ Download-ookla
+    menu = Download
+    title = Download
+    probe = speedtestcli-download
+    measurement = download
+    host = dummy.com
+    server = 1737
+
+    ++ Upload-ookla
+    menu = Upload
+    title = Upload
+    probe = speedtestcli-upload
+    measurement = upload
+    host = dummy.com
+    server = 1737
+  Probes: |
+    *** Probes ***
+
+    + FPing
+    binary = /usr/sbin/fping
+
+    + FPing6
+    binary = /usr/sbin/fping
+    protocol = 6
+
+    + DNS
+    binary = /usr/bin/dig
+    lookup = google.com
+    pings = 5
+    step = 300
+
+    + TCPPing
+    binary = /usr/bin/tcpping
+    forks = 10
+    offset = random
+    pings = 5
+    port = 80
+
+    + speedtest
+    binary = /usr/local/bin/speedtest-cli
+    timeout = 300
+    forks = 1
+    step = 900
+    offset = random
+    pings = 3
+    extraargs = --secure
+
+    ++ speedtest-download
+    measurement = download
+
+    ++ speedtest-upload
+    measurement = upload
+
+    + speedtestcli
+    binary = /usr/local/bin/speedtest
+    timeout = 300
+    forks = 1
+    step = 900
+    offset = random
+    pings = 3
+    # extraargs = --accept-license
+
+    ++ speedtestcli-download
+    measurement = download
+
+    ++ speedtestcli-upload
+    measurement = upload
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smokeping
+  namespace: monitoring
+  labels:
+    app: smokeping
+spec:
+  selector:
+    matchLabels:
+      app: smokeping
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: smokeping
+    spec:
+      containers:
+        - name: smokeping
+          image: ghcr.io/jwigley/smokeping-speedtest:latest@sha256:cab9a07af1e21516b7a2ede6691dcf2c77ee71ff21d16eda1825610342f81804
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: TZ
+              value: Europe/Amsterdam
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            # - name: smokeping-config
+            #   mountPath: /config
+            - name: datastore
+              mountPath: /data
+      volumes:
+        - name: smokeping-config
+          configMap:
+            name: smokeping-config
+        - name: datastore
+          hostPath:
+            path: /downloads/config/smokeping
+            type: DirectoryOrCreate
+      restartPolicy: Always
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: smokeping-ingress
+  namespace: monitoring
+  labels:
+    app: smokeping
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - smokeping.k8s.javydekoning.com
+      secretName: javydekoning-com-tls
+  rules:
+    - host: smokeping.k8s.javydekoning.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: smokeping
+                port:
+                  name: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: smokeping
+  namespace: monitoring
+  labels:
+    app: smokeping
+spec:
+  selector:
+    app: smokeping
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+      protocol: TCP
+
