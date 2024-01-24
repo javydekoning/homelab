@@ -273,7 +273,7 @@ spec:
     spec:
       containers:
         - name: smokeping
-          image: ghcr.io/jwigley/smokeping-speedtest:latest@sha256:cab9a07af1e21516b7a2ede6691dcf2c77ee71ff21d16eda1825610342f81804
+          image: ghcr.io/jwigley/smokeping-speedtest:latest@sha256:1c91f1738e430e696f9af9ab33162a27611ccf57726f8adf01e84f5b99acdf38
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
