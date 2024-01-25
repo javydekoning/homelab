@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: smokeping-config
+  name: smokeping-confmap
   namespace: monitoring
   labels:
     app: smokeping
@@ -12,10 +12,10 @@ data:
     probe = FPing
 
     menu = Top
-    title = Network Latency Grapher
-    remark = Welcome to the SmokePing website.
+    title = Network Monitor
+    remark = Welcome to SmokePing.
 
-    + InternetSites
+    + Web
 
     menu = Internet Sites
     title = Internet Sites
@@ -30,25 +30,29 @@ data:
     title = YouTube
     host = youtube.com
 
-    ++ GoogleSearch
+    ++ Google
     menu = Google
-    title = google.com
+    title = Google
     host = google.com
 
-    ++ GoogleSearchIpv6
-    menu = Google
-    probe = FPing6
-    title = ipv6.google.com
-    host = ipv6.google.com
-
     ++ Tweakers
-    menu = tweakers.net
-    title = tweakers.net
+    menu = Tweakers
+    title = Tweakers
     host = tweakers.net
 
+    ++ Amazon
+    menu = Amazon
+    title = Amazon
+    host = amazon.nl
+
+    ++ Combined
+    menu = MultiHost FPing
+    title = Consolidated Web FPing probes
+    host = /Web/Facebook /Web/Youtube /Web/Google /Web/Tweakers /Web/Amazon
+
     + DNS
-    menu = DNS
-    title = DNS
+    menu = DNS FPing
+    title = DNS FPing
 
     ++ GoogleDNS1
     menu = Google DNS 1
@@ -61,13 +65,13 @@ data:
     host = 8.8.4.4
 
     ++ OpenDNS1
-    menu = OpenDNS1
-    title = OpenDNS1
+    menu = Open DNS1
+    title = Open DNS1 208.67.222.222
     host = 208.67.222.222
 
     ++ OpenDNS2
-    menu = OpenDNS2
-    title = OpenDNS2
+    menu = Open DNS2
+    title = Open DNS2 208.67.220.220
     host = 208.67.220.220
 
     ++ CloudflareDNS1
@@ -80,20 +84,10 @@ data:
     title = Cloudflare DNS 1.0.0.1
     host = 1.0.0.1
 
-    ++ L3-1
-    menu = Level3 DNS 1
-    title = Level3 DNS 4.2.2.1
-    host = 4.2.2.1
-
-    ++ L3-2
-    menu = Level3 DNS 2
-    title = Level3 DNS 4.2.2.2
-    host = 4.2.2.2
-
-    ++ Quad9
-    menu = Quad9
-    title = Quad9 DNS 9.9.9.9
-    host = 9.9.9.9
+    ++ Combined
+    menu = MultiHost DNS FPing
+    title = Consolidated DNS FPing Time
+    host = /DNS/GoogleDNS1 /DNS/GoogleDNS2 /DNS/OpenDNS1 /DNS/OpenDNS2 /DNS/CloudflareDNS1 /DNS/CloudflareDNS2
 
     + DNSProbes
     menu = DNS Probes
@@ -111,13 +105,13 @@ data:
     host = 8.8.4.4
 
     ++ OpenDNS1
-    menu = OpenDNS1
-    title = OpenDNS1
+    menu = Open DNS1
+    title = Open DNS1 208.67.222.222
     host = 208.67.222.222
 
     ++ OpenDNS2
-    menu = OpenDNS2
-    title = OpenDNS2
+    menu = Open DNS2
+    title = Open DNS2 208.67.220.220
     host = 208.67.220.220
 
     ++ CloudflareDNS1
@@ -130,20 +124,10 @@ data:
     title = Cloudflare DNS 1.0.0.1
     host = 1.0.0.1
 
-    ++ L3-1
-    menu = Level3 DNS 1
-    title = Level3 DNS 4.2.2.1
-    host = 4.2.2.1
-
-    ++ L3-2
-    menu = Level3 DNS 2
-    title = Level3 DNS 4.2.2.2
-    host = 4.2.2.2
-
-    ++ Quad9
-    menu = Quad9
-    title = Quad9 DNS 9.9.9.9
-    host = 9.9.9.9
+    ++ Combined
+    menu = MultiHost DNS Probe
+    title = Consolidated DNS Probe Time
+    host = /DNSProbes/GoogleDNS1 /DNSProbes/GoogleDNS2 /DNSProbes/OpenDNS1 /DNSProbes/OpenDNS2 /DNSProbes/CloudflareDNS1 /DNSProbes/CloudflareDNS2
 
     + SpeedTest
     menu = Speed Tests
@@ -154,48 +138,20 @@ data:
     title = Download
     probe = speedtest-download
     measurement = download
-    host = dummy.com
-    #server = 1737
+    host = speedtest-download.com
+    # server = 21509
 
     ++ Upload
     menu = Upload
     title = Upload
     probe = speedtest-upload
     measurement = upload
-    host = dummy.com
-    #server = 1737
+    host = speedtest-upload.com
 
-    ++ Download-XS-News-BV-Amsterdam
-    menu = Download
-    title = Download
-    probe = speedtest-download
-    measurement = download
-    host = dummy.com
-    server = 29076
-
-    ++ Upload-XS-News-BV-Amsterdam
-    menu = Upload
-    title = Upload
-    probe = speedtest-upload
-    measurement = upload
-    host = dummy.com
-    server = 29076
-
-    ++ Download-ookla
-    menu = Download
-    title = Download
-    probe = speedtestcli-download
-    measurement = download
-    host = dummy.com
-    server = 1737
-
-    ++ Upload-ookla
-    menu = Upload
-    title = Upload
-    probe = speedtestcli-upload
-    measurement = upload
-    host = dummy.com
-    server = 1737
+    ++ Combined
+    menu = Combined
+    title = Speedtest
+    host = /SpeedTest/Download /SpeedTest/Upload
   Probes: |
     *** Probes ***
 
@@ -271,6 +227,24 @@ spec:
       labels:
         app: smokeping
     spec:
+      initContainers:
+        - name: copyconfig
+          image: busybox
+          command:
+            - "sh"
+            - "-c"
+            - |
+              if [ ! -f /config/Probes ]; then
+                cp /smokeping-confmap/Probes /config/Probes
+              fi
+              if [ ! -f /config/Targets ]; then
+                cp /smokeping-confmap/Targets /config/Targets
+              fi
+          volumeMounts:
+            - name: smokeping-confmap
+              mountPath: /smokeping-confmap
+            - name: config
+              mountPath: /config
       containers:
         - name: smokeping
           image: ghcr.io/jwigley/smokeping-speedtest:latest@sha256:1c91f1738e430e696f9af9ab33162a27611ccf57726f8adf01e84f5b99acdf38
@@ -285,14 +259,18 @@ spec:
           ports:
             - containerPort: 80
           volumeMounts:
-            # - name: smokeping-config
-            #   mountPath: /config
+            - name: smokeping-confmap
+              mountPath: /smokeping-confmap
             - name: datastore
               mountPath: /data
+            - name: config
+              mountPath: /config
       volumes:
-        - name: smokeping-config
+        - name: smokeping-confmap
           configMap:
-            name: smokeping-config
+            name: smokeping-confmap
+        - name: config
+          emptyDir: {}
         - name: datastore
           hostPath:
             path: /downloads/config/smokeping
