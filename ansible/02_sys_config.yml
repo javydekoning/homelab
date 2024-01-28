@@ -1,4 +1,10 @@
 ---
+- name: Add the user dvr
+  ansible.builtin.user:
+    name: dvr
+    comment: dvr
+    uid: 911
+
 - name: 02-PREP_isContainerTest
   shell: |-
     if [ -n "$DOCKER_CONTAINER" ] || [ -f "/.dockerenv" ]; then
