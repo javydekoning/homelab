@@ -31,10 +31,10 @@ spec:
               command: ["/bin/sh", "-c"]
               args:
                 - |-
-                  apk add aws-cli curl jq --no-cache && \
+                  apk add aws-cli curl jq --no-cache --quiet && \
                   RECORD_TYPE="A" && \
                   TTL=300 && \
-                  NEW_IP_ADDRESS=$(curl https://ipv4.icanhazip.com/) && \
+                  NEW_IP_ADDRESS=$(curl -s https://ipv4.icanhazip.com/) && \
                   # Define the JSON in a multi-line variable
                   CHANGE_BATCH=$(cat <<EOF
                   {
@@ -58,3 +58,8 @@ spec:
                   aws route53 change-resource-record-sets \
                       --hosted-zone-id "$HOSTED_ZONE_ID" \
                       --change-batch "$CHANGE_BATCH" | jq -r '.ChangeInfo.Status'
+                  sleep 2
+                  aws route53 list-resource-record-sets \
+                      --hosted-zone-id $HOSTED_ZONE_ID \
+                      --query "ResourceRecordSets[?Name == '${RECORD_NAME}.']" \
+                      | jq -r '.[] | "\(.Name) \(.Type) \(.TTL) \(.ResourceRecords[0].Value)"'
