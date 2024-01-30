@@ -16,8 +16,8 @@ kube-prometheus-stack:
       ## Secrets is a list of Secrets in the same namespace as the Alertmanager object, which shall be mounted into the
       ## Alertmanager Pods. The Secrets are mounted into /etc/alertmanager/secrets/.
       ##
-      secrets:
-        - telegram-bot-token
+      # secrets:
+      #   - telegram-bot-token
 
     ingress:
       enabled: true
@@ -62,7 +62,8 @@ kube-prometheus-stack:
   prometheusOperator:
     admissionWebhooks:
       enabled: false
-      #failurePolicy: Ignore
+    tls:
+      enabled: false
 
   prometheus-node-exporter:
     hostRootFsMount:
