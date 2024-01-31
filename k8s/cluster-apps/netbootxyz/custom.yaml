@@ -40,7 +40,7 @@ spec:
       #         mountPath: /opt/netbootxyzhome/conf
       containers:
         - name: netbootxyz
-          image: ghcr.io/linuxserver/netbootxyz:latest@sha256:a0bd405a13ae638891a2b552d8a6ad11c47249affb0ae884066af9e2358c1bc3
+          image: ghcr.io/linuxserver/netbootxyz:latest@sha256:53562e2c00bc83da0f8aee11434638c830b83c33c76e91e3e632b2e02441d672
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
