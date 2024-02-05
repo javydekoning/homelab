@@ -9,7 +9,7 @@ resources:
 images:
   - name: app
     newName: mikenye/picard
-    newTag: latest@sha256:9de968141362984b136564acc5730923fbb0d3eb4ec67b61eac3f5e89288e4f7
+    newTag: latest@sha256:ef0d50be2777cdf6201f5eeb8ee56c178b86f05b59c1628d71c80a792f6fc501
 
 configMapGenerator:
   - name: env-configmap
