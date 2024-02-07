@@ -11,7 +11,7 @@ home-assistant:
     repository: ghcr.io/home-assistant/home-assistant
     # -- image tag
     # @default -- chart.appVersion
-    tag: "2024.1.6"
+    tag: "2024.2.0"
     # -- image pull policy
     pullPolicy: IfNotPresent
 
