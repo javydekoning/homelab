@@ -8,8 +8,8 @@ resources:
 
 images:
   - name: app
-    newName: ghcr.io/crazy-max/rtorrent-rutorrent
-    newTag: latest@sha256:3404ef9307ac9bd34ec54c97a558ca5a92ebb5ea56a362448ec55bc21e201c06
+    newName: ghcr.io/ac1dburnz/rtorrent-rutorrent-cross-seed
+    newTag: latest@sha256:6abdca45f0ecfd8d23a3035beefa716a14b66f23c14854631fe369d1ad346f1e
 
 configMapGenerator:
   - name: env-configmap
