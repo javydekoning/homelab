@@ -8,8 +8,8 @@ resources:
 
 images:
   - name: app
-    newName: ghcr.io/crazy-max/rtorrent-rutorrent
-    newTag: latest@sha256:3404ef9307ac9bd34ec54c97a558ca5a92ebb5ea56a362448ec55bc21e201c06
+    newName: ghcr.io/cross-seed/cross-seed
+    newTag: latest@sha256:6abdca45f0ecfd8d23a3035beefa716a14b66f23c14854631fe369d1ad346f1e
 
 configMapGenerator:
   - name: env-configmap
@@ -17,18 +17,13 @@ configMapGenerator:
       - PUID=911
       - PGID=911
       - TZ=Europe/Amsterdam
-      - RUTORRENT_PORT="8080"
-      - RT_INC_PORT="51413"
-      - XMLRPC_PORT="8000"
-      - RT_LOG_XMLRPC="true"
-      - RT_LOG_LEVEL="debug"
-      - RT_LOG_EXECUTE="true"
-namePrefix: rutorrent-
+
+namePrefix: cross-seed-
 
 labels:
   - includeSelectors: true
     pairs:
-      app: rutorrent
+      app: cross-seed
 
 patches:
   - path: deployment-patch.yaml
@@ -37,7 +32,7 @@ patches:
   - patch: |-
       - op: replace
         path: /spec/template/spec/containers/0/name
-        value: rutorrent
+        value: cross-seed
     target:
       kind: Deployment
       name: deployment

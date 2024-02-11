@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment
+spec:
+  template:
+    spec:
+      securityContext:
+        runAsUser: 911
+        runAsGroup: 911
+        fsGroup: 911
+      containers:
+        - name: app
+          args: ['daemon']
+          ports:
+            - name: http
+              containerPort: 2468
+          volumeMounts:
+            - name: downloads
+              mountPath: /config
+              subPath: config/cross-seed
+            - name: downloads
+              mountPath: /config/rtorrent/rtorrent_sess
+              subPath: config/rtorrent-config/rtorrent/rtorrent_sess
+              readOnly: true
+            - name: downloads
+              mountPath: /downloads
+
+#/downloads/config/rtorrent-config/rtorrent/rtorrent_sess
