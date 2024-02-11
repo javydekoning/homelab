@@ -20,8 +20,8 @@ spec:
               mountPath: /config
               subPath: config/cross-seed
             - name: downloads
-              mountPath: /config/rtorrent/rtorrent_sess
-              subPath: config/rtorrent-config/rtorrent/rtorrent_sess
+              mountPath: /config/rtorrent/.session
+              subPath: config/rtorrent-config/rtorrent/.session
               readOnly: true
             - name: downloads
               mountPath: /downloads
