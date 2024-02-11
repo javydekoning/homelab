@@ -20,9 +20,9 @@ configMapGenerator:
       - RUTORRENT_PORT="8080"
       - RT_INC_PORT="51413"
       - XMLRPC_PORT="8000"
-      - RT_LOG_XMLRPC="true"
-      - RT_LOG_LEVEL="debug"
-      - RT_LOG_EXECUTE="true"
+      - RT_LOG_XMLRPC="false"
+      - RT_LOG_LEVEL="info"
+      - RT_LOG_EXECUTE="false"
 namePrefix: rutorrent-
 
 labels:
