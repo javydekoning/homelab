@@ -1,13 +1,13 @@
 {
   "recommendations": [
-      "Catppuccin.catppuccin-vsc",
-      "esbenp.prettier-vscode",
-      "github.vscode-github-actions",
-      "ms-azuretools.vscode-docker",
-      "ms-kubernetes-tools.vscode-kubernetes-tools",
-      "PKief.material-icon-theme",
-      "redhat.ansible",
-      "redhat.vscode-yaml",
-      "yzhang.markdown-all-in-one",
+    "Catppuccin.catppuccin-vsc",
+    "esbenp.prettier-vscode",
+    "github.vscode-github-actions",
+    "ms-azuretools.vscode-docker",
+    "ms-kubernetes-tools.vscode-kubernetes-tools",
+    "PKief.material-icon-theme",
+    "redhat.ansible",
+    "redhat.vscode-yaml",
+    "yzhang.markdown-all-in-one"
   ]
 }
