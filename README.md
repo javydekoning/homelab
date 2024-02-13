@@ -4,7 +4,7 @@
 
 _... Powered by_ 📦
 
-<img src="https://raw.githubusercontent.com/javydekoning/homelab/main/docs/src/assets/logo.webp" align="center" width="144px" height="144px"/>
+<img src="https://raw.githubusercontent.com/javydekoning/homelab/main/docs/src/assets/logo.webp" align="center"/>
 
 _... managed with [ArgoCD](https://argo-cd.readthedocs.io/en/stable/), Ansible, Renovate, and GitHub Actions_ 🤖
 
