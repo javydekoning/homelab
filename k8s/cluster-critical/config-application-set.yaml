@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: metallb-config
+  name: cluster-critical-config
   namespace: argocd
 spec:
   generators:
@@ -9,7 +9,7 @@ spec:
         repoURL: https://github.com/javydekoning/homelab.git
         revision: HEAD
         files:
-          - path: "k8s/cluster-critical/metallb-config/config.yaml"
+          - path: "k8s/cluster-critical/**/config.yaml"
   syncPolicy:
     preserveResourcesOnDeletion: false
   template:
@@ -26,7 +26,7 @@ spec:
       destination:
         # Pods can use the kubernetes.default.svc hostname to query the API server.
         server: https://kubernetes.default.svc
-        namespace: "metallb-system"
+        # namespace: "metallb-system"
       syncPolicy:
         automated: {}
         syncOptions:

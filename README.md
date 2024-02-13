@@ -35,14 +35,40 @@ ansible-playbook play.yml
 
 ## Bootstrap "External Secrets" secret
 
+Create an IAM user with the following policy attached:
+
+```json
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "Get",
+			"Effect": "Allow",
+			"Action": "secretsmanager:GetSecretValue",
+			"Resource": "arn:aws:secretsmanager:*:012345678912:secret:k8s*"
+		},
+		{
+			"Sid": "List",
+			"Effect": "Allow",
+			"Action": "secretsmanager:ListSecrets",
+			"Resource": "*"
+		}
+	]
+}
+```
+
+This gives access to secrets prefixed with `k8s`. Your secrets can now be stored
+in AWS Secrets Manager.
+
 ```sh
-# AWS
-kubectl create secret generic aws-secret --from-literal=access-key=$ACCESS_KEY --from-literal=secret=$SECRET_KEY
+# To bootstrap, we add AWS credentials via one secret:
+kubectl create secret generic awssm-secret -n external-secrets \
+  --from-literal=access-key=$ACCESS_KEY --from-literal=secret=$SECRET_KEY
 ```
 
 ## ToDo (Not yet automated)
 
-External Secrets management....
+To be moved to external Secrets management....
 
 Deploy `ClusterIssuer`, `Certificate` and `Secret` for cert-manager.
 

@@ -1,0 +1,44 @@
+# The ClusterSecretStore is a cluster scoped SecretStore that can be referenced
+# by all ExternalSecrets from all namespaces. Use it to offer a central gateway
+# to your secret backend.
+apiVersion: external-secrets.io/v1beta1
+kind: ClusterSecretStore
+metadata:
+  name: aws-secretsmanager
+  namespace: external-secrets
+spec:
+  provider:
+    aws:
+      service: SecretsManager
+      # define a specific role to limit access
+      # to certain secrets.
+      # role is a optional field that
+      # can be omitted for test purposes
+      region: eu-west-1
+      auth:
+        secretRef:
+          accessKeyIDSecretRef:
+            namespace: external-secrets
+            name: awssm-secret
+            key: access-key
+          secretAccessKeySecretRef:
+            namespace: external-secrets
+            name: awssm-secret
+            key: secret-access-key
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: example-test-secret
+  namespace: default
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: aws-secretsmanager
+  target:
+    name: route-53-credentials
+    creationPolicy: Owner
+  dataFrom:
+  - extract:
+      key: k8s-route-53-credentials
