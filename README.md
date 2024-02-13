@@ -33,6 +33,13 @@ To kick of the configuration:
 ansible-playbook play.yml
 ```
 
+## Bootstrap "External Secrets" secret
+
+```sh
+# AWS
+kubectl create secret generic aws-secret --from-literal=access-key=$ACCESS_KEY --from-literal=secret=$SECRET_KEY
+```
+
 ## ToDo (Not yet automated)
 
 External Secrets management....
