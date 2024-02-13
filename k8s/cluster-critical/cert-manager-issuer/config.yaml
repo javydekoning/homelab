@@ -17,22 +17,12 @@ spec:
           cnameStrategy: Follow
           route53:
             region: eu-west-1
-            accessKeyID: ${AWS_ACCESS_KEY_ID}
-            hostedZoneID: ${AWS_R53_ZONE_ID}
+            accessKeyIDSecretRef:
+              name: route-53-credentials-cert-manager
+              key: AWS_ACCESS_KEY_ID
             secretAccessKeySecretRef:
-              name: route53-credentials-secret
-              key: secret-access-key
----
-apiVersion: v1
-data:
-  # echo 'yoursecretgoeshere' | base64
-  # Populate below, and kubectl apply -f
-  secret-access-key: ${AWS_SECRET_ACCESS_KEY_BASE64}
-kind: Secret
-metadata:
-  name: route53-credentials-secret
-  namespace: cert-manager
-type: Opaque
+              name: route-53-credentials-cert-manager
+              key: AWS_SECRET_ACCESS_KEY
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
@@ -47,3 +37,20 @@ spec:
   dnsNames:
     - "*.javydekoning.com"
     - "*.k8s.javydekoning.com"
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: external-route-53-credentials
+  namespace: cert-manager
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: aws-secretsmanager
+  target:
+    name: route-53-credentials-cert-manager
+    creationPolicy: Owner
+  dataFrom:
+  - extract:
+      key: k8s-route-53-credentials
