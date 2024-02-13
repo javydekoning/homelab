@@ -26,7 +26,6 @@ spec:
       destination:
         # Pods can use the kubernetes.default.svc hostname to query the API server.
         server: https://kubernetes.default.svc
-        # namespace: "metallb-system"
       syncPolicy:
         automated: {}
         syncOptions:
