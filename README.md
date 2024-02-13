@@ -39,21 +39,21 @@ Create an IAM user with the following policy attached:
 
 ```json
 {
-	"Version": "2012-10-17",
-	"Statement": [
-		{
-			"Sid": "Get",
-			"Effect": "Allow",
-			"Action": "secretsmanager:GetSecretValue",
-			"Resource": "arn:aws:secretsmanager:*:012345678912:secret:k8s*"
-		},
-		{
-			"Sid": "List",
-			"Effect": "Allow",
-			"Action": "secretsmanager:ListSecrets",
-			"Resource": "*"
-		}
-	]
+ "Version": "2012-10-17",
+ "Statement": [
+  {
+   "Sid": "Get",
+   "Effect": "Allow",
+   "Action": "secretsmanager:GetSecretValue",
+   "Resource": "arn:aws:secretsmanager:*:012345678912:secret:k8s*"
+  },
+  {
+   "Sid": "List",
+   "Effect": "Allow",
+   "Action": "secretsmanager:ListSecrets",
+   "Resource": "*"
+  }
+ ]
 }
 ```
 
