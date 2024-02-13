@@ -66,15 +66,16 @@ kubectl create secret generic awssm-secret -n external-secrets \
   --from-literal=access-key=$ACCESS_KEY --from-literal=secret=$SECRET_KEY
 ```
 
-## ToDo (Not yet automated)
+Today, [cert-manager](https://cert-manager.io/) and
+[ddns-route53](https://crazymax.dev/ddns-route53/) rely on a secret in AWS
+Secrets Manager in the following format:
 
-To be moved to external Secrets management....
-
-Deploy `ClusterIssuer`, `Certificate` and `Secret` for cert-manager.
-
-```sh
-export AWS_ACCESS_KEY_ID=$(echo 'yoursecretgoeshere' | base64)
-export AWS_SECRET_ACCESS_KEY_BASE64=$(echo 'yoursecretgoeshere' | base64)
-export AWS_R53_ZONE_ID=
-envsubst < ./k8s/cluster-critical/cert-manager-issuer/custom.yaml | kubectl apply -f -
+```json
+{
+  "HOSTED_ZONE_ID": "<>",
+  "RECORD_NAME": "<>",
+  "AWS_ACCESS_KEY_ID": "<>",
+  "AWS_SECRET_ACCESS_KEY": "<>",
+  "AWS_DEFAULT_REGION": "eu-west-1"
+}
 ```

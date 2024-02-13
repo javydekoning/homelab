@@ -37,3 +37,20 @@ spec:
   dnsNames:
     - "*.javydekoning.com"
     - "*.k8s.javydekoning.com"
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: external-route-53-credentials
+  namespace: cert-manager
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: aws-secretsmanager
+  target:
+    name: route-53-credentials-cert-manager
+    creationPolicy: Owner
+  dataFrom:
+  - extract:
+      key: k8s-route-53-credentials
