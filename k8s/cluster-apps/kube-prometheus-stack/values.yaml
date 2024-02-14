@@ -1,11 +1,15 @@
 kube-prometheus-stack:
   defaultRules:
-    disabled:
+    rules:
       # Disable KubeSchedulerDown, KubeProxyDown, KubeControllerManagerDown
       # because running in k3s
-      KubeSchedulerDown: true
-      KubeProxyDown: true
-      KubeControllerManagerDown: true
+      kubeControllerManager: false
+      kubeProxy: false
+      kubeSchedulerAlerting: false
+  kubeProxy:
+    enabled: false
+  kubeControllerManager:
+    enabled: false
 
   alertmanager:
     config:
