@@ -60,5 +60,5 @@ spec:
                 type: "A"
                 ttl: 300
   dataFrom:
-  - extract:
-      key: k8s-route-53-credentials
+    - extract:
+        key: k8s-route-53-credentials

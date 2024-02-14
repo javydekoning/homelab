@@ -52,5 +52,5 @@ spec:
     name: route-53-credentials-cert-manager
     creationPolicy: Owner
   dataFrom:
-  - extract:
-      key: k8s-route-53-credentials
+    - extract:
+        key: k8s-route-53-credentials
