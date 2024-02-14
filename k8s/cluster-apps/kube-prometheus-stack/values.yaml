@@ -1,23 +1,17 @@
 kube-prometheus-stack:
   alertmanager:
-    # config:
-    #   receivers:
-    #   - name: 'null'
-    #     telegram_configs:
-    #       bot_token_file: /etc/alertmanager/secrets/token
-    #       chat_id: -1001375636328
-    #       message: |
-    #         **summary:**
-    #         {{ .CommonAnnotations.summary }}
-    #         **description:**
-    #         {{ .CommonAnnotations.description }}
-    #       parse_mode: MarkdownV2
+    config:
+      receivers:
+        - name: default
+          telegram_configs:
+            - bot_token_file: /etc/alertmanager/secrets/telegram-bot-token/token.txt
+              chat_id: -1001375636328
     alertmanagerSpec:
-      ## Secrets is a list of Secrets in the same namespace as the Alertmanager object, which shall be mounted into the
-      ## Alertmanager Pods. The Secrets are mounted into /etc/alertmanager/secrets/.
-      ##
-      # secrets:
-      #   - telegram-bot-token
+      # Secrets is a list of Secrets in the same namespace as the Alertmanager object, which shall be mounted into the
+      # Alertmanager Pods. The Secrets are mounted into /etc/alertmanager/secrets/.
+      #
+      secrets:
+        - telegram-bot-token
 
     ingress:
       enabled: true
