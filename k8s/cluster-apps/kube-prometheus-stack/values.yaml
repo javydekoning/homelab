@@ -14,7 +14,7 @@ kube-prometheus-stack:
   alertmanager:
     config:
       receivers:
-        - name: 'null'
+        - name: "null"
         - name: default
           telegram_configs:
             - bot_token_file: /etc/alertmanager/secrets/telegram-bot-token/token.txt
