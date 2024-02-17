@@ -12,12 +12,6 @@ images:
 
 namespace: smarthome
 
-configMapGenerator:
-  - name: env-configmap
-    literals:
-      - TZ=Europe/Amsterdam
-      - FRIGATE_RTSP_PASSWORD="ThisIsFakeObviously!"
-
 namePrefix: frigate-
 
 labels:

@@ -21,6 +21,9 @@ spec:
               mountPath: /config/
       containers:
         - name: app
+          envFrom:
+            - secretRef:
+                name: frigate-secrets
           securityContext:
             capabilities:
               add: ["PERFMON"]
