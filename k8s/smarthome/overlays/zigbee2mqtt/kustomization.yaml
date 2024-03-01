@@ -7,7 +7,7 @@ resources:
 images:
   - name: app
     newName: ghcr.io/koenkk/zigbee2mqtt
-    newTag: latest@sha256:f80dbca12732841eb9f77b04903d00369543c65632f9209fc1c545e9525e7bdd
+    newTag: latest@sha256:4de1ee53d67a9b4556045c34a2722bfd2348dabbefcb792e862643104d3e9fd0
 
 configMapGenerator:
   - name: env-configmap
