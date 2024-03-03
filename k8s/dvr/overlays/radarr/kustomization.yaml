@@ -9,7 +9,7 @@ resources:
 images:
   - name: app
     newName: ghcr.io/linuxserver/radarr
-    newTag: latest@sha256:c092cf279e27359775a11dc9ce6cf2cf22975a36105c4f6214fa9df60cf0a1c4
+    newTag: latest@sha256:ea775bc8c1911ff5b51c6a1199c266032e6fd406d28199b2f188b6073c6b1c64
 
 configMapGenerator:
   - name: env-configmap
