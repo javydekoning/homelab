@@ -21,9 +21,24 @@ const certStack = new CertificateManagerStack(app, 'eks-bp-cert-manager-stack', 
   env
 })
 
+// class MyKarpenterManifestsAddOn implements blueprints.ClusterAddOn {
+//   @blueprints.utils.dependable(blueprints.addons.KarpenterAddOn.name)
+//   deploy(clusterInfo: blueprints.ClusterInfo): void | Promise<Construct> {
+//     const cluster = clusterInfo.cluster;
+//     const docArray = blueprints.utils.readYamlDocument(__dirname + '/karpenter.manifests.yaml')
+//     const manifest = docArray.split("---").map(e => blueprints.utils.loadYaml(e));
+//     const karpenterManifest = new eks.KubernetesManifest(cluster.stack, "karpenter-manifests", {
+//       cluster,
+//       manifest,
+//       overwrite: true,
+//     });
+//     return Promise.resolve(karpenterManifest);
+//   }
+// }
+
 const clusterProvider = new blueprints.GenericClusterProvider({
   securityGroup: network.sg,
-  version: eks.KubernetesVersion.V1_28,
+  version: eks.KubernetesVersion.V1_29,
   fargateProfiles: {
     karpenter: {
       fargateProfileName: "karpenter",
@@ -32,32 +47,22 @@ const clusterProvider = new blueprints.GenericClusterProvider({
   },
 });
 
-class MyKarpenterManifestsAddOn implements blueprints.ClusterAddOn {
-  @blueprints.utils.dependable(blueprints.addons.KarpenterAddOn.name)
-  deploy(clusterInfo: blueprints.ClusterInfo): void | Promise<Construct> {
-    const cluster = clusterInfo.cluster;
-    const docArray = blueprints.utils.readYamlDocument(__dirname + '/karpenter.manifests.yaml')
-    const manifest = docArray.split("---").map(e => blueprints.utils.loadYaml(e));
-    const karpenterManifest = new eks.KubernetesManifest(cluster.stack, "karpenter-manifests", {
-      cluster,
-      manifest,
-      overwrite: true,
-    });
-    return Promise.resolve(karpenterManifest);
-  }
-}
-
 new blueprints.BlueprintBuilder()
   .addOns(
     new blueprints.VpcCniAddOn(),
-    new blueprints.addons.KarpenterAddOn(),
-    new MyKarpenterManifestsAddOn(),
+    new blueprints.addons.KarpenterAddOn({
+      values: {
+        //https://github.com/aws/karpenter-provider-aws/issues/5817
+        dnsPolicy: "Default"
+      }
+    }),
+    //new MyKarpenterManifestsAddOn(),
     new blueprints.addons.AwsLoadBalancerControllerAddOn(),
     new blueprints.addons.ExternalDnsAddOn({
       hostedZoneResources: [certStack.zone.zoneName],
     }),
     new blueprints.addons.KubeProxyAddOn(),
-    new blueprints.addons.MetricsServerAddOn(),
+    new blueprints.addons.MetricsServerAddOn()
   )
   .resourceProvider(
     blueprints.GlobalResources.Vpc,
