@@ -44,4 +44,4 @@ spec:
         kubernetes.io/cluster/eks-blueprint: owned
   subnetSelectorTerms:
     - tags:
-        karpenter.sh/discovery:  eks-blueprint
+        karpenter.sh/discovery: eks-blueprint
