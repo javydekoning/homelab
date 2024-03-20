@@ -9,7 +9,7 @@ resources:
 images:
   - name: app
     newName: ghcr.io/linuxserver/prowlarr
-    newTag: latest@sha256:45653c80088612dc51e54bef59e09c004fc9bcf0fdd805d036264da8cbbbef18
+    newTag: latest@sha256:c708df4010e9909df0e43d4071838ebcde4427eb48d0df8b6625d32e820842f9
 
 configMapGenerator:
   - name: env-configmap
