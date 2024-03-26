@@ -9,7 +9,7 @@ resources:
 images:
   - name: app
     newName: ghcr.io/ac1dburnz/rtorrent-rutorrent-cross-seed
-    newTag: latest@sha256:aa13ee995fb2f6b626167dd3f7949702f528d242f4d6177c29318622812bd990
+    newTag: latest@sha256:dcaefc6098853cd2416bd3c57b6882b682af3d40ab42507eeac8bd66e7e545b2
 
 configMapGenerator:
   - name: env-configmap
