@@ -10,4 +10,4 @@ loki:
     replicas: 1
 
   gateway:
-    enabled: false
+    enabled: true
