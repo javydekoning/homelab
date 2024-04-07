@@ -10,6 +10,7 @@ spec:
         revision: HEAD
         files:
           - path: "k8s/cluster-critical/**/gen-config.json"
+          - path: "k8s/cluster-critical/**/config.yaml"
   syncPolicy:
     preserveResourcesOnDeletion: false
   template:
@@ -34,7 +35,6 @@ spec:
         automated: {}
         syncOptions:
           - CreateNamespace=true
-          # - Replace=true
           - ServerSideApply=true
       ignoreDifferences: # https://github.com/metallb/metallb/issues/1681
         - group: "deviceplugin.intel.com"
