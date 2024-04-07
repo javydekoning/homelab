@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: cluster-critical
+  name: cluster-apps
   namespace: argocd
 spec:
   generators:
@@ -9,8 +9,7 @@ spec:
         repoURL: https://github.com/javydekoning/homelab.git
         revision: HEAD
         files:
-          - path: "k8s/cluster-critical/**/gen-config.json"
-          - path: "k8s/cluster-critical/**/config.yaml"
+          - path: "k8s/cluster-apps/**/gen-config.json"
   syncPolicy:
     preserveResourcesOnDeletion: false
   template:
@@ -34,22 +33,5 @@ spec:
       syncPolicy:
         automated: {}
         syncOptions:
-          - CreateNamespace=true
           - ServerSideApply=true
-      ignoreDifferences: # https://github.com/metallb/metallb/issues/1681
-        - group: "deviceplugin.intel.com"
-          kind: GpuDevicePlugin
-          name: gpudeviceplugin-sample
-          jsonPointers:
-            - /spec/resourceManager
-            - /metadata/annotations
-        - group: apiextensions.k8s.io
-          kind: CustomResourceDefinition
-          name: bgppeers.metallb.io
-          jsonPointers:
-            - /spec/conversion/webhook/clientConfig/caBundle
-        - group: apiextensions.k8s.io
-          kind: CustomResourceDefinition
-          name: addresspools.metallb.io
-          jsonPointers:
-            - /spec/conversion/webhook/clientConfig/caBundle
+          - CreateNamespace=true
