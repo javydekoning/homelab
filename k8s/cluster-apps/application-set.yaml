@@ -10,6 +10,7 @@ spec:
         revision: HEAD
         files:
           - path: "k8s/cluster-apps/**/gen-config.json"
+          - path: "k8s/cluster-apps/**/custom.yaml"
   syncPolicy:
     preserveResourcesOnDeletion: false
   template:
