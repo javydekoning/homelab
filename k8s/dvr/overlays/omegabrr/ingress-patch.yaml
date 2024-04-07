@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+spec:
+  tls:
+    - hosts:
+        - omegabrr.k8s.javydekoning.com
+      secretName: javydekoning-com-tls
+  rules:
+    - host: omegabrr.k8s.javydekoning.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: omegabrr-service
+                port:
+                  name: http
