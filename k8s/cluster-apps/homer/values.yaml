@@ -157,6 +157,10 @@ homer:
                   subtitle: "Manage Torrents"
                   url: "https://rutorrent.k8s.javydekoning.com"
                   target: "_blank"
+                  xmlrpc: "http://rutorrent-service:8000/RPC2" # Reverse proxy for rTorrent's XML-RPC.
+                  type: "Rtorrent"
+                  rateInterval: 5000
+                  torrentInterval: 60000
                 - name: "netboot.xyz"
                   logo: "https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/netboot.png"
                   subtitle: "Manage PXE boot environment"
