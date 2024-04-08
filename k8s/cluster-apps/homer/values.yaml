@@ -127,6 +127,7 @@ homer:
                   subtitle: "Block ads and tracking"
                   url: "https://adguard.k8s.javydekoning.com"
                   target: "_blank"
+                  type: "AdGuardHome"
                 - name: "Duplicati"
                   logo: "https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/duplicati.png"
                   subtitle: "Backups to s3"
