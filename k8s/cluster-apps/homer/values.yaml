@@ -158,7 +158,7 @@ homer:
                   subtitle: "Manage Torrents"
                   url: "https://rutorrent.k8s.javydekoning.com"
                   target: "_blank"
-                  xmlrpc: "http://rutorrent-service:8000/RPC2" # Reverse proxy for rTorrent's XML-RPC.
+                  xmlrpc: "http://192.168.1.252:8000/RPC2"
                   type: "Rtorrent"
                   rateInterval: 5000
                   torrentInterval: 60000
@@ -194,6 +194,7 @@ homer:
                   logo: "https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/prometheus.png"
                   subtitle: "Prometheus metric collection"
                   url: "https://prometheus.k8s.javydekoning.com"
+                  type: Prometheus
                   target: "_blank"
                 - name: "Alert Manager"
                   logo: "https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/alertmanager.png"
