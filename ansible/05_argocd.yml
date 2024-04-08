@@ -8,8 +8,8 @@
 
 - name: 05-Argo_copy_k8s_folder_to_host_homedir
   ansible.builtin.copy:
-    src: ./k8s/cluster-critical/argo-cd/
-    dest: /{{ansible_user}}/cluster-critical/argo-cd/
+    src: ./k8s/argo-application-sets/argo-cd/
+    dest: /{{ansible_user}}/argo-application-sets/argo-cd/
 
 - name: 05-Argo_render_chart
   kubernetes.core.helm_template:
@@ -28,37 +28,15 @@
     definition: "{{ result.stdout }}"
     wait: true
 
-- name: 05-Argo_apply_/cluster-critical/application-set.yaml
+- name: 05-Argo_apply_application_sets
   kubernetes.core.k8s:
     state: present
-    src: https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/cluster-critical/application-set.yaml
-
-- name: 05-Argo_apply_/cluster-critical/config-application-set.yaml
-  kubernetes.core.k8s:
-    state: present
-    src: https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/cluster-critical/config-application-set.yaml
-
-- name: 05-Argo_apply_/cluster-apps/application-set.yaml
-  kubernetes.core.k8s:
-    state: present
-    src: https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/cluster-apps/application-set.yaml
-
-- name: 05-Argo_apply_/cluster-apps/custom-application-set.yaml
-  kubernetes.core.k8s:
-    state: present
-    src: https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/cluster-apps/custom-application-set.yaml
-
-- name: 05-Argo_apply_/dvr/kustomize-application-set.yaml
-  kubernetes.core.k8s:
-    state: present
-    src: https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/dvr/kustomize-application-set.yaml
-
-- name: 05-Argo_apply_/smarthome/kustomize-applicationset.yaml
-  kubernetes.core.k8s:
-    state: present
-    src: https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/smarthome/kustomize-applicationset.yaml
-
-- name: 05-Argo_apply_/monitoring/gatus/application.yaml
-  kubernetes.core.k8s:
-    state: present
-    src: https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/monitoring/gatus/application.yaml
+    src: "{{ item }}"
+  loop:
+    - https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/argo-application-sets/cluster-apps-application-set.yaml
+    - https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/argo-application-sets/cluster-critical-application-set.yaml
+    - https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/argo-application-sets/config-application-set.yaml
+    - https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/argo-application-sets/custom-application-set.yaml
+    - https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/argo-application-sets/dvr-application-set.yaml
+    - https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/argo-application-sets/smarthome-application-set.yaml
+    - https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/monitoring/gatus/application.yaml
