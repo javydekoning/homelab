@@ -4,6 +4,8 @@ metadata:
   name: ingress
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: 8m
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "https://adguard.k8s.javydekoning.com, https://homes.k8s.javydekoning.com"
 spec:
   tls:
     - hosts:
