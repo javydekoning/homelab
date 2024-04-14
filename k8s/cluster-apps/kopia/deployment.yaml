@@ -1,0 +1,81 @@
+# Source: kopia/templates/common.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kopia
+  namespace: kopia
+  labels:
+    app.kubernetes.io/name: "kopia"
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: kopia
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: "kopia"
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: kopia
+          image: kopia/kopia:0.16.1@sha256:566406c5be7b9e78cf50e51871899610ee1239eb550df023b51a4261fbebc692
+          imagePullPolicy: IfNotPresent
+          args:
+            - "server"
+            - "start"
+            - "--address=http://0.0.0.0:10238"
+            - "--insecure"
+            - "--server-username=$(KOPIA_USER)"
+            - "--server-password=$(KOPIA_PASSWORD)"
+          ports:
+            - name: main
+              containerPort: 10238
+              protocol: TCP
+          volumeMounts:
+            - name: cache
+              mountPath: /app/cache
+              readOnly: false
+            - name: devshm
+              mountPath: /dev/shm
+              readOnly: false
+            - name: downloads
+              mountPath: /app/config
+              subPath: config/kopia/config
+              readOnly: false
+            - name: downloads
+              mountPath: /app/logs
+              subPath: config/kopia/logs
+              readOnly: false
+            - name: downloads
+              mountPath: /app/rclone
+              subPath: config/kopia/rclone
+              readOnly: false
+          resources:
+            requests:
+              cpu: 10m
+              memory: 50Mi
+            limits:
+              cpu: 4000m
+              memory: 8Gi
+          envFrom:
+            - secretRef:
+                name: "kopia-credentials"
+          env:
+            - name: "TZ"
+              value: "Europe/Amsterdam"
+      volumes:
+        - name: downloads
+          hostPath:
+            path: /downloads
+            type: DirectoryOrCreate
+        - name: cache
+          emptyDir:
+            sizeLimit: 5Gi
+        - name: devshm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 2Gi
