@@ -26,3 +26,8 @@ loki:
 
   gateway:
     enabled: true
+
+  chunksCache:
+    connectionLimit: 1024
+  resultsCache:
+    connectionLimit: 1024
