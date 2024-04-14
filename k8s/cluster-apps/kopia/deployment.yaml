@@ -29,8 +29,9 @@ spec:
             - "start"
             - "--address=http://0.0.0.0:10238"
             - "--insecure"
-            - "--server-username=$(KOPIA_USER)"
-            - "--server-password=$(KOPIA_PASSWORD)"
+            - "--without-password"
+            # - "--server-username=$(KOPIA_USER)"
+            # - "--server-password=$(KOPIA_PASSWORD)"
           ports:
             - name: main
               containerPort: 10238
