@@ -42,17 +42,15 @@ spec:
             - name: devshm
               mountPath: /dev/shm
               readOnly: false
-            - name: downloads
-              mountPath: /app/config
-              subPath: config/kopia/config
-              readOnly: false
+            - name: secret-volume
+              mountPath: "/app/config/repository.config"
+              subPath: repository.config
             - name: downloads
               mountPath: /app/logs
               subPath: config/kopia/logs
               readOnly: false
             - name: downloads
-              mountPath: /app/rclone
-              subPath: config/kopia/rclone
+              mountPath: /downloads
               readOnly: false
           resources:
             requests:
@@ -79,3 +77,6 @@ spec:
           emptyDir:
             medium: Memory
             sizeLimit: 2Gi
+        - name: secret-volume
+          secret:
+            secretName: kopia-credentials
