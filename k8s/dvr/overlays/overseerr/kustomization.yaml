@@ -9,7 +9,7 @@ resources:
 images:
   - name: app
     newName: ghcr.io/linuxserver/overseerr
-    newTag: latest@sha256:ce5f9433d4990395df2c8d9beeb6b13a55f17259f6299fc51eb5a7c37209431f
+    newTag: latest@sha256:edac39725d48761481c02107d3077a825c3cab207e0565b8b213ced5143706ea
 
 configMapGenerator:
   - name: env-configmap
