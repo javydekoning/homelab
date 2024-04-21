@@ -26,6 +26,14 @@ loki:
 
   gateway:
     enabled: true
+    affinity:
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels:
+                app.kubernetes.io/component: gateway
+            topologyKey: kubernetes.io/hostname
+
 
   chunksCache:
     connectionLimit: 1024
