@@ -1,6 +1,6 @@
 # helm, kubectl, kubectl-zsh-completion, helm-zsh-completion
 # these packages are only available in edge/testing today
-- name: 01-APK_set_repo_eu.edge.kernel.org
+- name: 01-APK_set_repo
   copy:
     dest: "/etc/apk/repositories"
     content: |
