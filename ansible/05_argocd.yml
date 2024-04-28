@@ -37,8 +37,9 @@
   loop:
     - https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/argo-application-sets/cluster-apps-application-set.yaml
     - https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/argo-application-sets/cluster-critical-application-set.yaml
+    - https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/argo-application-sets/cluster-critical-kustomize-application-set.yaml
     - https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/argo-application-sets/config-application-set.yaml
     - https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/argo-application-sets/custom-application-set.yaml
-    - https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/argo-application-sets/dvr-application-set.yaml
-    - https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/argo-application-sets/smarthome-application-set.yaml
+    - https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/argo-application-sets/dvr-kustomize-application-set.yaml
+    - https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/argo-application-sets/smarthome-kustomize-application-set.yaml
     - https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/monitoring/gatus/application.yaml
