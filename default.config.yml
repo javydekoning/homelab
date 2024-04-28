@@ -2,37 +2,43 @@
 # bat, k9s, kubectl latest is only in edge.
 apk_installed_packages:
   - ansible
+  - btop
   - cni-plugins
   - curl
   - envsubst
+  - eudev
   - git
   - go
   - helm
-  - htop
+  - helm-zsh-completion
   - igt-gpu-tools
+  - irssi
   - jq
   - k9s
   - kubectl
   - kubectl-zsh-completion
+  - libusb
   - libuser
   - linux-firmware-intel
+  - linux-firmware-i915
   - ncdu
   - ncurses
   - neofetch
   - oh-my-zsh
+  - pciutils
+  - powerline-extra-symbols
   - py3-cchardet
   - py3-chardet
   - py3-github3
+  - py3-kubernetes
   - py3-pip
+  - python3
   - rsync
   - tmux
-  - wireguard-tools
-  - zsh
-  - pciutils
+  - tmux-zsh-completion
   - usbutils
-  - libusb
-  - eudev
-  - py3-kubernetes
+  - vim
+  - zsh
 
 pip_installed_packages:
   # Controlled via APK.
