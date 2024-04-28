@@ -4,8 +4,8 @@
   copy:
     dest: "/etc/apk/repositories"
     content: |
-      http://eu.edge.kernel.org/alpine/v3.19/main
-      http://eu.edge.kernel.org/alpine/v3.19/community
+      http://eu.edge.kernel.org/alpine/edge/main
+      http://eu.edge.kernel.org/alpine/edge/community
       http://eu.edge.kernel.org/alpine/edge/testing
 
 - name: 01-APK_add
