@@ -5,8 +5,8 @@
     api_version: v1
     kind: Namespace
     state: present
-    retries: 6
-    delay: 15
+  retries: 6
+  delay: 15
 
 - name: 05-Argo_copy_k8s_folder_to_host_homedir
   ansible.builtin.copy:
