@@ -32,7 +32,6 @@ apk_installed_packages:
   - py3-github3
   - py3-kubernetes
   - py3-pip
-  - python3
   - rsync
   - tmux
   - tmux-zsh-completion
