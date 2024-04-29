@@ -8,26 +8,21 @@
   retries: 6
   delay: 15
 
-- name: 05-Argo_copy_k8s_folder_to_host_homedir
-  ansible.builtin.copy:
-    src: ./k8s/argo-application-sets/argo-cd/
-    dest: /{{ansible_user}}/argo-application-sets/argo-cd/
-
 - name: 05-Argo_render_chart
   kubernetes.core.helm_template:
     name: argo-cd
-    chart_ref: /{{ansible_user}}/cluster-critical/argo-cd/
+    chart_ref: ./k8s/cluster-critical/argo-cd/
     dependency_update: true
     release_namespace: argocd
     values_files:
-      - /{{ansible_user}}/cluster-critical/argo-cd/values.yaml
-  register: result
+      - ./k8s/cluster-critical/argo-cd/values.yaml
+  register: argoresult
   changed_when: False
 
 - name: 05-Argo_apply_rendered_chart
   kubernetes.core.k8s:
     state: present
-    definition: "{{ result.stdout }}"
+    definition: "{{ argoresult.stdout }}"
     wait: true
 
 - name: 05-Argo_apply_application_sets
@@ -41,5 +36,5 @@
     - https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/argo-application-sets/config-application-set.yaml
     - https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/argo-application-sets/custom-application-set.yaml
     - https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/argo-application-sets/dvr-kustomize-application-set.yaml
-    - https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/argo-application-sets/smarthome-kustomize-application-set.yaml
+    - https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/argo-application-sets/smarthome-kustomize-applicationset.yaml
     - https://raw.githubusercontent.com/javydekoning/homelab/main/k8s/monitoring/gatus/application.yaml
