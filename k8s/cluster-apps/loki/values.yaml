@@ -26,6 +26,7 @@ loki:
 
   gateway:
     enabled: true
+    affinity:
       podAntiAffinity:
         preferredDuringSchedulingIgnoredDuringExecution:
         - weight: 100
