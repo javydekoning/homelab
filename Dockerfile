@@ -1,5 +1,5 @@
 # hadolint ignore=DL3029
-FROM --platform=linux/amd64 alpine:3.19
+FROM --platform=linux/amd64 alpine:3.20
 
 # Add sudo and openssh-server
 RUN apk add --no-cache python3 openssh-server && \
