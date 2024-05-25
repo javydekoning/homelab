@@ -25,6 +25,8 @@ loki:
     replicas: 0
 
   gateway:
+    deploymentStrategy:
+      type: Recreate
     enabled: true
     affinity:
       podAntiAffinity:
