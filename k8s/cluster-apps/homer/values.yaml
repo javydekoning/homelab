@@ -17,6 +17,11 @@ homer:
             - homer.k8s.javydekoning.com
           secretName: javydekoning-com-tls
 
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+
   env:
     TZ: Europe/Amsterdam
 
