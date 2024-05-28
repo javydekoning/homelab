@@ -33,5 +33,5 @@ Which would yield this result:
 
 ## Notes
 
-https://github.com/kubernetes/enhancements/blob/master/keps/sig-autoscaling/853-configurable-hpa-scale-velocity/README.md#story-2-scale-up-as-fast-as-possible-scale-down-very-gradually
+<https://github.com/kubernetes/enhancements/blob/master/keps/sig-autoscaling/853-configurable-hpa-scale-velocity/README.md#story-2-scale-up-as-fast-as-possible-scale-down-very-gradually>
 
