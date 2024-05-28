@@ -27,6 +27,7 @@ loki:
   gateway:
     deploymentStrategy:
       type: Recreate
+      rollingUpdate: null
     enabled: true
     affinity:
       podAntiAffinity:
