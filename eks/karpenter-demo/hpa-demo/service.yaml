@@ -6,6 +6,6 @@ metadata:
     run: php-apache
 spec:
   ports:
-  - port: 80
+    - port: 80
   selector:
     run: php-apache

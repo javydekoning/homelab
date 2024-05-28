@@ -3,6 +3,6 @@ kind: Kustomization
 metadata:
   name: arbitrary
 resources:
-- deployment.yaml
-- hpa.yaml
-- service.yaml
+  - deployment.yaml
+  - hpa.yaml
+  - service.yaml
