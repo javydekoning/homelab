@@ -5,7 +5,6 @@ import { aws_eks as eks } from "aws-cdk-lib";
 import * as blueprints from "@aws-quickstart/eks-blueprints";
 import { NetworkStack } from '../lib/network-stack';
 import { CertificateManagerStack } from '../lib/cert-manager-stack';
-import { Construct } from 'constructs';
 
 const app = new cdk.App();
 
@@ -18,21 +17,6 @@ const network = new NetworkStack(app, 'eks-bp-demo-network-stack', {
 const certStack = new CertificateManagerStack(app, 'eks-bp-demo-cert-manager-stack', {
   env
 })
-
-// class MyKarpenterManifestsAddOn implements blueprints.ClusterAddOn {
-//   @blueprints.utils.dependable(blueprints.addons.KarpenterAddOn.name)
-//   deploy(clusterInfo: blueprints.ClusterInfo): void | Promise<Construct> {
-//     const cluster = clusterInfo.cluster;
-//     const docArray = blueprints.utils.readYamlDocument(__dirname + '/karpenter.manifests.yaml')
-//     const manifest = docArray.split("---").map(e => blueprints.utils.loadYaml(e));
-//     const karpenterManifest = new eks.KubernetesManifest(cluster.stack, "karpenter-manifests", {
-//       cluster,
-//       manifest,
-//       overwrite: true,
-//     });
-//     return Promise.resolve(karpenterManifest);
-//   }
-// }
 
 const clusterProvider = new blueprints.GenericClusterProvider({
   securityGroup: network.sg,
@@ -76,14 +60,12 @@ new blueprints.BlueprintBuilder()
         ]
       },
       ec2NodeClassSpec: {
-        // securityGroupSelector: {"kubernetes.io/cluster/eks-blueprint": "owned"},
-        // subnetSelector: {"karpenter.sh/discovery": "eks-blueprint"},
         amiFamily: "Bottlerocket",
         securityGroupSelectorTerms: [{tags: {"kubernetes.io/cluster/eks-blueprint": "owned"}}],
         subnetSelectorTerms: [{tags: {"karpenter.sh/discovery": "eks-blueprint"}}]
       }
     }),
-    //new MyKarpenterManifestsAddOn(),
+
     new blueprints.addons.AwsLoadBalancerControllerAddOn(),
     new blueprints.addons.ExternalDnsAddOn({
       hostedZoneResources: [certStack.zone.zoneName],
