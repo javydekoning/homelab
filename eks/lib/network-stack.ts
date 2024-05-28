@@ -1,16 +1,10 @@
 import { Stack, StackProps, aws_ec2 as ec2, Tags, CfnOutput } from 'aws-cdk-lib';
-import { CfnRoute } from 'aws-cdk-lib/aws-ec2';
 import { Construct } from 'constructs';
-
-export interface NetworkStackProps extends StackProps {
-  transitGatewayId: string
-}
-
 export class NetworkStack extends Stack {
   vpc: ec2.IVpc;
   sg: ec2.ISecurityGroup;
   vpcId: string;
-  constructor(scope: Construct, id: string, props: NetworkStackProps) {
+  constructor(scope: Construct, id: string, props: StackProps) {
     super(scope, id, props);
 
     this.vpc = new ec2.Vpc(this, 'eks-blueprint-vpc', {
@@ -44,25 +38,6 @@ export class NetworkStack extends Stack {
     // Tag Public Subnets
     this.vpc.publicSubnets.forEach((subnet) => {
       Tags.of(subnet).add("kubernetes.io/role/elb", "1")
-    })
-
-    // Connect to TGW
-    const tgwSubnets = this.vpc.selectSubnets({ subnetGroupName: 'tgw' })
-
-    const attach = new ec2.CfnTransitGatewayAttachment(this, 'eks-blueprint-vpc-tgw-attach', {
-      subnetIds: tgwSubnets.subnetIds,
-      vpcId: this.vpc.vpcId,
-      transitGatewayId: props.transitGatewayId
-    })
-
-    // Add route to homelab
-    const allSubnets = this.vpc.privateSubnets.concat(this.vpc.isolatedSubnets)
-    allSubnets.forEach((subnet, index) => {
-      new CfnRoute(this, 'OnPremRoute' + index, {
-        destinationCidrBlock: '192.168.1.0/24',
-        routeTableId: subnet.routeTable.routeTableId,
-        transitGatewayId: props.transitGatewayId
-      }).addDependency(attach)
     })
 
     // EKS Security Group

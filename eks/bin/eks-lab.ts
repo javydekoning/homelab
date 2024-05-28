@@ -4,7 +4,6 @@ import * as cdk from 'aws-cdk-lib';
 import { aws_eks as eks } from "aws-cdk-lib";
 import * as blueprints from "@aws-quickstart/eks-blueprints";
 import { NetworkStack } from '../lib/network-stack';
-import { StorageStack } from '../lib/storage-stack';
 import { CertificateManagerStack } from '../lib/cert-manager-stack';
 import { Construct } from 'constructs';
 
@@ -12,12 +11,11 @@ const app = new cdk.App();
 
 const env = { account: '922457306128', region: 'eu-west-1' };
 
-const network = new NetworkStack(app, 'eks-bp-network-stack', {
-  transitGatewayId: 'tgw-0747750a334b263d5',
+const network = new NetworkStack(app, 'eks-bp-demo-network-stack', {
   env
 })
 
-const certStack = new CertificateManagerStack(app, 'eks-bp-cert-manager-stack', {
+const certStack = new CertificateManagerStack(app, 'eks-bp-demo-cert-manager-stack', {
   env
 })
 
@@ -49,11 +47,40 @@ const clusterProvider = new blueprints.GenericClusterProvider({
 
 new blueprints.BlueprintBuilder()
   .addOns(
-    new blueprints.VpcCniAddOn(),
+    new blueprints.VpcCniAddOn({
+      enablePrefixDelegation: true,
+      warmPrefixTarget: 1,
+      enableNetworkPolicy: true,
+    }),
     new blueprints.addons.KarpenterAddOn({
+      version: "0.36.2",
       values: {
         //https://github.com/aws/karpenter-provider-aws/issues/5817
-        dnsPolicy: "Default"
+        dnsPolicy: "Default",
+      },
+      nodePoolSpec: {
+        requirements: [
+          {
+            key: "karpenter.k8s.aws/instance-generation",
+            operator: "Gt",
+            values: ["3"]
+          },{
+            key: "karpenter.sh/capacity-type",
+            operator: "In",
+            values: ["spot", "on-demand"]
+          },{
+            key: "kubernetes.io/arch",
+            operator: "In",
+            values: ["arm64", "amd64"]
+          }
+        ]
+      },
+      ec2NodeClassSpec: {
+        // securityGroupSelector: {"kubernetes.io/cluster/eks-blueprint": "owned"},
+        // subnetSelector: {"karpenter.sh/discovery": "eks-blueprint"},
+        amiFamily: "Bottlerocket",
+        securityGroupSelectorTerms: [{tags: {"kubernetes.io/cluster/eks-blueprint": "owned"}}],
+        subnetSelectorTerms: [{tags: {"karpenter.sh/discovery": "eks-blueprint"}}]
       }
     }),
     //new MyKarpenterManifestsAddOn(),
@@ -79,4 +106,4 @@ new blueprints.BlueprintBuilder()
     ),
   )
   .clusterProvider(clusterProvider)
-  .build(app, "eks-blueprint", {env});
+  .build(app, "eks-blueprint-demo", {env});
