@@ -10,9 +10,9 @@ spec:
           livenessProbe:
             exec:
               command:
-              - /bin/sh
-              - -c
-              - /usr/local/bin/healthcheck
+                - /bin/sh
+                - -c
+                - /usr/local/bin/healthcheck
             initialDelaySeconds: 30
             periodSeconds: 10
           ports:
