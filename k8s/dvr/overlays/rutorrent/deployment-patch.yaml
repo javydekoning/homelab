@@ -7,6 +7,14 @@ spec:
     spec:
       containers:
         - name: app
+          livenessProbe:
+            exec:
+              command:
+              - /bin/sh
+              - -c
+              - "curl --fail -d \"<?xml version='1.0'?><methodCall><methodName>system.api_version</methodName></methodCall>\" http://127.0.0.1:8001"
+            initialDelaySeconds: 30
+            periodSeconds: 10
           ports:
             - name: http
               containerPort: 8080
