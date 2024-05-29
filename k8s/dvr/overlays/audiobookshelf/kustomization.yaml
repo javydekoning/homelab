@@ -16,6 +16,7 @@ configMapGenerator:
     literals:
       - AUDIOBOOKSHELF_UID="911"
       - AUDIOBOOKSHELF_GID="911"
+      - AUDIOBOOKSHELF_INF="test"
       - TZ=Europe/Amsterdam
 
 namePrefix: audiobookshelf-
