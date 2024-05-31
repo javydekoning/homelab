@@ -25,22 +25,11 @@ loki:
     replicas: 0
 
   gateway:
-    deploymentStrategy:
-      type: Recreate
-      rollingUpdate: null
+    # deploymentStrategy:
+    #   type: Recreate
+    #   rollingUpdate: null
     enabled: true
-    affinity:
-      podAntiAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 100
-            podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                  - key: app.kubernetes.io/component
-                    operator: In
-                    values:
-                      - gateway
-              topologyKey: kubernetes.io/hostname
+    affinity: null
 
   chunksCache:
     connectionLimit: 1024
