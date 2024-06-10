@@ -34,7 +34,7 @@ release=bookworm
 # Useful to install packages on top of the base rootfs
 initial_setup=#!/usr/bin/bash
   set -euo pipefail
-  apt install curl jq -y
+  apt install curl jq git -y
   curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
   curl -sfL https://get.k3s.io | \
   INSTALL_K3S_CHANNEL=latest sh -s - server --cluster-init \
@@ -42,17 +42,25 @@ initial_setup=#!/usr/bin/bash
   --kubelet-arg="allowed-unsafe-sysctls=net.ipv4.conf.*"
 
   # Bootstrap Argo CD
-  apt install cron golang pip python3-venv git zsh ansible -y
-  git clone https://github.com/javydekoning/homelab.git
+  git clone https://github.com/javydekoning/homelab.git ~/homelab
   cd ~/homelab/k8s/cluster-critical/argo-cd
+  kubectl create ns argocd
+  helm dependency build
   helm template argo-cd . --values ./values.yaml -n argocd | kubectl apply -n argocd -f -
 
+  # Install oh-my-zsh
+  apt install zsh -y
+  curl -o ~/.zshrc https://raw.githubusercontent.com/javydekoning/homelab/main/dotfiles/.zshrc
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc --unattended
+  chsh root -s /bin/zsh
+
   # Run Ansible customization
-  cd ~/homelab/
-  python3 -m venv .
-  source ./bin/activate
-  pip install kubernetes
-  pip install github3.py
+  # apt install cron golang pip python3-venv ansible -y
+  # cd ~/homelab/
+  # python3 -m venv .
+  # source ./bin/activate
+  # pip install kubernetes
+  # pip install github3.py
   # ansible-playbook main.yml
 
 # Usually no need to change systemd_run_default_args
