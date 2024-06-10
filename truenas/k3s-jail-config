@@ -35,6 +35,14 @@ release=bookworm
 initial_setup=#!/usr/bin/bash
   set -euo pipefail
   apt install curl jq git -y
+
+  # Install oh-my-zsh
+  apt install zsh -y
+  curl -o ~/.zshrc https://raw.githubusercontent.com/javydekoning/homelab/main/dotfiles/.zshrc
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc --unattended
+  chsh root -s /bin/zsh
+
+  # Setup Kubernetes
   curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
   curl -sfL https://get.k3s.io | \
   INSTALL_K3S_CHANNEL=latest sh -s - server --cluster-init \
@@ -48,11 +56,7 @@ initial_setup=#!/usr/bin/bash
   helm dependency build
   helm template argo-cd . --values ./values.yaml -n argocd | kubectl apply -n argocd -f -
 
-  # Install oh-my-zsh
-  apt install zsh -y
-  curl -o ~/.zshrc https://raw.githubusercontent.com/javydekoning/homelab/main/dotfiles/.zshrc
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc --unattended
-  chsh root -s /bin/zsh
+  # Launch cluster critical resources
 
   # Run Ansible customization
   # apt install cron golang pip python3-venv ansible -y
