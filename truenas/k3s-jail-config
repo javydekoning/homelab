@@ -57,6 +57,16 @@ initial_setup=#!/usr/bin/bash
   helm template argo-cd . --values ./values.yaml -n argocd | kubectl apply -n argocd -f -
 
   # Launch cluster critical resources
+  printf "%s" "Enter ACCESS_KEY: "
+  read ACCESS_KEY
+
+  printf "%s" "Enter SECRET_KEY: "
+  read SECRET_KEY
+
+  kubectl create secret generic awssm-secret -n external-secrets \
+    --from-literal=access-key=$ACCESS_KEY --from-literal=secret=$SECRET_KEY
+  kubectl apply -f ~/homelab/k8s/argo-application-sets/cluster-critical-application-set.yaml
+  kubectl apply -f ~/homelab/k8s/argo-application-sets/cluster-critical-config-application-set.yaml
 
   # Run Ansible customization
   # apt install cron golang pip python3-venv ansible -y
