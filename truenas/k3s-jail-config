@@ -5,26 +5,26 @@ gpu_passthrough_nvidia=0
 seccomp=1
 
 systemd_nspawn_user_args=--network-macvlan=enp1s0
-            --resolv-conf=bind-host
-            --system-call-filter='add_key keyctl bpf'
-            --bind=/dev/kmsg
-            --bind='/mnt/main/downloads/:/downloads'
+  --resolv-conf=bind-host
+  --system-call-filter='add_key keyctl bpf'
+  --bind=/dev/kmsg
+  --bind='/mnt/main/downloads/:/downloads'
 
 # Specify command/script to run on the HOST before starting the jail
 pre_start_hook=#!/usr/bin/bash
-     set -euo pipefail
-     echo 'PRE_START_HOOK_EXAMPLE'
-     echo 1 > /proc/sys/net/ipv4/ip_forward
-     modprobe br_netfilter
-     modprobe overlay
-     modprobe iptable_nat
-     modprobe iptable_filter
-     echo 1 > /proc/sys/net/bridge/bridge-nf-call-ip6tables
-     echo 1 > /proc/sys/net/bridge/bridge-nf-call-iptables
-     echo 1 > /proc/sys/vm/overcommit_memory
-     echo 1280 > /proc/sys/fs/inotify/max_user_instances
-     echo 196608 > /proc/sys/net/netfilter/nf_conntrack_max
-     echo 655360 > /proc/sys/fs/inotify/max_user_watches
+  set -euo pipefail
+  echo 'PRE_START_HOOK_EXAMPLE'
+  echo 1 > /proc/sys/net/ipv4/ip_forward
+  modprobe br_netfilter
+  modprobe overlay
+  modprobe iptable_nat
+  modprobe iptable_filter
+  echo 1 > /proc/sys/net/bridge/bridge-nf-call-ip6tables
+  echo 1 > /proc/sys/net/bridge/bridge-nf-call-iptables
+  echo 1 > /proc/sys/vm/overcommit_memory
+  echo 1280 > /proc/sys/fs/inotify/max_user_instances
+  echo 196608 > /proc/sys/net/netfilter/nf_conntrack_max
+  echo 655360 > /proc/sys/fs/inotify/max_user_watches
 
 # Only used while creating the jail
 distro=debian
@@ -33,38 +33,41 @@ release=bookworm
 # Specify command/script to run IN THE JAIL on the first start (once networking is ready in the jail)
 # Useful to install packages on top of the base rootfs
 initial_setup=#!/usr/bin/bash
-          set -euo pipefail
-          apt install curl jq -y
-          curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
-          curl -sfL https://get.k3s.io | \
-          INSTALL_K3S_CHANNEL=latest sh -s - server --cluster-init \
-          --disable=servicelb,traefik \
-          --kubelet-arg="allowed-unsafe-sysctls=net.ipv4.conf.*"
+  set -euo pipefail
+  apt install curl jq -y
+  curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+  curl -sfL https://get.k3s.io | \
+  INSTALL_K3S_CHANNEL=latest sh -s - server --cluster-init \
+  --disable=servicelb,traefik \
+  --kubelet-arg="allowed-unsafe-sysctls=net.ipv4.conf.*"
 
-          # Run my Ansible customization
-          apt install cron golang pip python3-venv git zsh ansible -y
-          git clone https://github.com/javydekoning/homelab.git
-          cd homelab
-          python3 -m venv .
-          source ./bin/activate
+  # Bootstrap Argo CD
+  apt install cron golang pip python3-venv git zsh ansible -y
+  git clone https://github.com/javydekoning/homelab.git
+  cd ~/homelab/k8s/cluster-critical/argo-cd
+  helm template argo-cd . --values ./values.yaml -n argocd | kubectl apply -n argocd -f -
 
-          pip install kubernetes
-          pip install github3.py
-          # ansible-playbook main.yml
+  # Run Ansible customization
+  cd ~/homelab/
+  python3 -m venv .
+  source ./bin/activate
+  pip install kubernetes
+  pip install github3.py
+  # ansible-playbook main.yml
 
 # Usually no need to change systemd_run_default_args
 systemd_run_default_args=--collect
-        --property=Delegate=yes
-        --property=RestartForceExitStatus=133
-        --property=SuccessExitStatus=133
-        --property=TasksMax=infinity
-        --property=Type=notify
-        --setenv=SYSTEMD_NSPAWN_LOCK=0
-        --property=KillMode=mixed
+  --property=Delegate=yes
+  --property=RestartForceExitStatus=133
+  --property=SuccessExitStatus=133
+  --property=TasksMax=infinity
+  --property=Type=notify
+  --setenv=SYSTEMD_NSPAWN_LOCK=0
+  --property=KillMode=mixed
 
 # Usually no need to change systemd_nspawn_default_args
 systemd_nspawn_default_args=--bind-ro=/sys/module
-        --boot
-        --inaccessible=/sys/module/apparmor
-        --quiet
-        --keep-unit
+  --boot
+  --inaccessible=/sys/module/apparmor
+  --quiet
+  --keep-unit

@@ -26,15 +26,21 @@ plugins=(
 zstyle ':omz:update' mode disabled
 source $ZSH/oh-my-zsh.sh
 
-#aliases
-alias shutdown=poweroff
-alias kubectl=kubecolor
-alias k=kubecolor
-alias kgp='kubectl get pods --sort-by=.metadata.creationTimestamp -A'
-
 # Kubectl completion
 autoload -U compinit
 compinit
 
 source <(kubectl completion zsh)
-compdef kubecolor=kubectl
+
+# Aliases
+alias shutdown=poweroff
+alias kgp='kubectl get pods --sort-by=.metadata.creationTimestamp -A'
+
+if command -v kubecolor >/dev/null 2>&1; then
+  alias kubectl=kubecolor
+  alias k=kubecolor
+  compdef kubecolor=kubectl
+else
+  alias kubectl=kubectl
+  alias k=kubectl
+fi
