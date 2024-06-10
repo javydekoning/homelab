@@ -9,7 +9,7 @@ spec:
         repoURL: https://github.com/javydekoning/homelab.git
         revision: HEAD
         files:
-          - path: "k8s/cluster-critical/**/kustomization.yaml"
+          - path: "k8s/cluster-apps/**/kustomization.yaml"
   syncPolicy:
     preserveResourcesOnDeletion: false
   template:
