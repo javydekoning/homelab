@@ -7,14 +7,14 @@ spec:
     spec:
       containers:
         - name: app
-          livenessProbe:
-            exec:
-              command:
-                - /bin/sh
-                - -c
-                - /usr/local/bin/healthcheck
-            initialDelaySeconds: 30
-            periodSeconds: 10
+          # livenessProbe:
+          #   exec:
+          #     command:
+          #       - /bin/sh
+          #       - -c
+          #       - /usr/local/bin/healthcheck
+          #   initialDelaySeconds: 300
+          #   periodSeconds: 10
           ports:
             - name: http
               containerPort: 8080

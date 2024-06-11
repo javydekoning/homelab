@@ -7,8 +7,10 @@ seccomp=1
 systemd_nspawn_user_args=--network-macvlan=enp1s0
   --resolv-conf=bind-host
   --system-call-filter='add_key keyctl bpf'
+  --capability=all
   --bind=/dev/kmsg
   --bind='/mnt/main/downloads/:/downloads'
+  --bind=/dev/ttyUSB0
 
 # Specify command/script to run on the HOST before starting the jail
 pre_start_hook=#!/usr/bin/bash
