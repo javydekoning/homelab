@@ -63,7 +63,7 @@ in AWS Secrets Manager.
 ```sh
 # To bootstrap, we add AWS credentials via one secret:
 kubectl create secret generic awssm-secret -n external-secrets \
-  --from-literal=access-key=$ACCESS_KEY --from-literal=secret=$SECRET_KEY
+  --from-literal=access-key=$ACCESS_KEY --from-literal=secret-access-key=$SECRET_KEY
 ```
 
 Today, [cert-manager](https://cert-manager.io/) and

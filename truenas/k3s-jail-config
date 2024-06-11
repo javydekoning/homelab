@@ -48,6 +48,7 @@ initial_setup=#!/usr/bin/bash
   INSTALL_K3S_CHANNEL=latest sh -s - server --cluster-init \
   --disable=servicelb,traefik \
   --kubelet-arg="allowed-unsafe-sysctls=net.ipv4.conf.*"
+  apt install kubecolor
 
   # Bootstrap Argo CD
   git clone https://github.com/javydekoning/homelab.git ~/homelab
@@ -63,8 +64,9 @@ initial_setup=#!/usr/bin/bash
   printf "%s" "Enter SECRET_KEY: "
   read SECRET_KEY
 
+  kubectl create ns external-secrets
   kubectl create secret generic awssm-secret -n external-secrets \
-    --from-literal=access-key=$ACCESS_KEY --from-literal=secret=$SECRET_KEY
+    --from-literal=access-key=$ACCESS_KEY --from-literal=secret-access-key=$SECRET_KEY
   kubectl apply -f ~/homelab/k8s/argo-application-sets/cluster-critical-application-set.yaml
   kubectl apply -f ~/homelab/k8s/argo-application-sets/cluster-critical-config-application-set.yaml
 
