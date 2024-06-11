@@ -10,7 +10,7 @@ spec:
   selector:
     app: wireguard
   type: LoadBalancer
-  loadBalancerIP: 192.168.1.249
+  loadBalancerIP: 192.168.100.249
   ports:
     - name: http
       port: 51820
@@ -29,7 +29,7 @@ data:
   SERVERURL: "wg.javydekoning.com"
   SERVERPORT: "51820"
   PEERS: "3"
-  PEERDNS: "192.168.1.253"
+  PEERDNS: "192.168.100.253"
   ALLOWEDIPS: "0.0.0.0/0, ::/0"
   INTERNAL_SUBNET: "10.13.13.0"
   PERSISTENTKEEPALIVE_PEERS: "25"
