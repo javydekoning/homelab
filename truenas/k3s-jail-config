@@ -2,11 +2,11 @@ startup=1
 gpu_passthrough_intel=1
 gpu_passthrough_nvidia=0
 # Turning off seccomp filtering improves performance at the expense of security
-seccomp=1
+seccomp=0
 
 systemd_nspawn_user_args=--network-macvlan=enp1s0
   --resolv-conf=bind-host
-  --system-call-filter='add_key keyctl bpf'
+  --system-call-filter='add_key keyctl bpf perf_event_open'
   --capability=all
   --bind=/dev/kmsg
   --bind='/mnt/main/downloads/:/downloads'
@@ -71,6 +71,9 @@ initial_setup=#!/usr/bin/bash
     --from-literal=access-key=$ACCESS_KEY --from-literal=secret-access-key=$SECRET_KEY
   kubectl apply -f ~/homelab/k8s/argo-application-sets/cluster-critical-application-set.yaml
   kubectl apply -f ~/homelab/k8s/argo-application-sets/cluster-critical-config-application-set.yaml
+
+  # Enable HW Acceleration
+  apt-get -y install {va-driver-all,ocl-icd-libopencl1,intel-opencl-icd,vainfo,intel-gpu-tools}
 
   # Run Ansible customization
   # apt install cron golang pip python3-venv ansible -y
