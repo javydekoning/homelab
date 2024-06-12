@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: cluster-apps-kustomize-application-set
+  name: monitoring-kustomize-application-set
   namespace: argocd
 spec:
   generators:
@@ -9,7 +9,7 @@ spec:
         repoURL: https://github.com/javydekoning/homelab.git
         revision: HEAD
         files:
-          - path: "k8s/cluster-apps/**/kustomization.yaml"
+          - path: "k8s/monitoring/**/kustomization.yaml"
   syncPolicy:
     preserveResourcesOnDeletion: false
   template:

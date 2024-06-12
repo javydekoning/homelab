@@ -27,7 +27,7 @@ spec:
               secretName: javydekoning-com-tls
         config:
           endpoints:
-            - name: "Latency to Google < 15ms"
+            - name: "Google page load < 200ms"
               url: "https://google.com"
               interval: 1m
               conditions:
