@@ -18,6 +18,7 @@ spec:
       containers:
         - image: ghcr.io/twin/gatus:latest@sha256:8fc00f9dccec3db4105d084cb2fcbc0d70cbc980d5a74466a30e1d1e90e0a4da
           imagePullPolicy: IfNotPresent
+          name: gatus
           ports:
             - containerPort: 8080
               name: http
