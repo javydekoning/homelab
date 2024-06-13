@@ -16,42 +16,33 @@ spec:
         app.kubernetes.io/name: gatus
     spec:
       containers:
-      - envFrom:
-        - configMapRef:
-            name: gatus
-        image: ghcr.io/twin/gatus:latest@sha256:8fc00f9dccec3db4105d084cb2fcbc0d70cbc980d5a74466a30e1d1e90e0a4da
-        imagePullPolicy: IfNotPresent
-        livenessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /health
-            port: http
-            scheme: HTTP
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 1
-        name: gatus
-        ports:
-        - containerPort: 8080
-          name: http
-          protocol: TCP
-        readinessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /health
-            port: http
-            scheme: HTTP
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 1
-        resources: {}
-        volumeMounts:
-        - mountPath: /config
-          name: gatus-config
-          readOnly: true
-      restartPolicy: Always
+        - image: ghcr.io/twin/gatus:latest@sha256:8fc00f9dccec3db4105d084cb2fcbc0d70cbc980d5a74466a30e1d1e90e0a4da
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+          resources: {}
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 5
+          volumeMounts:
+            - mountPath: /config
+              name: gatus-config
       volumes:
-      - configMap:
-          defaultMode: 420
-          name: gatus
-        name: gatus-config
+        - configMap:
+            name: gatus
+          name: gatus-config

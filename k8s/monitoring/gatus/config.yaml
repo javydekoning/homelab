@@ -33,7 +33,7 @@ data:
       conditions:
         - "[DOMAIN_EXPIRATION] > 720h"
         - "[CERTIFICATE_EXPIRATION] > 240h"
-    - name: javydekoning.com-certificate-expiration
+    - name: homer-certificate-expiration
       url: "https://homer.k8s.javydekoning.com"
       interval: 1h
       conditions:
