@@ -35,3 +35,12 @@ spec:
         syncOptions:
           - ServerSideApply=true
           - CreateNamespace=true
+      ignoreDifferences:
+        - group: apps
+          kind: "*"
+          jqPathExpressions:
+            - ".spec.template.spec.containers[].resources"
+        - group: apps
+          kind: "*"
+          jqPathExpressions:
+            - ".spec.template.spec.initContainers[].resources"
