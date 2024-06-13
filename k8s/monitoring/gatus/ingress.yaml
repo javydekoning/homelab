@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: gatus-ingress
-  namespace: gatus
+  namespace: monitoring
   labels:
     app.kubernetes.io/name: "gatus"
 spec:
