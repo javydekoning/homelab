@@ -50,7 +50,7 @@ initial_setup=#!/usr/bin/bash
   INSTALL_K3S_CHANNEL=latest sh -s - server --cluster-init \
   --disable=servicelb,traefik \
   --kubelet-arg="allowed-unsafe-sysctls=net.ipv4.conf.*"
-  apt install kubecolor
+  apt install kubecolor -y
 
   # Bootstrap Argo CD
   git clone https://github.com/javydekoning/homelab.git ~/homelab
