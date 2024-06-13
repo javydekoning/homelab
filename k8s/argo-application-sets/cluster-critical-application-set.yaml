@@ -52,3 +52,11 @@ spec:
           name: addresspools.metallb.io
           jsonPointers:
             - /spec/conversion/webhook/clientConfig/caBundle
+        - group: apps
+          kind: "*"
+          jqPathExpressions:
+            - ".spec.template.spec.containers[].resources"
+        - group: apps
+          kind: "*"
+          jqPathExpressions:
+            - ".spec.template.spec.initContainers[].resources"

@@ -32,3 +32,12 @@ spec:
           - ApplyOutOfSyncOnly=true
           # Doesn't work due to: https://github.com/argoproj/argo-cd/issues/11625
           - CreateNamespace=true
+      ignoreDifferences:
+        - group: apps
+          kind: "*"
+          jqPathExpressions:
+            - ".spec.template.spec.containers[].resources"
+        - group: apps
+          kind: "*"
+          jqPathExpressions:
+            - ".spec.template.spec.initContainers[].resources"
