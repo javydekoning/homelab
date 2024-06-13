@@ -9,11 +9,6 @@ spec:
         repoURL: https://github.com/javydekoning/homelab.git
         revision: HEAD
         files:
-          - path: "k8s/monitoring/**/application.yaml"
-    - git:
-        repoURL: https://github.com/javydekoning/homelab.git
-        revision: HEAD
-        files:
           - path: "k8s/monitoring/**/kustomization.yaml"
   syncPolicy:
     preserveResourcesOnDeletion: false

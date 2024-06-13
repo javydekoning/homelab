@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: gatus
+  name: gatus
+  namespace: monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: gatus
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: gatus
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: gatus
+        image: ghcr.io/twin/gatus:latest@sha256:8fc00f9dccec3db4105d084cb2fcbc0d70cbc980d5a74466a30e1d1e90e0a4da
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /health
+            port: http
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: gatus
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /health
+            port: http
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources: {}
+        volumeMounts:
+        - mountPath: /config
+          name: gatus-config
+          readOnly: true
+      restartPolicy: Always
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: gatus
+        name: gatus-config
