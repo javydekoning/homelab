@@ -5,7 +5,7 @@
     "fileMatch": ["(^|/)values\\.yaml$"]
   },
   "kubernetes": {
-    "fileMatch": ["k8s/.+/custom\\.yaml$"]
+    "fileMatch": ["k8s/.+/custom\\.yaml$","k8s/.+/deployment\\.yaml$"]
   },
   "packageRules": [
     {
