@@ -13,8 +13,10 @@ spec:
                 - /bin/sh
                 - -c
                 - /usr/local/bin/healthcheck
-            initialDelaySeconds: 300
-            periodSeconds: 10
+            initialDelaySeconds: 600
+            periodSeconds: 15
+            timeoutSeconds: 10
+            failureThreshold: 3
           ports:
             - name: http
               containerPort: 8080
