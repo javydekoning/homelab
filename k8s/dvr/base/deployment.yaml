@@ -21,4 +21,8 @@ spec:
           hostPath:
             path: /downloads
             type: DirectoryOrCreate
+        - name: config
+          hostPath:
+            path: /config
+            type: DirectoryOrCreate
       restartPolicy: Always

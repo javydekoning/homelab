@@ -27,8 +27,11 @@ spec:
             - name: dht
               containerPort: 6881
           volumeMounts:
-            - name: downloads
-              mountPath: /data/
-              subPath: config/rtorrent-config
+            # - name: downloads
+            #   mountPath: /data/
+            #   subPath: config/rtorrent-config
             - name: downloads
               mountPath: /downloads/
+            - name: config
+              mountPath: /data/
+              subPath: rtorrent-config
