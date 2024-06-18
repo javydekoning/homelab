@@ -9,7 +9,7 @@ resources:
 images:
   - name: app
     newName: ghcr.io/cross-seed/cross-seed
-    newTag: latest@sha256:6abdca45f0ecfd8d23a3035beefa716a14b66f23c14854631fe369d1ad346f1e
+    newTag: 5.9.2@sha256:6abdca45f0ecfd8d23a3035beefa716a14b66f23c14854631fe369d1ad346f1e
 
 configMapGenerator:
   - name: env-configmap
