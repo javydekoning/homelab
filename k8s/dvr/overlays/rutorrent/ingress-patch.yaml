@@ -5,7 +5,6 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: 8m
     nginx.ingress.kubernetes.io/enable-cors: "true"
-    nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "15"
 spec:
   tls:
