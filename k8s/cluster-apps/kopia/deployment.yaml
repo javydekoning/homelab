@@ -30,8 +30,6 @@ spec:
             - "--address=http://0.0.0.0:10238"
             - "--insecure"
             - "--without-password"
-            # - "--server-username=$(KOPIA_USER)"
-            # - "--server-password=$(KOPIA_PASSWORD)"
           ports:
             - name: main
               containerPort: 10238
@@ -53,6 +51,9 @@ spec:
             - name: downloads
               mountPath: /downloads
               readOnly: false
+            - name: config
+              mountPath: /config
+              readOnly: false
           resources:
             requests:
               cpu: 10m
@@ -67,6 +68,10 @@ spec:
             - name: "TZ"
               value: "Europe/Amsterdam"
       volumes:
+        - name: config
+          hostPath:
+            path: /config
+            type: DirectoryOrCreate
         - name: downloads
           hostPath:
             path: /downloads
