@@ -11,6 +11,6 @@ spec:
             - name: http
               containerPort: 8989
           volumeMounts:
-            - name: downloads
+            - name: config
               mountPath: /config
-              subPath: config/sonarr
+              subPath: sonarr

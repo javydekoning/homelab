@@ -15,12 +15,12 @@ spec:
           volumeMounts:
             - name: downloads
               mountPath: /downloads
-            - name: downloads
+            - name: config
               mountPath: /app/appdata
-              subPath: config/ytdl/appdata
+              subPath: ytdl/appdata
         - name: mongo
           image: mongo:4
           volumeMounts:
-            - name: downloads
+            - name: config
               mountPath: /data/db
-              subPath: config/ytdl/db
+              subPath: ytdl/db

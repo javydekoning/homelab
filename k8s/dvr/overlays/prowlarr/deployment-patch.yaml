@@ -11,6 +11,6 @@ spec:
             - name: http
               containerPort: 9696
           volumeMounts:
-            - name: downloads
+            - name: config
               mountPath: /config
-              subPath: config/prowlarr
+              subPath: prowlarr

@@ -20,9 +20,9 @@ spec:
           volumeMounts:
             - name: downloads
               mountPath: /downloads
-            - name: downloads
+            - name: config
               mountPath: /cache
-              subPath: config/jellyfin/cache
-            - name: downloads
+              subPath: jellyfin/cache
+            - name: config
               mountPath: /config
-              subPath: config/jellyfin/config
+              subPath: jellyfin/config

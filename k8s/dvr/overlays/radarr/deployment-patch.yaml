@@ -11,6 +11,6 @@ spec:
             - name: http
               containerPort: 7878
           volumeMounts:
-            - name: downloads
+            - name: config
               mountPath: /config
-              subPath: config/radarr
+              subPath: radarr

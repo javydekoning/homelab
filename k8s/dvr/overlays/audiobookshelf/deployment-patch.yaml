@@ -11,12 +11,12 @@ spec:
             - name: http
               containerPort: 80
           volumeMounts:
-            - name: downloads
+            - name: config
               mountPath: /config
-              subPath: config/audiobookshelf/config/
-            - name: downloads
+              subPath: audiobookshelf/config/
+            - name: config
               mountPath: /metadata
-              subPath: config/audiobookshelf/metadata/
+              subPath: audiobookshelf/metadata/
             - name: downloads
               mountPath: /podcasts
               subPath: podcasts

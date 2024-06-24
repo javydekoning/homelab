@@ -11,6 +11,6 @@ spec:
             - name: http
               containerPort: 5055
           volumeMounts:
-            - name: downloads
+            - name: config
               mountPath: /config
-              subPath: config/overseerr
+              subPath: overseerr

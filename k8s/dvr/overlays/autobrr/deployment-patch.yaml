@@ -15,6 +15,6 @@ spec:
             - name: http
               containerPort: 7474
           volumeMounts:
-            - name: downloads
+            - name: config
               mountPath: /config
-              subPath: config/autobrr
+              subPath: autobrr

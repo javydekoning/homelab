@@ -16,12 +16,12 @@ spec:
             - name: http
               containerPort: 2468
           volumeMounts:
-            - name: downloads
+            - name: config
               mountPath: /config
-              subPath: config/cross-seed
-            - name: downloads
+              subPath: cross-seed
+            - name: config
               mountPath: /config/rtorrent/.session
-              subPath: config/rtorrent-config/rtorrent/.session
+              subPath: rtorrent-config/rtorrent/.session
               readOnly: true
             - name: downloads
               mountPath: /downloads
