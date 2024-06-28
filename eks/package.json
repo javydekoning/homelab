@@ -21,7 +21,7 @@
     "aws-cdk": "2.133.0"
   },
   "dependencies": {
-    "@aws-quickstart/eks-blueprints": "1.14.1",
+    "@aws-quickstart/eks-blueprints": "1.15.0",
     "@aws-sdk/client-eks": "^3.478.0",
     "aws-cdk-lib": "2.133.0",
     "constructs": "^10.0.0",
