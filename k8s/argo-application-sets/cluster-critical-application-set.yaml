@@ -36,7 +36,7 @@ spec:
           - ServerSideApply=true
           - CreateNamespace=true
           - RespectIgnoreDifferences=true
-      ignoreDifferences: # https://github.com/metallb/metallb/issues/1681
+      ignoreDifferences:
         - group: "deviceplugin.intel.com"
           kind: GpuDevicePlugin
           name: gpudeviceplugin-sample
@@ -47,3 +47,8 @@ spec:
           kind: "*"
           jqPathExpressions:
           - '.webhooks[]?.clientConfig.caBundle'
+        - group: "apiextensions.k8s.io" # https://github.com/metallb/metallb/issues/1681
+          kind: CustomResourceDefinition
+          name: bgppeers.metallb.io
+          jsonPointers:
+            - /spec/conversion/webhook/clientConfig/caBundle
