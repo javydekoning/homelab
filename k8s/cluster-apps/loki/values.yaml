@@ -25,9 +25,8 @@ loki:
     replicas: 0
 
   gateway:
-    # deploymentStrategy:
-    #   type: Recreate
-    #   rollingUpdate: null
+    deploymentStrategy:
+      type: Recreate
     enabled: true
     affinity: null
 
