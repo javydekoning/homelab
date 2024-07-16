@@ -20,7 +20,7 @@ const certStack = new CertificateManagerStack(app, 'eks-bp-demo-cert-manager-sta
 
 const clusterProvider = new blueprints.GenericClusterProvider({
   securityGroup: network.sg,
-  version: eks.KubernetesVersion.V1_29,
+  version: eks.KubernetesVersion.V1_30,
   fargateProfiles: {
     karpenter: {
       fargateProfileName: "karpenter",
@@ -37,7 +37,7 @@ new blueprints.BlueprintBuilder()
       enableNetworkPolicy: true,
     }),
     new blueprints.addons.KarpenterAddOn({
-      version: "0.36.2",
+      version: "0.37.0",
       values: {
         //https://github.com/aws/karpenter-provider-aws/issues/5817
         dnsPolicy: "Default",
