@@ -79,11 +79,11 @@ data:
       cache_time: 30
       rewrites:
         - domain: '*.k8s.javydekoning.com'
-          answer: 192.168.100.200
+          answer: 192.168.178.200
         - domain: 'unifi'
-          answer: 192.168.100.1
+          answer: 192.168.178.1
         - domain: 'unifi.k8s.javydekoning.com'
-          answer: 192.168.100.1
+          answer: 192.168.178.1
       blocked_services: []
       upstream_timeout: 10s
       private_networks: []
@@ -258,7 +258,7 @@ spec:
     app: adguard
   type: LoadBalancer
   externalTrafficPolicy: Local
-  loadBalancerIP: 192.168.100.253
+  loadBalancerIP: 192.168.178.253
   ports:
     - name: http
       port: 80

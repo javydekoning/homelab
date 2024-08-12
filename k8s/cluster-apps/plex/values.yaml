@@ -9,7 +9,7 @@ plex:
 
   env:
     TZ: Europe/Amsterdam
-    ADVERTISE_IP: 192.168.100.250
+    ADVERTISE_IP: 192.168.178.250
     ALLOWED_NETWORKS: "10.0.0.0/8,172.16.0.0/16,192.168.0.0/16"
     # cat /config/Library/Application\ Support/Plex\ Media\ Server/Preferences.xml | tr " " "\n" | \
     # sed -n '/<Preferences/,$p' | tail -n +2 | sed 's,/>,,g' | \
@@ -23,13 +23,13 @@ plex:
     PLEX_PREFERENCE_6: "HardwareDevicePath=/dev/dri/renderD128"
     PLEX_PREFERENCE_7: "RelayEnabled=0"
     PLEX_PREFERENCE_8: "TreatWanIpAsLocal=0"
-    PLEX_PREFERENCE_9: "customConnections=https://192.168.100.250:32400"
+    PLEX_PREFERENCE_9: "customConnections=https://192.168.178.250:32400"
 
   service:
     main:
       primary: true
       type: LoadBalancer
-      loadBalancerIP: 192.168.100.250
+      loadBalancerIP: 192.168.178.250
       annotations:
         metallb.universe.tf/allow-shared-ip: plex
       ports:
