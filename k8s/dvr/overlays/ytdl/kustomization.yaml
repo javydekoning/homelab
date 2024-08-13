@@ -9,7 +9,7 @@ resources:
 images:
   - name: app
     newName: ghcr.io/tzahi12345/youtubedl-material
-    newTag: nightly@sha256:5c7a9f5b72b12e150b0fef0bf73827d452c983c0897541fa1f36f43561ced45f
+    newTag: nightly@sha256:09131f9bb538d6be32a9e673ad90db193aafd35b3873a8f24501fe0412f2853a
 
 configMapGenerator:
   - name: env-configmap
