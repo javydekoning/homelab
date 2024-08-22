@@ -59,7 +59,6 @@ data:
           inputs:
             - path: rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@{FRIGATE_RTSP_BABYCAM_IP}:554/h264Preview_01_main
               roles:
-                - rtmp
                 - record
             - path: rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@{FRIGATE_RTSP_BABYCAM_IP}:554/h264Preview_01_sub
               roles:

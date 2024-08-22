@@ -4,7 +4,7 @@ gpu_passthrough_nvidia=0
 # Turning off seccomp filtering improves performance at the expense of security
 seccomp=0
 
-systemd_nspawn_user_args=--network-macvlan=enp1s0
+systemd_nspawn_user_args=--network-macvlan=enp3s0
   --resolv-conf=bind-host
   --system-call-filter='add_key keyctl bpf perf_event_open'
   --capability=all
