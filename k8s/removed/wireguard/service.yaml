@@ -10,7 +10,7 @@ spec:
   selector:
     app: wireguard
   type: LoadBalancer
-  loadBalancerIP: 192.168.178.249
+  loadBalancerIP: 192.168.100.249
   ports:
     - name: http
       port: 51820

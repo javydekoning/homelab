@@ -47,7 +47,7 @@ unifi:
     main:
       enabled: true
       type: LoadBalancer
-      loadBalancerIP: 192.168.178.254
+      loadBalancerIP: 192.168.100.254
       annotations:
         metallb.universe.tf/allow-shared-ip: unifi
       ports:
@@ -89,7 +89,7 @@ unifi:
     udp:
       enabled: true
       type: LoadBalancer
-      loadBalancerIP: 192.168.178.254
+      loadBalancerIP: 192.168.100.254
       annotations:
         metallb.universe.tf/allow-shared-ip: unifi
       ports:
