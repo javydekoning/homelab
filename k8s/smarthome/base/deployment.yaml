@@ -17,6 +17,10 @@ spec:
             - configMapRef:
                 name: env-configmap
       volumes:
+        - name: persistance
+          hostPath:
+            path: /config
+            type: DirectoryOrCreate
         - name: downloads
           hostPath:
             path: /downloads
