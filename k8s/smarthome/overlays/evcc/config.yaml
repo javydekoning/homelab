@@ -15,7 +15,7 @@ data:
       topic: evcc
       clientid: evcc-connector
 
-    interval: 3s
+    interval: 30s
 
     meters:
       - name: homewizard_grid
