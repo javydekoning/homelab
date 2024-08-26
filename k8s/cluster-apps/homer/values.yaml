@@ -160,6 +160,11 @@ homer:
             - name: "Monitoring and automation"
               icon: "fas fa-download"
               items:
+                - name: "evcc"
+                  logo: "https://github.com/walkxcode/dashboard-icons/raw/main/png/lnbits.png"
+                  subtitle: "Electric Vehicle (EV) charging control"
+                  url: "https://evcc.k8s.javydekoning.com"
+                  target: "_blank"
                 - name: "Smokeping"
                   logo: "https://github.com/walkxcode/dashboard-icons/raw/main/png/smokeping.png"
                   subtitle: "Network monitoring"

@@ -1,0 +1,32 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base/
+  - config.yaml
+
+images:
+  - name: app
+    newName: evcc/evcc
+    newTag: latest@sha256:b3afc2304ae8a1779dad89f3352ffb330eb2f8ae4123d7bd490b7af64d810683
+
+namespace: smarthome
+
+namePrefix: evcc-
+
+labels:
+  - includeSelectors: true
+    pairs:
+      app: evcc
+
+patches:
+  - path: deployment-patch.yaml
+  - path: service-patch.yaml
+  - path: ingress-patch.yaml
+  - patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/name
+        value: evcc
+    target:
+      kind: Deployment
+      name: deployment
