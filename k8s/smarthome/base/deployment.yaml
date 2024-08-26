@@ -13,9 +13,6 @@ spec:
           volumeMounts:
             - name: downloads
               mountPath: /downloads
-          envFrom:
-            - configMapRef:
-                name: env-configmap
       volumes:
         - name: persistance
           hostPath:
