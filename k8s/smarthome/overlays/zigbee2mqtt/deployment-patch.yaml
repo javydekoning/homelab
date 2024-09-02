@@ -17,7 +17,7 @@ spec:
               mountPath: /app/data
               subPath: config/zigbee2mqtt
             - name: usb
-              mountPath: /dev/ttyACM0
+              mountPath: /dev/ttyUSB0
             - name: udev
               mountPath: /run/udev
       volumes:
