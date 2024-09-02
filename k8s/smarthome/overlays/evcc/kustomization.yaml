@@ -8,7 +8,7 @@ resources:
 images:
   - name: app
     newName: evcc/evcc
-    newTag: latest@sha256:01a3876ad995fa9e066aa560b846286d77d4bcd0c30e0aef0534be13a40e435a
+    newTag: latest@sha256:0d2cafbe140e9e6dd39634a7d070d0388accc7319e4fd984ac1ca338bd4c2793
 
 namespace: smarthome
 
