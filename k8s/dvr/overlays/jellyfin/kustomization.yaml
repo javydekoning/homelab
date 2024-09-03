@@ -9,7 +9,7 @@ resources:
 images:
   - name: app
     newName: ghcr.io/linuxserver/jellyfin
-    newTag: latest@sha256:0da2fb716f6e7eaeea082d81418f80c4d2adab9407801629790ef3c2d0b743ab
+    newTag: latest@sha256:266a8e1a6dc8e01270935a358effee2b0711af23e0e5479985a6501ce1978da7
 
 configMapGenerator:
   - name: env-configmap
