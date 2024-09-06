@@ -66,7 +66,11 @@ data:
                 - detect
         rtmp:
           enabled: False
-
+        onvif:
+          host: {FRIGATE_RTSP_BABYCAM_IP}
+          port: 8000
+          user: {FRIGATE_RTSP_USER}
+          password: {FRIGATE_RTSP_PASSWORD}
         detect:
           width: 640
           height: 360
