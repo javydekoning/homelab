@@ -22,7 +22,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: kopia
-          image: kopia/kopia:20240827.0.94258@sha256:062d0f2264902541286994b33ebe7c25690cd357bdb9402dbd1800ea1c4b4950
+          image: kopia/kopia:20240918.0.132232@sha256:f8778a14d9464a9d16f629c871029c51fed2557c8903060114574c230795c365
           imagePullPolicy: IfNotPresent
           args:
             - "server"
