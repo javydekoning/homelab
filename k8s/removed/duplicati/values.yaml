@@ -9,7 +9,7 @@ duplicati:
     # Duplicati standard image hasn't been updated in years
     # Canary releases have many bugfixes, hence switched to
     # :development as of 2022-05-11
-    tag: "development@sha256:674d047c8fc199f4fdf53a46251b772bbdf949ff720ede5a27d96999b95a93f9"
+    tag: "development@sha256:88c80df5709ea53ac28f691f2267e677aaf289f0488f7bcc5529c63a67ba4f6c"
     pullPolicy: Always
 
   ingress:
