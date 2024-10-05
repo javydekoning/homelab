@@ -63,7 +63,7 @@ home-assistant:
     config:
       enabled: true
       type: hostPath
-      hostPath: /downloads/config/hass/
+      hostPath: /config/hass/
       mountPath: /config/
     # -- Configure a hostPathMount to mount a USB device in the container.
     # @default -- See values.yaml
