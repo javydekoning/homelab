@@ -54,7 +54,7 @@ spec:
       volumes:
         - name: datastore
           hostPath:
-            path: /downloads/config/changedetection
+            path: /config/changedetection
             type: DirectoryOrCreate
         - name: shm
           emptyDir:
