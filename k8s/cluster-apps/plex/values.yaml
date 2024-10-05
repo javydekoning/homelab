@@ -56,7 +56,7 @@ plex:
       enabled: true
       type: hostPath
       accessMode: ReadWriteOnce
-      hostPath: /downloads/config/plex
+      hostPath: /config/plex
       mountPath: /config
     transcode:
       enabled: true
