@@ -44,9 +44,9 @@ spec:
             - name: secret-volume
               mountPath: "/app/config/repository.config"
               subPath: repository.config
-            - name: downloads
+            - name: config
               mountPath: /app/logs
-              subPath: config/kopia/logs
+              subPath: kopia/logs
               readOnly: false
             - name: downloads
               mountPath: /downloads
