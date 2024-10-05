@@ -15,7 +15,7 @@ spec:
             - name: mqtt
               containerPort: 1883
           volumeMounts:
-            - name: config
+            - name: persistance
               mountPath: /mosquitto/data
               subPath: mosquitto
             - name: config
