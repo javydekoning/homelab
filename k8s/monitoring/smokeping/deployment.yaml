@@ -66,6 +66,6 @@ spec:
           emptyDir: {}
         - name: datastore
           hostPath:
-            path: /downloads/config/smokeping
+            path: /config/smokeping
             type: DirectoryOrCreate
       restartPolicy: Always
