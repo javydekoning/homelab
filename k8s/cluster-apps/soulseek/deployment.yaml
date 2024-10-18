@@ -14,37 +14,37 @@ spec:
         app: soulseek
     spec:
       containers:
-      - name: soulseek
-        image: realies/soulseek
-        env:
-        - name: PGID
-          value: "911"
-        - name: PUID
-          value: "911"
-        ports:
-        - containerPort: 6080
-          name: http
-        - containerPort: 61122
-          name: listening
-        - containerPort: 61123
-          name: obfuscated
-        volumeMounts:
-        - name: appdata
-          mountPath: /data/.SoulseekQt
-        - name: downloads
-          mountPath: /data/Soulseek Downloads
-        - name: downloads
-          mountPath: /data/Soulseek Shared Folder
-        - name: logs
-          mountPath: /data/Soulseek Chat Logs
+        - name: soulseek
+          image: realies/soulseek
+          env:
+            - name: PGID
+              value: "911"
+            - name: PUID
+              value: "911"
+          ports:
+            - containerPort: 6080
+              name: http
+            - containerPort: 61122
+              name: listening
+            - containerPort: 61123
+              name: obfuscated
+          volumeMounts:
+            - name: appdata
+              mountPath: /data/.SoulseekQt
+            - name: downloads
+              mountPath: /data/Soulseek Downloads
+            - name: downloads
+              mountPath: /data/Soulseek Shared Folder
+            - name: logs
+              mountPath: /data/Soulseek Chat Logs
       volumes:
-      - name: appdata
-        hostPath:
-          path: /config/soulseek
-          type: DirectoryOrCreate
-      - name: downloads
-        hostPath:
-          path: /downloads/music
-          type: DirectoryOrCreate
-      - name: logs
-        emptyDir: {}
+        - name: appdata
+          hostPath:
+            path: /config/soulseek
+            type: DirectoryOrCreate
+        - name: downloads
+          hostPath:
+            path: /downloads/music
+            type: DirectoryOrCreate
+        - name: logs
+          emptyDir: {}
