@@ -23,8 +23,11 @@ spec:
           value: "911"
         ports:
         - containerPort: 6080
+          name: http
         - containerPort: 61122
+          name: listening
         - containerPort: 61123
+          name: obfuscated
         volumeMounts:
         - name: appdata
           mountPath: /data/.SoulseekQt
