@@ -1,6 +1,6 @@
 # s3 Cloudformation
 
-Creates s3 bucket for storing homelab app configuration backups.
+Creates s3 bucket for storing homelab configuration backups.
 
 Bucket policy enforces SSL as per:
 
@@ -12,7 +12,3 @@ Statement:
         "aws:SecureTransport": "false"
     Effect: Deny
 ```
-
-Make sure SSL is enabled in Duplicati:
-
-![Duplicati Screenshot](duplicati.png)
