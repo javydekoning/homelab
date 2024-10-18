@@ -4,7 +4,7 @@ metadata:
   name: soulseek
   namespace: soulseek
   labels:
-    app.kubernetes.io/name: "soulseek"
+    app: "soulseek"
 spec:
   type: LoadBalancer
   loadBalancerIP: 192.168.100.253
@@ -19,4 +19,4 @@ spec:
       port: 61123
       targetPort: 61123
   selector:
-    app.kubernetes.io/name: soulseek
+    app: soulseek
