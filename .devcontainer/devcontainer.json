@@ -1,13 +1,10 @@
 {
-  "name":"Homelab dev environment",
+  "name": "Homelab dev environment",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   "postCreateCommand": ".devcontainer/init.sh",
   "customizations": {
     "vscode": {
-      "extensions": [
-        "kddejong.vscode-cfn-lint",
-        "eastman.vscode-cfn-nag"
-      ]
+      "extensions": ["kddejong.vscode-cfn-lint", "eastman.vscode-cfn-nag"]
     }
   }
 }
