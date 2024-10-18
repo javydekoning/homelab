@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: soulseek
+  namespace: soulseek
+  labels:
+    app.kubernetes.io/name: "soulseek"
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 6080
+      targetPort: 6080
+    - name: listening
+      port: 61122
+      targetPort: 61122
+    - name: obfuscated
+      port: 61123
+      targetPort: 61123
+  selector:
+    app.kubernetes.io/name: soulseek

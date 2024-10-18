@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: soulseek
+  namespace: soulseek
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - soulseek.k8s.javydekoning.com
+      secretName: javydekoning-com-tls
+  rules:
+    - host: soulseek.k8s.javydekoning.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: soulseek
+                port:
+                  name: http

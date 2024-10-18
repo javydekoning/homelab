@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: soulseek
+  namespace: soulseek
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: soulseek
+  template:
+    metadata:
+      labels:
+        app: soulseek
+    spec:
+      containers:
+      - name: soulseek
+        image: realies/soulseek
+        env:
+        - name: PGID
+          value: "911"
+        - name: PUID
+          value: "911"
+        ports:
+        - containerPort: 6080
+        - containerPort: 61122
+        - containerPort: 61123
+        volumeMounts:
+        - name: appdata
+          mountPath: /data/.SoulseekQt
+        - name: downloads
+          mountPath: /data/Soulseek Downloads
+        - name: downloads
+          mountPath: /data/Soulseek Shared Folder
+        - name: logs
+          mountPath: /data/Soulseek Chat Logs
+      volumes:
+      - name: appdata
+        hostPath:
+          path: /config/soulseek
+          type: DirectoryOrCreate
+      - name: downloads
+        hostPath:
+          path: /downloads/music
+          type: DirectoryOrCreate
+      - name: logs
+        emptyDir: {}
