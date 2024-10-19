@@ -19,8 +19,8 @@ Resources:
             Principal:
               AWS: "*"
             Resource:
-            - !Sub ${bucket.Arn}
-            - !Sub ${bucket.Arn}/*
+              - !Sub ${bucket.Arn}
+              - !Sub ${bucket.Arn}/*
         Version: 2012-10-17
   backupIAMgroup:
     Type: "AWS::IAM::Group"
