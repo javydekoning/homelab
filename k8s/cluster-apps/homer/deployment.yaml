@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    reloader.stakater.com/auto: "true"
+  labels:
+    app: homer
+  name: homer
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: homer
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: homer
+    spec:
+      containers:
+        - name: homer
+          env:
+            - name: TZ
+              value: Europe/Amsterdam
+          image: b4bz/homer:latest@sha256:f62ec1d6ad657212c47af91489def9d3b014f580d948846c398cc0282eb27909
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            exec:
+              command:
+                - wget
+                - -q  # Quiet mode
+                - localhost:8080
+                - -O
+                - /dev/null
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 3
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+          readinessProbe:
+            exec:
+              command:
+                - wget
+                - -q
+                - localhost:8080
+                - -O
+                - /dev/null
+            initialDelaySeconds: 5
+            failureThreshold: 3
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 2
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+          volumeMounts:
+            - mountPath: /www/assets/config.yml
+              name: config
+              subPath: config.yml
+      restartPolicy: Always
+      volumes:
+        - configMap:
+            defaultMode: 420
+            name: homer-config
+          name: config

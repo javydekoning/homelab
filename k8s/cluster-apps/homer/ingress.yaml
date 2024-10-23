@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    app: homer
+  name: homer
+  namespace: default
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: homer.k8s.javydekoning.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: homer
+            port:
+              number: 8080
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - homer.k8s.javydekoning.com
+    secretName: javydekoning-com-tls
