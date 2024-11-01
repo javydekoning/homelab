@@ -20,7 +20,7 @@ data:
     columns: auto
 
     links:
-      - name: "Github
+      - name: "Github"
         icon: "fas fa-book"
         url: "https://github.com/javydekoning/homelab"
 
