@@ -3,5 +3,5 @@ apiVersion: v2
 version: 1.0.0
 dependencies:
   - name: home-assistant
-    version: 13.5.0
-    repository: https://geek-cookbook.github.io/charts/
+    version: 0.2.85
+    repository: http://pajikos.github.io/home-assistant-helm-chart/
