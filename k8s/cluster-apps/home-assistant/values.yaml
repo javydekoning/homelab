@@ -25,6 +25,6 @@ home-assistant:
           - hass.k8s.javydekoning.com
         secretName: javydekoning-com-tls
 
-  persistance:
+  persistence:
     enabled: true
     existingVolume: "home-assistant-config"
