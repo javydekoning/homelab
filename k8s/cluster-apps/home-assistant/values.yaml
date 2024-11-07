@@ -27,5 +27,4 @@ home-assistant:
 
   persistance:
     enabled: true
-    matchLabels:
-      name: "home-assistant-config"
+    existingVolume: "home-assistant-config"
