@@ -1,7 +1,8 @@
 home-assistant:
   env:
     # -- Set the container timezone
-    - TZ: Europe/Amsterdam
+    - name: TZ
+      value: Europe/Amsterdam
 
   # -- Configures service settings for the chart. Normally this does not need to be modified.
   # @default -- See values.yaml
