@@ -19,6 +19,7 @@ home-assistant:
         servicePort: 8123
         paths:
           - path: /
+            pathType: Prefix
     tls:
       - hosts:
           - hass.k8s.javydekoning.com
