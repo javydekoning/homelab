@@ -20,8 +20,6 @@
   "files.trimTrailingWhitespace": true,
   "ansible.python.interpreterPath": "/usr/bin/python3",
   "vs-kubernetes": {
-    "disable-linters": [
-      "resource-limits"
-    ]
-  },
+    "disable-linters": ["resource-limits"]
+  }
 }
