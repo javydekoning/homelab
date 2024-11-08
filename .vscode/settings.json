@@ -18,5 +18,10 @@
   "editor.rulers": [80, 120],
   "explorer.autoReveal": false,
   "files.trimTrailingWhitespace": true,
-  "ansible.python.interpreterPath": "/usr/bin/python3"
+  "ansible.python.interpreterPath": "/usr/bin/python3",
+  "vs-kubernetes": {
+    "disable-linters": [
+      "resource-limits"
+    ]
+  },
 }
