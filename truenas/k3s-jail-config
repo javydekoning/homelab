@@ -118,15 +118,6 @@ initial_setup=#!/usr/bin/bash
   # Enable HW Acceleration
   apt-get -y install {va-driver-all,ocl-icd-libopencl1,intel-opencl-icd,vainfo,intel-gpu-tools}
 
-  # Run Ansible customization
-  # apt install cron golang pip python3-venv ansible -y
-  # cd ~/homelab/
-  # python3 -m venv .
-  # source ./bin/activate
-  # pip install kubernetes
-  # pip install github3.py
-  # ansible-playbook main.yml
-
 # Usually no need to change systemd_run_default_args
 systemd_run_default_args=--collect
   --property=Delegate=yes

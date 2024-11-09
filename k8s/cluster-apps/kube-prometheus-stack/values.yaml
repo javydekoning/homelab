@@ -1,5 +1,7 @@
 kube-prometheus-stack:
   defaultRules:
+    disabled:
+      NodeMemoryMajorPagesFaults: true
     rules:
       # Disable KubeSchedulerDown, KubeProxyDown, KubeControllerManagerDown
       # because running in k3s
