@@ -9,6 +9,6 @@ spec:
   selector:
     app: intel-gpu-exporter
   ports:
-  - name: metrics
-    port: 8080
-    targetPort: metrics
+    - name: metrics
+      port: 8080
+      targetPort: metrics

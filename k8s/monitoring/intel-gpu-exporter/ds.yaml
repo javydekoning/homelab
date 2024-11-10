@@ -17,17 +17,17 @@ spec:
       nodeSelector:
         intel.feature.node.kubernetes.io/gpu: "true"
       containers:
-      - name: intel-gpu-exporter
-        image: ghcr.io/onedr0p/intel-gpu-exporter:rolling
-        securityContext:
-          privileged: true
-        ports:
-        - name: metrics
-          containerPort: 8080
-        volumeMounts:
-        - name: dev-dri
-          mountPath: /dev/dri
+        - name: intel-gpu-exporter
+          image: ghcr.io/onedr0p/intel-gpu-exporter:rolling
+          securityContext:
+            privileged: true
+          ports:
+            - name: metrics
+              containerPort: 8080
+          volumeMounts:
+            - name: dev-dri
+              mountPath: /dev/dri
       volumes:
-      - name: dev-dri
-        hostPath:
-          path: /dev/dri
+        - name: dev-dri
+          hostPath:
+            path: /dev/dri
