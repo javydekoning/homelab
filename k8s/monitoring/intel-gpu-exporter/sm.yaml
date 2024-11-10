@@ -10,5 +10,5 @@ spec:
     matchLabels:
       app: intel-gpu-exporter
   endpoints:
-  - port: metrics
-    interval: 30s
+    - port: metrics
+      interval: 30s
