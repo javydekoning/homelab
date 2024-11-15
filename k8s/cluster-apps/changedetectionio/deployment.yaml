@@ -48,6 +48,7 @@ spec:
               value: "ws://localhost:3000"
           ports:
             - containerPort: 5000
+              name: http
           volumeMounts:
             - name: datastore
               mountPath: /datastore
