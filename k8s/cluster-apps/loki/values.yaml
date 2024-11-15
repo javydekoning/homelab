@@ -1,5 +1,4 @@
 loki:
-  mode: SingleBinary
   loki:
     auth_enabled: false
     commonConfig:
@@ -15,13 +14,40 @@ loki:
             period: 24h
           object_store: filesystem # we're storing on filesystem so there's no real persistence here.
           schema: v13
+
+  minio:
+    enabled: false
+
+  deploymentMode: SingleBinary
+
   singleBinary:
     replicas: 1
-  read:
-    replicas: 0
+
+  # Zero out replica counts of other deployment modes
   backend:
     replicas: 0
+  read:
+    replicas: 0
   write:
+    replicas: 0
+
+  ingester:
+    replicas: 0
+  querier:
+    replicas: 0
+  queryFrontend:
+    replicas: 0
+  queryScheduler:
+    replicas: 0
+  distributor:
+    replicas: 0
+  compactor:
+    replicas: 0
+  indexGateway:
+    replicas: 0
+  bloomCompactor:
+    replicas: 0
+  bloomGateway:
     replicas: 0
 
   gateway:
