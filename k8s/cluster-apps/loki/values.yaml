@@ -50,11 +50,11 @@ loki:
   bloomGateway:
     replicas: 0
 
-  gateway:
-    deploymentStrategy:
-      type: Recreate
-    enabled: true
-    affinity: null
+  # gateway:
+  #   deploymentStrategy:
+  #     type: Recreate
+  #   enabled: false
+  #   affinity: null
 
   chunksCache:
     connectionLimit: 1024
