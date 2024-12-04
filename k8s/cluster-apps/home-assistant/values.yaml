@@ -3,7 +3,9 @@ home-assistant:
     # -- Set the container timezone
     - name: TZ
       value: Europe/Amsterdam
-
+    # Workaround for https://github.com/home-assistant/core/issues/127966
+    - name: PYTHONPATH
+      value: /config:/config/deps:/config/deps/lib/python3.12/site-packages:/usr/local/lib/python3.12:/usr/local/lib/python3.12/lib-dynload:/usr/local/lib/python3.12/site-packages:/usr/local/lib/python312.zip
   # -- Configures service settings for the chart. Normally this does not need to be modified.
   # @default -- See values.yaml
   service:
