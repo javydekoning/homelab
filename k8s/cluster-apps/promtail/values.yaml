@@ -2,3 +2,6 @@ promtail:
   config:
     logLevel: info
     serverPort: 3101
+    clients:
+      - url: http://loki/loki/api/v1/push
+        tenant_id: 1
