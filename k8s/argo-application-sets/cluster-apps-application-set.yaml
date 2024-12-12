@@ -44,3 +44,8 @@ spec:
           kind: "*"
           jqPathExpressions:
             - ".spec.template.spec.initContainers[].resources"
+        - group: "apps"
+          kind: "StatefulSet"
+          jqPathExpressions:
+            - ".spec.volumeClaimTemplates[].apiVersion"
+            - ".spec.volumeClaimTemplates[].kind"
