@@ -49,7 +49,7 @@ spec:
             - name: config
               mountPath: /data
               subPath: rtorrent-config
-            - name: temporaryRuntimeDirectory
+            - name: temporary_rundir
               mountPath: /var/run/rtorrent
         - name: flood
           image: jesec/flood:latest@sha256:029fd802b125a53dd6289776a1793e815d61f8ee33cbb686cfae951a390963fe
@@ -76,7 +76,7 @@ spec:
             - name: config
               mountPath: /data
               subPath: rtorrent-config
-            - name: temporaryRuntimeDirectory
+            - name: temporary_rundir
               mountPath: /var/run/rtorrent
       volumes:
       - name: downloads
@@ -87,5 +87,5 @@ spec:
         hostPath:
           path: /config
           type: DirectoryOrCreate
-      - name: temporaryRuntimeDirectory
+      - name: temporary_rundir
         emptyDir: {}
