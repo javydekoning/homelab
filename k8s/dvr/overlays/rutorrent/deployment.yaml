@@ -49,9 +49,11 @@ spec:
             - name: config
               mountPath: /data
               subPath: rtorrent-config
+            - name: temporaryRuntimeDirectory
+              mountPath: /var/run/rtorrent
         - name: flood
           image: jesec/flood:latest@sha256:029fd802b125a53dd6289776a1793e815d61f8ee33cbb686cfae951a390963fe
-          args: ["--port", "3000", "--allowedpath", "/data"]
+          args: ["--port", "3000", "--allowedpath", "/data","--rtsocket","/var/run/rtorrent/scgi.socket", "--rtorrent","--rtconfig","/data/rtorrent/.rtorrent.rc"]
           securityContext:
             runAsUser: 911
             runAsGroup: 911
@@ -74,6 +76,8 @@ spec:
             - name: config
               mountPath: /data
               subPath: rtorrent-config
+            - name: temporaryRuntimeDirectory
+              mountPath: /var/run/rtorrent
       volumes:
       - name: downloads
         hostPath:
@@ -83,3 +87,5 @@ spec:
         hostPath:
           path: /config
           type: DirectoryOrCreate
+      - name: temporaryRuntimeDirectory
+        emptyDir: {}
