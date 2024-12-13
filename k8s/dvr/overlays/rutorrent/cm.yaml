@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rutorrent-env-configmap
+  namespace: dvr
+  labels:
+    app: rutorrent
+    argocd.argoproj.io/instance: rutorrent
+data:
+  PGID: "911"
+  PUID: "911"
+  RT_INC_PORT: "51413"
+  RT_LOG_EXECUTE: "false"
+  RT_LOG_LEVEL: info
+  RT_LOG_XMLRPC: "false"
+  RT_RECEIVE_BUFFER_SIZE: 16M
+  RT_SEND_BUFFER_SIZE: 16M
+  RUTORRENT_PORT: "8080"
+  TZ: "Europe/Amsterdam"
+  XMLRPC_PORT: "8000"
+  FLOOD_OPTION_auth: none

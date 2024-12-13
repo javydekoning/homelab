@@ -1,46 +1,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
 namespace: dvr
-
 resources:
-  - ../../base/
-
-images:
-  - name: app
-    newName: ghcr.io/crazy-max/rtorrent-rutorrent
-    newTag: latest@sha256:c0160595188d2353e3fa468bbdb0e38ad0b4a33b3383a2bba746051d93a1b892
-
-configMapGenerator:
-  - name: env-configmap
-    literals:
-      - PUID=911
-      - PGID=911
-      - TZ=Europe/Amsterdam
-      - RUTORRENT_PORT="8080"
-      - RT_INC_PORT="51413"
-      - XMLRPC_PORT="8000"
-      - RT_LOG_XMLRPC="false"
-      - RT_LOG_LEVEL="info"
-      - RT_LOG_EXECUTE="false"
-      - RT_RECEIVE_BUFFER_SIZE="16M"
-      - RT_SEND_BUFFER_SIZE="16M"
-
-namePrefix: rutorrent-
-
-labels:
-  - includeSelectors: true
-    pairs:
-      app: rutorrent
-
-patches:
-  - path: deployment-patch.yaml
-  - path: service-patch.yaml
-  - path: ingress-patch.yaml
-  - patch: |-
-      - op: replace
-        path: /spec/template/spec/containers/0/name
-        value: rutorrent
-    target:
-      kind: Deployment
-      name: deployment
+  - cm.yaml
+  - svc.yaml
+  - deployment.yaml
+  - ingress.yaml
