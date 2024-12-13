@@ -53,7 +53,8 @@ spec:
           image: jesec/flood:latest@sha256:029fd802b125a53dd6289776a1793e815d61f8ee33cbb686cfae951a390963fe
           args: ["--port", "3000", "--allowedpath", "/data"]
           securityContext:
-            runAsUser: 2000
+            runAsUser: 911
+            runAsGroup: 911
           env:
             - name: HOME
               value: /data/rtorrent/
