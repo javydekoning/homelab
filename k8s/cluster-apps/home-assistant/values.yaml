@@ -38,3 +38,8 @@ home-assistant:
   additionalMounts:
     - mountPath: /.dockerenv
       name: dockerenv
+
+  serviceMonitor:
+    enabled: true
+    scrapeInterval: 10s
+    labels: {}
