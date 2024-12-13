@@ -53,7 +53,7 @@ spec:
               mountPath: /var/run/rtorrent
         - name: flood
           image: jesec/flood:latest@sha256:029fd802b125a53dd6289776a1793e815d61f8ee33cbb686cfae951a390963fe
-          args: ["--port", "3000", "--allowedpath", "/data","--rtsocket","/var/run/rtorrent/scgi.socket", "--rtorrent","--rtconfig","/data/rtorrent/.rtorrent.rc"]
+          args: ["--allowedpath", "/data","--allowedpath", "/var/run/rtorrent"]
           securityContext:
             runAsUser: 911
             runAsGroup: 911
@@ -64,6 +64,10 @@ spec:
               value: Europe/Amsterdam
             - name: FLOOD_OPTION_auth
               value: none
+            - name: FLOOD_OPTION_rthost
+              value: rutorrent
+            - name: FLOOD_OPTION_rtport
+              value: "8000"
             - name: PGID
               value: "911"
             - name: PUID
