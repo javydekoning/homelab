@@ -1,19 +1,18 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: flood-ingress
+  name: rutorrent-ingress
   namespace: dvr
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: 8m
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "15"
   labels:
-    app: flood
-    argocd.argoproj.io/instance: flood
+    app: rutorrent
 spec:
   ingressClassName: nginx
   rules:
-    - host: flood.k8s.javydekoning.com
+    - host: rutorrent.k8s.javydekoning.com
       http:
         paths:
           - path: /
@@ -37,8 +36,7 @@ metadata:
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "15"
   labels:
-    app: flood
-    argocd.argoproj.io/instance: flood
+    app: rutorrent
 spec:
   ingressClassName: nginx
   rules:

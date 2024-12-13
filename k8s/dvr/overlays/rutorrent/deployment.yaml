@@ -24,7 +24,6 @@ spec:
             - configMapRef:
                 name: rutorrent-env-configmap
           image: ghcr.io/crazy-max/rtorrent-rutorrent:latest@sha256:c0160595188d2353e3fa468bbdb0e38ad0b4a33b3383a2bba746051d93a1b892
-          restartPolicy: Always
           livenessProbe:
             exec:
               command:
@@ -50,28 +49,28 @@ spec:
             - name: config
               mountPath: /data
               subPath: rtorrent-config
-        - name: flood
-          image: jesec/flood:latest@sha256:029fd802b125a53dd6289776a1793e815d61f8ee33cbb686cfae951a390963fe
-          args: ["--port", "3000", "--allowedpath", "/data"]
-          securityContext:
-            runAsUser: 911
-            runAsGroup: 911
-            fsGroup: 911
-          env:
-            - name: HOME
-              value: /data/rtorrent/
-            - name: TZ
-              value: Europe/Amsterdam
-            - name: FLOOD_OPTION_auth
-              value: none
-          ports:
-            - containerPort: 3000
-              name: http-flood
-              protocol: TCP
-          volumeMounts:
-            - name: config
-              mountPath: /data
-              subPath: rtorrent-config
+        # - name: flood
+        #   image: jesec/flood:latest@sha256:029fd802b125a53dd6289776a1793e815d61f8ee33cbb686cfae951a390963fe
+        #   args: ["--port", "3000", "--allowedpath", "/data"]
+        #   env:
+        #     - name: HOME
+        #       value: /data/rtorrent/
+        #     - name: TZ
+        #       value: Europe/Amsterdam
+        #     - name: FLOOD_OPTION_auth
+        #       value: none
+        #     - name: PGID
+        #       value: "911"
+        #     - name: PUID
+        #       value: "911"
+        #   ports:
+        #     - containerPort: 3000
+        #       name: http-flood
+        #       protocol: TCP
+        #   volumeMounts:
+        #     - name: config
+        #       mountPath: /data
+        #       subPath: rtorrent-config
       volumes:
       - name: downloads
         hostPath:
