@@ -28,7 +28,6 @@ home-assistant:
     enabled: true
     existingVolume: "home-assistant-config"
 
-
   additionalVolumes:
     - hostPath:
         path: /config/hass/.dockerenv
