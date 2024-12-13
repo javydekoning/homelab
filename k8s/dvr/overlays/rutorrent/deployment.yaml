@@ -64,10 +64,12 @@ spec:
               value: Europe/Amsterdam
             - name: FLOOD_OPTION_auth
               value: none
-            - name: FLOOD_OPTION_rthost
-              value: rutorrent
-            - name: FLOOD_OPTION_rtport
-              value: "8000"
+            # - name: FLOOD_OPTION_rthost
+            #   value: rutorrent
+            # - name: FLOOD_OPTION_rtport
+            #   value: "8000"
+            - name: FLOOD_OPTION_rtsocket
+              value: "/var/run/rtorrent/scgi.socket"
             - name: PGID
               value: "911"
             - name: PUID
