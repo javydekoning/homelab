@@ -33,8 +33,3 @@ rules:
   trailing-spaces: enable
   truthy:
     level: warning
-
-ignore: |
-  .github/stale.yml
-  /k8s/cluster-apps/smokeping/templates/common.yaml
-  /k8s/cluster-apps/smokeping/templates/configmap.yaml
