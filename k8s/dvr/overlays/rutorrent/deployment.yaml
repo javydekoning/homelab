@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: rutorrent-deployment
-    namespace: dvr
-    labels:
-      app: rutorrent
-      argocd.argoproj.io/instance: rutorrent
+  name: rutorrent-deployment
+  namespace: dvr
+  labels:
+    app: rutorrent
+    argocd.argoproj.io/instance: rutorrent
 spec:
   replicas: 1
   strategy:
@@ -53,7 +53,7 @@ spec:
               mountPath: /var/run/rtorrent
         - name: flood
           image: jesec/flood:latest@sha256:029fd802b125a53dd6289776a1793e815d61f8ee33cbb686cfae951a390963fe
-          args: ["--allowedpath", "/data","--allowedpath", "/var/run/rtorrent"]
+          args: ["--allowedpath", "/data", "--allowedpath", "/var/run/rtorrent"]
           securityContext:
             runAsUser: 911
             runAsGroup: 911
@@ -77,13 +77,13 @@ spec:
             - name: temporary-rundir
               mountPath: /var/run/rtorrent
       volumes:
-      - name: downloads
-        hostPath:
-          path: /downloads
-          type: DirectoryOrCreate
-      - name: config
-        hostPath:
-          path: /config
-          type: DirectoryOrCreate
-      - name: temporary-rundir
-        emptyDir: {}
+        - name: downloads
+          hostPath:
+            path: /downloads
+            type: DirectoryOrCreate
+        - name: config
+          hostPath:
+            path: /config
+            type: DirectoryOrCreate
+        - name: temporary-rundir
+          emptyDir: {}
