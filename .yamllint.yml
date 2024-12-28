@@ -5,9 +5,9 @@ ignore:
   - mega-linter.yml
 
 yaml-files:
-  - '*.yaml'
-  - '*.yml'
-  - '.yamllint'
+  - "*.yaml"
+  - "*.yml"
+  - ".yamllint"
 
 rules:
   line-length:
