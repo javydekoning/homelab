@@ -4,7 +4,7 @@ metadata:
   name: intel-gpu-exporter
   namespace: monitoring
   labels:
-    release: prometheus # Adjust this based on your Prometheus operator configuration
+    release: prometheus  # Adjust this based on your Prometheus operator configuration
 spec:
   selector:
     matchLabels:

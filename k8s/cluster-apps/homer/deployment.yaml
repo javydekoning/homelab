@@ -29,7 +29,7 @@ spec:
             exec:
               command:
                 - wget
-                - -q # Quiet mode
+                - -q
                 - localhost:8080
                 - -O
                 - /dev/null

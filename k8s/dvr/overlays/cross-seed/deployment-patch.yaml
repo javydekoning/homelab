@@ -25,4 +25,3 @@ spec:
               readOnly: true
             - name: downloads
               mountPath: /downloads
-#/downloads/config/rtorrent-config/rtorrent/rtorrent_sess
