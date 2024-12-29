@@ -22,10 +22,10 @@ spec:
           imagePullPolicy: IfNotPresent
           args: [
               "--auth", "none",
-              "--user-data-dir", "/config/.vscode",
-              "--extensions-dir", "/config/.vscode",
+              "--user-data-dir", "/code/.vscode",
+              "--extensions-dir", "/code/.vscode",
               "--port", "8080",
-              "/config"
+              "/code"
             ]
           ports:
             - name: http
@@ -41,11 +41,11 @@ spec:
               port: http
           volumeMounts:
             - name: config
-              mountPath: /config
+              mountPath: /code
             - name: conffiles
-              mountPath: /home/coder/config
+              mountPath: /code/config
             - name: homelab
-              mountPath: /home/coder/homelab
+              mountPath: /code/homelab
       volumes:
         - name: config
           hostPath:
