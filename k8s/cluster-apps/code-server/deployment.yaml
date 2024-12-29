@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: code-server
+  namespace: default
+  labels:
+    app: code-server
+spec:
+  selector:
+    matchLabels:
+      app: code-server
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: code-server
+    spec:
+      containers:
+        - name: code-server
+          image: ghcr.io/coder/code-server:latest@sha256:6b8c0e944caec80057e71d2c2f352cee38fe00ae4b7515fc4458eb300844f699
+          imagePullPolicy: IfNotPresent
+          args: [
+              "--auth", "none",
+              "--user-data-dir", "/config/.vscode",
+              "--extensions-dir", "/config/.vscode",
+              "--port", "12321",
+              "/config"
+            ]
+          ports:
+            - containerPort: 12321
+          volumeMounts:
+            - name: config
+              mountPath: /config
+      volumes:
+        - name: config
+          hostPath:
+            path: /config/code-server
+            type: DirectoryOrCreate
+      restartPolicy: Always
