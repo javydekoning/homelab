@@ -28,13 +28,27 @@ spec:
               "/config"
             ]
           ports:
-            - containerPort: 12321
+            - name: http
+              containerPort: 8080
+              protocol: TCP
           volumeMounts:
             - name: config
               mountPath: /config
+            - name: conffiles
+              mountPath: /home/coder/config
+            - name: homelab
+              mountPath: /home/coder/homelab
       volumes:
         - name: config
           hostPath:
             path: /config/code-server
+            type: DirectoryOrCreate
+        - name: conffiles
+          hostPath:
+            path: /config
+            type: DirectoryOrCreate
+        - name: homelab
+          hostPath:
+            path: /root/homelab
             type: DirectoryOrCreate
       restartPolicy: Always
