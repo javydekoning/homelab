@@ -15,11 +15,18 @@
   "editor.guides.highlightActiveBracketPair": true,
   "editor.hover.delay": 1500,
   "editor.stickyScroll.enabled": false,
-  "editor.rulers": [80, 120],
+  "editor.rulers": [
+    80,
+    120
+  ],
   "explorer.autoReveal": false,
   "files.trimTrailingWhitespace": true,
   "ansible.python.interpreterPath": "/usr/bin/python3",
   "vs-kubernetes": {
-    "disable-linters": ["resource-limits"]
-  }
+    "disable-linters": [
+      "resource-limits"
+    ]
+  },
+  "workbench.iconTheme": "catppuccin-macchiato",
+  "workbench.colorTheme": "Catppuccin Macchiato"
 }
