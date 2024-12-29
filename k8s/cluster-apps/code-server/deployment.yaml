@@ -18,7 +18,7 @@ spec:
     spec:
       securityContext:
         runAsUser: 0
-        runAsGroep: 0
+        runAsGroup: 0
       containers:
         - name: code-server
           image: ghcr.io/coder/code-server:latest@sha256:6b8c0e944caec80057e71d2c2f352cee38fe00ae4b7515fc4458eb300844f699
