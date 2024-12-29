@@ -24,7 +24,7 @@ spec:
               "--auth", "none",
               "--user-data-dir", "/config/.vscode",
               "--extensions-dir", "/config/.vscode",
-              "--port", "12321",
+              "--port", "8080",
               "/config"
             ]
           ports:
