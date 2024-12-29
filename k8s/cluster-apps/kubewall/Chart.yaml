@@ -1,0 +1,7 @@
+name: kubewall
+apiVersion: v2
+version: 1.0.0
+dependencies:
+  - name: kubewall
+    version: 0.0.10
+    repository: oci://ghcr.io/kubewall/charts/kubewall

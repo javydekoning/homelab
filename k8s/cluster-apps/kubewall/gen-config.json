@@ -1,0 +1,6 @@
+[
+  {
+    "name": "kubewall",
+    "namespace": "kubewall-system"
+  }
+]
