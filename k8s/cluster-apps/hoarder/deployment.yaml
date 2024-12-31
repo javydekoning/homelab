@@ -31,7 +31,7 @@ spec:
           subPath: hoarder
 
       - name: chrome
-        image: eu.gcr.io/zenika-hub/alpine-chrome:latest@sha256:785439f3d4879f8fcb60a5b563084a990ae1b46d403430bd717e8c3c6b7709a1
+        image: zenika/alpine-chrome:latest@sha256:785439f3d4879f8fcb60a5b563084a990ae1b46d403430bd717e8c3c6b7709a1
         args:
         - --no-sandbox
         - --disable-gpu
@@ -44,7 +44,7 @@ spec:
           name: debugging
 
       - name: meilisearch
-        image: getmeili/meilisearch:v1.11.1
+        image: getmeili/meilisearch:latest@sha256:27f831c41cb735a9c2314b61a33a14552367af6b3e4bcf840f21fd0e64e37a8a
         ports:
         - containerPort: 7700
           name: http
