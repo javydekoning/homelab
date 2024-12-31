@@ -1,6 +1,15 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/kashalls/kromgo/main/config.schema.json
+prometheus: 
 badge:
   font: Verdana.ttf # Relative to /kromgo - Verdana.ttf is available in the container
   size: 12
 metrics:
-  - name: kubernetes_build_version
+  - name: kubernetes_version
     query: kubernetes_build_info{service="kubernetes"}
+    label: git_version
+    title: Kubernetes
+  - name: zfs_health
+    query: node_zfs_zpool_state{zpool="main"} == 1
+    label: state
+    title: zfs zpool main
