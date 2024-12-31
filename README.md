@@ -14,8 +14,8 @@ _... managed with [ArgoCD](https://argo-cd.readthedocs.io/en/stable/), Ansible, 
 <div align="center">
 
 [![MegaLinter](https://img.shields.io/github/actions/workflow/status/javydekoning/homelab/.github/workflows/mega-linter.yml?branch=main&style=flat&logo=GitHub&logoColor=white&label=Linter)](https://github.com/javydekoning/homelab/actions?query=workflow%3AMegaLinter+branch%3Amain)
-![GitHub Release](https://img.shields.io/github/v/release/k3s-io/k3s?style=flat&logo=github&logoColor=white&label=Kubernetes)
-
+[![Kubernetes](https://kromgo.lab.javydekoning.com/kubernetes_version?format=badge)](https://kubernetes.io)
+[![zfs](https://kromgo.lab.javydekoning.com/zfs_health?format=badge)](https://kubernetes.io)
 ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m796359034-bf4a20fb15ecb491d5f31727?style=flat&logo=Ubiquiti&logoColor=white&label=Uptime%20(30%20days))
 ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m796359034-bf4a20fb15ecb491d5f31727?style=flat&logo=plex&logoColor=white&label=Plex)
 ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m796359034-bf4a20fb15ecb491d5f31727?style=flat&logo=jellyfin&logoColor=white&label=Jellyfin)
