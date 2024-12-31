@@ -3,3 +3,4 @@ resources:
   - service.yaml
   - ingress.yaml
   - ns.yaml
+  - secret.yaml

@@ -23,8 +23,20 @@ spec:
           value: "http://localhost:7700"
         - name: BROWSER_WEB_URL
           value: "http://localhost:9222"
+        - name: NEXTAUTH_URL
+          value: "https://hoarder.k8s.javydekoning.com"
         - name: DATA_DIR
           value: "/data"
+        - name: NEXTAUTH_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: hoarder-credentials
+              key: NEXTAUTH_SECRET
+        - name: MEILI_MASTER_KEY
+          valueFrom:
+            secretKeyRef:
+              name: hoarder-credentials
+              key: MEILI_MASTER_KEY
         volumeMounts:
         - name: config
           mountPath: /data
