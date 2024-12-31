@@ -13,3 +13,7 @@ metrics:
     query: node_zfs_zpool_state{zpool="main"} == 1
     label: state
     title: zfs pool main
+  - name: current_power_consumption_watts
+    query: hass_sensor_power_w{entity="sensor.homelab_power"}
+    suffix: "W"
+    title: Homelab Power Consumption
