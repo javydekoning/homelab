@@ -23,12 +23,17 @@ spec:
         - name: code-server
           image: ghcr.io/coder/code-server:latest@sha256:6b8c0e944caec80057e71d2c2f352cee38fe00ae4b7515fc4458eb300844f699
           imagePullPolicy: IfNotPresent
-          args: [
-              "--auth", "none",
-              "--user-data-dir", "/code/.vscode",
-              "--extensions-dir", "/code/.vscode",
-              "--port", "8080",
-              "/code"
+          args:
+            [
+              "--auth",
+              "none",
+              "--user-data-dir",
+              "/code/.vscode",
+              "--extensions-dir",
+              "/code/.vscode",
+              "--port",
+              "8080",
+              "/code",
             ]
           ports:
             - name: http
