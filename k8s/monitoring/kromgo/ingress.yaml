@@ -9,10 +9,10 @@ spec:
   ingressClassName: nginx-ext
   tls:
     - hosts:
-        - kromgo.javydekoning.com
+        - kromgo.lab.javydekoning.com
       secretName: javydekoning-com-tls
   rules:
-    - host: kromgo.javydekoning.com
+    - host: kromgo.lab.javydekoning.com
       http:
         paths:
           - path: /
