@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kromgo-ingress
+  namespace: monitoring
+  labels:
+    app: kromgo
+spec:
+  ingressClassName: nginx-ext
+  tls:
+    - hosts:
+        - kromgo.javydekoning.com
+      secretName: javydekoning-com-tls
+  rules:
+    - host: kromgo.javydekoning.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kromgo
+                port:
+                  name: http

@@ -1,0 +1,6 @@
+badge:
+  font: Verdana.ttf # Relative to /kromgo - Verdana.ttf is available in the container
+  size: 12
+metrics:
+  - name: kubernetes_build_version
+    query: kubernetes_build_info{service="kubernetes"}

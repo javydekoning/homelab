@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kromgo
+  namespace: observability
+spec:
+  selector:
+    matchLabels:
+      app: kromgo
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kromgo
+    spec:
+      containers:
+      - name: kromgo
+        image: ghcr.io/kashalls/kromgo:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          name: http
+        volumeMounts:
+        - name: config
+          mountPath: /kromgo/config.yaml
+          subPath: config.yaml
+      volumes:
+      - name: config
+        configMap:
+          name: kromgo-configmap
