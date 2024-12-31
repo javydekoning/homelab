@@ -13,60 +13,60 @@ spec:
         app: hoarder
     spec:
       containers:
-      - name: hoarder
-        image: ghcr.io/hoarder-app/hoarder:latest@sha256:ddd7e8198b5d8289414e2cbc352bdeeaac2a40c26df21f1576744e779f9c9967
-        ports:
-        - containerPort: 3000
-          name: http
-        env:
-        - name: MEILI_ADDR
-          value: "http://localhost:7700"
-        - name: BROWSER_WEB_URL
-          value: "http://localhost:9222"
-        - name: NEXTAUTH_URL
-          value: "https://hoarder.k8s.javydekoning.com"
-        - name: DATA_DIR
-          value: "/data"
-        - name: NEXTAUTH_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: hoarder-credentials
-              key: NEXTAUTH_SECRET
-        - name: MEILI_MASTER_KEY
-          valueFrom:
-            secretKeyRef:
-              name: hoarder-credentials
-              key: MEILI_MASTER_KEY
-        volumeMounts:
-        - name: config
-          mountPath: /data
-          subPath: hoarder
+        - name: hoarder
+          image: ghcr.io/hoarder-app/hoarder:latest@sha256:ddd7e8198b5d8289414e2cbc352bdeeaac2a40c26df21f1576744e779f9c9967
+          ports:
+            - containerPort: 3000
+              name: http
+          env:
+            - name: MEILI_ADDR
+              value: "http://localhost:7700"
+            - name: BROWSER_WEB_URL
+              value: "http://localhost:9222"
+            - name: NEXTAUTH_URL
+              value: "https://hoarder.k8s.javydekoning.com"
+            - name: DATA_DIR
+              value: "/data"
+            - name: NEXTAUTH_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: hoarder-credentials
+                  key: NEXTAUTH_SECRET
+            - name: MEILI_MASTER_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: hoarder-credentials
+                  key: MEILI_MASTER_KEY
+          volumeMounts:
+            - name: config
+              mountPath: /data
+              subPath: hoarder
 
-      - name: chrome
-        image: zenika/alpine-chrome:latest@sha256:785439f3d4879f8fcb60a5b563084a990ae1b46d403430bd717e8c3c6b7709a1
-        args:
-        - --no-sandbox
-        - --disable-gpu
-        - --disable-dev-shm-usage
-        - --remote-debugging-address=0.0.0.0
-        - --remote-debugging-port=9222
-        - --hide-scrollbars
-        ports:
-        - containerPort: 9222
-          name: debugging
+        - name: chrome
+          image: zenika/alpine-chrome:latest@sha256:785439f3d4879f8fcb60a5b563084a990ae1b46d403430bd717e8c3c6b7709a1
+          args:
+            - --no-sandbox
+            - --disable-gpu
+            - --disable-dev-shm-usage
+            - --remote-debugging-address=0.0.0.0
+            - --remote-debugging-port=9222
+            - --hide-scrollbars
+          ports:
+            - containerPort: 9222
+              name: debugging
 
-      - name: meilisearch
-        image: getmeili/meilisearch:latest@sha256:27f831c41cb735a9c2314b61a33a14552367af6b3e4bcf840f21fd0e64e37a8a
-        ports:
-        - containerPort: 7700
-          name: http
-        env:
-        - name: MEILI_NO_ANALYTICS
-          value: "true"
-        volumeMounts:
-        - name: config
-          mountPath: /meili_data
-          subPath: meilisearch
+        - name: meilisearch
+          image: getmeili/meilisearch:latest@sha256:27f831c41cb735a9c2314b61a33a14552367af6b3e4bcf840f21fd0e64e37a8a
+          ports:
+            - containerPort: 7700
+              name: http
+          env:
+            - name: MEILI_NO_ANALYTICS
+              value: "true"
+          volumeMounts:
+            - name: config
+              mountPath: /meili_data
+              subPath: meilisearch
 
       volumes:
         - name: config
