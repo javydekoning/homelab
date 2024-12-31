@@ -5,7 +5,7 @@
 _... Powered by_ 📦
 
 ![k8s k3s argo logos](https://raw.githubusercontent.com/javydekoning/homelab/main/docs/src/assets/logo.webp)
-_... managed with [ArgoCD](https://argo-cd.readthedocs.io/en/stable/), Ansible, Renovate, and GitHub Actions_ 🤖
+_... managed with [ArgoCD](https://argo-cd.readthedocs.io/en/stable/), Truenas, Renovate, and GitHub Actions_ 🤖
 
 </div>
 
@@ -23,11 +23,7 @@ _... managed with [ArgoCD](https://argo-cd.readthedocs.io/en/stable/), Ansible, 
 
 ## Setup
 
-Today is automated via Ansible. Make sure to:
-- Set node IP in `inventory`.
-- Enable ssh key auth using `ssh-copy-id root@<ip>`
-
-To kick of the configuration:
+Today is automated via Jailmaker. Bootstrap script can be found in `truenas/k3s-jail-config`.
 
 ```sh
 ansible-playbook play.yml
@@ -45,7 +41,7 @@ Create an IAM user with the following policy attached:
       "Sid": "Get",
       "Effect": "Allow",
       "Action": "secretsmanager:GetSecretValue",
-      "Resource": "arn:aws:secretsmanager:*:012345678912:secret:k8s*"
+      "Resource": "arn:aws:secretsmanager:*:<AWS account id>:secret:k8s*"
     },
     {
       "Sid": "List",
@@ -62,20 +58,15 @@ in AWS Secrets Manager.
 
 ```sh
 # To bootstrap, we add AWS credentials via one secret:
+printf "%s" "Enter ACCESS_KEY: "
+read ACCESS_KEY
+
+printf "%s" "Enter SECRET_KEY: "
+read SECRET_KEY
+
+kubectl create ns external-secrets
 kubectl create secret generic awssm-secret -n external-secrets \
   --from-literal=access-key=$ACCESS_KEY --from-literal=secret-access-key=$SECRET_KEY
 ```
 
-Today, [cert-manager](https://cert-manager.io/) and
-[ddns-route53](https://crazymax.dev/ddns-route53/) rely on a secret in AWS
-Secrets Manager in the following format:
-
-```json
-{
-  "HOSTED_ZONE_ID": "<>",
-  "RECORD_NAME": "<>",
-  "AWS_ACCESS_KEY_ID": "<>",
-  "AWS_SECRET_ACCESS_KEY": "<>",
-  "AWS_DEFAULT_REGION": "eu-west-1"
-}
-```
+Multiple services like Cert-Manager and DDNS rely on external secrets that are bootstrapped via the above.
