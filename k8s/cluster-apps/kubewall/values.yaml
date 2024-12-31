@@ -1,6 +1,0 @@
-kubewall:
-  tls:
-    # Name of the Kubernetes secret that contains the TLS certificate and key
-    secretName: "javydekoning-com-tls"
-    # The hostname for TLS (ensure DNS resolution for this hostname)
-    host: kubewall.k8s.javydekoning.com
