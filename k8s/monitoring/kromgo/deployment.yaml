@@ -14,17 +14,17 @@ spec:
         app: kromgo
     spec:
       containers:
-      - name: kromgo
-        image: ghcr.io/kashalls/kromgo:latest
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 8080
-          name: http
-        volumeMounts:
-        - name: config
-          mountPath: /kromgo/config.yaml
-          subPath: config.yaml
+        - name: kromgo
+          image: ghcr.io/kashalls/kromgo:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: http
+          volumeMounts:
+            - name: config
+              mountPath: /kromgo/config.yaml
+              subPath: config.yaml
       volumes:
-      - name: config
-        configMap:
-          name: kromgo-configmap
+        - name: config
+          configMap:
+            name: kromgo-configmap
