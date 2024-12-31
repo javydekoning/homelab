@@ -67,7 +67,7 @@ spec:
         - name: config
           mountPath: /meili_data
           subPath: meilisearch
-      
+
       volumes:
         - name: config
           hostPath:
