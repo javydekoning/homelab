@@ -14,8 +14,8 @@ _... managed with [ArgoCD](https://argo-cd.readthedocs.io/en/stable/), Ansible, 
 <div align="center">
 
 [![MegaLinter](https://img.shields.io/github/actions/workflow/status/javydekoning/homelab/.github/workflows/mega-linter.yml?branch=main&style=flat&logo=GitHub&logoColor=white&label=Linter)](https://github.com/javydekoning/homelab/actions?query=workflow%3AMegaLinter+branch%3Amain)
-[![Kubernetes](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.lab.javydekoning.com%2Fkubernetes_version&style=for-the-badge&logo=kubernetes&logoColor=white&color=blue&label=%20)](https://kubernetes.io)
-[![zfs](https://kromgo.lab.javydekoning.com/zfs_health?format=badge)](https://kubernetes.io)
+[![Kubernetes](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.lab.javydekoning.com%2Fkubernetes_version&style=for-the-badge&logo=kubernetes&logoColor=white&color=blue&style=flat&label=Kubernetes)](https://kubernetes.io)
+[![Truenas zpool main](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.lab.javydekoning.com%2Fzfs_health&style=for-the-badge&logo=truenas&logoColor=white&color=blue&style=flat&label=Truenas%20zpool%20main)](https://kubernetes.io)
 ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m796359034-bf4a20fb15ecb491d5f31727?style=flat&logo=Ubiquiti&logoColor=white&label=Uptime%20(30%20days))
 ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m796359034-bf4a20fb15ecb491d5f31727?style=flat&logo=plex&logoColor=white&label=Plex)
 ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m796359034-bf4a20fb15ecb491d5f31727?style=flat&logo=jellyfin&logoColor=white&label=Jellyfin)

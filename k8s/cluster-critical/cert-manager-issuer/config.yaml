@@ -37,6 +37,7 @@ spec:
   dnsNames:
     - "*.javydekoning.com"
     - "*.k8s.javydekoning.com"
+    - "*.lab.javydekoning.com"
 ---
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
