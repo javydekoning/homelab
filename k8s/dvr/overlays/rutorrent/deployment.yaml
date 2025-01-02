@@ -57,15 +57,9 @@ spec:
           securityContext:
             runAsUser: 911
             runAsGroup: 911
-          env:
-            - name: HOME
-              value: /data/rtorrent/
-            - name: TZ
-              value: Europe/Amsterdam
-            - name: FLOOD_OPTION_auth
-              value: none
-            - name: FLOOD_OPTION_rtsocket
-              value: "/var/run/rtorrent/scgi.socket"
+          envFrom:
+            - configMapRef:
+                name: flood-envs
           ports:
             - containerPort: 3000
               name: http-flood

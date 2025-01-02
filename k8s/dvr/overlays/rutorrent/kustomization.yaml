@@ -10,3 +10,6 @@ configMapGenerator:
   - envs:
       - ./resources/rutorrent.env
     name: rutorrent-envs
+  - envs:
+      - ./resources/flood.env
+    name: flood-envs

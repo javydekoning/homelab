@@ -1,3 +1,8 @@
 resources:
   - cronjob.yaml
   - secret.yaml
+
+configMapGenerator:
+  - envs:
+      - ./resources/ddns-route53.env
+    name: ddns-route53-envs

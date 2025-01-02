@@ -14,6 +14,9 @@ spec:
             - name: ddns-route53
               image: ghcr.io/crazy-max/ddns-route53:latest@sha256:466159d8f2b271f024b1950f72e56d909facee658ed8be693a875b9b86ea03a6
               imagePullPolicy: IfNotPresent
+              envFrom:
+                - configMapRef:
+                    name: ddns-route53-envs
               env:
                 - name: TZ
                   value: "Europe/Amsterdam"
