@@ -53,7 +53,7 @@ spec:
             sizeLimit: 1Gi
         - name: config-map
           configMap:
-            name: frigate-config
+            name: frigate-configmap
         - name: config
           emptyDir: {}
         - name: shm
