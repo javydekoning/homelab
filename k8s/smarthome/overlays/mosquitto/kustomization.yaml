@@ -3,7 +3,6 @@ kind: Kustomization
 
 resources:
   - ../../base/
-  - config.yaml
 
 images:
   - name: app
@@ -17,6 +16,10 @@ configMapGenerator:
     namespace: smarthome
     literals:
       - TZ=Europe/Amsterdam
+  - name: mosquitto-configmap
+    files:
+      - mosquitto.conf=./resources/mosquitto.conf
+
 
 namePrefix: mosquitto-
 

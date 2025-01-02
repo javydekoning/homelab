@@ -25,6 +25,6 @@ spec:
       volumes:
         - name: config
           configMap:
-            name: mosquitto-config
+            name: mosquitto-configmap
         - name: log
           emptyDir: {}

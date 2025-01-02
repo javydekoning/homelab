@@ -1,0 +1,83 @@
+# yaml-language-server: $schema=https://frigate.k8s.javydekoning.com/api/config/schema.json
+
+mqtt:
+  host: mosquitto-service.smarthome
+
+detectors:
+  ov:
+    type: openvino
+    device: AUTO
+    model:
+      path: /openvino-model/ssdlite_mobilenet_v2.xml
+
+model:
+  width: 300
+  height: 300
+  input_tensor: nhwc
+  input_pixel_format: bgr
+  labelmap_path: /openvino-model/coco_91cl_bkgr.txt
+
+# Include all cameras with motion in last 30s
+birdseye:
+  enabled: True
+  mode: motion
+
+go2rtc:
+  streams:
+    oprit:
+      - rtspx://192.168.1.1:7441/qo3vm7pNglLzWvBf
+    oprit_640:
+      - rtspx://192.168.1.1:7441/rMVw6gDEZUVdxrXU
+cameras:
+  oprit:
+    audio:
+      enabled: False
+    ffmpeg:
+      hwaccel_args: preset-vaapi
+      inputs:
+        - path: rtsp://127.0.0.1:8554/oprit
+          input_args: preset-rtsp-restream
+          roles:
+            - record
+        - path: rtsp://127.0.0.1:8554/oprit_640
+          input_args: preset-rtsp-restream
+          roles:
+            - detect
+      output_args:
+        record: preset-record-ubiquiti
+  E1ProBabyRoom:
+    audio:
+      enabled: True
+      listen:
+        - crying
+    ffmpeg:
+      hwaccel_args: preset-vaapi
+      input_args: preset-rtsp-generic
+      output_args:
+        record: preset-record-generic-audio-aac
+      inputs:
+        - path: rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@kaicam.javydekoning.com:554/h264Preview_01_main
+          roles:
+            - record
+        - path: rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@kaicam.javydekoning.com:554/h264Preview_01_sub
+          roles:
+            - audio
+            - detect
+    onvif:
+      host: kaicam.javydekoning.com
+      port: 8000
+      user: "{FRIGATE_RTSP_USER}"
+      password: "{FRIGATE_RTSP_PASSWORD}"
+    detect:
+      width: 640
+      height: 360
+      fps: 5
+
+    record:
+      enabled: True
+      events:
+        retain:
+          default: 3
+          mode: motion
+          objects:
+            crying: 3
