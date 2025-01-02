@@ -4,7 +4,7 @@ metadata:
   labels:
     app: homer
   name: homer
-  namespace: default
+  namespace: homer
 spec:
   ingressClassName: nginx
   rules:
