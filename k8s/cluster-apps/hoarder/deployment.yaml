@@ -56,7 +56,7 @@ spec:
               name: debugging
 
         - name: meilisearch
-          image: getmeili/meilisearch:latest@sha256:27f831c41cb735a9c2314b61a33a14552367af6b3e4bcf840f21fd0e64e37a8a
+          image: getmeili/meilisearch:latest@sha256:5881df073eea3e0f0eb743524c33edc829f1fe559b9b538c7ebc82d1c71b8357
           ports:
             - containerPort: 7700
               name: http
