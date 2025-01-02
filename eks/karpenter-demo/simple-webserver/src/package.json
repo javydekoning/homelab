@@ -11,7 +11,7 @@
   "dependencies": {
     "@types/pino-http": "^5.4.2",
     "pino-http": "^10.0.0",
-    "pretty-print-json": "3.0.3",
+    "pretty-print-json": "3.0.4",
     "ts-node": "^10.2.0"
   },
   "devDependencies": {
