@@ -2,6 +2,7 @@
   "recommendations": [
     "catppuccin.catppuccin-vsc",
     "catppuccin.catppuccin-vsc-icons",
+    "irongeek.vscode-env",
     "esbenp.prettier-vscode",
     "github.vscode-github-actions",
     "ms-azuretools.vscode-docker",
