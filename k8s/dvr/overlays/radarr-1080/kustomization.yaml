@@ -5,12 +5,11 @@ namespace: dvr
 
 resources:
   - ../../base/
-  - ./ingress-ext.yaml
 
 images:
   - name: app
-    newName: fallenbagel/jellyseerr
-    newTag: latest@sha256:a324fa4d81cce73116801bee3c50b632f3457c0ca0ad31aa692c640e22f50dea
+    newName: ghcr.io/linuxserver/radarr
+    newTag: latest@sha256:eb894bd26fd3fb29981bf91b140834417ce2ed28ab8217d0ce121db5c460f39a
 
 configMapGenerator:
   - name: env-configmap
@@ -18,14 +17,13 @@ configMapGenerator:
       - PUID=911
       - PGID=911
       - TZ=Europe/Amsterdam
-      - LOG_LEVEL=debug
 
-namePrefix: jellyseerr-
+namePrefix: radarr-1080-
 
 labels:
   - includeSelectors: true
     pairs:
-      app: jellyseerr
+      app: radarr-1080
 
 patches:
   - path: deployment-patch.yaml
@@ -34,7 +32,7 @@ patches:
   - patch: |-
       - op: replace
         path: /spec/template/spec/containers/0/name
-        value: jellyseerr
+        value: radarr-1080
     target:
       kind: Deployment
       name: deployment

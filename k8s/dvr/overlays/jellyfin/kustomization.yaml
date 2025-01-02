@@ -5,6 +5,7 @@ namespace: dvr
 
 resources:
   - ../../base/
+  - ./ingress-ext.yaml
 
 images:
   - name: app
@@ -14,7 +15,7 @@ images:
 configMapGenerator:
   - name: env-configmap
     literals:
-      - JELLYFIN_PublishedServerUrl=https://jellyfin.k8s.javydekoning.com
+      - JELLYFIN_PublishedServerUrl=https://jf.lab.javydekoning.com
       - TZ=Europe/Amsterdam
 
 namePrefix: jellyfin-

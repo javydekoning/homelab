@@ -9,8 +9,8 @@ spec:
         - name: app
           ports:
             - name: http
-              containerPort: 5055
+              containerPort: 7878
           volumeMounts:
             - name: config
-              mountPath: /app/config
-              subPath: jellyseerr
+              mountPath: /config
+              subPath: radarr-1080
