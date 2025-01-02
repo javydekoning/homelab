@@ -45,5 +45,5 @@ spec:
               name: gatus-config
       volumes:
         - configMap:
-            name: gatus
+            name: gatus-configmap
           name: gatus-config
