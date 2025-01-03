@@ -20,7 +20,6 @@ configMapGenerator:
     files:
       - mosquitto.conf=./resources/mosquitto.conf
 
-
 namePrefix: mosquitto-
 
 labels:
