@@ -28,16 +28,6 @@ home-assistant:
     enabled: true
     existingVolume: "home-assistant-config"
 
-  additionalVolumes:
-    - hostPath:
-        path: /config/hass/.dockerenv
-        type: FileOrCreate
-      name: dockerenv
-
-  additionalMounts:
-    - mountPath: /.dockerenv
-      name: dockerenv
-
   serviceMonitor:
     enabled: true
     scrapeInterval: 10s
