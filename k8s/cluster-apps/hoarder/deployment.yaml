@@ -43,7 +43,7 @@ spec:
               subPath: hoarder
 
         - name: chrome
-          image: zenika/alpine-chrome:latest@sha256:e423ce79879fdceecb8481699312b90976a9bc91162814807e578086514d0a65
+          image: zenika/alpine-chrome:latest@sha256:276027b0c5bd71ab8c0b437cbed0e190e4b58737a1967649a1599387c0fa3f24
           args:
             - --no-sandbox
             - --disable-gpu
