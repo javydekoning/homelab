@@ -52,7 +52,7 @@ spec:
             - name: temporary-rundir
               mountPath: /var/run/rtorrent
         - name: flood
-          image: jesec/flood:latest@sha256:88259642fc59fbc9a023fbd73db1da50e2439320942d1683aa972ac747c9932d
+          image: jesec/flood:latest@sha256:e9c8a3fd460ad1e81b47e7e17ec257a998f4e92e2b8c4935190d63c28e5b9b50
           args: ["--allowedpath", "/data", "--allowedpath", "/var/run/rtorrent"]
           securityContext:
             runAsUser: 911
