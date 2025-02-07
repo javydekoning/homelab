@@ -18,12 +18,12 @@
     "ts-jest": "29.2.5",
     "ts-node": "10.9.2",
     "typescript": "5.7.x",
-    "aws-cdk": "2.178.0"
+    "aws-cdk": "2.178.1"
   },
   "dependencies": {
     "@aws-quickstart/eks-blueprints": "1.16.3",
     "@aws-sdk/client-eks": "^3.478.0",
-    "aws-cdk-lib": "2.178.0",
+    "aws-cdk-lib": "2.178.1",
     "constructs": "^10.0.0",
     "source-map-support": "^0.5.21"
   }
