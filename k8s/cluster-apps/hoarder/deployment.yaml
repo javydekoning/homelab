@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: hoarder
-          image: ghcr.io/hoarder-app/hoarder:latest@sha256:e0682981becfcd65e4e56ebfebf8e3186334de7356710628513942e8d331c2aa
+          image: ghcr.io/hoarder-app/hoarder:latest@sha256:613fa49d83674dffcfbcc058dd6d802585e9eae13c00ddf3f1f6cec34da6c31d
           ports:
             - containerPort: 3000
               name: http
