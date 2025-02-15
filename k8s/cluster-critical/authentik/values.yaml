@@ -1,7 +1,9 @@
 authentik:
   secret:
     existingSecret: authentik-secrets
-
+  global:
+    envFrom:
+      - secretRef: authentik-secrets
   postgresql:
     enabled: true
     persistence:
