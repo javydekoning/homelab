@@ -30,8 +30,3 @@ authentik:
       - secretName: javydekoning-com-tls
         hosts:
           - auth.k8s.javydekoning.com
-
-  # Enable metrics for monitoring
-  prometheus:
-    serviceMonitor:
-      enabled: true
