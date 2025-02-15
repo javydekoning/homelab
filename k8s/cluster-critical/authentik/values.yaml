@@ -22,6 +22,10 @@ authentik:
 
   redis:
     enabled: true
+    auth:
+      enabled: true
+      existingSecret: authentik-secrets
+      existingSecretPasswordKey: AUTHENTIK_REDIS__PASSWORD
     persistence:
       enabled: true
       storageClass: "nvme-local-path"
