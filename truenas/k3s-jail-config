@@ -50,7 +50,8 @@ initial_setup=#!/usr/bin/bash
   curl -sfL https://get.k3s.io | \
   INSTALL_K3S_CHANNEL=latest sh -s - server --cluster-init \
   --disable=servicelb,traefik \
-  --kubelet-arg="allowed-unsafe-sysctls=net.ipv4.conf.*"
+  --kubelet-arg="allowed-unsafe-sysctls=net.ipv4.conf.*" \
+  --default-local-storage-path=/config/k8s-volumes-nvme
 
   # Install Kubecolor
   # URL for the latest release page of kubecolor
@@ -112,8 +113,8 @@ initial_setup=#!/usr/bin/bash
   kubectl create ns external-secrets
   kubectl create secret generic awssm-secret -n external-secrets \
     --from-literal=access-key=$ACCESS_KEY --from-literal=secret-access-key=$SECRET_KEY
-  kubectl apply -f ~/homelab/k8s/argo-application-sets/cluster-critical-application-set.yaml
-  kubectl apply -f ~/homelab/k8s/argo-application-sets/cluster-critical-config-application-set.yaml
+  kubectl apply -f ~/homelab/k8s/argo-application-sets/helm-application-set.yaml
+  kubectl apply -f ~/homelab/k8s/argo-application-sets/kustomize-application-set.yaml
 
   # Enable HW Acceleration
   apt-get -y install {va-driver-all,ocl-icd-libopencl1,intel-opencl-icd,vainfo,intel-gpu-tools}
