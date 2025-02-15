@@ -1,0 +1,8 @@
+apiVersion: v2
+name: authentik
+description: Authentik Helm Chart
+version: 1.0.0
+dependencies:
+  - name: authentik
+    repository: https://charts.goauthentik.io
+    version: 2024.12.3
