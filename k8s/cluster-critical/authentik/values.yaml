@@ -20,8 +20,6 @@ authentik:
     ingress:
       enabled: true
       ingressClassName: nginx
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-prod
       hosts:
         - auth.k8s.javydekoning.com
       paths:
