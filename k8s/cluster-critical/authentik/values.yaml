@@ -16,17 +16,18 @@ authentik:
       storageClass: "local-path"
       size: 5Gi
 
-  ingress:
-    enabled: true
-    ingressClassName: nginx
-    annotations:
-      cert-manager.io/cluster-issuer: letsencrypt-prod
-    hosts:
-      - host: auth.k8s.javydekoning.com
-        paths:
-          - path: /
-            pathType: Prefix
-    tls:
-      - secretName: javydekoning-com-tls
-        hosts:
-          - auth.k8s.javydekoning.com
+  server:
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+      hosts:
+        - auth.k8s.javydekoning.com
+      paths:
+        - /
+      pathType: Prefix
+      tls:
+        - secretName: javydekoning-com-tls
+          hosts:
+            - auth.k8s.javydekoning.com
