@@ -1,0 +1,51 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: kustomize-apps
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/javydekoning/homelab.git
+        revision: HEAD
+        files:
+          - path: "k8s/cluster-apps/**/kustomization.yaml"
+          - path: "k8s/cluster-critical/**/kustomization.yaml"
+          - path: "k8s/dvr/overlays/**/kustomization.yaml"
+          - path: "k8s/monitoring/**/kustomization.yaml"
+          - path: "k8s/smarthome/overlays/**/kustomization.yaml"
+          # Include namespace files
+          - path: "k8s/dvr/namespace.yaml"
+          - path: "k8s/smarthome/namespace.yaml"
+  syncPolicy:
+    preserveResourcesOnDeletion: false
+  template:
+    metadata:
+      name: "{{ path.basename }}"
+      annotations:
+        argocd.argoproj.io/manifest-generate-paths: "{{ path }}"
+    spec:
+      project: default
+      source:
+        path: "{{ path }}"
+        targetRevision: HEAD
+        repoURL: https://github.com/javydekoning/homelab.git
+      destination:
+        server: https://kubernetes.default.svc
+      syncPolicy:
+        automated:
+          prune: true
+        syncOptions:
+          - ServerSideApply=true
+          - CreateNamespace=true
+      ignoreDifferences:
+        - group: apps
+          kind: "*"
+          jqPathExpressions:
+            - ".spec.template.spec.containers[].resources"
+            - ".spec.template.spec.initContainers[].resources"
+        - group: "apps"
+          kind: "StatefulSet"
+          jqPathExpressions:
+            - ".spec.volumeClaimTemplates[].apiVersion"
+            - ".spec.volumeClaimTemplates[].kind"

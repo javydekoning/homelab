@@ -1,0 +1,66 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: helm-apps
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/javydekoning/homelab.git
+        revision: HEAD
+        files:
+          - path: "k8s/cluster-apps/**/gen-config.json"
+          - path: "k8s/cluster-critical/**/gen-config.json"
+  syncPolicy:
+    preserveResourcesOnDeletion: false
+  template:
+    metadata:
+      name: "{{ path.basename }}"
+      annotations:
+        argocd.argoproj.io/manifest-generate-paths: "{{ path }}"
+    spec:
+      project: default
+      source:
+        path: "{{ path }}"
+        targetRevision: HEAD
+        repoURL: https://github.com/javydekoning/homelab.git
+        helm:
+          valueFiles:
+            - values.yaml
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "{{ namespace }}"
+      syncPolicy:
+        automated:
+          prune: true
+        syncOptions:
+          - ServerSideApply=true
+          - CreateNamespace=true
+          - RespectIgnoreDifferences=true
+      ignoreDifferences:
+        - group: apps
+          kind: "*"
+          jqPathExpressions:
+            - ".spec.template.spec.containers[].resources"
+            - ".spec.template.spec.initContainers[].resources"
+        - group: "apps"
+          kind: "StatefulSet"
+          jqPathExpressions:
+            - ".spec.volumeClaimTemplates[].apiVersion"
+            - ".spec.volumeClaimTemplates[].kind"
+        - group: "deviceplugin.intel.com"
+          kind: GpuDevicePlugin
+          name: gpudeviceplugin-sample
+          jsonPointers:
+            - /spec/resourceManager
+            - /spec/tolerations
+            - /metadata/annotations
+        - group: "*"
+          kind: "*"
+          jqPathExpressions:
+            - ".webhooks[]?.clientConfig.caBundle"
+        - group: "apiextensions.k8s.io"
+          kind: CustomResourceDefinition
+          name: bgppeers.metallb.io
+          jsonPointers:
+            - /spec/conversion/webhook/clientConfig/caBundle
