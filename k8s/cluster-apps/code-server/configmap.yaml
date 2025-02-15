@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: code-server-config
+  namespace: default
+data:
+  AUTH: "none"
+  USER_DATA_DIR: "/code/.vscode"
+  EXTENSIONS_DIR: "/code/.vscode"
+  PORT: "8080"
+  CODE_PATH: "/code"

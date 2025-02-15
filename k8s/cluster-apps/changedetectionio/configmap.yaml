@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: changedetection-config
+  namespace: default
+data:
+  TZ: "Europe/Amsterdam"
+  WEBDRIVER_URL: "http://localhost:4444/wd/hub"
+  BASE_URL: "https://changedetection.k8s.javydekoning.com"
+  PLAYWRIGHT_DRIVER_URL: "ws://localhost:3000"

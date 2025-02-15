@@ -37,15 +37,9 @@ spec:
         - name: changedetection
           image: ghcr.io/dgtlmoon/changedetection.io:latest@sha256:c48b0b83d4af7c7e60aef37adcd381c8a8ecb3ec613b19ddcfca880f95a7d004
           imagePullPolicy: IfNotPresent
-          env:
-            - name: TZ
-              value: Europe/Amsterdam
-            - name: WEBDRIVER_URL
-              value: "http://localhost:4444/wd/hub"
-            - name: BASE_URL
-              value: https://changedetection.k8s.javydekoning.com
-            - name: PLAYWRIGHT_DRIVER_URL
-              value: "ws://localhost:3000"
+          envFrom:
+            - configMapRef:
+                name: changedetection-config
           ports:
             - containerPort: 5000
               name: http
