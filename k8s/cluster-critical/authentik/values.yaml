@@ -9,9 +9,10 @@ authentik:
 
   postgresql:
     enabled: true
+    global:
+      defaultStorageClass: "nvme-local-path"
     persistence:
       enabled: true
-      storageClass: "nvme-local-path"
       size: 10Gi
     auth:
       username: authentik
@@ -22,13 +23,14 @@ authentik:
 
   redis:
     enabled: true
+    global:
+      defaultStorageClass: "nvme-local-path"
     auth:
       enabled: true
       existingSecret: authentik-secrets
       existingSecretPasswordKey: AUTHENTIK_REDIS__PASSWORD
     persistence:
       enabled: true
-      storageClass: "nvme-local-path"
       size: 5Gi
 
   server:
