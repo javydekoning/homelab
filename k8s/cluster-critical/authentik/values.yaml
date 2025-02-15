@@ -11,7 +11,7 @@ authentik:
     enabled: true
     persistence:
       enabled: true
-      storageClass: "local-path"
+      storageClass: "nvme-local-path"
       size: 10Gi
     auth:
       username: authentik
@@ -24,7 +24,7 @@ authentik:
     enabled: true
     persistence:
       enabled: true
-      storageClass: "local-path"
+      storageClass: "nvme-local-path"
       size: 5Gi
 
   server:
