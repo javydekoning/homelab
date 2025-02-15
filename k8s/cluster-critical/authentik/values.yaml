@@ -13,6 +13,12 @@ authentik:
       enabled: true
       storageClass: "local-path"
       size: 10Gi
+    auth:
+      username: authentik
+      existingSecret: authentik-secrets
+      secretKeys:
+        userPassword: AUTHENTIK_POSTGRESQL__PASSWORD
+        adminPassword: AUTHENTIK_POSTGRESQL__PASSWORD
 
   redis:
     enabled: true
