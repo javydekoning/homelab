@@ -1,10 +1,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: default
+namespace: ddns-route53
 resources:
   - cronjob.yaml
   - secret.yaml
-
+  - namespace.yaml
 configMapGenerator:
   - envs:
       - ./resources/ddns-route53.env
