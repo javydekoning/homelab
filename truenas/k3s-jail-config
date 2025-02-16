@@ -40,7 +40,7 @@ initial_setup=#!/usr/bin/bash
   apt install curl jq git -y
 
   # Install oh-my-zsh
-  apt install zsh -y
+  apt install zsh zsh-antigen -y
   curl -o ~/.zshrc https://raw.githubusercontent.com/javydekoning/homelab/main/dotfiles/.zshrc
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc --unattended
   chsh root -s /bin/zsh

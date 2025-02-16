@@ -1,9 +1,15 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH="/root/.oh-my-zsh"
 
+# If antigen is installed, source it.
+ANTIGEN_PATH="/usr/share/zsh-antigen/antigen.zsh"
+
+if [ -f "$ANTIGEN_PATH" ]; then
+    source "$ANTIGEN_PATH"
+fi
+
+# Add plugin
+antigen bundle zsh-users/zsh-autosuggestions
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -18,8 +24,9 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(
   git
   brew
-  kubectl
+  kubectl  # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/kubectl
   helm
+  zsh-autosuggestions
 )
 
 # Disable OMZ auto update, OMZ installed via APK
@@ -34,7 +41,13 @@ source <(kubectl completion zsh)
 
 # Aliases
 alias shutdown=poweroff
-alias kgp='kubectl get pods --sort-by=.metadata.creationTimestamp -A'
+alias gitconfig='
+    git config --global user.email "javydekoning+github@gmail.com" &&
+    git config --global user.name "javydekoning"
+'
+alias gs='git status'
+alias gcam='git commit -am'
+alias omzupdate='~/.oh-my-zsh && git reset --hard HEAD && omz update && cd -'
 
 if command -v kubecolor >/dev/null 2>&1; then
   alias kubectl=kubecolor
