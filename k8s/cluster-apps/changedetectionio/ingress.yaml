@@ -2,7 +2,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: changedetection-ingress
-  namespace: default
 spec:
   ingressClassName: nginx
   tls:

@@ -2,7 +2,6 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: changedetection-config
-  namespace: default
 data:
   TZ: "Europe/Amsterdam"
   WEBDRIVER_URL: "http://localhost:4444/wd/hub"

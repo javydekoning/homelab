@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: changedetection
-  namespace: default
   labels:
     app: changedetection
 spec:
