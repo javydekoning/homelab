@@ -4,7 +4,6 @@ metadata:
   labels:
     app: code-server
   name: code-server
-  namespace: default
 spec:
   internalTrafficPolicy: Cluster
   ports:

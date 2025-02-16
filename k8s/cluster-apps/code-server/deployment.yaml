@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: code-server
-  namespace: default
   labels:
     app: code-server
 spec:
