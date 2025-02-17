@@ -1,6 +1,6 @@
 [
   {
     "name": "intel-device-plugins",
-    "namespace": "default"
+    "namespace": "intel-device-plugins"
   }
 ]
