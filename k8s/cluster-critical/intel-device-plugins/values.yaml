@@ -1,5 +1,4 @@
 intel-device-plugins-gpu:
-  name: gpudeviceplugin
   nodeFeatureRule: true
   sharedDevNum: 4
 
