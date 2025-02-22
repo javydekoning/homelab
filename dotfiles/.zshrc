@@ -1,20 +1,29 @@
-# Path to your oh-my-zsh installation.
-export ZSH="/root/.oh-my-zsh"
-
-# If antigen is installed, source it.
-ANTIGEN_PATH="/usr/share/zsh-antigen/antigen.zsh"
-
-if [ -f "$ANTIGEN_PATH" ]; then
-    source "$ANTIGEN_PATH"
+# Install powerlevel10k if not already installed
+P10K_DIR=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+if [ ! -d "$P10K_DIR" ]; then
+  echo "Installing powerlevel10k theme..."
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$P10K_DIR"
 fi
 
-# Add plugin
-antigen bundle zsh-users/zsh-autosuggestions
+# Install zsh-autosuggestions if not already installed
+ZSH_AUTOSUGGESTIONS_DIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+if [ ! -d "$ZSH_AUTOSUGGESTIONS_DIR" ]; then
+  echo "Installing zsh-autosuggestions..."
+  git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_AUTOSUGGESTIONS_DIR"
+fi
+
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="candy"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 ENABLE_CORRECTION="false"
 
 # Uncomment the following line to display red dots whilst waiting for completion
@@ -24,13 +33,11 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(
   git
   brew
-  kubectl  # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/kubectl
+  kubectl
   helm
   zsh-autosuggestions
 )
 
-# Disable OMZ auto update, OMZ installed via APK
-zstyle ':omz:update' mode disabled
 source $ZSH/oh-my-zsh.sh
 
 # Kubectl completion
@@ -39,21 +46,10 @@ compinit
 
 source <(kubectl completion zsh)
 
-# Aliases
-alias shutdown=poweroff
-alias gitconfig='
-    git config --global user.email "javydekoning+github@gmail.com" &&
-    git config --global user.name "javydekoning"
-'
-alias gs='git status'
-alias gcam='git commit -am'
-alias omzupdate='~/.oh-my-zsh && git reset --hard HEAD && omz update && cd -'
-
-if command -v kubecolor >/dev/null 2>&1; then
-  alias kubectl=kubecolor
-  alias k=kubecolor
-  compdef kubecolor=kubectl
-else
-  alias kubectl=kubectl
-  alias k=kubectl
+# Source custom aliases
+if [ -f "${ZSH_CUSTOM}/aliases.zsh" ]; then
+  source "${ZSH_CUSTOM}/aliases.zsh"
 fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
