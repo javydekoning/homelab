@@ -25,3 +25,8 @@ k8s/**/Chart.lock
 # Others
 megalinter-reports/
 .vagrant/
+
+# tf
+.terraform
+.terraform.lock.hcl
+terraform.tfstate*
