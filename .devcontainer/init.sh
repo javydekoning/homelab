@@ -9,4 +9,4 @@ chmod a+x /usr/bin/terraform
 
 # Configure git
 git config --global user.email "javydekoning+github@gmail.com"
-git config --global user.name "Javy de Koning
+git config --global user.name "Javy de Koning"
