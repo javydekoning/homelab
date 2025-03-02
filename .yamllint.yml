@@ -13,12 +13,11 @@ rules:
   line-length:
     max: 180
     level: warning
-  braces: enable
+  braces: disable
   brackets: enable
   colons: enable
   commas: enable
-  comments:
-    level: warning
+  comments: disable
   comments-indentation:
     level: warning
   document-end: disable
@@ -34,5 +33,4 @@ rules:
   octal-values: disable
   quoted-strings: disable
   trailing-spaces: enable
-  truthy:
-    level: warning
+  truthy: disable

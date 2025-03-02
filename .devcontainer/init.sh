@@ -14,14 +14,15 @@ LATEST_VERSION=$(curl -s https://api.github.com/repos/hashicorp/terraform/releas
 # strip leading 'v' from LATEST_VERSION
 LATEST_VERSION=${LATEST_VERSION#v}
 # download, move to /usr/bin, make executable
-wget https://releases.hashicorp.com/terraform/${LATEST_VERSION}/terraform_${LATEST_VERSION}_linux_amd64.zip
-unzip -o terraform_${LATEST_VERSION}_linux_amd64.zip
+wget "https://releases.hashicorp.com/terraform/${LATEST_VERSION}/terraform_${LATEST_VERSION}_linux_amd64.zip"
+unzip -o "terraform_${LATEST_VERSION}_linux_amd64.zip"
 sudo mv terraform /usr/bin/
 sudo chmod a+x /usr/bin/terraform
 
 # Configure git
 git config --global user.email "javydekoning+github@gmail.com"
 git config --global user.name "Javy de Koning"
+git config --global core.autocrlf false
 
 # install kubectl
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"

@@ -2,7 +2,8 @@
 alias shutdown=poweroff
 alias gitconfig='
     git config --global user.email "javydekoning+github@gmail.com" &&
-    git config --global user.name "javydekoning"
+    git config --global user.name "javydekoning" &&
+    git config --global core.autocrlf false
 '
 alias gs='git status'
 alias gcam='git commit -am'
@@ -16,3 +17,5 @@ else
   alias kubectl=kubectl
   alias k=kubectl
 fi
+
+alias tf='terraform'
