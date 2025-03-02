@@ -1,6 +1,13 @@
 {
   "name": "Homelab dev environment",
-  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "docker-in-docker": {
+      "version": "latest",
+      "moby": true,
+      "dockerDashComposeVersion": "v1"
+    }
+  },
+  "image": "mcr.microsoft.com/devcontainers/base:debian",
   "postCreateCommand": ".devcontainer/init.sh",
   "customizations": {
     "vscode": {

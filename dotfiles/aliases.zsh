@@ -19,3 +19,4 @@ else
 fi
 
 alias tf='terraform'
+alias runlinter='npx mega-linter-runner --fix'

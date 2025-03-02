@@ -35,7 +35,7 @@
       file:
         path: "{{ home_dir }}/.oh-my-zsh/custom/themes/powerlevel10k"
         state: directory
-        mode: '0755'
+        mode: "0755"
 
     - name: Clone powerlevel10k theme
       git:
@@ -48,7 +48,7 @@
       file:
         path: "{{ home_dir }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
         state: directory
-        mode: '0755'
+        mode: "0755"
 
     - name: Clone zsh-autosuggestions plugin
       git:
@@ -64,16 +64,16 @@
         state: link
         force: yes
       loop:
-        - { src: '.zshrc', dest: '.zshrc' }
-        - { src: '.vimrc', dest: '.vimrc' }
-        - { src: '.tmux.conf', dest: '.tmux.conf' }
-        - { src: '.p10k.zsh', dest: '.p10k.zsh' }
+        - { src: ".zshrc", dest: ".zshrc" }
+        - { src: ".vimrc", dest: ".vimrc" }
+        - { src: ".tmux.conf", dest: ".tmux.conf" }
+        - { src: ".p10k.zsh", dest: ".p10k.zsh" }
 
     - name: Create custom oh-my-zsh directory
       file:
         path: "{{ home_dir }}/.oh-my-zsh/custom"
         state: directory
-        mode: '0755'
+        mode: "0755"
 
     - name: Create symlink for aliases
       file:
