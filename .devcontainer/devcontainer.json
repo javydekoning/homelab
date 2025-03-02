@@ -7,7 +7,9 @@
       "extensions": [
         "catppuccin.catppuccin-vsc-icons",
         "catppuccin.catppuccin-vsc",
+        "EditorConfig.EditorConfig",
         "esbenp.prettier-vscode",
+        "foxundermoon.shell-format",
         "github.vscode-github-actions",
         "hashicorp.terraform",
         "irongeek.vscode-env",

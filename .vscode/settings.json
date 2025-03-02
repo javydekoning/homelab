@@ -1,12 +1,6 @@
 {
-  "ansible.validation.lint.arguments": "-c .ansible-lint",
-  "files.associations": {
-    "**/ansible/**/*.yaml": "ansible",
-    "**/ansible/**/*.yml": "ansible"
-  },
   "yaml.schemaStore.enable": true,
   "yaml.schemas": {
-    "ansible": "ansible/**/*.yml",
     "kubernetes": "k8s/**/*.yaml"
   },
   "editor.bracketPairColorization.enabled": true,
@@ -16,6 +10,7 @@
   "editor.hover.delay": 1500,
   "editor.stickyScroll.enabled": false,
   "editor.rulers": [80, 120],
+  "files.eol": "\n",
   "explorer.autoReveal": false,
   "files.trimTrailingWhitespace": true,
   "ansible.python.interpreterPath": "/usr/bin/python3",
