@@ -3,6 +3,10 @@ set -euo pipefail
 
 sudo apt-get update && sudo apt-get install curl jq git zsh python3-pip unzip -y
 
+# Setup zsh from dotfiles
+cd dotfiles
+./install.sh
+
 # Install terraform
 cd /tmp
 # get latest version from https://github.com/hashicorp/terraform/releases
