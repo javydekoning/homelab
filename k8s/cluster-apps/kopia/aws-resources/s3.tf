@@ -1,5 +1,6 @@
 # S3 Bucket
 resource "aws_s3_bucket" "backup_bucket" {
+  #ts:skip=AC_AWS_0214 We're intentionally disabling versioning. Kopia does that for us.
   bucket = "javydekoning-homelab-backup"
 
   lifecycle {

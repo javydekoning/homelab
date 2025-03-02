@@ -50,6 +50,10 @@ resource "aws_iam_user_group_membership" "backup_user_membership" {
   groups = [aws_iam_group.backup_group.name]
 }
 
+# Create access key for the backup user
+# Note: The access key is securely stored in AWS Secrets Manager and not exposed in code
+# The secret is only accessed by the Kopia application through Kubernetes ExternalSecrets
 resource "aws_iam_access_key" "backup_user_access_key" {
+  #ts:skip=AC_AWS_0133 Access keys are required for this application and are stored securely
   user = aws_iam_user.backup_user.name
 }
