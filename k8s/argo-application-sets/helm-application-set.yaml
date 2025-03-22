@@ -13,9 +13,6 @@ spec:
           - path: "k8s/cluster-critical/**/gen-config.json"
   syncPolicy:
     preserveResourcesOnDeletion: false
-    automated:
-      selfHeal: true
-      prune: true
   template:
     metadata:
       name: "{{ path.basename }}"
@@ -36,6 +33,7 @@ spec:
       syncPolicy:
         automated:
           prune: true
+          selfHeal: true
         syncOptions:
           - ServerSideApply=true
           - CreateNamespace=true
