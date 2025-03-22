@@ -54,7 +54,6 @@ cameras:
         - speech
         - cough
         - fart
-        - children_playing
     ffmpeg:
       hwaccel_args: preset-vaapi
       input_args: preset-rtsp-generic
@@ -80,10 +79,7 @@ cameras:
 
     record:
       enabled: True
-      
-      events:
+      detections:
         retain:
-          default: 3
           mode: motion
-          objects:
-            crying: 3
+          days: 7
