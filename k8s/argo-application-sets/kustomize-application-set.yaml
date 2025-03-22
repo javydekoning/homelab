@@ -19,6 +19,9 @@ spec:
           - path: "k8s/smarthome/namespace.yaml"
   syncPolicy:
     preserveResourcesOnDeletion: false
+    automated:
+      selfHeal: true
+      prune: true
   template:
     metadata:
       name: "{{ path.basename }}-kustomize"

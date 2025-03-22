@@ -80,7 +80,10 @@ cameras:
 
     record:
       enabled: True
-      detections:
+      
+      events:
         retain:
-          days: 3
+          default: 3
           mode: motion
+          objects:
+            crying: 3
