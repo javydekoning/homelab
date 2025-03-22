@@ -83,3 +83,13 @@ cameras:
         retain:
           mode: motion
           days: 7
+
+review:
+  detections:
+    labels:
+      - crying
+      - babbling
+      - speech
+      - cough
+      - fart
+      - person
