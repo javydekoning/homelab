@@ -34,7 +34,7 @@ spec:
             - name: shm
               mountPath: /dev/shm
         - name: changedetection
-          image: ghcr.io/dgtlmoon/changedetection.io:latest@sha256:7b04081f68bf8d08a40f64fb81f605b58e507e7070ddc9874ee1d58fc646c96f
+          image: ghcr.io/dgtlmoon/changedetection.io:latest@sha256:2abff4e2a1275aee7dcf9ded08b1b323dddeaf3e36c9ac8470bf7376d4e84b2f
           imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:
