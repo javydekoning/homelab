@@ -22,6 +22,8 @@ spec:
         env:
         - name: TRILIUM_DATA_DIR
           value: "/home/node/trilium-data"
+        - name: TRILIUM_PORT
+          value: "8080"
         volumeMounts:
         - name: trilium-data
           mountPath: /home/node/trilium-data
