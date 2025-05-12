@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trilium
+  labels:
+    app: trilium
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: trilium
+  template:
+    metadata:
+      labels:
+        app: trilium
+    spec:
+      containers:
+      - name: trilium
+        image: triliumnext/notes:latest@sha256:846671ab2f0025b66d7bc9563e22b983f04b85c047aac6cdeb2d4e52c245c516
+        ports:
+        - containerPort: 8080
+        env:
+        - name: TRILIUM_DATA_DIR
+          value: "/home/node/trilium-data"
+        volumeMounts:
+        - name: trilium-data
+          mountPath: /home/node/trilium-data
+        - name: timezone
+          mountPath: /etc/timezone
+          subPath: timezone
+          readOnly: true
+        - name: localtime
+          mountPath: /etc/localtime
+          subPath: localtime
+          readOnly: true
+      volumes:
+        - name: trilium-data
+          hostPath:
+            path: /config/trilium-data
+            type: DirectoryOrCreate
+        - name: timezone
+          hostPath:
+            path: /etc/timezone
+            type: File
+        - name: localtime
+          hostPath:
+            path: /etc/localtime
+            type: File

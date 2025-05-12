@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: trilium-ingress
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - notes.k8s.javydekoning.com
+      secretName: javydekoning-com-tls
+  rules:
+    - host: notes.k8s.javydekoning.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: trilium
+                port:
+                  name: http
