@@ -27,11 +27,9 @@ spec:
           mountPath: /home/node/trilium-data
         - name: timezone
           mountPath: /etc/timezone
-          subPath: timezone
           readOnly: true
         - name: localtime
           mountPath: /etc/localtime
-          subPath: localtime
           readOnly: true
       volumes:
         - name: trilium-data
