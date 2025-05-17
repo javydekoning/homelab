@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: truenas
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: truenas.k8s.javydekoning.com
+    http:
+      paths:
+      - backend:
+          serviceName: truenas
+          servicePort: 80
+        path: /
+  tls:
+    - hosts:
+        - truenas.k8s.javydekoning.com
+      secretName: javydekoning-com-tls
+
