@@ -3,9 +3,9 @@ kind: Endpoints
 metadata:
   name: truenas
 subsets:
-- addresses:
-  - ip: 192.168.100.2
-  ports:
-  - name: http
-    port: 80
-    protocol: TCP
+  - addresses:
+      - ip: 192.168.100.2
+    ports:
+      - name: http
+        port: 80
+        protocol: TCP
