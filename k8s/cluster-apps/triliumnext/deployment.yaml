@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: trilium
-          image: triliumnext/notes:latest@sha256:846671ab2f0025b66d7bc9563e22b983f04b85c047aac6cdeb2d4e52c245c516
+          image: triliumnext/notes:latest@sha256:429dd9781803dd3806b0e494c38ebbf6cc11b1ad0111e3671d2af2a0c35e3cad
           ports:
             - containerPort: 8080
           env:
