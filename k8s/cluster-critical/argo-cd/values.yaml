@@ -5,6 +5,8 @@ argo-cd:
 
   controller:
     replicas: 1
+    metrics:
+      enabled: true
 
   server:
     ingress:
