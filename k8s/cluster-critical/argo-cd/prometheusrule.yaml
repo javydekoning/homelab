@@ -3,7 +3,7 @@ kind: PrometheusRule
 metadata:
   name: argocd-alerts
   namespace: argocd
-  labels
+  labels:
     release: kube-prometheus-stack
 spec:
   groups:
