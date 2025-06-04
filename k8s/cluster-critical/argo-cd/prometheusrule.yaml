@@ -10,7 +10,7 @@ spec:
   - name: argocd.rules
     rules:
     - alert: ArgoCDApplicationOutOfSync
-      expr: argocd_app_info{sync_status!="Synced"}
+      expr: argocd_app_info{health_status!="Healthy"}
       for: 5m  # Alert after 5 minutes of being out of sync
       labels:
         severity: warning
