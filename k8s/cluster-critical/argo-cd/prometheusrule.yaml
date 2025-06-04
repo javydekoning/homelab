@@ -1,0 +1,21 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: argocd-alerts
+  namespace: argocd
+  labels
+    release: kube-prometheus-stack
+spec:
+  groups:
+  - name: argocd.rules
+    rules:
+    - alert: ArgoCDApplicationOutOfSync
+      expr: argocd_app_info{sync_status!="Synced"}
+      for: 5m  # Alert after 5 minutes of being out of sync
+      labels:
+        severity: warning
+        service: argocd
+      annotations:
+        summary: "ArgoCD Application {{ $labels.name }} is out of sync"
+        description: "ArgoCD application {{ $labels.name }} in namespace {{ $labels.namespace }} has sync status {{ $labels.sync_status }} for more than 5 minutes."
+        runbook_url: "https://your-runbook-url.com/argocd-sync-issues"
