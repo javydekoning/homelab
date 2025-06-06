@@ -7,25 +7,25 @@ metadata:
     release: kube-prometheus-stack
 spec:
   groups:
-  - name: argocd.rules
-    rules:
-    - alert: ArgoCDApplicationOutOfSync
-      expr: argocd_app_info{sync_status!="Synced"}
-      for: 5m  # Alert after 5 minutes of being out of sync
-      labels:
-        severity: warning
-        service: argocd
-      annotations:
-        summary: "ArgoCD Application {{ $labels.name }} is out of sync"
-        description: "ArgoCD application {{ $labels.name }} in namespace {{ $labels.namespace }} has sync status {{ $labels.sync_status }} for more than 5 minutes."
-        runbook_url: "https://github.com/javydekoning/homelab/blob/main/k8s/cluster-critical/argo-cd/argocd-sync-issues.md"
-    - alert: ArgoCDApplicationNotHealthy
-      expr: argocd_app_info{health_status!="Healthy"}
-      for: 5m  # Alert after 5 minutes of being not healthy
-      labels:
-        severity: warning
-        service: argocd
-      annotations:
-        summary: "ArgoCD Application {{ $labels.name }} is not healthy"
-        description: "ArgoCD application {{ $labels.name }} in namespace {{ $labels.namespace }} has health status {{ $labels.health_status }} for more than 5 minutes."
-        runbook_url: "https://github.com/javydekoning/homelab/blob/main/k8s/cluster-critical/argo-cd/argocd-sync-issues.md"
+    - name: argocd.rules
+      rules:
+        - alert: ArgoCDApplicationOutOfSync
+          expr: argocd_app_info{sync_status!="Synced"}
+          for: 5m # Alert after 5 minutes of being out of sync
+          labels:
+            severity: warning
+            service: argocd
+          annotations:
+            summary: "ArgoCD Application {{ $labels.name }} is out of sync"
+            description: "ArgoCD application {{ $labels.name }} in namespace {{ $labels.namespace }} has sync status {{ $labels.sync_status }} for more than 5 minutes."
+            runbook_url: "https://github.com/javydekoning/homelab/blob/main/k8s/cluster-critical/argo-cd/argocd-sync-issues.md"
+        - alert: ArgoCDApplicationNotHealthy
+          expr: argocd_app_info{health_status!="Healthy"}
+          for: 5m # Alert after 5 minutes of being not healthy
+          labels:
+            severity: warning
+            service: argocd
+          annotations:
+            summary: "ArgoCD Application {{ $labels.name }} is not healthy"
+            description: "ArgoCD application {{ $labels.name }} in namespace {{ $labels.namespace }} has health status {{ $labels.health_status }} for more than 5 minutes."
+            runbook_url: "https://github.com/javydekoning/homelab/blob/main/k8s/cluster-critical/argo-cd/argocd-sync-issues.md"
