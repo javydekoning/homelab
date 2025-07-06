@@ -26,7 +26,7 @@ spec:
           ports:
             - containerPort: 3000
         - name: selenium
-          image: selenium/standalone-chrome:latest@sha256:4e3aae6d5dfa56ad49952fb435c33a3def5a6ae0104d2c4880ca5f1fc5a719fd
+          image: selenium/standalone-chrome:latest@sha256:78e5379d111bd01b731f2493737b2e0e01ff769d9f56a8f089f4c4b7d35dfe87
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 4444
