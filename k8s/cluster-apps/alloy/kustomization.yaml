@@ -4,5 +4,7 @@ namespace: monitoring
 
 configMapGenerator:
   - name: alloy-config
+    options:
+      disableNameSuffixHash: true
     files:
       - config.alloy=./config.alloy
