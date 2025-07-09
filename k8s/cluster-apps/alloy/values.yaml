@@ -4,19 +4,8 @@ alloy:
       create: false
       name: alloy-config
       key: config.alloy
-  extraPorts:
-  - name: "syslog-tcp"
-    port: 51893
-    targetPort: 51893
-    protocol: "TCP"
-  ingress:
-    enabled: true
-    ingressClassName: nginx
-    hosts:
-      - alloy.k8s.javydekoning.com
-    paths:
-      - /
-    tls:
-      - hosts:
-          - alloy.k8s.javydekoning.com
-        secretName: javydekoning-com-tls
+    extraPorts:
+    - name: "syslog-tcp"
+      port: 51893
+      targetPort: 51893
+      protocol: "TCP"
