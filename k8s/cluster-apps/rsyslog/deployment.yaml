@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rsyslog
+  labels:
+    app: rsyslog
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rsyslog
+  template:
+    metadata:
+      labels:
+        app: rsyslog
+    spec:
+      containers:
+      - name: rsyslog
+        image: rsyslog/syslog_appliance_alpine:latest
+        ports:
+        - containerPort: 514
+          protocol: UDP
+          name: syslog-udp
+        - containerPort: 514
+          protocol: TCP
+          name: syslog-tcp
+        volumeMounts:
+        - name: rsyslog-config
+          mountPath: /etc/rsyslog.conf
+          subPath: rsyslog.conf
+          readOnly: true
+      volumes:
+      - name: rsyslog-config
+        configMap:
+          name: rsyslog
