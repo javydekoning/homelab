@@ -7,7 +7,7 @@ alias gitconfig='
 '
 alias gs='git status'
 alias gcam='git commit -am'
-alias omzupdate='~/.oh-my-zsh && git reset --hard HEAD && omz update && cd -'
+alias omzupdate='cd ~/.oh-my-zsh && git reset --hard HEAD && omz update && cd -'
 
 if command -v kubecolor >/dev/null 2>&1; then
   alias kubectl=kubecolor
