@@ -9,17 +9,17 @@ variable "aws_region" {
 variable "project_name" {
   type        = string
   description = "The name of the project. Used as a prefix for resources"
-  default     = "javydekoning"
+  default     = "homelab"
 }
 
 variable "backend_bucket_name" {
   type        = string
   description = "The name of the backend bucket"
-  default     = "javydekoning"
+  default     = "javydekoning-iac"
 }
 
 variable "backup_bucket_name" {
   type        = string
   description = "The name of the s3 bucket used to store backups"
-  default     = "javydekoning-homelab-backup"
+  default     = "javydekoning-homelab-backups"
 }
