@@ -11,6 +11,7 @@ spec:
         files:
           - path: "k8s/cluster-apps/**/gen-config.json"
           - path: "k8s/cluster-critical/**/gen-config.json"
+          - path: "k8s/monitoring/**/gen-config.json"
   syncPolicy:
     preserveResourcesOnDeletion: false
   template:

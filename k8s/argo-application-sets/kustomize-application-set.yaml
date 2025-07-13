@@ -14,6 +14,7 @@ spec:
           - path: "k8s/dvr/overlays/**/kustomization.yaml"
           - path: "k8s/monitoring/**/kustomization.yaml"
           - path: "k8s/smarthome/overlays/**/kustomization.yaml"
+          - path: "k8s/2nd-brain/**/kustomization.yaml"
           # Include namespace files
           - path: "k8s/dvr/namespace.yaml"
           - path: "k8s/smarthome/namespace.yaml"
