@@ -30,7 +30,7 @@ defaults:
 # Leave only a "items" key if not using group (group name, icon &
 # tagstyle are optional, section separation will not be displayed).
 services:
-  - name: "Media"
+  - name: "DVR"
     icon: "fas fa-play"
     items:
       - name: "Jellyfin"
@@ -110,10 +110,10 @@ services:
         logo: "https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/vscode.png"
         subtitle: "Code server"
         url: "https://code-server.k8s.javydekoning.com"
-      - name: "Hoarder.app"
-        logo: "https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/hoarder.png"
+      - name: "LinkDing"
+        logo: "https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/linkding.png"
         subtitle: "Bookmark anything"
-        url: "https://hoarder.k8s.javydekoning.com"
+        url: "https://linkding.lab.javydekoning.com"
       - name: "Kopia"
         logo: "https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/kopia.png"
         subtitle: "Backups to s3"

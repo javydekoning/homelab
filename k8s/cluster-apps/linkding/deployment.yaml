@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: linkding
+  name: linkding
+  namespace: linkding
+spec:
+  selector:
+    matchLabels:
+      app: linkding
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: linkding
+    spec:
+      containers:
+        - name: linkding
+          env:
+            - name: TZ
+              value: Europe/Amsterdam
+          image: ghcr.io/sissbruecker/linkding:latest@sha256:49346ebe531db7034a4347b83bef82838af76b39695f096c50a3dc3064d5ac1f
+          imagePullPolicy: IfNotPresent
+          # livenessProbe:
+          #   exec:
+          #     command:
+          #       - wget
+          #       - -q
+          #       - localhost:9090
+          #       - -O
+          #       - /dev/null
+            # initialDelaySeconds: 30
+            # periodSeconds: 10
+            # timeoutSeconds: 2
+            # failureThreshold: 3
+          ports:
+            - containerPort: 9090
+              name: http
+              protocol: TCP
+          # readinessProbe:
+          #   exec:
+          #     command:
+          #       - wget
+          #       - -q
+          #       - localhost:9090
+          #       - -O
+          #       - /dev/null
+            # initialDelaySeconds: 5
+            # failureThreshold: 3
+            # periodSeconds: 10
+            # successThreshold: 1
+            # timeoutSeconds: 2
+          volumeMounts:
+            - mountPath: /etc/linkding/data
+              name: appdata
+      restartPolicy: Always
+      volumes:
+        - name: appdata
+          hostPath:
+            path: /config/linkding
+            type: DirectoryOrCreate
