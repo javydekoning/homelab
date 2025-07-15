@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: demo-config
+  namespace: demo
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Demo Site - Protected by Authelia</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 40px; }
+            .container { max-width: 600px; margin: 0 auto; }
+            .success { color: green; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Demo Site</h1>
+            <p class="success">Successfully authenticated with Authelia!</p>
+            <p>This page is protected by Authelia authentication. If you can see this, you have successfully logged in.</p>
+        </div>
+    </body>
+    </html>

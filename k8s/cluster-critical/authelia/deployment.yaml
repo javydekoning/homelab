@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: authelia
+  name: authelia
+  namespace: authelia
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: authelia
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: authelia
+    spec:
+      enableServiceLinks: false
+      initContainers:
+        - name: copy-config
+          image: busybox:latest
+          command:
+            - sh
+            - -c
+            - |
+              cp /config-source/authelia.yml /config/authelia.yml
+              cp /config-source/users_database.yml /config/users_database.yml
+              chmod 644 /config/authelia.yml /config/users_database.yml
+              cat /config/authelia.yml
+          volumeMounts:
+            - mountPath: /config-source
+              name: authelia-config
+              readOnly: true
+            - mountPath: /config
+              name: authelia-data
+      containers:
+        - name: authelia
+          image: ghcr.io/authelia/authelia:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: X_AUTHELIA_CONFIG
+              value: "/config/authelia.yml,/secrets/secrets.yml"
+          ports:
+            - containerPort: 9091
+              name: http
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /config
+              name: authelia-data
+            - mountPath: /secrets
+              name: authelia-secrets
+              readOnly: true
+      restartPolicy: Always
+      volumes:
+        - configMap:
+            defaultMode: 420
+            name: authelia-config
+          name: authelia-config
+        - hostPath:
+            path: /config/authelia
+            type: DirectoryOrCreate
+          name: authelia-data
+        - secret:
+            secretName: authelia-credentials
+          name: authelia-secrets

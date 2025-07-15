@@ -31,10 +31,10 @@ spec:
           #       - localhost:9090
           #       - -O
           #       - /dev/null
-            # initialDelaySeconds: 30
-            # periodSeconds: 10
-            # timeoutSeconds: 2
-            # failureThreshold: 3
+          # initialDelaySeconds: 30
+          # periodSeconds: 10
+          # timeoutSeconds: 2
+          # failureThreshold: 3
           ports:
             - containerPort: 9090
               name: http
@@ -47,11 +47,11 @@ spec:
           #       - localhost:9090
           #       - -O
           #       - /dev/null
-            # initialDelaySeconds: 5
-            # failureThreshold: 3
-            # periodSeconds: 10
-            # successThreshold: 1
-            # timeoutSeconds: 2
+          # initialDelaySeconds: 5
+          # failureThreshold: 3
+          # periodSeconds: 10
+          # successThreshold: 1
+          # timeoutSeconds: 2
           volumeMounts:
             - mountPath: /etc/linkding/data
               name: appdata

@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: demo
+  namespace: demo
+  annotations:
+    nginx.ingress.kubernetes.io/auth-method: "GET"
+    nginx.ingress.kubernetes.io/auth-url: "http://authelia.authelia.svc.cluster.local:9091/api/authz/auth-request"
+    nginx.ingress.kubernetes.io/auth-signin: "https://auth.lab.javydekoning.com?rm=$request_method"
+    nginx.ingress.kubernetes.io/auth-response-headers: "Remote-User,Remote-Name,Remote-Groups,Remote-Email"
+spec:
+  ingressClassName: nginx-ext
+  rules:
+    - host: demo.lab.javydekoning.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: demo
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - demo.lab.javydekoning.com
+      secretName: javydekoning-com-tls

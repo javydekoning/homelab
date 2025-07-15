@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    app: authelia
+  name: authelia
+  namespace: authelia
+  annotations:
+    nginx.ingress.kubernetes.io/auth-tls-verify-client: "off"
+    nginx.ingress.kubernetes.io/auth-tls-pass-certificate-to-upstream: "false"
+spec:
+  ingressClassName: nginx-ext
+  rules:
+    - host: auth.lab.javydekoning.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: authelia
+                port:
+                  number: 9091
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - auth.lab.javydekoning.com
+      secretName: javydekoning-com-tls

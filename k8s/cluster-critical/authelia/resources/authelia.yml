@@ -1,0 +1,73 @@
+---
+# Logging configuration
+log:
+  level: debug
+  file_path: /var/log/authelia.log
+
+# Server configuration
+server:
+  address: "tcp://0.0.0.0:9091/"
+  buffers:
+    read: 4096
+    write: 4096
+
+# Identity validation configuration
+# identity_validation:
+#  reset_password:
+#    jwt_secret: a_very_important_secret
+
+# Storage configuration
+storage:
+  #  encryption_key: not_so_secure_key_32_chars
+  local:
+    path: /config/db.sqlite3
+
+# Authentication backend
+authentication_backend:
+  file:
+    path: /secrets/users_database.yml
+    password:
+      algorithm: argon2id
+      iterations: 1
+      salt_length: 16
+      parallelism: 8
+      memory: 64
+
+# Access control
+access_control:
+  default_policy: deny
+  rules:
+    - domain: "auth.lab.javydekoning.com"
+      policy: bypass
+    - domain: ["*.lab.javydekoning.com", "*.k8s.javydekoning.com"]
+      policy: one_factor
+      subject: ["group:admins"]
+
+# Session configuration
+session:
+  #  secret: 'insecure_session_secret'
+  name: "authelia_session"
+  same_site: "lax"
+  inactivity: "5m"
+  expiration: "1h"
+  remember_me: "1M"
+  cookies:
+    - domain: "lab.javydekoning.com"
+      authelia_url: "https://auth.lab.javydekoning.com"
+      default_redirection_url: "https://demo.lab.javydekoning.com"
+      name: "authelia_session"
+      same_site: "lax"
+      inactivity: "5m"
+      expiration: "1h"
+      remember_me: "1d"
+
+# Regulation
+regulation:
+  max_retries: 3
+  find_time: 2m
+  ban_time: 5m
+
+# Notifier configuration (disabled for now)
+notifier:
+  filesystem:
+    filename: /config/notification.txt
