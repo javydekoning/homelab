@@ -6,3 +6,8 @@ resources:
   - service.yaml
   - ingress.yaml
   - ns.yaml
+  - external-secret.yaml
+configMapGenerator:
+  - name: linkding-config
+    envs:
+      - linkding.env

@@ -18,13 +18,6 @@ spec:
     spec:
       containers:
         - name: web
-          env:
-            - name: TZ
-              value: Europe/Amsterdam
-            - name: BROWSER_WEB_URL
-              value: http://localhost:9222
-            - name: DATA_DIR
-              value: /data
           envFrom:
             - configMapRef:
                 name: karakeep-config
