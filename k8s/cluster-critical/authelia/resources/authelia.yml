@@ -1,7 +1,7 @@
 ---
 # Logging configuration
 log:
-  level: debug
+  level: trace
   file_path: /var/log/authelia.log
 
 # Server configuration
@@ -11,14 +11,8 @@ server:
     read: 4096
     write: 4096
 
-# Identity validation configuration
-# identity_validation:
-#  reset_password:
-#    jwt_secret: a_very_important_secret
-
 # Storage configuration
 storage:
-  #  encryption_key: not_so_secure_key_32_chars
   local:
     path: /config/db.sqlite3
 
@@ -45,7 +39,6 @@ access_control:
 
 # Session configuration
 session:
-  #  secret: 'insecure_session_secret'
   name: "authelia_session"
   same_site: "lax"
   inactivity: "5m"
@@ -71,3 +64,42 @@ regulation:
 notifier:
   filesystem:
     filename: /config/notification.txt
+
+identity_providers:
+  oidc:
+    claims_policies:
+      karakeep:
+        id_token:
+        - email
+    jwks:
+      - key: {{ secret "/config/private.pem" | mindent 10 "|" | msquote }}
+    cors:
+      endpoints:
+        - authorization
+        - token
+        - revocation
+        - introspection
+        - userinfo
+      allowed_origins: "*"
+    clients:
+      - client_id: 'karakeep'
+        client_name: 'Karakeep'
+        client_secret: '$pbkdf2-sha512$310000$JosXxJ8X1iUe1MZwZ.S3yw$3t3wSYXKiRJ0reIByDCiGJrFaZc1GWm7M8TggHkFTI9ycV.PaufBmu2y7ibJntDQk3IRJKPk9HmoiBpmRLQLfw'
+        claims_policy: 'karakeep'
+        public: false
+        authorization_policy: 'one_factor'
+        require_pkce: false
+        pkce_challenge_method: ''
+        redirect_uris:
+          - 'https://karakeep.lab.javydekoning.com/api/auth/callback/custom'
+        scopes:
+          - 'openid'
+          - 'profile'
+          - 'email'
+        response_types:
+          - 'code'
+        grant_types:
+          - 'authorization_code'
+        access_token_signed_response_alg: 'none'
+        userinfo_signed_response_alg: 'none'
+        token_endpoint_auth_method: 'client_secret_basic'

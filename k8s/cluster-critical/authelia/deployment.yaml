@@ -26,8 +26,8 @@ spec:
             - -c
             - |
               cp /config-source/authelia.yml /config/authelia.yml
-              cp /config-source/users_database.yml /config/users_database.yml
-              chmod 644 /config/authelia.yml /config/users_database.yml
+              chmod 644 /config/authelia.yml
+              cat /config-source/authelia.yml
               cat /config/authelia.yml
           volumeMounts:
             - mountPath: /config-source
@@ -42,6 +42,8 @@ spec:
           env:
             - name: X_AUTHELIA_CONFIG
               value: "/config/authelia.yml,/secrets/secrets.yml"
+            - name: X_AUTHELIA_CONFIG_FILTERS
+              value: "template"
           ports:
             - containerPort: 9091
               name: http

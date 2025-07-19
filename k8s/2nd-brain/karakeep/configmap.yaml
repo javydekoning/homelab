@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: karakeep-config
+  namespace: karakeep
+data:
+  # OAuth Provider Configuration
+  OAUTH_WELLKNOWN_URL: ""
+  OAUTH_CLIENT_ID: ""
+  OAUTH_CLIENT_SECRET: ""
+  OAUTH_SCOPE: "openid email profile"
+  OAUTH_PROVIDER_NAME: "Custom Provider"
+  OAUTH_ALLOW_DANGEROUS_EMAIL_ACCOUNT_LINKING: "false"
+  OAUTH_TIMEOUT: "3500"
+
+  # Authentication Settings
+  DISABLE_SIGNUPS: "false"
+  DISABLE_PASSWORD_AUTH: "false"
+
+  # NextAuth Configuration
+  NEXTAUTH_URL: ""
+  NEXTAUTH_SECRET: ""
+
+  # MeiliSearch Configuration
+  MEILI_ADDR: "http://localhost:7700"
+  MEILI_MASTER_KEY: ""
+
+  # AI/Inference Configuration (Optional)
+  OPENAI_API_KEY: ""
+  OPENAI_BASE_URL: ""
+  OLLAMA_BASE_URL: ""
+  OLLAMA_KEEP_ALIVE: ""
+
+  # Webhook Configuration (Optional)
+  WEBHOOK_TIMEOUT_SEC: "5"
+  WEBHOOK_RETRY_TIMES: "3"
+  WEBHOOK_TOKEN: ""

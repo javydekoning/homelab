@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: karakeep
+  name: karakeep
+  namespace: karakeep
+spec:
+  selector:
+    matchLabels:
+      app: karakeep
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: karakeep
+    spec:
+      containers:
+        - name: web
+          env:
+            - name: TZ
+              value: Europe/Amsterdam
+            - name: BROWSER_WEB_URL
+              value: http://localhost:9222
+            - name: DATA_DIR
+              value: /data
+          envFrom:
+            - configMapRef:
+                name: karakeep-config
+            - secretRef:
+                name: karakeep-credentials
+          image: ghcr.io/karakeep-app/karakeep:release
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+              name: http
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /data
+              name: appdata
+        - name: chrome
+          image: gcr.io/zenika-hub/alpine-chrome:latest
+          args:
+            - --no-sandbox
+            - --disable-gpu
+            - --disable-dev-shm-usage
+            - --remote-debugging-address=0.0.0.0
+            - --remote-debugging-port=9222
+            - --hide-scrollbars
+          ports:
+            - containerPort: 9222
+              name: chrome-debug
+              protocol: TCP
+        - name: meilisearch
+          env:
+            - name: MEILI_NO_ANALYTICS
+              value: "true"
+          image: getmeili/meilisearch:v1.13.3
+          ports:
+            - containerPort: 7700
+              name: meili
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /meili_data
+              name: meili-data
+      restartPolicy: Always
+      volumes:
+        - name: appdata
+          hostPath:
+            path: /config/karakeep
+            type: DirectoryOrCreate
+        - name: meili-data
+          hostPath:
+            path: /config/karakeep/meili
+            type: DirectoryOrCreate
