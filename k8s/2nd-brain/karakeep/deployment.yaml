@@ -49,7 +49,7 @@ spec:
           env:
             - name: MEILI_NO_ANALYTICS
               value: "true"
-          image: getmeili/meilisearch:v1.13.3
+          image: getmeili/meilisearch:v1.15.2
           ports:
             - containerPort: 7700
               name: meili
