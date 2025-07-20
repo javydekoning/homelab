@@ -20,7 +20,7 @@ spec:
       enableServiceLinks: false
       initContainers:
         - name: copy-config
-          image: busybox:latest
+          image: busybox:latest@sha256:f85340bf132ae937d2c2a763b8335c9bab35d6e8293f70f606b9c6178d84f42b
           command:
             - sh
             - -c
@@ -37,7 +37,7 @@ spec:
               name: authelia-data
       containers:
         - name: authelia
-          image: ghcr.io/authelia/authelia:latest
+          image: ghcr.io/authelia/authelia:latest@sha256:023e02e5203dfa0ebaee7a48b5bae34f393d1f9cada4a9df7fbf87eb1759c671
           imagePullPolicy: IfNotPresent
           env:
             - name: X_AUTHELIA_CONFIG

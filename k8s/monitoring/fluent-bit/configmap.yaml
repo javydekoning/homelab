@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fluent-bit-config
+  namespace: monitoring
+data:
+  fluent-bit.conf: |
+    [SERVICE]
+        Parsers_File    parsers.conf
+        HTTP_Server     On
+        HTTP_Listen     0.0.0.0
+        HTTP_Port       2020
+        Log_Level       info
+
+    [INPUT]
+        Name              syslog
+        Tag               syslog.*
+        Listen            0.0.0.0
+        Port              514
+        Parser            syslog-rfc3164
+        Mode              tcp,udp
+
+    [OUTPUT]
+        Name              forward
+        Match             syslog.*
+        Host              alloy
+        Port              51893
+        tls               Off
+        net.keepalive     Off
+        net.connect_timeout 10
+        net.keepalive_idle_timeout 30
+
+  parsers.conf: |
+    [PARSER]
+        Name        syslog-rfc3164
+        Format      regex
+        Regex       ^\<(?<priority>[0-9]+)\>(?<time>[^ ]* {1,2}[^ ]* [^ ]*) (?<host>[^ ]*) (?<ident>[a-zA-Z0-9_\/\.\-]*)(?:\[(?<pid>[0-9]+)\])?(?:[^\:]*\:)? *(?<message>.*)$
+        Time_Key    time
+        Time_Format %b %d %H:%M:%S

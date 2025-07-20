@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: kromgo
-          image: ghcr.io/kashalls/kromgo:latest
+          image: ghcr.io/kashalls/kromgo:latest@sha256:98202ba862023c1f78c6bc227f1de89d7777e5f621333511241a6242a230880e
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
