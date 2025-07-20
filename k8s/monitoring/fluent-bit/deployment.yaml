@@ -33,10 +33,6 @@ spec:
               mountPath: /fluent-bit/etc/fluent-bit.conf
               subPath: fluent-bit.conf
               readOnly: true
-            - name: parsers-config
-              mountPath: /fluent-bit/etc/parsers.conf
-              subPath: parsers.conf
-              readOnly: true
           resources:
             requests:
               cpu: 50m
