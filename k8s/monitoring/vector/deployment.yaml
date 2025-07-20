@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vector
+  namespace: monitoring
+  labels:
+    app: vector
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vector
+  template:
+    metadata:
+      labels:
+        app: vector
+    spec:
+      containers:
+        - name: vector
+          env:
+            - name: TZ
+              value: Europe/Amsterdam
+          image: ghcr.io/vectordotdev/vector:0.47.0-alpine
+          ports:
+            - containerPort: 514
+              protocol: UDP
+              name: syslog-udp
+            - containerPort: 514
+              protocol: TCP
+              name: syslog-tcp
+          volumeMounts:
+            - name: vector-config
+              mountPath: /etc/vector/vector.yaml
+              subPath: vector.yaml
+              readOnly: true
+          resources:
+            requests:
+              cpu: 50m
+              memory: 50Mi
+            limits:
+              cpu: 200m
+              memory: 200Mi
+      volumes:
+        - name: vector-config
+          configMap:
+            name: vector-config

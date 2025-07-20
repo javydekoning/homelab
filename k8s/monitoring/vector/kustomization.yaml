@@ -5,9 +5,6 @@ resources:
   - deployment.yaml
   - service.yaml
 configMapGenerator:
-  - name: fluent-bit-config
+  - name: vector-config
     files:
-      - fluent-bit.conf=./fluent-bit.conf
-  - name: fluent-bit-parsers
-    files:
-      - parsers.conf=./parsers.conf
+      - vector.yaml=./vector.yaml
