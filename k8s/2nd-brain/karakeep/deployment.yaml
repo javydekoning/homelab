@@ -33,7 +33,7 @@ spec:
             - mountPath: /data
               name: appdata
         - name: chrome
-          image: gcr.io/zenika-hub/alpine-chrome:latest@sha256:bb581b37daaadbe3d04b3e1338a03546956482290b2c560a80036bb871cd86e8
+          image: gcr.io/zenika-hub/alpine-chrome:latest@sha256:1a0046448e0bb6c275c88f86e01faf0de62b02ec8572901256ada0a8c08be23f
           args:
             - --no-sandbox
             - --disable-gpu
