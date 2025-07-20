@@ -8,3 +8,6 @@ configMapGenerator:
   - name: fluent-bit-config
     files:
       - fluent-bit.conf=./fluent-bit.conf
+  - name: fluent-bit-parsers
+    files:
+      - parsers.conf=./parsers.conf
