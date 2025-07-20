@@ -20,7 +20,7 @@ spec:
           env:
             - name: TZ
               value: Europe/Amsterdam
-          image: ghcr.io/vectordotdev/vector:0.47.0-alpine
+          image: ghcr.io/vectordotdev/vector:0.48.0-alpine
           ports:
             - containerPort: 514
               protocol: UDP
