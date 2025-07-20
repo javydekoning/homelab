@@ -70,9 +70,9 @@ identity_providers:
     claims_policies:
       karakeep:
         id_token:
-        - email
+          - email
     jwks:
-      - key: {{ secret "/config/private.pem" | mindent 10 "|" | msquote }}
+      - key: { { secret "/config/private.pem" | mindent 10 "|" | msquote } }
     cors:
       endpoints:
         - authorization
@@ -82,44 +82,44 @@ identity_providers:
         - userinfo
       allowed_origins: "*"
     clients:
-      - client_id: 'karakeep'
-        client_name: 'Karakeep'
-        client_secret: '$pbkdf2-sha512$310000$JosXxJ8X1iUe1MZwZ.S3yw$3t3wSYXKiRJ0reIByDCiGJrFaZc1GWm7M8TggHkFTI9ycV.PaufBmu2y7ibJntDQk3IRJKPk9HmoiBpmRLQLfw'
-        claims_policy: 'karakeep'
+      - client_id: "karakeep"
+        client_name: "Karakeep"
+        client_secret: "$pbkdf2-sha512$310000$JosXxJ8X1iUe1MZwZ.S3yw$3t3wSYXKiRJ0reIByDCiGJrFaZc1GWm7M8TggHkFTI9ycV.PaufBmu2y7ibJntDQk3IRJKPk9HmoiBpmRLQLfw"
+        claims_policy: "karakeep"
         public: false
-        authorization_policy: 'one_factor'
+        authorization_policy: "one_factor"
         require_pkce: false
-        pkce_challenge_method: ''
+        pkce_challenge_method: ""
         redirect_uris:
-          - 'https://karakeep.lab.javydekoning.com/api/auth/callback/custom'
+          - "https://karakeep.lab.javydekoning.com/api/auth/callback/custom"
         scopes:
-          - 'openid'
-          - 'profile'
-          - 'email'
+          - "openid"
+          - "profile"
+          - "email"
         response_types:
-          - 'code'
+          - "code"
         grant_types:
-          - 'authorization_code'
-        access_token_signed_response_alg: 'none'
-        userinfo_signed_response_alg: 'none'
-        token_endpoint_auth_method: 'client_secret_basic'
-      - client_id: 'linkding'
-        client_name: 'Linkding'
-        client_secret: '$pbkdf2-sha512$310000$rKqtz2WY/XgrqahiQZ62tw$O3TNcVqn6SrEZUNURPDvokwSQWP9jLDSMaliTsfP/nOjWiMikIVSd1ZSw6PV1LHIUDITVkpA4.nITv675A9eUg'
+          - "authorization_code"
+        access_token_signed_response_alg: "none"
+        userinfo_signed_response_alg: "none"
+        token_endpoint_auth_method: "client_secret_basic"
+      - client_id: "linkding"
+        client_name: "Linkding"
+        client_secret: "$pbkdf2-sha512$310000$rKqtz2WY/XgrqahiQZ62tw$O3TNcVqn6SrEZUNURPDvokwSQWP9jLDSMaliTsfP/nOjWiMikIVSd1ZSw6PV1LHIUDITVkpA4.nITv675A9eUg"
         public: false
-        authorization_policy: 'one_factor'
+        authorization_policy: "one_factor"
         require_pkce: false
-        pkce_challenge_method: ''
+        pkce_challenge_method: ""
         redirect_uris:
-          - 'https://linkding.lab.javydekoning.com/oidc/callback/'
+          - "https://linkding.lab.javydekoning.com/oidc/callback/"
         scopes:
           - openid
           - profile
           - email
         response_types:
-          - 'code'
+          - "code"
         grant_types:
-          - 'authorization_code'
-        access_token_signed_response_alg: 'none'
-        userinfo_signed_response_alg: 'none'
-        token_endpoint_auth_method: 'client_secret_post'
+          - "authorization_code"
+        access_token_signed_response_alg: "none"
+        userinfo_signed_response_alg: "none"
+        token_endpoint_auth_method: "client_secret_post"
