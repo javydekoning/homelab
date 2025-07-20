@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: fluent-bit
-          image: fluent/fluent-bit:2.2
+          image: fluent/fluent-bit:4.0
           ports:
             - containerPort: 514
               protocol: UDP
