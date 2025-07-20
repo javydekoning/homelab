@@ -60,6 +60,3 @@ spec:
         - name: fluent-bit-config
           configMap:
             name: fluent-bit-config
-        - name: parsers-config
-          configMap:
-            name: fluent-bit-config

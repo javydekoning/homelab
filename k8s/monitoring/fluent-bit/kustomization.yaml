@@ -4,4 +4,7 @@ namespace: monitoring
 resources:
   - deployment.yaml
   - service.yaml
-  - configmap.yaml
+configMapGenerator:
+  - name: fluent-bit-config
+    files:
+      - fluent-bit.conf=./fluent-bit.conf
