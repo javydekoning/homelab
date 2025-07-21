@@ -31,10 +31,6 @@ _... managed with [ArgoCD](https://argo-cd.readthedocs.io/en/stable/), Truenas, 
 
 Today is automated via Jailmaker. Bootstrap script can be found in `truenas/k3s-jail-config`.
 
-```sh
-ansible-playbook play.yml
-```
-
 ## Bootstrap "External Secrets" secret
 
 Create an IAM user with the following policy attached:
