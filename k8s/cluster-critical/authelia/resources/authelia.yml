@@ -72,7 +72,7 @@ identity_providers:
         id_token:
           - email
     jwks:
-      - key: { { secret "/config/private.pem" | mindent 10 "|" | msquote } }
+      - key: {{ secret "/config/private.pem" | mindent 10 "|" | msquote }}
     cors:
       endpoints:
         - authorization
