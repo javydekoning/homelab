@@ -72,6 +72,7 @@ identity_providers:
         id_token:
           - email
     jwks:
+      # prettier-ignore
       - key: {{ secret "/config/private.pem" | mindent 10 "|" | msquote }}
     cors:
       endpoints:
