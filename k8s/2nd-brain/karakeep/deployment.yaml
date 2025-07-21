@@ -23,7 +23,7 @@ spec:
                 name: karakeep-config
             - secretRef:
                 name: karakeep-credentials
-          image: ghcr.io/karakeep-app/karakeep:release
+          image: ghcr.io/karakeep-app/karakeep:latest@sha256:bee77dc72bec4b1c490b20828d5596b5dd96a88d3a9793ede98a9470755c1b4c
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
@@ -33,7 +33,7 @@ spec:
             - mountPath: /data
               name: appdata
         - name: chrome
-          image: gcr.io/zenika-hub/alpine-chrome:latest@sha256:bb581b37daaadbe3d04b3e1338a03546956482290b2c560a80036bb871cd86e8
+          image: gcr.io/zenika-hub/alpine-chrome:124
           args:
             - --no-sandbox
             - --disable-gpu
