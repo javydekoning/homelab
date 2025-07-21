@@ -23,7 +23,7 @@ spec:
                 name: karakeep-config
             - secretRef:
                 name: karakeep-credentials
-          image: ghcr.io/karakeep-app/karakeep:latest@sha256:bee77dc72bec4b1c490b20828d5596b5dd96a88d3a9793ede98a9470755c1b4c
+          image: ghcr.io/karakeep-app/karakeep:release@sha256:f575a34ed3f8975225c156786442f177846126cf27d7fd37350f3af23c549d22
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
