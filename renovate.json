@@ -9,6 +9,11 @@
   },
   "packageRules": [
     {
+      "matchPackageNames": ["getmeili/meilisearch"],
+      "matchUpdateTypes": ["minor"],
+      "automerge": false
+    },
+    {
       "matchManagers": ["helm-values"],
       "matchPackageNames": ["ghcr.io/onedr0p/plex"],
       "versioning": "loose"
