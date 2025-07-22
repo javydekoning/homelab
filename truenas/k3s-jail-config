@@ -39,12 +39,6 @@ initial_setup=#!/usr/bin/bash
   set -euo pipefail
   apt install curl jq git -y
 
-  # Install oh-my-zsh
-  apt install zsh zsh-antigen -y
-  curl -o ~/.zshrc https://raw.githubusercontent.com/javydekoning/homelab/main/dotfiles/.zshrc
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc --unattended
-  chsh root -s /bin/zsh
-
   # Setup Kubernetes
   curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
   curl -sfL https://get.k3s.io | \
@@ -56,7 +50,7 @@ initial_setup=#!/usr/bin/bash
   # Clone homelab repo
   git clone https://github.com/javydekoning/homelab.git ~/homelab
 
-  # Install dotfiles
+  # Install dotfiles, zsh, oh-my-zsh, powerlevel10k
   cd ~/homelab/dotfiles
   bash install.sh
 
