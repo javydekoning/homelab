@@ -53,51 +53,18 @@ initial_setup=#!/usr/bin/bash
   --kubelet-arg="allowed-unsafe-sysctls=net.ipv4.conf.*" \
   --default-local-storage-path=/config/k8s-volumes-nvme
 
-  # Install Kubecolor
-  # URL for the latest release page of kubecolor
-  LATEST_RELEASE_URL="https://github.com/kubecolor/kubecolor/releases/latest"
+  # Clone homelab repo
+  git clone https://github.com/javydekoning/homelab.git ~/homelab
 
-  # Use curl to get the URL of the latest release quietly
-  REDIRECT_URL=$(curl -sL -o /dev/null -w %{url_effective} $LATEST_RELEASE_URL)
+  # Install dotfiles
+  cd ~/homelab/dotfiles
+  bash install.sh
 
-  # Extract the tag (release version) from the URL
-  TAG=$(basename $REDIRECT_URL)
-
-  # Strip the leading 'v' from the tag
-  TAG=${TAG#v}
-
-  # Construct the download URL for the amd64 release
-
-  DOWNLOAD_URL="https://github.com/kubecolor/kubecolor/releases/download/v${TAG}/kubecolor_${TAG}_linux_amd64.tar.gz"
-  echo "Downloading from: ${DOWNLOAD_URL}"
-  # Download the release tarball quietly
-  curl -sL -o kubecolor_${TAG}_Linux_x86_64.tar.gz $DOWNLOAD_URL
-
-  # Verify the download
-  if [[ $? -eq 0 ]]; then
-      echo "Download completed successfully."
-  else
-      echo "Download failed."
-      exit 1
-  fi
-
-  # Extract the tarball quietly
-  tar -xzf kubecolor_${TAG}_Linux_x86_64.tar.gz -C .
-
-  # Verify extraction
-  if [[ $? -eq 0 ]]; then
-      echo "Extraction completed successfully."
-  else
-      echo "Extraction failed."
-      exit 1
-  fi
-
-  echo "kubecolor downloaded and extracted successfully."
-
-  cp kubecolor /usr/bin/kubecolor
+  # Install kubecolor
+  cd ~/homelab/dotfiles
+  bash install_kubecolor.sh
 
   # Bootstrap Argo CD
-  git clone https://github.com/javydekoning/homelab.git ~/homelab
   cd ~/homelab/k8s/cluster-critical/argo-cd
   kubectl create ns argocd
   helm dependency build
