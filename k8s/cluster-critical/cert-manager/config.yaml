@@ -54,4 +54,5 @@ spec:
     creationPolicy: Owner
   dataFrom:
     - extract:
-        key: k8s-route-53-credentials
+        key: k8s-homelab-secrets
+        property: route53

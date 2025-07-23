@@ -1,7 +1,8 @@
 {
   "yaml.schemaStore.enable": true,
   "yaml.schemas": {
-    "kubernetes": "k8s/**/*.yaml"
+    "kubernetes": "k8s/**/*.yaml",
+    "kubernetes://schema/external-secrets.io/v1@externalsecret": "file:///home/javy/homelab/k8s/2nd-brain/karakeep/external-secret.yaml"
   },
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": true,
