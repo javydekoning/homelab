@@ -6,7 +6,6 @@ _... Powered by_ 📦
 
 ![k8s k3s argo logos](https://raw.githubusercontent.com/javydekoning/homelab/main/docs/src/assets/logo.webp)
 
-
 _... Running on_ k3s, Truenas
 
 _... Managed by_ [ArgoCD (GitOps)](https://argo-cd.readthedocs.io/en/stable/), Renovate
