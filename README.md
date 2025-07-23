@@ -5,9 +5,20 @@
 _... Powered by_ 📦
 
 ![k8s k3s argo logos](https://raw.githubusercontent.com/javydekoning/homelab/main/docs/src/assets/logo.webp)
-_... managed with [ArgoCD](https://argo-cd.readthedocs.io/en/stable/), Truenas, Renovate, and GitHub Actions_ 🤖
+
+
+_... Running on_ k3s, Truenas
+
+_... Managed by_ [ArgoCD (GitOps)](https://argo-cd.readthedocs.io/en/stable/), Renovate
+
+_... And a little bit of_ ☁️ AWS, and GitHub Actions_ 🤖
+
+![architecture](https://raw.githubusercontent.com/javydekoning/homelab/main/docs/src/assets/homelab.drawio.png)
+
 
 </div>
+
+
 
 ## Status
 
