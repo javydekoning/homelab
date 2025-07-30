@@ -50,7 +50,7 @@ spec:
             - name: downloads
               mountPath: /downloads
               readOnly: false
-            - name: config
+            - name: backup-source
               mountPath: /config
               readOnly: false
           resources:
@@ -104,3 +104,7 @@ spec:
         - name: secret-volume
           secret:
             secretName: kopia-credentials
+        - name: backup-source
+          hostPath:
+            path: /config
+            type: DirectoryOrCreate
