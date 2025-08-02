@@ -18,8 +18,5 @@ spec:
               mountPath: /metadata
               subPath: audiobookshelf/metadata/
             - name: downloads
-              mountPath: /podcasts
-              subPath: podcasts
-            - name: downloads
               mountPath: /audiobooks
               subPath: audiobooks
