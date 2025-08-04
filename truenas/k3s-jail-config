@@ -9,6 +9,7 @@ systemd_nspawn_user_args=--network-macvlan=enp3s0
   --system-call-filter='add_key keyctl bpf perf_event_open'
   --capability=all
   --bind=/dev/kmsg
+  --bind=/dev/fuse
   --bind='/mnt/main/downloads/:/downloads'
   --bind='/mnt/nvme/config/:/config'
   --bind=/dev/ttyUSB0
