@@ -11,16 +11,7 @@ spec:
         - name: app
           ports:
             - name: http
-              containerPort: 17442
+              containerPort: 8081
           volumeMounts:
             - name: downloads
               mountPath: /downloads
-            - name: config
-              mountPath: /app/appdata
-              subPath: ytdl/appdata
-        - name: mongo
-          image: mongo:4
-          volumeMounts:
-            - name: config
-              mountPath: /data/db
-              subPath: ytdl/db

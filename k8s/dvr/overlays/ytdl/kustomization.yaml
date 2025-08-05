@@ -8,24 +8,23 @@ resources:
 
 images:
   - name: app
-    newName: ghcr.io/tzahi12345/youtubedl-material
-    newTag: nightly@sha256:ca6f08a9c3aeca75ddee7356252fb712998f45e99da9542d0e14c2eaef5e8e08
+    newName: ghcr.io/alexta69/metube
+    newTag: latest@sha256:2f81ad0ca25d52a7f17d33164c7cf2dc6db299a2011b8bfddb68b3edc2523b7a
 
 configMapGenerator:
   - name: env-configmap
     literals:
       - UID=911
       - GID=911
-      - ytdl_mongodb_connection_string='mongodb://localhost:27017'
-      - ytdl_use_local_db='false'
-      - write_ytdl_config='true'
+      - AUDIO_DOWNLOAD_DIR=/downloads/music/livesets
+      - DEFAULT_THEME=dark
 
-namePrefix: ytdl-
+namePrefix: metube-
 
 labels:
   - includeSelectors: true
     pairs:
-      app: ytdl
+      app: metube
 
 patches:
   - path: deployment-patch.yaml
@@ -34,7 +33,7 @@ patches:
   - patch: |-
       - op: replace
         path: /spec/template/spec/containers/0/name
-        value: ytdl
+        value: metube
     target:
       kind: Deployment
       name: deployment

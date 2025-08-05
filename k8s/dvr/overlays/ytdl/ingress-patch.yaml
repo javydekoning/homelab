@@ -15,6 +15,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: ytdl-service
+                name: metube-service
                 port:
                   name: http
