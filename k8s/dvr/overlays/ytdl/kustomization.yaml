@@ -18,6 +18,7 @@ configMapGenerator:
       - GID=911
       - AUDIO_DOWNLOAD_DIR=/downloads/music/livesets
       - DEFAULT_THEME=dark
+      - TEMP_DIR=/dlcache
 
 namePrefix: metube-
 

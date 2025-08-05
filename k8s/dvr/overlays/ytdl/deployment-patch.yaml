@@ -15,3 +15,12 @@ spec:
           volumeMounts:
             - name: downloads
               mountPath: /downloads
+            - name: metube
+              mountPath: /downloads/.metube
+            - name: dlcache
+              mountPath: /dlcache
+      volumes:
+        - name: metube
+          emptyDir: {}
+        - name: dlcache
+          emptyDir: {}
