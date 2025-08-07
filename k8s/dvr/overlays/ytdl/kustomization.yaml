@@ -21,7 +21,6 @@ configMapGenerator:
       - TEMP_DIR=/dlcache
       - DEFAULT_OPTION_PLAYLIST_STRICT_MODE=true
 
-
 namePrefix: metube-
 
 labels:
