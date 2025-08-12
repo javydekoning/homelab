@@ -24,12 +24,11 @@ spec:
               value: "/home/node/trilium-data"
             - name: TRILIUM_PORT
               value: "8080"
+            - name: TZ
+              value: "Europe/Amsterdam"
           volumeMounts:
             - name: trilium-data
               mountPath: /home/node/trilium-data
-            - name: timezone
-              mountPath: /etc/timezone
-              readOnly: true
             - name: localtime
               mountPath: /etc/localtime
               readOnly: true
@@ -38,10 +37,6 @@ spec:
           hostPath:
             path: /config/trilium-data
             type: DirectoryOrCreate
-        - name: timezone
-          hostPath:
-            path: /etc/timezone
-            type: File
         - name: localtime
           hostPath:
             path: /etc/localtime
