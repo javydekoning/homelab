@@ -29,16 +29,19 @@ pre_start_hook=#!/usr/bin/bash
   echo 1280 > /proc/sys/fs/inotify/max_user_instances
   echo 196608 > /proc/sys/net/netfilter/nf_conntrack_max
   echo 655360 > /proc/sys/fs/inotify/max_user_watches
-
+she
 # Only used while creating the jail
 distro=debian
-release=bookworm
+release=trixie
 
 # Specify command/script to run IN THE JAIL on the first start (once networking is ready in the jail)
 # Useful to install packages on top of the base rootfs
 initial_setup=#!/usr/bin/bash
   set -euo pipefail
-  apt install curl jq git -y
+  apt-get -y install curl jq git kubectx
+
+  # Enable HW Acceleration
+  apt-get -y install {va-driver-all,ocl-icd-libopencl1,vainfo,intel-gpu-tools}
 
   # Setup Kubernetes
   curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
@@ -75,11 +78,13 @@ initial_setup=#!/usr/bin/bash
   kubectl create ns external-secrets
   kubectl create secret generic awssm-secret -n external-secrets \
     --from-literal=access-key=$ACCESS_KEY --from-literal=secret-access-key=$SECRET_KEY
+
   kubectl apply -f ~/homelab/k8s/argo-application-sets/helm-application-set.yaml
   kubectl apply -f ~/homelab/k8s/argo-application-sets/kustomize-application-set.yaml
+  kubectl apply -f ~/homelab/k8s/argo-application-sets/kustomize-s3-csi.yaml
 
-  # Enable HW Acceleration
-  apt-get -y install {va-driver-all,ocl-icd-libopencl1,intel-opencl-icd,vainfo,intel-gpu-tools}
+  # symlink /etc/rancher/k3s/k3s.yaml -> /root/.kube/config
+  ln -sf /etc/rancher/k3s/k3s.yaml /root/.kube/config
 
 # Usually no need to change systemd_run_default_args
 systemd_run_default_args=--collect
