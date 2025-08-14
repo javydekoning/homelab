@@ -49,6 +49,8 @@ spec:
           env:
             - name: MEILI_NO_ANALYTICS
               value: "true"
+            - name: MEILI_EXPERIMENTAL_DUMPLESS_UPGRADE
+              value: "true"
           image: getmeili/meilisearch:v1.17@sha256:a5d47e065e63da1a8a3c9691c60cb1ca10c8d1c3113c9e58427dbba1373ac5e9
           ports:
             - containerPort: 7700
