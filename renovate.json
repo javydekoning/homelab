@@ -9,11 +9,6 @@
   },
   "packageRules": [
     {
-      "matchPackageNames": ["getmeili/meilisearch"],
-      "matchUpdateTypes": ["minor"],
-      "automerge": false
-    },
-    {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true
     },
