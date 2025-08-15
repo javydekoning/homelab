@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openwebui
+  namespace: openwebui
+  labels:
+    app: openwebui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openwebui
+  template:
+    metadata:
+      labels:
+        app: openwebui
+    spec:
+      containers:
+      - name: openwebui
+        image: ghcr.io/open-webui/open-webui:main
+        ports:
+        - containerPort: 8080
+          name: http
+        envFrom:
+          - secretRef:
+              name: openwebui-secret
+          - configMapRef:
+              name: openwebui-config
+        volumeMounts:
+        - name: openwebui-data
+          mountPath: /app/backend/data
+      volumes:
+        - name: openwebui-data
+          hostPath:
+            path: /config/openwebui-data
+            type: DirectoryOrCreate
