@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: litellm-ingress
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - litellm.k8s.javydekoning.com
+      secretName: javydekoning-com-tls
+  rules:
+    - host: litellm.k8s.javydekoning.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: litellm
+                port:
+                  name: http
