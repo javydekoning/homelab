@@ -14,11 +14,6 @@
       "automerge": false
     },
     {
-      "matchManagers": ["helm-values"],
-      "matchPackageNames": ["ghcr.io/onedr0p/plex"],
-      "versioning": "loose"
-    },
-    {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true
     },
