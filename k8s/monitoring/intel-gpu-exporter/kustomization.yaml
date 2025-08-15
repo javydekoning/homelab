@@ -1,4 +1,0 @@
-resources:
-  - ds.yaml
-  - sm.yaml
-  - svc.yaml
