@@ -1,9 +1,9 @@
 plex:
   image:
     # -- image repository
-    repository: ghcr.io/onedr0p/plex
+    repository: ghcr.io/home-operations/plex
     # -- image tag
-    tag: "1.41.5.9522"
+    tag: "rolling@sha256:04563be281364ba2462285aacb2ca13d7ef7e1d0b19e1203f4c19b4a56840c5c"
     # -- image pull policy
     pullPolicy: Always
 
