@@ -11,3 +11,15 @@ model_list:
       aws_region_name: eu-west-1
       aws_access_key_id: os.environ/AWS_ACCESS_KEY_ID
       aws_secret_access_key: os.environ/AWS_SECRET_ACCESS_KEY
+  - model_name: amazon-titan-embed-text-v2
+    litellm_params:
+      model: bedrock/amazon.titan-embed-text-v2:0
+      aws_region_name: eu-west-1
+      aws_access_key_id: os.environ/AWS_ACCESS_KEY_ID
+      aws_secret_access_key: os.environ/AWS_SECRET_ACCESS_KEY
+
+mcp_servers:
+  circleci_mcp:
+    transport: "stdio"
+    command: "uvx"
+    args: ["mcp-server-time", "--local-timezone=Europe/Amsterdam"]
