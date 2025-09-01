@@ -4,5 +4,6 @@ ingress-nginx:
       default: true
     service:
       loadBalancerIP: 192.168.100.200
+      externalTrafficPolicy: Local
     extraArgs:
       default-ssl-certificate: "default/javydekoning-com-tls"
