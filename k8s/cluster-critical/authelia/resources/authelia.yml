@@ -145,3 +145,17 @@ identity_providers:
         access_token_signed_response_alg: "none"
         userinfo_signed_response_alg: "none"
         token_endpoint_auth_method: "client_secret_basic"
+      - client_id: linkwarden
+        client_name: Linkwarden
+        client_secret: $pbkdf2-sha512$310000$Uk8YpY9mZfaQnADI58DBHQ$uAojDb1x8ZoIB9MbKV5JNvkPdPH6NVVD8/u9bliY5HHedRiEkoyXV/z2EVseRucnu5CLd0hlh6cJ8Ldk7uSKZg
+        public: false
+        authorization_policy: one_factor
+        consent_mode: implicit
+        scopes:
+          - openid
+          - groups
+          - email
+          - profile
+        redirect_uris:
+          - https://linkwarden.lab.javydekoning.com/api/v1/auth/callback/authelia
+        userinfo_signed_response_alg: none
