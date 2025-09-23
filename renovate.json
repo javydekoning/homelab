@@ -1,12 +1,8 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
-  ],
+  "extends": ["config:recommended"],
   "helm-values": {
-    "managerFilePatterns": [
-      "/(^|/)values\\.yaml$/"
-    ]
+    "managerFilePatterns": ["/(^|/)values\\.yaml$/"]
   },
   "kubernetes": {
     "managerFilePatterns": [
@@ -16,18 +12,11 @@
   },
   "packageRules": [
     {
-      "matchUpdateTypes": [
-        "minor",
-        "patch",
-        "pin",
-        "digest"
-      ],
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true
     },
     {
-      "matchDepTypes": [
-        "devDependencies"
-      ],
+      "matchDepTypes": ["devDependencies"],
       "automerge": true
     }
   ],
