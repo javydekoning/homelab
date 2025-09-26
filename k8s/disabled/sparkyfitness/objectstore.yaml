@@ -1,0 +1,17 @@
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: homelab-backup-s3
+spec:
+  configuration:
+    destinationPath: "s3://javydekoning-homelab-backup/sparkyfitness-db"
+    endpointURL: "https://s3.eu-west-1.amazonaws.com"
+    wal:
+      compression: gzip
+    s3Credentials:
+      accessKeyId:
+        name: sparkyfitness-s3-credentials
+        key: ACCESS_KEY_ID
+      secretAccessKey:
+        name: sparkyfitness-s3-credentials
+        key: SECRET_ACCESS_KEY

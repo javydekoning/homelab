@@ -1,0 +1,65 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sparkyfitness
+  namespace: sparkyfitness
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sparkyfitness
+  template:
+    metadata:
+      labels:
+        app: sparkyfitness
+    spec:
+      containers:
+        - name: sparkyfitness-frontend
+          image: codewithcj/sparkyfitness:latest
+          ports:
+            - containerPort: 3004
+        - name: sparkyfitness
+          image: codewithcj/sparkyfitness_server:latest
+          env:
+            - name: SPARKY_FITNESS_LOG_LEVEL
+              value: "INFO"
+            - name: "SPARKY_FITNESS_API_ENCRYPTION_KEY"
+              value: "f4c33e80b0edb24b1a9716d13a7362a00d37d3d8d9dca9092d3885c1dd615dfb"
+            - name: "JWT_SECRET"
+              value: "shXXP5tlzSNu1JerKkf5XerSFIz6ZPb/oWgTtg3WDAQ="
+            - name: SPARKY_FITNESS_DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: sparkyfitness-db-credentials
+                  key: username
+            - name: SPARKY_FITNESS_DB_HOST
+              value: "sparkyfitness-db-rw"
+            - name: SPARKY_FITNESS_DB_NAME
+              value: "sparkyfitness"
+            - name: SPARKY_FITNESS_SERVER_HOST
+              value: localhost
+            - name: SPARKY_FITNESS_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sparkyfitness-db-credentials
+                  key: password
+            - name: SPARKY_FITNESS_DB_PORT
+              value: "5432"
+            - name: SPARKY_FITNESS_FRONTEND_URL
+              value: "https://fit.k8s.javydekoning.com"
+            - name: SPARKY_FITNESS_DISABLE_SIGNUP
+              value: "true"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sparkyfitness
+  namespace: sparkyfitness
+spec:
+  selector:
+    app: sparkyfitness
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
