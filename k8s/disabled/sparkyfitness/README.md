@@ -1,4 +1,4 @@
-## Dependencies
+# Dependencies
 
 - https://github.com/cloudnative-pg/charts
 - https://cloudnative-pg.io/plugin-barman-cloud/docs/installation/
