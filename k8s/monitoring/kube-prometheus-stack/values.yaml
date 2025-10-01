@@ -68,12 +68,12 @@ kube-prometheus-stack:
         {{- if .Annotations.runbook_url }}
         [RunbookURL]({{ .Annotations.runbook_url }})
 
-        {{- if .Labels.title }}
-        Title: `{{ .Labels.title }}`
+        {{- if .Labels.summary }}
+        Summary: `{{ .Annotations.summary }}`
         {{- end }}
 
-        {{- if .Labels.title }}
-        Description: `{{ .Labels.description }}`
+        {{- if .Annotations.description }}
+        Description: `{{ .Annotations.description }}`
         {{- end }}
 
         {{- end }}
