@@ -53,6 +53,10 @@ kube-prometheus-stack:
 
         {{- range .Alerts -}}
 
+        {{- if .Labels.app_name }}
+        App: `{{ .Labels.app_name }}`
+        {{- end }}
+
         {{- if .Labels.job }}
         Job: `{{ .Labels.job }}`
         {{- end }}

@@ -19,17 +19,17 @@ spec:
             app_namespace: "{{ $labels.namespace }}"
           annotations:
             summary: "🔄 ArgoCD App Out of Sync: {{ $labels.name }}"
-            description: |
-              🐙 **ArgoCD Application Issue**
+            description: |-
+              🐙 *ArgoCD Application Issue*
 
-              **App:** `{{ $labels.name }}`
-              **Namespace:** `{{ $labels.namespace }}`
-              **Status:** `{{ $labels.sync_status }}`
-              **Project:** `{{ $labels.project }}`
-              **Repo:** `{{ $labels.repo }}`
+              *App:* {{ $labels.name }}
+              *Namespace:* {{ $labels.namespace }}
+              *Status:* {{ $labels.sync_status }}
+              *Project:* {{ $labels.project }}
+              *Repo:* {{ $labels.repo }}
 
-              ⏰ **Duration:** > 5 minutes
-              🔗 **ArgoCD:** [View App](https://argocd.k8s.javydekoning.com/applications/{{ $labels.name }})
+              ⏰ *Duration:* > 5 minutes
+              🔗 *ArgoCD:* [View App](https://argocd.k8s.javydekoning.com/applications/{{ $labels.name }})
             runbook_url: "https://github.com/javydekoning/homelab/blob/main/k8s/cluster-critical/argo-cd/argocd-sync-issues.md"
         - alert: ArgoCDApplicationNotHealthy
           expr: argocd_app_info{health_status!="Healthy"}
