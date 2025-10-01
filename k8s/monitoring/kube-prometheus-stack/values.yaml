@@ -22,6 +22,7 @@ kube-prometheus-stack:
             - bot_token_file: /etc/alertmanager/secrets/telegram-bot-token/token.txt
               chat_id: -1001375636328
               parse_mode: MarkdownV2
+              message: '{{ template "telegram.default.message" . }}'
       route:
         receiver: default
     alertmanagerSpec:
@@ -30,6 +31,31 @@ kube-prometheus-stack:
       #
       secrets:
         - telegram-bot-token
+
+    templateFiles:
+      telegram.tmpl: |-
+        {{ define "telegram.default.message" }}
+        {{ if eq .Status "firing" }}
+        {{ if eq .CommonLabels.severity "critical" }}🔴 *Alert:* {{ .CommonLabels.alertname }}
+        {{ else if eq .CommonLabels.severity "warning" }}🟠 *Alert:* {{ .CommonLabels.alertname }}
+        {{ else }}⚪️ *Alert:* {{ .CommonLabels.alertname }}
+        {{ end }}
+        *Status:* 🔥 FIRING
+        *Severity:* {{ if eq .CommonLabels.severity "critical" }}🔴 **{{ .CommonLabels.severity | title }}**{{ else if eq .CommonLabels.severity "warning" }}🟠 **{{ .CommonLabels.severity | title }}**{{ else }}⚪️ **{{ .CommonLabels.severity | title }}**{{ end }}
+        {{ else if eq .Status "resolved" }}
+        {{ if eq .CommonLabels.severity "critical" }}🟢 *🚌 TRANSPORT Alert:* {{ .CommonLabels.alertname }}
+        {{ else if eq .CommonLabels.severity "warning" }}🟢 *🚌 TRANSPORT Alert:* {{ .CommonLabels.alertname }}
+        {{ else }}⚪️ *Alert:* {{ .CommonLabels.alertname }}
+        {{ end }}
+        *Status:* ✅ RESOLVED
+        *Severity:* {{ if eq .CommonLabels.severity "critical" }}🟢 **{{ .CommonLabels.severity | title }}**{{ else if eq .CommonLabels.severity "warning" }}🟢 **{{ .CommonLabels.severity | title }}**{{ else }}⚪️ **{{ .CommonLabels.severity | title }}**{{ end }}
+        {{ end }}
+        {{ range .Alerts }}
+        *Instance:* {{ .Labels.instance }}
+        - *Title:* {{ .Annotations.title | reReplaceAll "([_*\\[\\]()~`>#+=|{}.!-])" "\\$1" }}
+        - *Description:* {{ .Annotations.description | reReplaceAll "([_*\\[\\]()~`>#+=|{}.!-])" "\\$1" }}
+        {{ end }}
+        {{ end }}
 
     ingress:
       enabled: true
