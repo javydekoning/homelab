@@ -22,35 +22,14 @@ kube-prometheus-stack:
             - bot_token_file: /etc/alertmanager/secrets/telegram-bot-token/token.txt
               chat_id: -1001375636328
               parse_mode: MarkdownV2
-              message: '{{ template "telegram.message" . }}'
       route:
         receiver: default
-      templates:
-        - /etc/alertmanager/config/telegram_message.tmpl
     alertmanagerSpec:
       # Secrets is a list of Secrets in the same namespace as the Alertmanager object, which shall be mounted into the
       # Alertmanager Pods. The Secrets are mounted into /etc/alertmanager/secrets/.
       #
       secrets:
         - telegram-bot-token
-
-    templateFiles:
-      telegram_message.tmpl: |-
-        {{- /* Prefer description; fall back to summary/alertname */ -}}
-        {{- $desc := or .CommonAnnotations.description .Annotations.description -}}
-        {{- $summary := or .CommonAnnotations.summary .Annotations.summary .Labels.alertname -}}
-
-        {{- /* Convert **bold** to *bold* for Telegram */ -}}
-        {{- $desc = reReplaceAll "\\*\\*(.+?)\\*\\*" "*$1*" $desc -}}
-        {{- $summary = reReplaceAll "\\*\\*(.+?)\\*\\*" "*$1*" $summary -}}
-
-        {{- /* Escape MarkdownV2 special characters */ -}}
-        {{- $esc := "([_\\*\\[\\]\\(\\)~`>#+\\-=|{}\\.!])" -}}
-        {{- $summary = reReplaceAll $esc "\\\\$1" $summary -}}
-        {{- $desc = reReplaceAll $esc "\\\\$1" $desc -}}
-
-        *{{ $summary }}*
-        {{ $desc }}
 
     ingress:
       enabled: true
