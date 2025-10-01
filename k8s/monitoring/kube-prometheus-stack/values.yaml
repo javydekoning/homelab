@@ -86,7 +86,7 @@ kube-prometheus-stack:
         {{- end }}
 
         {{- if .Annotations.runbook_url }}
-        Runbook: [Mardown runbook]({{ .Annotations.runbook_url }})
+        Runbook: [Markdown runbook]({{ .Annotations.runbook_url }})
         {{- end }}
 
         {{- end }}
