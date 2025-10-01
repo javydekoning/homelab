@@ -37,24 +37,25 @@ kube-prometheus-stack:
         {{ define "telegram.default.message" }}
         {{- if eq .Status "firing" -}}
             {{- if eq .CommonLabels.severity "critical" -}}
-                🔴 Alert: {{ .CommonLabels.alertname }}
+                `🔴 Alert: {{ .CommonLabels.alertname }}`
             {{- else if eq .CommonLabels.severity "warning" -}}
-                🟠 Alert: {{ .CommonLabels.alertname }}
+                `🟠 Alert: {{ .CommonLabels.alertname }}`
             {{- else -}}
-                ⚪️ Alert: {{ .CommonLabels.alertname }}
+                `⚪️ Alert: {{ .CommonLabels.alertname }}`
             {{- end }}
-        Status: 🔥 FIRING
-        Severity: {{ if eq .CommonLabels.severity "critical" }}🔴 {{ .CommonLabels.severity | title }}{{ else if eq .CommonLabels.severity "warning" }}🟠 {{ .CommonLabels.severity | title }}{{ else }}⚪️ {{ .CommonLabels.severity | title }}{{ end }}
-        {{- else if eq .Status "resolved" -}}
+
+        Status: `🔥 FIRING`
+        Severity: `{{ if eq .CommonLabels.severity "critical" }}🔴 {{ .CommonLabels.severity | title }}{{ else if eq .CommonLabels.severity "warning" }}🟠 {{ .CommonLabels.severity | title }}{{ else }}⚪️ {{ .CommonLabels.severity | title }}{{ end }}
+        {{- else if eq .Status "resolved" -}}`
             ⚪️ Alert: {{ .CommonLabels.alertname }}
-        Status: ✅ RESOLVED
-        Severity: {{ if eq .CommonLabels.severity "critical" }}🟢 {{ .CommonLabels.severity | title }}{{ else if eq .CommonLabels.severity "warning" }}🟢 {{ .CommonLabels.severity | title }}{{ else }}⚪️ {{ .CommonLabels.severity | title }}{{ end }}
-        {{- end }}
+        Status: `✅ RESOLVED`
+        Severity: `{{ if eq .CommonLabels.severity "critical" }}🟢 {{ .CommonLabels.severity | title }}{{ else if eq .CommonLabels.severity "warning" }}🟢 {{ .CommonLabels.severity | title }}{{ else }}⚪️ {{ .CommonLabels.severity | title }}{{ end }}
+        {{- end }}`
 
         {{- range .Alerts -}}
 
-        {{- if .Labels.app_name }}
-        App: `{{ .Labels.app_name }}`
+        {{- if .Labels.name }}
+        App: `{{ .Labels.name }}`
         {{- end }}
 
         {{- if .Labels.job }}
@@ -69,19 +70,27 @@ kube-prometheus-stack:
         Instance: `{{ .Labels.instance }}`
         {{- end }}
 
-        {{- if .Annotations.runbook_url }}
-        [RunbookURL]({{ .Annotations.runbook_url }})
-
-        {{- if .Labels.summary }}
+        {{- if .Annotations.summary }}
         Summary: `{{ .Annotations.summary }}`
         {{- end }}
 
         {{- if .Annotations.description }}
-        Description: `{{ .Annotations.description }}`
+        Description:
+          ```
+          {{ .Annotations.description }}
+          ```
+        {{- end }}
+
+        {{- if .Annotations.argo_url }}
+        ArgoCD link: [application]({{ .Annotations.argo_url }})
+        {{- end }}
+
+        {{- if .Annotations.runbook_url }}
+        Runbook: [{{ .CommonLabels.alertname }} runbook]({{ .Annotations.runbook_url }})
         {{- end }}
 
         {{- end }}
-        {{- end }}
+
         {{ end }}
 
     ingress:

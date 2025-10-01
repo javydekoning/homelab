@@ -19,17 +19,15 @@ spec:
             app_namespace: "{{ $labels.namespace }}"
           annotations:
             summary: "🔄 ArgoCD App Out of Sync: {{ $labels.name }}"
-            description: |-
-              🐙 *ArgoCD Application Issue*
-
-              *App:* {{ $labels.name }}
-              *Namespace:* {{ $labels.namespace }}
-              *Status:* {{ $labels.sync_status }}
-              *Project:* {{ $labels.project }}
-              *Repo:* {{ $labels.repo }}
-
-              ⏰ *Duration:* > 5 minutes
-              🔗 *ArgoCD:* [View App](https://argocd.k8s.javydekoning.com/applications/{{ $labels.name }})
+            description: |
+              🐙 ArgoCD Application Issue
+              - ⏰ Duration: > 5 minutes
+              - App: {{ $labels.name }}
+              - Namespace: {{ $labels.namespace }}
+              - Status: {{ $labels.sync_status }}
+              - Project: {{ $labels.project }}
+              - Repo: {{ $labels.repo }}
+            argo_url: "https://argocd.k8s.javydekoning.com/applications/{{ $labels.name }}"
             runbook_url: "https://github.com/javydekoning/homelab/blob/main/k8s/cluster-critical/argo-cd/argocd-sync-issues.md"
         - alert: ArgoCDApplicationNotHealthy
           expr: argocd_app_info{health_status!="Healthy"}
@@ -42,17 +40,14 @@ spec:
           annotations:
             summary: "⚠️ ArgoCD App Unhealthy: {{ $labels.name }}"
             description: |
-              🐙  **ArgoCD Application Issue**
-
-              **App:** `{{ $labels.name }}`
-              **Namespace:** `{{ $labels.namespace }}`
-              **Health:** `{{ $labels.health_status }}`
-              **Sync:** `{{ $labels.sync_status }}`
-              **Project:** `{{ $labels.project }}`
-              **Repo:** `{{ $labels.repo }}`
-
-              ⏰ **Duration:** > 5 minutes
-              🔗 **ArgoCD:** [View App](https://argocd.k8s.javydekoning.com/applications/{{ $labels.name }})
+              🐙 ArgoCD App Health Issue
+              - ⏰ Duration: > 5 minutes
+              - App: {{ $labels.name }}
+              - Namespace: {{ $labels.namespace }}
+              - Status: {{ $labels.sync_status }}
+              - Project: {{ $labels.project }}
+              - Repo: {{ $labels.repo }}
+            argo_url: "https://argocd.k8s.javydekoning.com/applications/{{ $labels.name }}"
             runbook_url: "https://github.com/javydekoning/homelab/blob/main/k8s/cluster-critical/argo-cd/argocd-sync-issues.md"
         - alert: ArgoCDApplicationSyncFailed
           expr: argocd_app_info{sync_status="Unknown"} or argocd_app_info{operation_sync_status="Failed"}
@@ -65,13 +60,12 @@ spec:
           annotations:
             summary: "❌ ArgoCD Sync Failed: {{ $labels.name }}"
             description: |
-              🐙  **ArgoCD Sync Failure**
-
-              **App:** `{{ $labels.name }}`
-              **Namespace:** `{{ $labels.namespace }}`
-              **Sync Status:** `{{ $labels.sync_status }}`
-              **Project:** `{{ $labels.project }}`
-
-              🚨 **Action Required:** Manual intervention needed
-              🔗 **ArgoCD:** [View App](https://argocd.k8s.javydekoning.com/applications/{{ $labels.name }})
+              🐙 ArgoCD Sync Issue
+              - ⏰ Duration: > 2 minutes
+              - App: {{ $labels.name }}
+              - Namespace: {{ $labels.namespace }}
+              - Status: {{ $labels.sync_status }}
+              - Project: {{ $labels.project }}
+              - Repo: {{ $labels.repo }}
+            argo_url: "https://argocd.k8s.javydekoning.com/applications/{{ $labels.name }}"
             runbook_url: "https://github.com/javydekoning/homelab/blob/main/k8s/cluster-critical/argo-cd/argocd-sync-issues.md"
