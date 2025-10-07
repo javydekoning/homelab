@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mcpo
+  namespace: openwebui
+  labels:
+    app: mcpo
+spec:
+  selector:
+    matchLabels:
+      app: mcpo
+  template:
+    metadata:
+      labels:
+        app: mcpo
+    spec:
+      containers:
+        - name: mcpo
+          image: ghcr.io/open-webui/mcpo:main@sha256:af810dc3deb1769425bb0f0001d27097a434322f8e66a4d095369a7c087047e8
+          command: ["mcpo"]
+          args: ["--config", "/app/config.json"]
+          ports:
+            - containerPort: 8000
+              name: http
+          envFrom:
+            - secretRef:
+                name: mcpo-secrets
+          volumeMounts:
+            - name: config
+              mountPath: /app/config.json
+              subPath: config.json
+      volumes:
+        - name: config
+          configMap:
+            name: mcpo-config
