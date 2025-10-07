@@ -26,6 +26,8 @@ spec:
                 name: openwebui-secret
             - configMapRef:
                 name: openwebui-config
+            - configMapRef:
+                name: openwebui-file-config
           volumeMounts:
             - name: openwebui-data
               mountPath: /app/backend/data

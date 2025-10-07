@@ -14,3 +14,6 @@ configMapGenerator:
   - name: openwebui-config
     envs:
       - openwebui.env
+  - name: openwebui-file-config
+    files:
+      - TOOL_SERVER_CONNECTIONS=./TOOL_SERVER_CONNECTIONS.json
