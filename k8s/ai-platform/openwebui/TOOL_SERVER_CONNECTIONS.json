@@ -1,7 +1,12 @@
 [
   {
-    "name": "time-server",
+    "type": "openapi",
     "url": "http://mcpo.openwebui.svc.cluster.local:8000/time",
-    "api_key": ""
+    "spec_type": "url",
+    "spec": "",
+    "path": "openapi.json",
+    "auth_type": "none",
+    "key": "",
+    "info": { "id": "", "name": "time-server", "description": "" }
   }
 ]
