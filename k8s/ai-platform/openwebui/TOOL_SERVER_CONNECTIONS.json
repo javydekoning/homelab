@@ -1,14 +1,1 @@
-[
-  {
-    "name": "time",
-    "url": "http://mcpo.openwebui.svc.cluster.local:8000/time"
-  },
-  {
-    "name": "memory",
-    "url": "http://mcpo.openwebui.svc.cluster.local:8000/memory"
-  },
-  {
-    "name": "karakeep",
-    "url": "http://mcpo.openwebui.svc.cluster.local:8000/karakeep"
-  }
-]
+'[{"name":"time","url":"http://mcpo.openwebui.svc.cluster.local:8000/time"},{"name":"memory","url":"http://mcpo.openwebui.svc.cluster.local:8000/memory"},{"name":"karakeep","url":"http://mcpo.openwebui.svc.cluster.local:8000/karakeep"}]'
