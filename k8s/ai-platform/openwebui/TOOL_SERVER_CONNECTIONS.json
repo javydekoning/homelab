@@ -7,6 +7,7 @@
     "path": "openapi.json",
     "auth_type": "none",
     "key": "",
+    "config": {"enable": true},
     "info": { "id": "", "name": "time-server", "description": "" }
   }
 ]
