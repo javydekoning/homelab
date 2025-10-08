@@ -5,7 +5,7 @@ argo-cd:
         name: Authelia
         issuer: https://auth.lab.javydekoning.com
         clientID: argocd
-        clientSecret: $oidc.OIDC_CLIENT_SECRET
+        clientSecret: $oidc:OIDC_CLIENT_SECRET
         requestedScopes: ["openid", "profile", "email", "groups"]
         requestedIDTokenClaims: {"groups": {"essential": true}}
         logoutURL: https://auth.lab.javydekoning.com/api/oidc/logout
