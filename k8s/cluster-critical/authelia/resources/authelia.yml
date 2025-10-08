@@ -168,6 +168,7 @@ identity_providers:
         pkce_challenge_method: ''
         redirect_uris:
           - 'https://argocd.k8s.javydekoning.com/auth/callback'
+          - 'https://argocd.k8s.javydekoning.com/applications'
         scopes:
           - 'openid'
           - 'groups'

@@ -6,22 +6,16 @@ argo-cd:
         issuer: https://auth.lab.javydekoning.com
         clientID: argocd
         clientSecret: $oidc:OIDC_CLIENT_SECRET
-        requestedScopes: ["openid", "profile", "email", "groups"]
-        requestedIDTokenClaims: {"groups": {"essential": true}}
-        logoutURL: https://auth.lab.javydekoning.com/api/oidc/logout
+        requestedScopes:
+          - 'openid'
+          - 'email'
+          - 'groups'
+        enableUserInfoGroups: true
+        userInfoPath: '/api/oidc/userinfo'
     rbac:
       policy.default: role:readonly
       policy.csv: |
-        p, role:admin, applications, *, */*, allow
-        p, role:admin, clusters, *, *, allow
-        p, role:admin, repositories, *, *, allow
-        p, role:admin, certificates, *, *, allow
-        p, role:admin, accounts, *, *, allow
-        p, role:admin, gpgkeys, *, *, allow
-        p, role:admin, logs, *, *, allow
-        p, role:admin, exec, *, *, allow
-        p, role:admin, extensions, *, *, allow
-        g, admins, role:admin
+        g, argocd-admins, role:admin
     params:
       server.insecure: true
 
