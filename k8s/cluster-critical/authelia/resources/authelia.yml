@@ -159,24 +159,24 @@ identity_providers:
         redirect_uris:
           - https://linkwarden.lab.javydekoning.com/api/v1/auth/callback/authelia
         userinfo_signed_response_alg: none
-      - client_id: 'argocd'
-        client_name: 'Argo CD'
-        client_secret: '$pbkdf2-sha512$310000$VIp3L8kha73sboVfB/MZdg$JX6u5FRxg1s0794P.kr8CYxwgFOR3F5ziD7EqmZzXnZnw05X1Ic4TtMP05BT5IGhOMV46wNmcUXphsvYhzyw2w'
+      - client_id: "argocd"
+        client_name: "Argo CD"
+        client_secret: "$pbkdf2-sha512$310000$VIp3L8kha73sboVfB/MZdg$JX6u5FRxg1s0794P.kr8CYxwgFOR3F5ziD7EqmZzXnZnw05X1Ic4TtMP05BT5IGhOMV46wNmcUXphsvYhzyw2w"
         public: false
-        authorization_policy: 'one_factor'
+        authorization_policy: "one_factor"
         require_pkce: false
-        pkce_challenge_method: ''
+        pkce_challenge_method: ""
         redirect_uris:
-          - 'https://argocd.k8s.javydekoning.com/auth/callback'
-          - 'https://argocd.k8s.javydekoning.com/applications'
+          - "https://argocd.k8s.javydekoning.com/auth/callback"
+          - "https://argocd.k8s.javydekoning.com/applications"
         scopes:
-          - 'openid'
-          - 'groups'
-          - 'email'
+          - "openid"
+          - "groups"
+          - "email"
         response_types:
-          - 'code'
+          - "code"
         grant_types:
-          - 'authorization_code'
-        access_token_signed_response_alg: 'none'
-        userinfo_signed_response_alg: 'none'
-        token_endpoint_auth_method: 'client_secret_basic'
+          - "authorization_code"
+        access_token_signed_response_alg: "none"
+        userinfo_signed_response_alg: "none"
+        token_endpoint_auth_method: "client_secret_basic"
