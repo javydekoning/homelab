@@ -3,12 +3,12 @@ argo-cd:
     cm:
       oidc.config: |
         name: Authelia
-        issuer: https://auth.k8s.javydekoning.com
+        issuer: https://auth.lab.javydekoning.com
         clientID: argocd
         clientSecret: $oidc.OIDC_CLIENT_SECRET
         requestedScopes: ["openid", "profile", "email", "groups"]
         requestedIDTokenClaims: {"groups": {"essential": true}}
-        logoutURL: https://auth.k8s.javydekoning.com/api/oidc/logout
+        logoutURL: https://auth.lab.javydekoning.com/api/oidc/logout
     rbac:
       policy.default: role:readonly
       policy.csv: |
