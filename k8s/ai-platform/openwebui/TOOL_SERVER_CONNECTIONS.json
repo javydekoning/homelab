@@ -7,7 +7,41 @@
     "path": "openapi.json",
     "auth_type": "none",
     "key": "",
-    "config": {"enable": true},
-    "info": { "id": "", "name": "time-server", "description": "" }
+    "config": { "enable": true },
+    "info": {
+      "id": "",
+      "name": "time-server",
+      "description": "A MCP server that provides time and timezone conversion capabilities."
+    }
+  },
+  {
+    "type": "openapi",
+    "url": "http://mcpo.openwebui.svc.cluster.local:8000/memory",
+    "spec_type": "url",
+    "spec": "",
+    "path": "openapi.json",
+    "auth_type": "none",
+    "key": "",
+    "config": { "enable": true },
+    "info": {
+      "id": "",
+      "name": "memory-server",
+      "description": "A basic implementation of persistent memory using a local knowledge graph."
+    }
+  },
+  {
+    "type": "openapi",
+    "url": "http://mcpo.openwebui.svc.cluster.local:8000/karakeep",
+    "spec_type": "url",
+    "spec": "",
+    "path": "openapi.json",
+    "auth_type": "none",
+    "key": "",
+    "config": { "enable": true },
+    "info": {
+      "id": "",
+      "name": "karakeep",
+      "description": "Karakeep MCP server, used to interact with Karakeep"
+    }
   }
 ]
