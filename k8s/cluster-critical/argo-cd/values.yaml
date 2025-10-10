@@ -3,6 +3,7 @@ argo-cd:
     domain: argocd.k8s.javydekoning.com
   configs:
     cm:
+      kustomize.buildOptions: --enable-helm
       oidc.config: |
         name: Authelia
         issuer: https://auth.lab.javydekoning.com
