@@ -50,7 +50,8 @@ spec:
           jqPathExpressions:
             - ".spec.volumeClaimTemplates[].apiVersion"
             - ".spec.volumeClaimTemplates[].kind"
-            - ".spec.volumeClaimTemplates[].metadata.creationTimestamp"
+            - ".spec.volumeClaimTemplates[].metadata"
+            - ".spec.volumeClaimTemplates[].status"
         - group: "deviceplugin.intel.com"
           kind: GpuDevicePlugin
           name: gpudeviceplugin-sample
