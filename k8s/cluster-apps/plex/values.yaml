@@ -1,84 +1,83 @@
-plex:
-  image:
-    # -- image repository
-    repository: ghcr.io/home-operations/plex
-    # -- image tag
-    tag: "rolling@sha256:9ad8a3506e1d8ebda873a668603c1a2c10e6887969564561be669efd65ae8871"
-    # -- image pull policy
-    pullPolicy: Always
+image:
+  # -- image repository
+  repository: ghcr.io/home-operations/plex
+  # -- image tag
+  tag: "rolling@sha256:9ad8a3506e1d8ebda873a668603c1a2c10e6887969564561be669efd65ae8871"
+  # -- image pull policy
+  pullPolicy: Always
 
-  env:
-    TZ: Europe/Amsterdam
-    ADVERTISE_IP: 192.168.100.250
-    ALLOWED_NETWORKS: "10.0.0.0/8,172.16.0.0/16,192.168.0.0/16"
-    # cat /config/Library/Application\ Support/Plex\ Media\ Server/Preferences.xml | tr " " "\n" | \
-    # sed -n '/<Preferences/,$p' | tail -n +2 | sed 's,/>,,g' | \
-    # sed '/\(OldestPreviousVersion\|MachineIdentifier\|^PlexOnline\|Certificate\|PubSub\|NeedsUpdate\)/d' | \
-    # sed 's/"//g' | awk '{print "PLEX_PREFERENCE_"i++": \""$0"\""}'
-    PLEX_PREFERENCE_1: "TranscoderTempDirectory=/transcode"
-    PLEX_PREFERENCE_2: "FriendlyName=plex.k8s.javydekoning.com"
-    PLEX_PREFERENCE_3: "HardwareAcceleratedCodecs=1"
-    PLEX_PREFERENCE_4: "autoEmptyTrash=1"
-    PLEX_PREFERENCE_5: "AcceptedEULA=1"
-    PLEX_PREFERENCE_6: "HardwareDevicePath=/dev/dri/renderD128"
-    PLEX_PREFERENCE_7: "RelayEnabled=0"
-    PLEX_PREFERENCE_8: "TreatWanIpAsLocal=0"
-    PLEX_PREFERENCE_9: "customConnections=https://192.168.100.250:32400"
+env:
+  TZ: Europe/Amsterdam
+  ADVERTISE_IP: 192.168.100.250
+  ALLOWED_NETWORKS: "10.0.0.0/8,172.16.0.0/16,192.168.0.0/16"
+  # cat /config/Library/Application\ Support/Plex\ Media\ Server/Preferences.xml | tr " " "\n" | \
+  # sed -n '/<Preferences/,$p' | tail -n +2 | sed 's,/>,,g' | \
+  # sed '/\(OldestPreviousVersion\|MachineIdentifier\|^PlexOnline\|Certificate\|PubSub\|NeedsUpdate\)/d' | \
+  # sed 's/"//g' | awk '{print "PLEX_PREFERENCE_"i++": \""$0"\""}'
+  PLEX_PREFERENCE_1: "TranscoderTempDirectory=/transcode"
+  PLEX_PREFERENCE_2: "FriendlyName=plex.k8s.javydekoning.com"
+  PLEX_PREFERENCE_3: "HardwareAcceleratedCodecs=1"
+  PLEX_PREFERENCE_4: "autoEmptyTrash=1"
+  PLEX_PREFERENCE_5: "AcceptedEULA=1"
+  PLEX_PREFERENCE_6: "HardwareDevicePath=/dev/dri/renderD128"
+  PLEX_PREFERENCE_7: "RelayEnabled=0"
+  PLEX_PREFERENCE_8: "TreatWanIpAsLocal=0"
+  PLEX_PREFERENCE_9: "customConnections=https://192.168.100.250:32400"
 
-  service:
-    main:
-      primary: true
-      type: LoadBalancer
-      loadBalancerIP: 192.168.100.250
-      annotations:
-        metallb.universe.tf/allow-shared-ip: plex
-      ports:
-        http:
-          port: 32400
+service:
+  main:
+    primary: true
+    type: LoadBalancer
+    loadBalancerIP: 192.168.100.250
+    annotations:
+      metallb.universe.tf/allow-shared-ip: plex
+    ports:
+      http:
+        port: 32400
 
-  ingress:
-    # -- Enable and configure ingress settings for the chart under this key.
-    # @default -- See values.yaml
-    main:
-      enabled: true
-      ingressClassName: "nginx"
-      hosts:
-        - host: plex.k8s.javydekoning.com
-          paths:
-            - path: /
-      tls:
-        - hosts:
-            - plex.k8s.javydekoning.com
-          secretName: javydekoning-com-tls
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: true
+    ingressClassName: "nginx"
+    hosts:
+      - host: plex.k8s.javydekoning.com
+        paths:
+          - path: /
+    tls:
+      - hosts:
+          - plex.k8s.javydekoning.com
+        secretName: javydekoning-com-tls
 
-  persistence:
-    config:
-      enabled: true
-      type: hostPath
-      accessMode: ReadWriteOnce
-      hostPath: /config/plex
-      mountPath: /config
-    transcode:
-      enabled: true
-      type: emptyDir
-      mountPoint: /transcode
-    downloads:
-      enabled: true
-      type: hostPath
-      accessMode: ReadWriteOnce
-      hostPath: /downloads
-      mountPath: /downloads
-  podSecurityContext:
-    runAsUser: 0
-    runAsGroup: 0
-    fsGroup: 0
+persistence:
+  config:
+    enabled: true
+    type: hostPath
+    accessMode: ReadWriteOnce
+    hostPath: /config/plex
+    mountPath: /config
+  transcode:
+    enabled: true
+    type: emptyDir
+    mountPoint: /transcode
+  downloads:
+    enabled: true
+    type: hostPath
+    accessMode: ReadWriteOnce
+    hostPath: /downloads
+    mountPath: /downloads
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
+  fsGroup: 0
 
-  resources:
-    requests:
-      memory: "2Gi"
-      cpu: "500m"
-      gpu.intel.com/i915: 1
-    limits:
-      memory: "2Gi"
-      cpu: "4"
-      gpu.intel.com/i915: 1
+resources:
+  requests:
+    memory: "2Gi"
+    cpu: "500m"
+    gpu.intel.com/i915: 1
+  limits:
+    memory: "2Gi"
+    cpu: "4"
+    gpu.intel.com/i915: 1

@@ -1,34 +1,33 @@
-home-assistant:
-  env:
-    # -- Set the container timezone
-    - name: TZ
-      value: Europe/Amsterdam
-  # -- Configures service settings for the chart. Normally this does not need to be modified.
-  # @default -- See values.yaml
-  service:
-    port: 8123
+env:
+  # -- Set the container timezone
+  - name: TZ
+    value: Europe/Amsterdam
+# -- Configures service settings for the chart. Normally this does not need to be modified.
+# @default -- See values.yaml
+service:
+  port: 8123
 
-  ingress:
-    enabled: true
-    className: "nginx"
-    annotations:
-      ingress.kubernetes.io/protocol: "HTTPS"
-    hosts:
-      - host: hass.k8s.javydekoning.com
-        servicePort: 8123
-        paths:
-          - path: /
-            pathType: Prefix
-    tls:
-      - hosts:
-          - hass.k8s.javydekoning.com
-        secretName: javydekoning-com-tls
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    ingress.kubernetes.io/protocol: "HTTPS"
+  hosts:
+    - host: hass.k8s.javydekoning.com
+      servicePort: 8123
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - hosts:
+        - hass.k8s.javydekoning.com
+      secretName: javydekoning-com-tls
 
-  persistence:
-    enabled: true
-    existingVolume: "home-assistant-config"
+persistence:
+  enabled: true
+  existingVolume: "home-assistant-config"
 
-  serviceMonitor:
-    enabled: true
-    scrapeInterval: 10s
-    labels: {}
+serviceMonitor:
+  enabled: true
+  scrapeInterval: 10s
+  labels: {}
