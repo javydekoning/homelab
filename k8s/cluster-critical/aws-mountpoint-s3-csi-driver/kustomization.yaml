@@ -8,6 +8,10 @@ helmCharts:
     version: v2.1.0
     releaseName: aws-mountpoint-s3-csi-driver
     namespace: kube-system
+    valuesFile: values.yaml
 
 resources:
   - external-secret.yaml
+
+# Note: The kube-system namespace Pod Security labels are set via post-deploy.sh
+# This is necessary because the Helm chart creates the namespace with restricted policy
