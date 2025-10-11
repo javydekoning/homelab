@@ -4,7 +4,7 @@ namespace: node-feature-discovery
 
 helmCharts:
   - name: node-feature-discovery
-    repo: https://kubernetes-sigs.github.io/node-feature-discovery/charts
+    repo: oci://registry.k8s.io/nfd/charts/node-feature-discovery
     version: 0.18.1
     releaseName: node-feature-discovery
     namespace: node-feature-discovery

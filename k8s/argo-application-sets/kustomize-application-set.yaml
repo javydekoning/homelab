@@ -19,6 +19,7 @@ spec:
           # Include namespace files
           - path: "k8s/dvr/namespace.yaml"
           - path: "k8s/smarthome/namespace.yaml"
+          - path: "k8s/monitoring/namespace.yaml"
   syncPolicy:
     preserveResourcesOnDeletion: false
   template:
