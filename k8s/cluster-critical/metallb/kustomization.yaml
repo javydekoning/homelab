@@ -13,3 +13,5 @@ helmCharts:
 resources:
   - l2advertisement.yaml
   - ip-pool.yaml
+  - ns.yaml
+
