@@ -1,62 +1,61 @@
 loki:
-  loki:
-    auth_enabled: false
-    commonConfig:
-      replication_factor: 1
-    storage:
-      type: "filesystem"
-    schemaConfig:
-      configs:
-        - from: "2024-01-01"
-          store: tsdb
-          index:
-            prefix: loki_index_
-            period: 24h
-          object_store: filesystem # we're storing on filesystem so there's no real persistence here.
-          schema: v13
+  auth_enabled: false
+  commonConfig:
+    replication_factor: 1
+  storage:
+    type: "filesystem"
+  schemaConfig:
+    configs:
+      - from: "2024-01-01"
+        store: tsdb
+        index:
+          prefix: loki_index_
+          period: 24h
+        object_store: filesystem # we're storing on filesystem so there's no real persistence here.
+        schema: v13
 
-  minio:
-    enabled: false
+minio:
+  enabled: false
 
-  deploymentMode: SingleBinary
+deploymentMode: SingleBinary
 
-  singleBinary:
-    replicas: 1
+singleBinary:
+  replicas: 1
 
-  # Zero out replica counts of other deployment modes
-  backend:
-    replicas: 0
-  read:
-    replicas: 0
-  write:
-    replicas: 0
+# Zero out replica counts of other deployment modes
+backend:
+  replicas: 0
+read:
+  replicas: 0
+write:
+  replicas: 0
 
-  ingester:
-    replicas: 0
-  querier:
-    replicas: 0
-  queryFrontend:
-    replicas: 0
-  queryScheduler:
-    replicas: 0
-  distributor:
-    replicas: 0
-  compactor:
-    replicas: 0
-  indexGateway:
-    replicas: 0
-  bloomCompactor:
-    replicas: 0
-  bloomGateway:
-    replicas: 0
+ingester:
+  replicas: 0
+querier:
+  replicas: 0
+queryFrontend:
+  replicas: 0
+queryScheduler:
+  replicas: 0
+distributor:
+  replicas: 0
+compactor:
+  replicas: 0
+indexGateway:
+  replicas: 0
+bloomCompactor:
+  replicas: 0
+bloomGateway:
+  replicas: 0
 
-  gateway:
-    deploymentStrategy:
-      type: Recreate
-    enabled: false
-    affinity: null
+gateway:
+  deploymentStrategy:
+    type: Recreate
+  enabled: false
+  affinity: null
 
-  chunksCache:
-    connectionLimit: 1024
-  resultsCache:
-    connectionLimit: 1024
+chunksCache:
+  connectionLimit: 1024
+resultsCache:
+  connectionLimit: 1024
