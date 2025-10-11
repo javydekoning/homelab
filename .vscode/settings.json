@@ -2,7 +2,8 @@
   "yaml.schemaStore.enable": true,
   "yaml.schemas": {
     "kubernetes": "k8s/**/*.yaml",
-    "kubernetes://schema/external-secrets.io/v1@externalsecret": "k8s/**/external-secret.yaml"
+    "kubernetes://schema/external-secrets.io/v1@externalsecret": "k8s/**/external-secret.yaml",
+    "https://www.schemastore.org/kustomization.json": "k8s/**/kustomization.yaml"
   },
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": true,
