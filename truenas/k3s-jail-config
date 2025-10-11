@@ -78,6 +78,13 @@ initial_setup=#!/usr/bin/bash
   kubectl create secret generic awssm-secret -n external-secrets \
     --from-literal=access-key=$ACCESS_KEY --from-literal=secret-access-key=$SECRET_KEY
 
+  # Label kube-system namespace for privileged containers for CSI drivers
+  kubectl label namespace kube-system \
+    pod-security.kubernetes.io/enforce=privileged \
+    pod-security.kubernetes.io/audit=privileged \
+    pod-security.kubernetes.io/warn=privileged \
+    --overwrite
+
   kubectl apply -f ~/homelab/k8s/argo-application-sets/kustomize-application-set.yaml
 
   # symlink /etc/rancher/k3s/k3s.yaml -> /root/.kube/config

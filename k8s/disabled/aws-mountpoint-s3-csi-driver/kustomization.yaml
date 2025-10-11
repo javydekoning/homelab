@@ -9,6 +9,7 @@ helmCharts:
     releaseName: aws-mountpoint-s3-csi-driver
     namespace: kube-system
     valuesFile: values.yaml
+    includeCRDs: true
 
 resources:
   - external-secret.yaml
