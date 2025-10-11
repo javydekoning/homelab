@@ -1,3 +1,2 @@
-metallb:
-  prometheusRule:
-    enabled: false
+prometheusRule:
+  enabled: false

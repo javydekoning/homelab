@@ -1,8 +1,0 @@
-# https://metallb.universe.tf/installation/
-name: metallb
-apiVersion: v2
-version: 1.0.0
-dependencies:
-  - name: metallb
-    version: 0.15.2
-    repository: https://metallb.github.io/metallb

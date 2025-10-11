@@ -1,3 +1,2 @@
-node-feature-discovery:
-  image:
-    pullPolicy: IfNotPresent
+image:
+  pullPolicy: IfNotPresent
