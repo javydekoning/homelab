@@ -10,8 +10,6 @@ metadata:
 spec:
   type: LoadBalancer
   loadBalancerIP: 192.168.100.252
-  annotations:
-    metallb.universe.tf/allow-shared-ip: rutorrent
   ports:
     - port: 8388
       targetPort: torrent-tcp

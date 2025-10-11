@@ -27,7 +27,6 @@ spec:
           securityContext:
             runAsUser: 911
             runAsGroup: 911
-            fsGroup: 911
           image: "ghcr.io/home-operations/qbittorrent:5.1.2"
           imagePullPolicy: IfNotPresent
           ports:
