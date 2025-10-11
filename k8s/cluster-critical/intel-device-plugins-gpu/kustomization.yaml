@@ -3,18 +3,9 @@ kind: Kustomization
 namespace: intel-device-plugins
 
 helmCharts:
-  - name: intel-device-plugins-operator
-    repo: https://intel.github.io/helm-charts/
-    version: 0.34.0
-    releaseName: intel-device-plugins-operator
-    namespace: intel-device-plugins
-    valuesFile: values-operator.yaml
   - name: intel-device-plugins-gpu
     repo: https://intel.github.io/helm-charts/
     version: 0.34.0
     releaseName: intel-device-plugins-gpu
     namespace: intel-device-plugins
-    valuesFile: values-gpu.yaml
-
-resources:
-  - ns.yaml
+    valuesFile: values.yaml

@@ -1,7 +1,0 @@
-intel-device-plugins-gpu:
-  nodeFeatureRule: true
-  sharedDevNum: 4
-
-intel-device-plugins-operator:
-  image:
-    hub: intel
