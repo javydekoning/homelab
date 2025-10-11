@@ -1,5 +1,0 @@
-# Override default values for AWS Mountpoint S3 CSI Driver
-# This ensures the kube-system namespace allows privileged containers for CSI drivers
-
-mountpointPod:
-  namespace: kube-system
