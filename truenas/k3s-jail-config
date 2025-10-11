@@ -64,7 +64,8 @@ initial_setup=#!/usr/bin/bash
 
   # Bootstrap Argo CD
   cd ~/homelab/k8s/cluster-critical/argo-cd
-  kustomize build --enable-helm . | kaf -
+  kubectl create ns argocd
+  kustomize build --enable-helm . | kubectl apply -f -
 
   # Launch cluster critical resources
   printf "%s" "Enter ACCESS_KEY: "
@@ -77,11 +78,14 @@ initial_setup=#!/usr/bin/bash
   kubectl create secret generic awssm-secret -n external-secrets \
     --from-literal=access-key=$ACCESS_KEY --from-literal=secret-access-key=$SECRET_KEY
 
-  kubectl apply -f ~/homelab/k8s/argo-application-sets/helm-application-set.yaml
-  #kubectl apply -f ~/homelab/k8s/argo-application-sets/kustomize-application-set.yaml
+  kubectl apply -f ~/homelab/k8s/argo-application-sets/kustomize-application-set.yaml
 
   # symlink /etc/rancher/k3s/k3s.yaml -> /root/.kube/config
   ln -sf /etc/rancher/k3s/k3s.yaml /root/.kube/config
+
+  # Run Ansible again
+  cd ~/homelab/dotfiles
+  ./install.sh
 
 # Usually no need to change systemd_run_default_args
 systemd_run_default_args=--collect

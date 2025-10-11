@@ -23,7 +23,7 @@ spec:
     preserveResourcesOnDeletion: false
   template:
     metadata:
-      name: "{{ path.basename }}-kustomize"
+      name: "{{ path.basename }}"
       annotations:
         argocd.argoproj.io/manifest-generate-paths: "{{ path }}"
     spec:
