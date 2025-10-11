@@ -1,7 +1,7 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: javydekoning-com
+  name: javydekoning-com-tls
   namespace: default
 spec:
   secretName: javydekoning-com-tls

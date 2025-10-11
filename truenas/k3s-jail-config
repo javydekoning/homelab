@@ -81,6 +81,7 @@ initial_setup=#!/usr/bin/bash
   kubectl apply -f ~/homelab/k8s/argo-application-sets/kustomize-application-set.yaml
 
   # symlink /etc/rancher/k3s/k3s.yaml -> /root/.kube/config
+  mkdir -p /root/.kube
   ln -sf /etc/rancher/k3s/k3s.yaml /root/.kube/config
 
   # Run Ansible again
