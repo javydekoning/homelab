@@ -9,6 +9,7 @@ helmCharts:
     releaseName: ingress-nginx
     namespace: ingress-nginx
     valuesFile: values.yaml
+    includeCRDs: true
 
 resources:
   - ns.yaml

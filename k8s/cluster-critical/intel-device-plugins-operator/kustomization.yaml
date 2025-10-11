@@ -8,6 +8,7 @@ helmCharts:
     version: 0.34.0
     releaseName: intel-device-plugins-operator
     namespace: intel-device-plugins
+    includeCRDs: true
 
 resources:
   - ns.yaml

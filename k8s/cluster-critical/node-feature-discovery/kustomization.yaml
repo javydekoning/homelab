@@ -9,6 +9,7 @@ helmCharts:
     releaseName: node-feature-discovery
     namespace: node-feature-discovery
     valuesFile: values.yaml
+    includeCRDs: true
 
 resources:
   - ns.yaml

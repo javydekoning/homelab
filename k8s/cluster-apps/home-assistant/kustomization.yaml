@@ -9,6 +9,7 @@ helmCharts:
     releaseName: home-assistant
     namespace: smarthome
     valuesFile: values.yaml
+    includeCRDs: true
 
 resources:
   - volume.yaml

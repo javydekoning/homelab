@@ -9,6 +9,7 @@ helmCharts:
     releaseName: plex
     namespace: dvr
     valuesFile: values.yaml
+    includeCRDs: true
 
 resources:
   - ns.yaml

@@ -9,6 +9,7 @@ helmCharts:
     releaseName: argo-cd
     namespace: argocd
     valuesFile: values.yaml
+    includeCRDs: true
 
 resources:
   - ns.yaml

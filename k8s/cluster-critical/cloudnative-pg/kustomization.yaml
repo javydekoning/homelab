@@ -9,6 +9,7 @@ helmCharts:
     releaseName: cloudnative-pg
     namespace: cnpg-system
     valuesFile: values.yaml
+    includeCRDs: true
 
 resources:
   - ns.yaml
