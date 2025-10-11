@@ -20,8 +20,6 @@ alertmanager:
         telegram_configs:
           - bot_token_file: /etc/alertmanager/secrets/telegram-bot-token/token.txt
             chat_id: -1001375636328
-            parse_mode: HTML
-            message: '{{ template "telegram.default.message" . }}'
     route:
       receiver: default
   alertmanagerSpec:
@@ -30,67 +28,6 @@ alertmanager:
     #
     secrets:
       - telegram-bot-token
-
-  templateFiles:
-    telegram.tmpl: |-
-      {{ define "telegram.default.message" }}
-      {{- if eq .Status "firing" -}}
-          {{- if eq .CommonLabels.severity "critical" -}}
-              `🔴 Alert: {{ .CommonLabels.alertname }}`
-          {{- else if eq .CommonLabels.severity "warning" -}}
-              `🟠 Alert: {{ .CommonLabels.alertname }}`
-          {{- else -}}
-              `⚪️ Alert: {{ .CommonLabels.alertname }}`
-          {{- end }}
-
-      Status: `🔥 FIRING`
-      Severity: `{{ if eq .CommonLabels.severity "critical" }}🔴 {{ .CommonLabels.severity | title }}{{ else if eq .CommonLabels.severity "warning" }}🟠 {{ .CommonLabels.severity | title }}{{ else }}⚪️ {{ .CommonLabels.severity | title }}{{ end }}
-      {{- else if eq .Status "resolved" -}}`
-          ⚪️ Alert: {{ .CommonLabels.alertname }}
-      Status: `✅ RESOLVED`
-      Severity: `{{ if eq .CommonLabels.severity "critical" }}🟢 {{ .CommonLabels.severity | title }}{{ else if eq .CommonLabels.severity "warning" }}🟢 {{ .CommonLabels.severity | title }}{{ else }}⚪️ {{ .CommonLabels.severity | title }}{{ end }}
-      {{- end }}`
-
-      {{- range .Alerts -}}
-
-      {{- if .Labels.name }}
-      App: `{{ .Labels.name }}`
-      {{- end }}
-
-      {{- if .Labels.job }}
-      Job: `{{ .Labels.job }}`
-      {{- end }}
-
-      {{- if .Labels.namespace }}
-      Namespace: `{{ .Labels.namespace }}`
-      {{- end }}
-
-      {{- if .Labels.instance }}
-      Instance: `{{ .Labels.instance }}`
-      {{- end }}
-
-      {{- if .Annotations.summary }}
-      Summary: `{{ .Annotations.summary }}`
-      {{- end }}
-
-      {{- if .Annotations.description }}
-      Description:
-        ```
-        {{ .Annotations.description }}
-        ```
-      {{- end }}
-
-      {{- if .Annotations.argo_url }}
-      ArgoCD link: [application]({{ .Annotations.argo_url }})
-      {{- end }}
-
-      {{- if .Annotations.runbook_url }}
-      Runbook: [Markdown runbook]({{ .Annotations.runbook_url }})
-      {{- end }}
-
-      {{- end }}
-
-      {{ end }}
 
   ingress:
     enabled: true
