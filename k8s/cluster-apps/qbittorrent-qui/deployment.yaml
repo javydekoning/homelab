@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qbittorrent-qui
+  labels:
+    app: qbittorrent-qui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: qbittorrent-qui
+  template:
+    metadata:
+      labels:
+        app: qbittorrent-qui
+    spec:
+      containers:
+      - name: qui
+        image: ghcr.io/autobrr/qui:latest@sha256:b1a8a5e367721c4db2f6cadab0f7cfa9e8076cb418cb98a726e2b1f8b635c316
+        ports:
+        - containerPort: 7476
+          name: http
+        volumeMounts:
+        - name: config-volume
+          mountPath: /config
+        - name: config-toml
+          mountPath: /config/config.toml
+          subPath: config.toml
+      volumes:
+      - name: config-volume
+        hostPath:
+          path: /config/qui
+          type: DirectoryOrCreate
+      - name: config-toml
+        configMap:
+          name: qbittorrent-qui-config

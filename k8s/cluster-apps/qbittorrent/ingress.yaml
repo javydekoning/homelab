@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: qbittorrent
+  namespace: qbittorrent
+  labels:
+    app.kubernetes.io/name: qbittorrent
+    app.kubernetes.io/instance: qbittorrent
+    app.kubernetes.io/part-of: qbittorrent
+  annotations:
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: 8m
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "15"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - "qbittorrent.k8s.javydekoning.com"
+      secretName: javydekoning-com-tls
+  rules:
+    - host: "qbittorrent.k8s.javydekoning.com"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: qbittorrent-web
+                port:
+                  number: 80

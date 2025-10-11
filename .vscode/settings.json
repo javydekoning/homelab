@@ -3,7 +3,10 @@
   "yaml.schemas": {
     "kubernetes": "k8s/**/*.yaml",
     "kubernetes://schema/external-secrets.io/v1@externalsecret": "k8s/**/external-secret.yaml",
-    "https://www.schemastore.org/kustomization.json": "k8s/**/kustomization.yaml"
+    "https://www.schemastore.org/kustomization.json": [
+      "k8s/**/kustomization.yaml",
+      "file:///home/javy/homelab/k8s/cluster-apps/qbittorrent-qui/kustomization.yaml"
+    ]
   },
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": true,

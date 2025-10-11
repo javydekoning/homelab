@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: qbittorrent-qui
+  labels:
+    app: qbittorrent-qui
+spec:
+  type: ClusterIP
+  ports:
+  - port: 7476
+    targetPort: 7476
+    protocol: TCP
+    name: http
+  selector:
+    app: qbittorrent-qui
