@@ -11,6 +11,7 @@ helmCharts:
     valuesFile: values.yaml
 
 resources:
+  - ns.yaml
   - secret.yaml
   - certificate.yaml
   - cluster-issuer.yaml

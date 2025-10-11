@@ -9,3 +9,6 @@ helmCharts:
     releaseName: plex
     namespace: dvr
     valuesFile: values.yaml
+
+resources:
+  - ns.yaml

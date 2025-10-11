@@ -11,5 +11,6 @@ helmCharts:
     valuesFile: values.yaml
 
 resources:
+  - ns.yaml
   - prometheusrule.yaml
   - external-secret.yaml

@@ -9,3 +9,6 @@ helmCharts:
     releaseName: ingress-nginx
     namespace: ingress-nginx-external
     valuesFile: values.yaml
+
+resources:
+  - ns.yaml
