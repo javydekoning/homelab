@@ -38,7 +38,7 @@ release=trixie
 # Useful to install packages on top of the base rootfs
 initial_setup=#!/usr/bin/bash
   set -euo pipefail
-  apt-get -y install curl jq git kubectx
+  apt-get -y install curl jq git kubectx kustomize
 
   # Enable HW Acceleration
   apt-get -y install {va-driver-all,ocl-icd-libopencl1,vainfo,intel-gpu-tools}
@@ -64,9 +64,7 @@ initial_setup=#!/usr/bin/bash
 
   # Bootstrap Argo CD
   cd ~/homelab/k8s/cluster-critical/argo-cd
-  kubectl create ns argocd
-  helm dependency build
-  helm template argo-cd . --values ./values.yaml -n argocd | kubectl apply -n argocd -f -
+  kustomize build --enable-helm . | kaf -
 
   # Launch cluster critical resources
   printf "%s" "Enter ACCESS_KEY: "
@@ -80,8 +78,7 @@ initial_setup=#!/usr/bin/bash
     --from-literal=access-key=$ACCESS_KEY --from-literal=secret-access-key=$SECRET_KEY
 
   kubectl apply -f ~/homelab/k8s/argo-application-sets/helm-application-set.yaml
-  kubectl apply -f ~/homelab/k8s/argo-application-sets/kustomize-application-set.yaml
-  kubectl apply -f ~/homelab/k8s/argo-application-sets/kustomize-s3-csi.yaml
+  #kubectl apply -f ~/homelab/k8s/argo-application-sets/kustomize-application-set.yaml
 
   # symlink /etc/rancher/k3s/k3s.yaml -> /root/.kube/config
   ln -sf /etc/rancher/k3s/k3s.yaml /root/.kube/config

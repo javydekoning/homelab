@@ -1,55 +1,54 @@
-argo-cd:
-  global:
-    domain: argocd.k8s.javydekoning.com
-  configs:
-    cm:
-      kustomize.buildOptions: --enable-helm
-      oidc.config: |
-        name: Authelia
-        issuer: https://auth.lab.javydekoning.com
-        clientID: argocd
-        clientSecret: $oidc:OIDC_CLIENT_SECRET
-        requestedScopes:
-          - 'openid'
-          - 'email'
-          - 'groups'
-        enableUserInfoGroups: true
-        userInfoPath: '/api/oidc/userinfo'
-    rbac:
-      policy.default: role:readonly
-      policy.csv: |
-        g, argocd-admins, role:admin
-    params:
-      server.insecure: true
+global:
+  domain: argocd.k8s.javydekoning.com
+configs:
+  cm:
+    kustomize.buildOptions: --enable-helm
+    oidc.config: |
+      name: Authelia
+      issuer: https://auth.lab.javydekoning.com
+      clientID: argocd
+      clientSecret: $oidc:OIDC_CLIENT_SECRET
+      requestedScopes:
+        - 'openid'
+        - 'email'
+        - 'groups'
+      enableUserInfoGroups: true
+      userInfoPath: '/api/oidc/userinfo'
+  rbac:
+    policy.default: role:readonly
+    policy.csv: |
+      g, argocd-admins, role:admin
+  params:
+    server.insecure: true
 
-  controller:
-    replicas: 1
-    metrics:
+controller:
+  replicas: 1
+  metrics:
+    enabled: true
+    serviceMonitor:
       enabled: true
-      serviceMonitor:
-        enabled: true
 
-  server:
-    ingress:
-      enabled: true
-      ingressClassName: "nginx"
-      hostname: argocd.k8s.javydekoning.com
-      annotations:
-        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-        nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-      extraTls:
-        - hosts:
-            - argocd.k8s.javydekoning.com
-          secretName: javydekoning-com-tls
+server:
+  ingress:
+    enabled: true
+    ingressClassName: "nginx"
+    hostname: argocd.k8s.javydekoning.com
+    annotations:
+      nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    extraTls:
+      - hosts:
+          - argocd.k8s.javydekoning.com
+        secretName: javydekoning-com-tls
 
-    autoscaling:
-      enabled: true
-      minReplicas: 1
+  autoscaling:
+    enabled: true
+    minReplicas: 1
 
-  repoServer:
-    autoscaling:
-      enabled: true
-      minReplicas: 1
+repoServer:
+  autoscaling:
+    enabled: true
+    minReplicas: 1
 
-  applicationSet:
-    replicaCount: 1
+applicationSet:
+  replicaCount: 1

@@ -1,6 +1,0 @@
-[
-  {
-    "name": "argo-cd",
-    "namespace": "argocd"
-  }
-]
