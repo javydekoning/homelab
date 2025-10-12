@@ -21,6 +21,7 @@ spec:
           - path: "k8s/dvr/namespace.yaml"
           - path: "k8s/smarthome/namespace.yaml"
           - path: "k8s/monitoring/namespace.yaml"
+          - path: "k8s/qbittorrent/namespace.yaml"
   syncPolicy:
     preserveResourcesOnDeletion: false
   template:
