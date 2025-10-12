@@ -21,4 +21,3 @@ labels:
   - includeSelectors: true
     pairs:
       app: qbittorrent-main
-
