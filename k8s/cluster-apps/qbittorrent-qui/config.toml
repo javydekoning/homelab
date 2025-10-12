@@ -82,10 +82,10 @@ oidcClientId = "qui"
 #oidcClientSecret = ""
 
 # OIDC Redirect URL (e.g. http://localhost:7476/api/auth/oidc/callback)
-oidcRedirectUrl = "https://qui.k8s.javydekoning.com"
+oidcRedirectUrl = "https://qui.k8s.javydekoning.com/api/auth/oidc/callback"
 
 # Disable Built-In Login Form (only works when OIDC is enabled)
-#oidcDisableBuiltInLogin = false
+oidcDisableBuiltInLogin = true
 
 # HTTP Timeouts (for large qBittorrent instances)
 # Increase these values if you experience timeouts with 10k+ torrents

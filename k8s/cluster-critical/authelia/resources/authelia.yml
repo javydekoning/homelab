@@ -180,3 +180,23 @@ identity_providers:
         access_token_signed_response_alg: "none"
         userinfo_signed_response_alg: "none"
         token_endpoint_auth_method: "client_secret_basic"
+      - client_id: "qui"
+        client_name: "Qui"
+        client_secret: "$pbkdf2-sha512$310000$TnCzgaNYfzx.EHIWUMPUJg$7MF6M.jf2LCNceKSlWcABfuzT8l/eQ0/TluzW92gMm3F4VyvwxdHzd34p2e5FHa9dzdxlapc9bYwo1NFlGeqyw"
+        public: false
+        authorization_policy: "one_factor"
+        require_pkce: false
+        pkce_challenge_method: ""
+        redirect_uris:
+          - "https://qui.k8s.javydekoning.com/api/auth/oidc/callback"
+        scopes:
+          - "openid"
+          - "groups"
+          - "email"
+        response_types:
+          - "code"
+        grant_types:
+          - "authorization_code"
+        access_token_signed_response_alg: "none"
+        userinfo_signed_response_alg: "none"
+        token_endpoint_auth_method: "client_secret_basic"
