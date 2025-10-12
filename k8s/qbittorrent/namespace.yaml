@@ -1,4 +1,9 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: qbittorrent-qui
+  name: qbittorrent
+  annotations:
+    argocd.argoproj.io/tracking-id: qbittorrent:/Namespace:/qbittorrent
+  labels:
+    kubernetes.io/metadata.name: qbittorrent
+
