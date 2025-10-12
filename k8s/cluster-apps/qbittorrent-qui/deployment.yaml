@@ -15,22 +15,22 @@ spec:
         app: qbittorrent-qui
     spec:
       containers:
-      - name: qui
-        image: ghcr.io/autobrr/qui:latest@sha256:e01fff49529667f16e6eb0dab797befa5614a318c8c60f0c77f0fdb3044ae9c8
-        ports:
-        - containerPort: 7476
-          name: http
-        volumeMounts:
-        - name: config-volume
-          mountPath: /config
-        - name: config-toml
-          mountPath: /config/config.toml
-          subPath: config.toml
+        - name: qui
+          image: ghcr.io/autobrr/qui:latest@sha256:e01fff49529667f16e6eb0dab797befa5614a318c8c60f0c77f0fdb3044ae9c8
+          ports:
+            - containerPort: 7476
+              name: http
+          volumeMounts:
+            - name: config-volume
+              mountPath: /config
+            - name: config-toml
+              mountPath: /config/config.toml
+              subPath: config.toml
       volumes:
-      - name: config-volume
-        hostPath:
-          path: /config/qui
-          type: DirectoryOrCreate
-      - name: config-toml
-        configMap:
-          name: qbittorrent-qui-config
+        - name: config-volume
+          hostPath:
+            path: /config/qui
+            type: DirectoryOrCreate
+        - name: config-toml
+          configMap:
+            name: qbittorrent-qui-config

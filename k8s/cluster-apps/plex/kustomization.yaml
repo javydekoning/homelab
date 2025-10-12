@@ -10,4 +10,3 @@ helmCharts:
     namespace: dvr
     valuesFile: values.yaml
     includeCRDs: true
-
