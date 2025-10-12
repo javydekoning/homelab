@@ -1,0 +1,49 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: qbittorrent
+
+resources:
+  - ../../base/
+
+nameSuffix: -movies
+
+patches:
+  - patch: |-
+      - op: replace
+        path: /spec/template/spec/volumes/0/hostPath/path
+        value: /config/qbit-movies
+      - op: replace
+        path: /spec/template/spec/containers/0/ports/1/containerPort
+        value: 8390
+      - op: replace
+        path: /spec/template/spec/containers/0/ports/2/containerPort
+        value: 8390
+    target:
+      kind: Deployment
+      name: qbittorrent
+  - patch: |-
+      - op: replace
+        path: /spec/ports/0/port
+        value: 8390
+      - op: replace
+        path: /spec/ports/1/port
+        value: 8390
+    target:
+      kind: Service
+      name: qbittorrent-torrent
+  - patch: |-
+      - op: replace
+        path: /spec/tls/0/hosts/0
+        value: qbm.k8s.javydekoning.com
+      - op: replace
+        path: /spec/rules/0/host
+        value: qbm.k8s.javydekoning.com
+    target:
+      kind: Ingress
+      name: qbittorrent
+
+labels:
+  - includeSelectors: true
+    pairs:
+      app: qbittorrent-movies

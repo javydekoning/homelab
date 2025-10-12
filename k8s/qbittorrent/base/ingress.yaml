@@ -3,14 +3,6 @@ kind: Ingress
 metadata:
   name: qbittorrent
   namespace: qbittorrent
-  labels:
-    app.kubernetes.io/name: qbittorrent
-    app.kubernetes.io/instance: qbittorrent
-    app.kubernetes.io/part-of: qbittorrent
-  annotations:
-    nginx.ingress.kubernetes.io/enable-cors: "true"
-    nginx.ingress.kubernetes.io/proxy-body-size: 8m
-    nginx.ingress.kubernetes.io/proxy-read-timeout: "15"
 spec:
   ingressClassName: nginx
   tls:

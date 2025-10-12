@@ -3,24 +3,11 @@ kind: Deployment
 metadata:
   name: qbittorrent
   namespace: qbittorrent
-  labels:
-    app.kubernetes.io/name: qbittorrent
-    app.kubernetes.io/instance: qbittorrent
-    app.kubernetes.io/part-of: qbittorrent
 spec:
   replicas: 1
   strategy:
     type: Recreate
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: qbittorrent
-      app.kubernetes.io/instance: qbittorrent
   template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: qbittorrent
-        app.kubernetes.io/instance: qbittorrent
-        app.kubernetes.io/part-of: qbittorrent
     spec:
       containers:
         - name: qbittorrent
