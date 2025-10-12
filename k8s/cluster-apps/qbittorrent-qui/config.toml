@@ -1,0 +1,103 @@
+# config.toml - Auto-generated on first run
+
+# Hostname / IP
+# Default: "localhost" (or "0.0.0.0" in containers)
+host = "0.0.0.0"
+
+# Port
+# Default: 7476
+port = 7476
+
+# Base URL
+# Set custom baseUrl eg /qui/ to serve in subdirectory.
+# Not needed for subdomain, or by accessing with :port directly.
+# Optional
+#baseUrl = "/qui/"
+
+# Session secret
+# Auto-generated if not provided
+# WARNING: Changing this value will break decryption of existing instance passwords!
+# If changed, you'll need to re-enter passwords for all existing qBittorrent instances in the UI.
+# sessionSecret = ""
+
+# Log file path
+# If not defined, logs to stdout
+# Optional
+#logPath = "log/qui.log"
+
+# Log rotation
+# Maximum log file size in megabytes before rotation
+# Default: 50
+#logMaxSize = 50
+
+# Number of rotated log files to retain (0 keeps all)
+# Default: 3
+#logMaxBackups = 3
+
+# Data directory (default: next to config file)
+# Database file (qui.db) will be created inside this directory
+#dataDir = "/var/db/qui"
+
+# Check for new releases via api.autobrr.com
+# Default: true
+#checkForUpdates = true
+
+# Log level
+# Default: "INFO"
+# Options: "ERROR", "DEBUG", "INFO", "WARN", "TRACE"
+logLevel = "INFO"
+
+# Prometheus Metrics
+# Enable Prometheus metrics on separate port (no authentication required)
+# Default: false
+#metricsEnabled = false
+
+# Metrics server host (bind address for metrics endpoint)
+# Default: "127.0.0.1"
+# Set to "0.0.0.0" to bind to all interfaces if needed
+#metricsHost = "127.0.0.1"
+
+# Metrics server port (separate from main web interface)
+# Default: 9074 (standard Prometheus range)
+#metricsPort = 9074
+
+# Basic authentication for metrics endpoint (optional)
+# Format: "username:bcrypt_hash" or "user1:hash1,user2:hash2" for multiple users
+# Passwords must be bcrypt-hashed. Use tools like htpasswd or online bcrypt generators
+# Example: "prometheus:$2y$10$example_bcrypt_hash_here"
+# Leave empty to disable authentication (default)
+#metricsBasicAuthUsers = ""
+
+# OpenID Connect (OIDC) Configuration
+# Enable OIDC authentication
+oidcEnabled = true
+
+# OIDC Issuer URL (e.g. https://auth.example.com)
+oidcIssuer = "https://auth.lab.javydekoning.com"
+
+# OIDC Client ID
+oidcClientId = "qui"
+
+# OIDC Client Secret
+#oidcClientSecret = ""
+
+# OIDC Redirect URL (e.g. http://localhost:7476/api/auth/oidc/callback)
+oidcRedirectUrl = "https://qui.k8s.javydekoning.com"
+
+# Disable Built-In Login Form (only works when OIDC is enabled)
+#oidcDisableBuiltInLogin = false
+
+# HTTP Timeouts (for large qBittorrent instances)
+# Increase these values if you experience timeouts with 10k+ torrents
+[httpTimeouts]
+# Read timeout in seconds
+# Default: 60
+#readTimeout = 60
+
+# Write timeout in seconds (increase for large responses)
+# Default: 120
+#writeTimeout = 120
+
+# Idle timeout in seconds
+# Default: 180
+#idleTimeout = 180
