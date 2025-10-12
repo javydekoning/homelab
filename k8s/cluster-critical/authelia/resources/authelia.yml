@@ -193,6 +193,7 @@ identity_providers:
           - "openid"
           - "groups"
           - "email"
+          - "profile"
         response_types:
           - "code"
         grant_types:
