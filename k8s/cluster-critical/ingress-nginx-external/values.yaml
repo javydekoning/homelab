@@ -1,7 +1,10 @@
 controller:
   name: controller-external
+  electionID: ingress-controller-leader
   ingressClassResource:
     name: nginx-ext
+    enabled: true
+    default: false
     controllerValue: "k8s.io/ingress-nginx-external"
   config:
     use-forwarded-headers: "true"
