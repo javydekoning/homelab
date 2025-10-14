@@ -29,6 +29,7 @@ spec:
       name: "{{ path.basename }}"
       annotations:
         argocd.argoproj.io/manifest-generate-paths: "{{ path }}"
+        argocd.argoproj.io/compare-options: ServerSideDiff=true
     spec:
       project: default
       source:
@@ -40,7 +41,7 @@ spec:
       syncPolicy:
         automated:
           prune: true
-          selfHeal: false
+          selfHeal: true
         syncOptions:
           - ServerSideApply=true
           - CreateNamespace=true
