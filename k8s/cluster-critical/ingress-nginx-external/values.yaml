@@ -1,6 +1,8 @@
 controller:
   name: controller-external
   electionID: ingress-controller-leader
+  admissionWebhooks:
+    name: ingress-nginx-external-admission
   ingressClassResource:
     name: "ingress-nginx-external"
     enabled: true
@@ -19,6 +21,4 @@ controller:
     default-ssl-certificate: "default/javydekoning-com-tls"
 rbac:
   create: false # Reuse existing RBAC
-controller:
-  admissionWebhooks:
-    name: ingress-nginx-external-admission
+
