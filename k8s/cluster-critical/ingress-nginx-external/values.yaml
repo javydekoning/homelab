@@ -2,7 +2,7 @@ controller:
   name: controller-external
   electionID: ingress-controller-leader
   ingressClassResource:
-    name: nginx-ext
+    name: "ingress-nginx-external"
     enabled: true
     default: false
     controllerValue: "k8s.io/ingress-nginx-external"
@@ -21,4 +21,4 @@ rbac:
   create: false # Reuse existing RBAC
 controller:
   admissionWebhooks:
-    name: ext-admission
+    name: ingress-nginx-external-admission
