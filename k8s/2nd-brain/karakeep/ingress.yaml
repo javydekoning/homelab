@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: karakeep
 spec:
-  ingressClassName: nginx-ext
+  ingressClassName: ingress-nginx-external
   tls:
     - hosts:
         - karakeep.lab.javydekoning.com

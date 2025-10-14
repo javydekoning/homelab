@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: linkding
 spec:
-  ingressClassName: nginx-ext
+  ingressClassName: ingress-nginx-external
   tls:
     - hosts:
         - linkding.lab.javydekoning.com
