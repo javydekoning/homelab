@@ -17,7 +17,7 @@ configs:
   rbac:
     policy.default: role:readonly
     policy.csv: |
-      g, argocd-admins, role:admin
+      g, admins, role:admin
   params:
     server.insecure: true
 
