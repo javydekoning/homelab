@@ -20,5 +20,5 @@ controller:
   extraArgs:
     default-ssl-certificate: "default/javydekoning-com-tls"
 rbac:
-  create: false # Reuse existing RBAC
+  create: true # Reuse existing RBAC
 
