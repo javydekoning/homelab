@@ -21,4 +21,3 @@ controller:
     default-ssl-certificate: "default/javydekoning-com-tls"
 rbac:
   create: true # Reuse existing RBAC
-
