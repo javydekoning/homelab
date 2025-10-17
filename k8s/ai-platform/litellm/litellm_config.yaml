@@ -31,7 +31,11 @@ model_list:
       aws_secret_access_key: os.environ/AWS_SECRET_ACCESS_KEY
 
 mcp_servers:
-  circleci_mcp:
+  time:
     transport: "stdio"
     command: "uvx"
     args: ["mcp-server-time", "--local-timezone=Europe/Amsterdam"]
+  litellm_docs:
+    transport: "stdio"
+    command: "npx"
+    args: ["mcp-remote", "https://gitmcp.io/BerriAI/litellm"]
