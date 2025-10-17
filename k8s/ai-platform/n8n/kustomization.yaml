@@ -12,4 +12,5 @@ helmCharts:
     includeCRDs: true
 
 resources:
+  - namespace.yaml
   - volume.yaml
