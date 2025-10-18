@@ -4,9 +4,9 @@ controller:
   admissionWebhooks:
     objectSelector:
       matchExpressions:
-      - key: kubernetes.io/ingress.class
-        operator: In
-        values: ["nginx"]
+        - key: kubernetes.io/ingress.class
+          operator: In
+          values: ["nginx"]
   service:
     loadBalancerIP: 192.168.100.200
     externalTrafficPolicy: Local

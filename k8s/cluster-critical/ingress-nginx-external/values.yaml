@@ -7,9 +7,9 @@ controller:
     webhookName: validate.nginx.external.ingress.kubernetes.io
     objectSelector:
       matchExpressions:
-      - key: kubernetes.io/ingress.class
-        operator: In
-        values: ["ingress-nginx-external"]
+        - key: kubernetes.io/ingress.class
+          operator: In
+          values: ["ingress-nginx-external"]
   ingressClassResource:
     name: "ingress-nginx-external"
     enabled: true
@@ -26,4 +26,3 @@ controller:
     externalTrafficPolicy: Local
   extraArgs:
     default-ssl-certificate: "default/javydekoning-com-tls"
-
