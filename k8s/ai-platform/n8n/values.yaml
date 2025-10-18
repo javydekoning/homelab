@@ -28,7 +28,4 @@ ingress:
 serviceMonitor:
   enabled: true
 
-extraEnvSecrets:
-  N8N_ENCRYPTION_KEY:
-    name: n8n-credentials
-    key: N8N_ENCRYPTION_KEY
+existingEncryptionKeySecret: n8n-credentials
