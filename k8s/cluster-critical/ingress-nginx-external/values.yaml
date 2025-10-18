@@ -20,4 +20,3 @@ controller:
     externalTrafficPolicy: Local
   extraArgs:
     default-ssl-certificate: "default/javydekoning-com-tls"
-
