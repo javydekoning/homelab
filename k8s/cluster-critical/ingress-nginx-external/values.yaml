@@ -1,5 +1,6 @@
+nameOverride: ingress-nginx-external
+fullnameOverride: ingress-nginx-external
 controller:
-  name: controller-external
   electionID: ingress-controller-leader
   admissionWebhooks:
     name: ingress-nginx-external-admission
@@ -19,5 +20,4 @@ controller:
     externalTrafficPolicy: Local
   extraArgs:
     default-ssl-certificate: "default/javydekoning-com-tls"
-rbac:
-  create: true # Reuse existing RBAC
+

@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: pocket-id
+
+helmCharts:
+  - name: pocket-id
+    repo: https://anza-labs.github.io/charts
+    version: 1.6.1
+    releaseName: pocket-id
+    namespace: pocket-id
+    valuesFile: values.yaml
+    includeCRDs: true
+
+resources:
+  - namespace.yaml
+  - volume.yaml

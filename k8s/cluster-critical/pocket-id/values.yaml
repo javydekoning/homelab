@@ -1,0 +1,39 @@
+timeZone: "Europe/Amsterdam"
+analyticsDisabled: true
+host: "pocket-id.lab.javydekoning.com"
+persistence:
+  data:
+    # -- Enable/disable PVC creation for data.
+    enabled: true
+    # -- Use an existing PVC if defined, otherwise create one.
+    existingClaim: "pocket-id-pvc"
+    # -- Specify the StorageClass (if required).
+    storageClass: ""
+    # -- Access mode for the PVC.
+    accessMode: ReadWriteOnce
+    # -- Storage size for the PVC.
+    size: 10Gi
+    # -- Annotations applied to PVC.
+    annotations: {}
+
+ingress:
+  # -- Specifies whether ingress should be enabled.
+  enabled: true
+  # -- Ingress class name.
+  className: "ingress-nginx-external"
+  # -- Annotations to add to the ingress.
+  annotations:
+    {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  # -- Ingress host configuration.
+  host: pocket-id.lab.javydekoning.com
+  paths:
+    - path: /
+      pathType: Prefix
+  # -- List of TLS configurations for the ingress.
+  tls:
+    - secretName: javydekoning-com-tls
+      hosts:
+        - pocket-id.lab.javydekoning.com
+
