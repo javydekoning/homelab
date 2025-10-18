@@ -11,7 +11,7 @@ metadata:
 spec:
   ingressClassName: ingress-nginx-external
   rules:
-    - host: auth.lab.javydekoning.com
+    - host: pocket-id.lab.javydekoning.com
       http:
         paths:
           - backend:
@@ -23,5 +23,5 @@ spec:
             pathType: Prefix
   tls:
     - hosts:
-        - auth.lab.javydekoning.com
+        - pocket-id.lab.javydekoning.com
       secretName: javydekoning-com-tls
