@@ -4,7 +4,7 @@ configs:
   cm:
     kustomize.buildOptions: --enable-helm
     oidc.config: |
-      name: Authelia
+      name: "Pocket ID"
       issuer: https://pocket-id.lab.javydekoning.com
       clientID: $oidc:OIDC_CLIENT_ID
       clientSecret: $oidc:OIDC_CLIENT_SECRET
