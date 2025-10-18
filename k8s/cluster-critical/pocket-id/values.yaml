@@ -22,8 +22,7 @@ ingress:
   # -- Ingress class name.
   className: "ingress-nginx-external"
   # -- Annotations to add to the ingress.
-  annotations:
-    {}
+  annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   # -- Ingress host configuration.
@@ -36,4 +35,3 @@ ingress:
     - secretName: javydekoning-com-tls
       hosts:
         - pocket-id.lab.javydekoning.com
-
