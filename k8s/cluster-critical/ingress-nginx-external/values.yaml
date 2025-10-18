@@ -4,6 +4,12 @@ controller:
   electionID: ingress-controller-leader
   admissionWebhooks:
     name: ingress-nginx-external-admission
+    webhookName: validate.nginx.external.ingress.kubernetes.io
+    objectSelector:
+      matchExpressions:
+      - key: kubernetes.io/ingress.class
+        operator: In
+        values: ["ingress-nginx-external"]
   ingressClassResource:
     name: "ingress-nginx-external"
     enabled: true
