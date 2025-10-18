@@ -73,10 +73,10 @@ logLevel = "INFO"
 oidcEnabled = true
 
 # OIDC Issuer URL (e.g. https://auth.example.com)
-oidcIssuer = "https://auth.lab.javydekoning.com"
+oidcIssuer = "https://pocket-id.lab.javydekoning.com"
 
 # OIDC Client ID
-oidcClientId = "qui"
+#oidcClientId = "qui"
 
 # OIDC Client Secret
 #oidcClientSecret = ""
