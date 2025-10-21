@@ -39,3 +39,8 @@ mcp_servers:
     transport: "stdio"
     command: "npx"
     args: ["mcp-remote", "https://gitmcp.io/BerriAI/litellm"]
+  aws_knowledge_mcp:
+    url: "https://knowledge-mcp.global.api.aws"
+    transport: "http"
+    description: "AWS Knowledge MCP Server"
+    auth_type: "none"
