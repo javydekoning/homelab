@@ -46,7 +46,8 @@ mcp_servers:
     auth_type: "none"
   home_assistant:
     url: "http://home-assistant.smarthome.svc.cluster.local:8123/mcp_server/sse"
-    transport: "http"
+    transport: "sse"
     description: "Home Assistant MCP Server"
-    auth_type: "api_key"
+    auth_type: "bearer_token"
     auth_value: "os.environ/HASS_API_KEY"
+    # extra_headers: ["Content-Type", "application/json"]
