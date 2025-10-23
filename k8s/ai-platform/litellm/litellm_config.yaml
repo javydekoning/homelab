@@ -44,3 +44,9 @@ mcp_servers:
     transport: "http"
     description: "AWS Knowledge MCP Server"
     auth_type: "none"
+  home_assistant:
+    url: "http://home-assistant.smarthome.svc.cluster.local:8123/mcp_server/sse"
+    transport: "http"
+    description: "Home Assistant MCP Server"
+    auth_type: "bearer"
+    auth_token: "os.environ/HASS_API_KEY"
