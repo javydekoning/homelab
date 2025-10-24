@@ -55,5 +55,5 @@ mcp_servers:
     command: "npx"
     args: ["@karakeep/mcp"]
     env:
-      KARAKEEP_API_ADDR: "http://karakeep.karakeep.svc.cluster.local"
+      KARAKEEP_API_ADDR: "http://karakeep.karakeep.svc.cluster.local:3000"
       KARAKEEP_API_KEY: "os.environ/KARAKEEP_API_KEY"
