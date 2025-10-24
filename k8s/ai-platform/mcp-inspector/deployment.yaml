@@ -23,3 +23,10 @@ spec:
           name: client
         - containerPort: 6277
           name: server
+        env:
+        - name: HOST
+          value: "0.0.0.0"
+        - name: PORT
+          value: "6274"
+        - name: DANGEROUSLY_OMIT_AUTH
+          value: "true"

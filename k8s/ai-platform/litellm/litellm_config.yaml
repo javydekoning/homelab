@@ -36,9 +36,9 @@ mcp_servers:
     command: "uvx"
     args: ["mcp-server-time", "--local-timezone=Europe/Amsterdam"]
   litellm_docs:
-    transport: "stdio"
-    command: "npx"
-    args: ["mcp-remote", "https://gitmcp.io/BerriAI/litellm"]
+    url: "https://gitmcp.io/BerriAI/litellm"
+    transport: "sse"
+    auth_type: "none"
   aws_knowledge_mcp:
     url: "https://knowledge-mcp.global.api.aws"
     transport: "http"
@@ -55,5 +55,5 @@ mcp_servers:
     command: "npx"
     args: ["@karakeep/mcp"]
     env:
-      KARAKEEP_API_ADDR: "http://karakeep.karakeep.svc.cluster.local:3000"
+      KARAKEEP_API_ADDR: "https://karakeep.lab.javydekoning.com"
       KARAKEEP_API_KEY: "os.environ/KARAKEEP_API_KEY"
