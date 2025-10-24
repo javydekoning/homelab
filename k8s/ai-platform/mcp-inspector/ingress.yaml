@@ -19,4 +19,4 @@ spec:
               service:
                 name: mcp-inspector
                 port:
-                  name: server
+                  name: client
