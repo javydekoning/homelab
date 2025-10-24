@@ -50,4 +50,10 @@ mcp_servers:
     description: "Home Assistant MCP Server"
     auth_type: "bearer_token"
     auth_value: "os.environ/HASS_API_KEY"
-    # extra_headers: ["Content-Type", "application/json"]
+  karakeep:
+    transport: "stdio"
+    command: "npx"
+    args: ["@karakeep/mcp"]
+    env:
+      KARAKEEP_API_ADDR: "http://karakeep.karakeep.svc.cluster.local"
+      KARAKEEP_API_KEY: "os.environ/KARAKEEP_API_KEY"
