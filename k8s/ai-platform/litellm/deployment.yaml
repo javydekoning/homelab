@@ -19,6 +19,8 @@ spec:
           env:
             - name: CONFIG_FILE_PATH
               value: /app/config.yaml
+            - name: LITELLM_LOG
+              value: DEBUG
           envFrom:
             - secretRef:
                 name: litellm-secret
