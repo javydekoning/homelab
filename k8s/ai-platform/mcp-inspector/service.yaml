@@ -9,12 +9,12 @@ spec:
   selector:
     app: mcp-inspector
   ports:
-  - name: client
-    port: 6274
-    targetPort: client
-    protocol: TCP
-  - name: server
-    port: 6277
-    targetPort: server
-    protocol: TCP
+    - name: client
+      port: 6274
+      targetPort: client
+      protocol: TCP
+    - name: server
+      port: 6277
+      targetPort: server
+      protocol: TCP
   type: ClusterIP

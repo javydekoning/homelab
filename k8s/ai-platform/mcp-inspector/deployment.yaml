@@ -16,17 +16,17 @@ spec:
         app: mcp-inspector
     spec:
       containers:
-      - name: mcp-inspector
-        image: ghcr.io/modelcontextprotocol/inspector:latest@sha256:7f96872a05f0e410962ac39a294798f8151064557858a31f8afe8597083bf349
-        ports:
-        - containerPort: 6274
-          name: client
-        - containerPort: 6277
-          name: server
-        env:
-        - name: HOST
-          value: "0.0.0.0"
-        - name: PORT
-          value: "6274"
-        - name: DANGEROUSLY_OMIT_AUTH
-          value: "true"
+        - name: mcp-inspector
+          image: ghcr.io/modelcontextprotocol/inspector:latest@sha256:7f96872a05f0e410962ac39a294798f8151064557858a31f8afe8597083bf349
+          ports:
+            - containerPort: 6274
+              name: client
+            - containerPort: 6277
+              name: server
+          env:
+            - name: HOST
+              value: "0.0.0.0"
+            - name: PORT
+              value: "6274"
+            - name: DANGEROUSLY_OMIT_AUTH
+              value: "true"
