@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: librechat
+  labels:
+    app.kubernetes.io/name: librechat
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: librechat
+
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: librechat
+    spec:
+      serviceAccountName: librechat
+      securityContext:
+        fsGroup: 2000
+      containers:
+        - name: librechat
+          securityContext:
+            capabilities:
+              drop:
+              - ALL
+            runAsNonRoot: true
+            runAsUser: 1000
+          image: ghcr.io/danny-avila/librechat:latest@sha256:adcb326f43a971b53df0fbca5f4769c8e56fafbdf834c9dd8c7e4924788f0152
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 3080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3080
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3080
+          envFrom:
+          - configMapRef:
+              name: librechat-envs
+          - secretRef:
+              name: librechat-credentials-env
+          volumeMounts:
+          - name: librechat-config-volume
+            mountPath: /app/librechat.yaml
+            subPath: librechat.yaml
+            readOnly: true
+      volumes:
+      - name: librechat-config-volume
+        configMap:
+          name: librechat-config
