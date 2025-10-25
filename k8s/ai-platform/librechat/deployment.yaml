@@ -25,7 +25,7 @@ spec:
           securityContext:
             capabilities:
               drop:
-              - ALL
+                - ALL
             runAsNonRoot: true
             runAsUser: 1000
           image: ghcr.io/danny-avila/librechat:latest@sha256:adcb326f43a971b53df0fbca5f4769c8e56fafbdf834c9dd8c7e4924788f0152
@@ -43,16 +43,16 @@ spec:
               path: /health
               port: 3080
           envFrom:
-          - configMapRef:
-              name: librechat-envs
-          - secretRef:
-              name: librechat-credentials-env
+            - configMapRef:
+                name: librechat-envs
+            - secretRef:
+                name: librechat-credentials-env
           volumeMounts:
-          - name: librechat-config-volume
-            mountPath: /app/librechat.yaml
-            subPath: librechat.yaml
-            readOnly: true
+            - name: librechat-config-volume
+              mountPath: /app/librechat.yaml
+              subPath: librechat.yaml
+              readOnly: true
       volumes:
-      - name: librechat-config-volume
-        configMap:
-          name: librechat-config
+        - name: librechat-config-volume
+          configMap:
+            name: librechat-config
