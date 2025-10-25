@@ -4,8 +4,7 @@ metadata:
   name: librechat
   labels:
     app.kubernetes.io/name: librechat
-  annotations:
-    {}
+  annotations: {}
 spec:
   type: ClusterIP
   ports:
