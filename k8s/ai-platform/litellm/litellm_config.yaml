@@ -53,7 +53,7 @@ mcp_servers:
   timenpx:
     transport: "stdio"
     command: "npx"
-    args: ["-y","@theo.foobar/mcp-time"]
+    args: ["-y", "@theo.foobar/mcp-time"]
     env:
       KARAKEEP_API_ADDR: "https://karakeep.lab.javydekoning.com"
       KARAKEEP_API_KEY: "os.environ/KARAKEEP_API_KEY"

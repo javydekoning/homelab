@@ -228,4 +228,3 @@ services:
         subtitle: "indexer manager"
         url: "https://prowlarr.k8s.javydekoning.com"
         target: "_blank"
-
