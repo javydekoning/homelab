@@ -17,6 +17,24 @@ mcpServers:
   time:
     command: uvx
     args: ["mcp-server-time", "--local-timezone=Europe/Amsterdam"]
+  litellm_docs:
+    type: sse
+    url: "https://gitmcp.io/BerriAI/litellm"
+  librechat_docs:
+    type: sse
+    url: "https://gitmcp.io/danny-avila/LibreChat"
+  aws_knowledge_mcp:
+    type: sse
+    url: "https://knowledge-mcp.global.api.aws"
+  home_assistant:
+    type: sse
+    url: "http://home-assistant.smarthome.svc.cluster.local:8123/mcp_server/sse"
+  karakeep:
+    command: npx
+    args: ["-y", "@theo.foobar/mcp-time"]
+    env:
+      KARAKEEP_API_ADDR: "https://karakeep.lab.javydekoning.com"
+      KARAKEEP_API_KEY: "${KARAKEEP_API_KEY}"
 
 # Example Registration Object Structure (optional)
 registration:
