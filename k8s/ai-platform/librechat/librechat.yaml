@@ -24,7 +24,7 @@ mcpServers:
     type: sse
     url: "https://gitmcp.io/danny-avila/LibreChat"
   aws_knowledge_mcp:
-    type: sse
+    type: streamable-http
     url: "https://knowledge-mcp.global.api.aws"
   home_assistant:
     type: sse
