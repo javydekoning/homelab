@@ -33,7 +33,7 @@ mcpServers:
       Authorization: "Bearer ${HASS_API_KEY}"
   karakeep:
     command: npx
-    args: ["-y", "@theo.foobar/mcp-time"]
+    args: ["-y", "@karakeep/mcp"]
     env:
       KARAKEEP_API_ADDR: "https://karakeep.lab.javydekoning.com"
       KARAKEEP_API_KEY: "${KARAKEEP_API_KEY}"
