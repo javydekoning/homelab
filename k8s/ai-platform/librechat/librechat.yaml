@@ -18,11 +18,13 @@ mcpServers:
     command: uvx
     args: ["mcp-server-time", "--local-timezone=Europe/Amsterdam"]
   litellm_docs:
-    type: sse
+    type: streamable-http
     url: "https://gitmcp.io/BerriAI/litellm"
   librechat_docs:
     type: sse
     url: "https://gitmcp.io/danny-avila/LibreChat"
+    headers:
+      Content-Type: "text/event-stream"
   aws_knowledge_mcp:
     type: streamable-http
     url: "https://knowledge-mcp.global.api.aws"
