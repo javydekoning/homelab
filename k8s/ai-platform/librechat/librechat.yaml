@@ -29,6 +29,8 @@ mcpServers:
   home_assistant:
     type: sse
     url: "http://home-assistant.smarthome.svc.cluster.local:8123/mcp_server/sse"
+    headers:
+      Authorization: "Bearer ${HASS_API_KEY}"
   karakeep:
     command: npx
     args: ["-y", "@theo.foobar/mcp-time"]
