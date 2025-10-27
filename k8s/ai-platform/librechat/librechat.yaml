@@ -12,9 +12,11 @@ interface:
   # MCP Servers UI configuration
   mcpServers:
     placeholder: "MCP Servers"
-    time:
-      command: uvx
-      args: ["mcp-server-time", "--local-timezone=Europe/Amsterdam"]
+
+mcpServers:
+  time:
+    command: uvx
+    args: ["mcp-server-time", "--local-timezone=Europe/Amsterdam"]
 
 # Example Registration Object Structure (optional)
 registration:
