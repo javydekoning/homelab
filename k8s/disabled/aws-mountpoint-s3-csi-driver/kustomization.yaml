@@ -5,7 +5,7 @@ namespace: mount-s3
 helmCharts:
   - name: aws-mountpoint-s3-csi-driver
     repo: https://awslabs.github.io/mountpoint-s3-csi-driver
-    version: v2.1.0
+    version: 2.2.0
     releaseName: aws-mountpoint-s3-csi-driver
     namespace: mount-s3
     valuesFile: values.yaml
