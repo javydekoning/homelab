@@ -182,6 +182,11 @@ services:
         subtitle: "Network monitoring"
         url: "https://smokeping.k8s.javydekoning.com"
         target: "_blank"
+      - name: "Scrutiny"
+        logo: "https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/scrutiny.png"
+        subtitle: "Disk monitoring"
+        url: "http://nas.javydekoning.com:31054/web/dashboard"
+        target: "_blank"
   - name: "Media Request Management"
     icon: "fas fa-play"
     items:
