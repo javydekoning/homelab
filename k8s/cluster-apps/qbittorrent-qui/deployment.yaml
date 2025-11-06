@@ -19,7 +19,7 @@ spec:
           envFrom:
             - secretRef:
                 name: qui
-          image: ghcr.io/autobrr/qui:latest@sha256:331a5c8f5b3efc1fb76b3aa61abe2c24b953846780cdc78990146c3c7eec4304
+          image: ghcr.io/autobrr/qui:latest@sha256:cea707c0254b3afbce24a91350d771123ad769b4e66b30b7e651c78f0b350951
           ports:
             - containerPort: 7476
               name: http
