@@ -1,6 +1,7 @@
 defaultRules:
   disabled:
     NodeMemoryMajorPagesFaults: true
+    NodeMemoryHighUtilization: true
   rules:
     # Disable KubeSchedulerDown, KubeProxyDown, KubeControllerManagerDown
     # because running in k3s
