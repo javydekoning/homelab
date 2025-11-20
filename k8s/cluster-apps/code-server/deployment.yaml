@@ -20,7 +20,7 @@ spec:
         runAsGroup: 0
       containers:
         - name: code-server
-          image: ghcr.io/coder/code-server:latest@sha256:fab3f1c339440d598ab32f0f234033ed6567847107e01ab43975988554934695
+          image: ghcr.io/coder/code-server:latest@sha256:cca5c0bbff928df75ba9344a878e4ca7a321c0d42c34b39e02722b29855a56ac
           imagePullPolicy: IfNotPresent
           args:
             - "--auth"
