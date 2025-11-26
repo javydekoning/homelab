@@ -40,7 +40,7 @@ spec:
               mountPath: /config
       containers:
         - name: smokeping
-          image: ghcr.io/jwigley/smokeping-speedtest:latest@sha256:c1a0886100a4f30eff4c74ad1983a63096fbb207addfeaf5e550664fde99f572
+          image: ghcr.io/jwigley/smokeping-speedtest:latest@sha256:f624c8daa24cc32d82c2126434b39e1b244604cbe7c82b477e3186d78453c18c
           imagePullPolicy: IfNotPresent
           env:
             - name: TZ
