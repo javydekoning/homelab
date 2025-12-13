@@ -23,7 +23,7 @@ spec:
                 name: linkding-config
             - secretRef:
                 name: linkding-credentials
-          image: ghcr.io/sissbruecker/linkding:latest@sha256:e4fbafee44388d8555e34ffdc507224302989265009fc82f5f2762b789f0385a
+          image: ghcr.io/sissbruecker/linkding:latest@sha256:2883e8b30f02d8dbd2b79d7fd813dff02971b70742e474d0e18f0c3708d22edd
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9090
