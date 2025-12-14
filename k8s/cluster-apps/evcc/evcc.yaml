@@ -17,5 +17,5 @@ log: info
 interval: 15m
 
 # Instructions for obtaining a Enphase Envoy token via web UI:
-#https://enphase.com/download/accessing-iq-gateway-local-apis-or-local-ui-token-based-authentication
+# https://enphase.com/download/accessing-iq-gateway-local-apis-or-local-ui-token-based-authentication
 # https://enlighten.enphaseenergy.com/entrez-auth-token?serial_num=122308038083
