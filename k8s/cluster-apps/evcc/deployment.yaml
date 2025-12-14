@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: evcc
+  labels:
+    app: evcc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: evcc
+  template:
+    metadata:
+      labels:
+        app: evcc
+    spec:
+      containers:
+        - name: evcc
+          image: evcc/evcc:latest
+          command:
+            - evcc
+          ports:
+            - containerPort: 7070
+              name: http
+            - containerPort: 8887
+              name: udp
+              protocol: UDP
+          volumeMounts:
+            - name: config
+              mountPath: /etc/evcc.yaml
+              subPath: evcc.yaml
+            - name: data
+              mountPath: /root/.evcc
+      volumes:
+        - name: config
+          configMap:
+            name: evcc-config
+        - name: data
+          hostPath:
+            path: /config/evcc
+            type: DirectoryOrCreate

@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: evcc-ingress
+  namespace: evcc
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 8m
+  labels:
+    app: evcc
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: evcc.k8s.javydekoning.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: evcc
+                port:
+                  name: http
+  tls:
+    - hosts:
+        - evcc.k8s.javydekoning.com

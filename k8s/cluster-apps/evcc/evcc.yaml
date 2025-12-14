@@ -1,0 +1,21 @@
+#evcc configuration
+# See https://docs.evcc.io/docs/reference/configuration for full documentation
+
+network:
+  # schema is the http schema
+  # setting to `https` does not enable https, it only changes the way URLs are generated
+  schema: http
+  # host is the hostname or IP address
+  # if not set, evcc will use 0.0.0.0
+  host: 0.0.0.0
+  # port is the port number
+  port: 7070
+
+# log settings
+log: info
+
+interval: 15m
+
+# Instructions for obtaining a Enphase Envoy token via web UI:
+#https://enphase.com/download/accessing-iq-gateway-local-apis-or-local-ui-token-based-authentication
+# https://enlighten.enphaseenergy.com/entrez-auth-token?serial_num=122308038083
