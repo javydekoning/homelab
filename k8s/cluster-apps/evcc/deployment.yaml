@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: evcc
-          image: evcc/evcc:latest
+          image: evcc/evcc:nightly
           command:
             - evcc
           ports:
