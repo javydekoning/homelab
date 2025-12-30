@@ -60,3 +60,8 @@ export NVM_DIR="$HOME/.nvm"
 
 # Enable fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# The next line updates PATH for Nebius CLI.
+if [ -f '/home/javy/.nebius/path.zsh.inc' ]; then source '/home/javy/.nebius/path.zsh.inc'; fi
+# The next line enables shell command completion for Nebius CLI.
+if [ -f '/home/javy/.nebius/completion.zsh.inc' ]; then source '/home/javy/.nebius/completion.zsh.inc'; fi
