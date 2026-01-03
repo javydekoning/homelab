@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: netronome-ingress
+  namespace: monitoring
+  labels:
+    app: netronome
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - netronome.k8s.javydekoning.com
+      secretName: javydekoning-com-tls
+  rules:
+    - host: netronome.k8s.javydekoning.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: netronome
+                port:
+                  name: http
+

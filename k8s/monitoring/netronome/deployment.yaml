@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netronome
+  namespace: monitoring
+  labels:
+    app: netronome
+spec:
+  selector:
+    matchLabels:
+      app: netronome
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: netronome
+    spec:
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 0
+      containers:
+        - name: netronome
+          image: ghcr.io/autobrr/netronome:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 7575
+          envFrom:
+            - secretRef:
+                name: netronome-credentials-env
+          volumeMounts:
+            - name: data
+              mountPath: /data
+            - name: netronome-config
+              mountPath: /data/.config/netronome/config.toml
+              subPath: config.toml
+      volumes:
+        - name: data
+          hostPath:
+            path: /config/netronome
+            type: DirectoryOrCreate
+        - name: netronome-config
+          configMap:
+            name: netronome-config
+      restartPolicy: Always
+

@@ -1,0 +1,72 @@
+# Netronome Configuration
+
+[database]
+type = "sqlite"
+path = "netronome.db"
+
+[server]
+host = "0.0.0.0"
+port = 7575
+#base_url = "/"
+
+[logging]
+level = "info"  # trace, debug, info, warn, error, fatal, panic
+
+[auth]
+whitelist = ["192.168.1.0/24","192.168.100.0/24","192.168.120.0/24"]
+
+[speedtest]
+timeout = 30
+
+[speedtest.iperf]
+test_duration = 10
+parallel_conns = 4
+timeout = 60
+
+[speedtest.librespeed]
+timeout = 60
+
+[speedtest.iperf.ping]
+count = 5
+interval = 1000
+timeout = 10
+
+#[session]
+#session_secret = "loaded-as-secret"
+
+# GeoIP configuration for country flags and ASN info in traceroute
+# Uncomment and configure database paths to enable. See README for setup instructions.
+#[geoip]
+#country_database_path = "/path/to/GeoLite2-Country.mmdb"
+#asn_database_path = "/path/to/GeoLite2-ASN.mmdb"
+
+[packetloss]
+enabled = true
+default_interval = 3600 # seconds between tests
+default_packet_count = 10 # packets per test
+max_concurrent_monitors = 10
+privileged_mode = true # Use privileged ICMP mode for better MTR support (requires root/sudo)
+
+[monitor]
+enabled = true
+reconnect_interval = "30s"
+
+# Tailscale integration for secure agent-to-server communication
+[tailscale]
+enabled = false
+method = "auto" # "auto" (default), "host", or "tsnet"
+
+# TSNet settings (used when method="tsnet" or auto-detected)
+# auth_key = "" # Required for tsnet mode
+# hostname = "" # Custom hostname (optional)
+# ephemeral = false # Remove on shutdown
+# state_dir = "~/.config/netronome/tsnet" # Directory for tsnet state
+# control_url = "" # For Headscale (optional)
+
+# Agent settings
+agent_port = 8200 # Port for agent to listen on (0 = use agent's port)
+
+# Server discovery settings
+auto_discover = true # Auto-discover Tailscale agents
+discovery_interval = "5m" # How often to check for new agents
+discovery_port = 8200 # Port to probe for agents
