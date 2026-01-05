@@ -29,6 +29,8 @@ spec:
             - name: config-toml
               mountPath: /config/config.toml
               subPath: config.toml
+            - name: downloads
+              mountPath: /downloads
       volumes:
         - name: config-volume
           hostPath:
@@ -37,3 +39,7 @@ spec:
         - name: config-toml
           configMap:
             name: qbittorrent-qui-config
+        - name: downloads
+          hostPath:
+            path: /downloads
+            type: DirectoryOrCreate
