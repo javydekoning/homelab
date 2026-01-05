@@ -14,4 +14,3 @@ spec:
       port: 7575
       targetPort: 7575
       protocol: TCP
-
