@@ -48,4 +48,3 @@ spec:
           configMap:
             name: netronome-config
       restartPolicy: Always
-
