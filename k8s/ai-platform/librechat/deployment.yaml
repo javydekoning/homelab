@@ -28,7 +28,7 @@ spec:
                 - ALL
             runAsNonRoot: true
             runAsUser: 1000
-          image: ghcr.io/danny-avila/librechat:latest@sha256:85e03ef367c433a1b86ba2c416a753de3409b03bb36331fb702194807e18217e
+          image: ghcr.io/danny-avila/librechat:latest@sha256:a59f7c1eea70a48ff886ae629c7bb6d0ad0c356530483721351452c65da3c3aa
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
