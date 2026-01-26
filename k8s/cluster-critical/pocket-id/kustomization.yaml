@@ -5,7 +5,7 @@ namespace: pocket-id
 helmCharts:
   - name: pocket-id
     repo: https://anza-labs.github.io/charts
-    version: 1.7.3
+    version: 1.7.4
     releaseName: pocket-id
     namespace: pocket-id
     valuesFile: values.yaml
