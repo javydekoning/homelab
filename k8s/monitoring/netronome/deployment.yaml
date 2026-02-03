@@ -26,7 +26,7 @@ spec:
         fsGroup: 0
       containers:
         - name: netronome
-          image: ghcr.io/autobrr/netronome:latest@sha256:b4a93c644dc70f9f824e90fb3acccdfb91413ae792f3a68c3453469c1fb3ede9
+          image: ghcr.io/autobrr/netronome:latest@sha256:fb2f08819eedcf68e1106b0527e34d71f013a04ca69d69cb67f7107b2d645df6
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 7575
