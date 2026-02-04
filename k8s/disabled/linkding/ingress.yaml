@@ -7,7 +7,6 @@ spec:
   tls:
     - hosts:
         - linkding.lab.javydekoning.com
-      secretName: javydekoning-com-tls
   rules:
     - host: linkding.lab.javydekoning.com
       http:

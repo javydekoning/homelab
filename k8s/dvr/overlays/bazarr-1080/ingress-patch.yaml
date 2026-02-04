@@ -6,7 +6,6 @@ spec:
   tls:
     - hosts:
         - bazarr-1080.k8s.javydekoning.com
-      secretName: javydekoning-com-tls
   rules:
     - host: bazarr-1080.k8s.javydekoning.com
       http:

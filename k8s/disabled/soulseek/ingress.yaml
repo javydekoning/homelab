@@ -8,7 +8,6 @@ spec:
   tls:
     - hosts:
         - soulseek.k8s.javydekoning.com
-      secretName: javydekoning-com-tls
   rules:
     - host: soulseek.k8s.javydekoning.com
       http:

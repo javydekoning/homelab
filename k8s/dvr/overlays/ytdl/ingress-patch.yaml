@@ -6,7 +6,6 @@ spec:
   tls:
     - hosts:
         - ytdl.k8s.javydekoning.com
-      secretName: javydekoning-com-tls
   rules:
     - host: ytdl.k8s.javydekoning.com
       http:

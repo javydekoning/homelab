@@ -6,7 +6,6 @@ spec:
   tls:
     - hosts:
         - radarr.k8s.javydekoning.com
-      secretName: javydekoning-com-tls
   rules:
     - host: radarr.k8s.javydekoning.com
       http:

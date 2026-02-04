@@ -7,7 +7,6 @@ spec:
   tls:
     - hosts:
         - notes.k8s.javydekoning.com
-      secretName: javydekoning-com-tls
   rules:
     - host: notes.k8s.javydekoning.com
       http:

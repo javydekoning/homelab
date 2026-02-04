@@ -7,7 +7,6 @@ spec:
   tls:
     - hosts:
         - karakeep.lab.javydekoning.com
-      secretName: javydekoning-com-tls
   rules:
     - host: karakeep.lab.javydekoning.com
       http:

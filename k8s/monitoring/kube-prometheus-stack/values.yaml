@@ -40,7 +40,6 @@ alertmanager:
     tls:
       - hosts:
           - alertmanager.k8s.javydekoning.com
-        secretName: javydekoning-com-tls
 
 grafana:
   ingress:
@@ -53,7 +52,6 @@ grafana:
     tls:
       - hosts:
           - grafana.k8s.javydekoning.com
-        secretName: javydekoning-com-tls
 
   additionalDataSources:
     - name: Loki
@@ -76,7 +74,6 @@ prometheus:
     tls:
       - hosts:
           - prometheus.k8s.javydekoning.com
-        secretName: javydekoning-com-tls
 
 prometheusOperator:
   admissionWebhooks:

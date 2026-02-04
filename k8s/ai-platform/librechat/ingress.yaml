@@ -9,7 +9,6 @@ spec:
   tls:
     - hosts:
         - "librechat.k8s.javydekoning.com"
-      secretName: javydekoning-com-tls
   rules:
     - host: "librechat.k8s.javydekoning.com"
       http:

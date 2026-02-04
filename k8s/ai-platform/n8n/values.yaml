@@ -18,8 +18,7 @@ ingress:
         - path: /
           pathType: Prefix
   tls:
-    - secretName: javydekoning-com-tls
-      hosts:
+    - hosts:
         - n8n.k8s.javydekoning.com
 
 serviceMonitor:

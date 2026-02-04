@@ -6,7 +6,6 @@ spec:
   tls:
     - hosts:
         - audiobookshelf.k8s.javydekoning.com
-      secretName: javydekoning-com-tls
   rules:
     - host: audiobookshelf.k8s.javydekoning.com
       http:

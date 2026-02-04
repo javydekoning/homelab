@@ -10,7 +10,6 @@ spec:
   tls:
     - hosts:
         - kromgo.lab.javydekoning.com
-      secretName: javydekoning-com-tls
   rules:
     - host: kromgo.lab.javydekoning.com
       http:

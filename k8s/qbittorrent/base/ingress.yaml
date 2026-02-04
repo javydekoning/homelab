@@ -10,7 +10,6 @@ spec:
   tls:
     - hosts:
         - "qbittorrent.k8s.javydekoning.com"
-      secretName: javydekoning-com-tls
   rules:
     - host: "qbittorrent.k8s.javydekoning.com"
       http:

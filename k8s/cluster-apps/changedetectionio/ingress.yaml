@@ -7,7 +7,6 @@ spec:
   tls:
     - hosts:
         - changedetection.k8s.javydekoning.com
-      secretName: javydekoning-com-tls
   rules:
     - host: changedetection.k8s.javydekoning.com
       http:

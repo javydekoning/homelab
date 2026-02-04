@@ -6,7 +6,6 @@ spec:
   tls:
     - hosts:
         - jellyfin.k8s.javydekoning.com
-      secretName: javydekoning-com-tls
   rules:
     - host: jellyfin.k8s.javydekoning.com
       http:

@@ -8,7 +8,6 @@ spec:
   tls:
     - hosts:
         - mcpi.k8s.javydekoning.com
-      secretName: javydekoning-com-tls
   rules:
     - host: mcpi.k8s.javydekoning.com
       http:

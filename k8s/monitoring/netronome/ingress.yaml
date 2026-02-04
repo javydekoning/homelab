@@ -10,7 +10,6 @@ spec:
   tls:
     - hosts:
         - netronome.k8s.javydekoning.com
-      secretName: javydekoning-com-tls
   rules:
     - host: netronome.k8s.javydekoning.com
       http:

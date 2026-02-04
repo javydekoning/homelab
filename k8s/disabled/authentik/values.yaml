@@ -43,6 +43,5 @@ authentik:
         - /
       pathType: Prefix
       tls:
-        - secretName: javydekoning-com-tls
-          hosts:
+        - hosts:
             - auth.k8s.javydekoning.com

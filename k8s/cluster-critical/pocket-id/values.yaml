@@ -32,6 +32,5 @@ ingress:
       pathType: Prefix
   # -- List of TLS configurations for the ingress.
   tls:
-    - secretName: javydekoning-com-tls
-      hosts:
+    - hosts:
         - pocket-id.lab.javydekoning.com

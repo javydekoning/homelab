@@ -7,7 +7,6 @@ spec:
   tls:
     - hosts:
         - appname.k8s.javydekoning.com
-      secretName: javydekoning-com-tls
   rules:
     - host: appname.k8s.javydekoning.com
       http:

@@ -24,4 +24,3 @@ spec:
   tls:
     - hosts:
         - pocket-id.lab.javydekoning.com
-      secretName: javydekoning-com-tls

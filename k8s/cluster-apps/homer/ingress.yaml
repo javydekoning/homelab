@@ -21,4 +21,3 @@ spec:
   tls:
     - hosts:
         - homer.k8s.javydekoning.com
-      secretName: javydekoning-com-tls

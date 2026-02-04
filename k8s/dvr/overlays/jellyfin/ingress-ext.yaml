@@ -10,7 +10,6 @@ spec:
   tls:
     - hosts:
         - jf.lab.javydekoning.com
-      secretName: javydekoning-com-tls
   rules:
     - host: jf.lab.javydekoning.com
       http:

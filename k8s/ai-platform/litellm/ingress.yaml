@@ -7,7 +7,6 @@ spec:
   tls:
     - hosts:
         - litellm.k8s.javydekoning.com
-      secretName: javydekoning-com-tls
   rules:
     - host: litellm.k8s.javydekoning.com
       http:

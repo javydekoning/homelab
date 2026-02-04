@@ -10,7 +10,6 @@ spec:
   tls:
     - hosts:
         - smokeping.k8s.javydekoning.com
-      secretName: javydekoning-com-tls
   rules:
     - host: smokeping.k8s.javydekoning.com
       http:

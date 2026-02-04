@@ -6,7 +6,6 @@ spec:
   tls:
     - hosts:
         - cleanuparr.k8s.javydekoning.com
-      secretName: javydekoning-com-tls
   rules:
     - host: cleanuparr.k8s.javydekoning.com
       http:

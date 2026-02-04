@@ -36,7 +36,6 @@ server:
     extraTls:
       - hosts:
           - argocd.k8s.javydekoning.com
-        secretName: javydekoning-com-tls
 
   autoscaling:
     enabled: true

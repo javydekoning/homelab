@@ -19,7 +19,6 @@ ingress:
   tls:
     - hosts:
         - hass.k8s.javydekoning.com
-      secretName: javydekoning-com-tls
 
 persistence:
   enabled: true

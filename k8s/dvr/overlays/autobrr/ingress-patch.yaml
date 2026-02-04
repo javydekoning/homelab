@@ -6,7 +6,6 @@ spec:
   tls:
     - hosts:
         - autobrr.k8s.javydekoning.com
-      secretName: javydekoning-com-tls
   rules:
     - host: autobrr.k8s.javydekoning.com
       http:

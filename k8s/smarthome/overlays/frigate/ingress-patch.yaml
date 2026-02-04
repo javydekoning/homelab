@@ -6,7 +6,6 @@ spec:
   tls:
     - hosts:
         - frigate.k8s.javydekoning.com
-      secretName: javydekoning-com-tls
   rules:
     - host: frigate.k8s.javydekoning.com
       http:

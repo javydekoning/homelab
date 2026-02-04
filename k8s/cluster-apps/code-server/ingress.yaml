@@ -20,4 +20,3 @@ spec:
   tls:
     - hosts:
         - code-server.k8s.javydekoning.com
-      secretName: javydekoning-com-tls
