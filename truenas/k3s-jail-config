@@ -65,7 +65,7 @@ initial_setup=#!/usr/bin/bash
   # Bootstrap Argo CD
   cd ~/homelab/k8s/cluster-critical/argo-cd
   kubectl create ns argocd
-  kustomize build --enable-helm . | kubectl apply -f -
+  kustomize build --enable-helm . | kubectl apply --server-side -f -
 
   # Launch cluster critical resources
   printf "%s" "Enter ACCESS_KEY: "
