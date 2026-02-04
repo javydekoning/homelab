@@ -41,6 +41,9 @@ tlsOptions:
     minVersion: VersionTLS12
 
 providers:
+  kubernetesCRD:
+    namespaces:
+      - traefik-external
   kubernetesIngress:
     publishedService:
       enabled: true

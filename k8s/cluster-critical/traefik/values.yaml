@@ -26,6 +26,9 @@ tlsStore:
       secretName: javydekoning-com-tls
 
 providers:
+  kubernetesCRD:
+    namespaces:
+      - traefik
   kubernetesIngress:
     publishedService:
       enabled: true
