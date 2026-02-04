@@ -6,7 +6,7 @@ metadata:
   labels:
     app.kubernetes.io/name: "kopia"
 spec:
-  ingressClassName: nginx
+  ingressClassName: traefik
   tls:
     - hosts:
         - kopia.k8s.javydekoning.com

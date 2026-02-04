@@ -4,7 +4,7 @@ metadata:
   name: mcp-inspector-ingress
   namespace: mcp-inspector
 spec:
-  ingressClassName: nginx
+  ingressClassName: traefik
   tls:
     - hosts:
         - mcpi.k8s.javydekoning.com

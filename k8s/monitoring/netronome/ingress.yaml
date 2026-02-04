@@ -6,7 +6,7 @@ metadata:
   labels:
     app: netronome
 spec:
-  ingressClassName: nginx
+  ingressClassName: traefik
   tls:
     - hosts:
         - netronome.k8s.javydekoning.com

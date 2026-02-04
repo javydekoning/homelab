@@ -6,7 +6,7 @@ metadata:
   labels:
     app.kubernetes.io/name: "gatus"
 spec:
-  ingressClassName: nginx
+  ingressClassName: traefik
   tls:
     - hosts:
         - gatus.k8s.javydekoning.com

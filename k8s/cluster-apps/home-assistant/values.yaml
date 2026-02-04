@@ -9,9 +9,7 @@ service:
 
 ingress:
   enabled: true
-  className: "nginx"
-  annotations:
-    ingress.kubernetes.io/protocol: "HTTPS"
+  className: "traefik"
   hosts:
     - host: hass.k8s.javydekoning.com
       servicePort: 8123

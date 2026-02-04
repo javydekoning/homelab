@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: litellm-ingress
 spec:
-  ingressClassName: nginx
+  ingressClassName: traefik
   tls:
     - hosts:
         - litellm.k8s.javydekoning.com

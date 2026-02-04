@@ -4,7 +4,7 @@ metadata:
   name: openwebui-ingress
   namespace: openwebui
 spec:
-  ingressClassName: nginx
+  ingressClassName: traefik
   tls:
     - hosts:
         - openwebui.k8s.javydekoning.com

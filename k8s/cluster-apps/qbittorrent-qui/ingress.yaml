@@ -4,13 +4,11 @@ metadata:
   name: qbittorrent-qui-ingress
   namespace: qbittorrent-qui
   annotations:
-    nginx.ingress.kubernetes.io/proxy-body-size: 8m
-    nginx.ingress.kubernetes.io/enable-cors: "true"
-    nginx.ingress.kubernetes.io/proxy-read-timeout: "15"
+    traefik.ingress.kubernetes.io/router.middlewares: traefik-body-size-8m@kubernetescrd,traefik-cors@kubernetescrd
   labels:
     app: qbittorrent-qui
 spec:
-  ingressClassName: nginx
+  ingressClassName: traefik
   rules:
     - host: qui.k8s.javydekoning.com
       http:

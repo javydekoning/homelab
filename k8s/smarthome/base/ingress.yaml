@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: ingress
 spec:
-  ingressClassName: nginx
+  ingressClassName: traefik
   tls:
     - hosts:
         - appname.k8s.javydekoning.com

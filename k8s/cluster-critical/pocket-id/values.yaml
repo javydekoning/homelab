@@ -20,7 +20,7 @@ ingress:
   # -- Specifies whether ingress should be enabled.
   enabled: true
   # -- Ingress class name.
-  className: "ingress-nginx-external"
+  className: "traefik-external"
   # -- Annotations to add to the ingress.
   annotations: {}
     # kubernetes.io/ingress.class: nginx

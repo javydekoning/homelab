@@ -32,7 +32,7 @@ alertmanager:
 
   ingress:
     enabled: true
-    ingressClassName: nginx
+    ingressClassName: traefik
     hosts:
       - alertmanager.k8s.javydekoning.com
     paths:
@@ -45,7 +45,7 @@ alertmanager:
 grafana:
   ingress:
     enabled: true
-    ingressClassName: nginx
+    ingressClassName: traefik
     hosts:
       - grafana.k8s.javydekoning.com
     paths:
@@ -68,7 +68,7 @@ prometheus:
     serviceMonitorSelectorNilUsesHelmValues: false
   ingress:
     enabled: true
-    ingressClassName: nginx
+    ingressClassName: traefik
     hosts:
       - prometheus.k8s.javydekoning.com
     paths:

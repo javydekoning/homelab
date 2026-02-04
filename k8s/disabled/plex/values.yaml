@@ -40,7 +40,7 @@ ingress:
   # @default -- See values.yaml
   main:
     enabled: true
-    ingressClassName: "nginx"
+    ingressClassName: "traefik"
     hosts:
       - host: plex.k8s.javydekoning.com
         paths:

@@ -31,11 +31,8 @@ controller:
 server:
   ingress:
     enabled: true
-    ingressClassName: "nginx"
+    ingressClassName: "traefik"
     hostname: argocd.k8s.javydekoning.com
-    annotations:
-      nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-      nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
     extraTls:
       - hosts:
           - argocd.k8s.javydekoning.com

@@ -4,11 +4,8 @@ metadata:
   name: librechat
   labels:
     app.kubernetes.io/name: librechat
-  annotations:
-    nginx.ingress.kubernetes.io/backend-protocol: HTTP
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 spec:
-  ingressClassName: nginx
+  ingressClassName: traefik
   tls:
     - hosts:
         - "librechat.k8s.javydekoning.com"

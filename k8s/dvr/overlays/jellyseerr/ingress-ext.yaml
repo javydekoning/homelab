@@ -6,7 +6,7 @@ metadata:
   labels:
     app: jellyseerr
 spec:
-  ingressClassName: ingress-nginx-external
+  ingressClassName: traefik-external
   tls:
     - hosts:
         - js.lab.javydekoning.com

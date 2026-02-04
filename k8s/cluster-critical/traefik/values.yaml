@@ -1,0 +1,66 @@
+ingressClass:
+  enabled: true
+  isDefaultClass: true
+
+service:
+  spec:
+    loadBalancerIP: 192.168.100.200
+    externalTrafficPolicy: Local
+
+ports:
+  web:
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
+          permanent: true
+  websecure:
+    http:
+      tls:
+        enabled: true
+
+tlsStore:
+  default:
+    defaultCertificate:
+      secretName: javydekoning-com-tls
+
+providers:
+  kubernetesIngress:
+    publishedService:
+      enabled: true
+
+extraObjects:
+  - apiVersion: traefik.io/v1alpha1
+    kind: Middleware
+    metadata:
+      name: https-redirect
+      namespace: traefik
+    spec:
+      redirectScheme:
+        scheme: https
+        permanent: true
+  - apiVersion: traefik.io/v1alpha1
+    kind: Middleware
+    metadata:
+      name: cors
+      namespace: traefik
+    spec:
+      headers:
+        accessControlAllowMethods:
+          - GET
+          - OPTIONS
+          - PUT
+          - POST
+          - DELETE
+        accessControlAllowOriginList:
+          - "*"
+        accessControlMaxAge: 100
+  - apiVersion: traefik.io/v1alpha1
+    kind: Middleware
+    metadata:
+      name: body-size-8m
+      namespace: traefik
+    spec:
+      buffering:
+        maxRequestBodyBytes: 8388608

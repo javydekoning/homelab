@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: changedetection-ingress
 spec:
-  ingressClassName: nginx
+  ingressClassName: traefik
   tls:
     - hosts:
         - changedetection.k8s.javydekoning.com

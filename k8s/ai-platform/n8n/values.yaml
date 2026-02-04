@@ -11,10 +11,7 @@ timezone: "Europe/Amsterdam"
 
 ingress:
   enabled: true
-  className: "nginx"
-  annotations:
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+  className: "traefik"
   hosts:
     - host: n8n.k8s.javydekoning.com
       paths:

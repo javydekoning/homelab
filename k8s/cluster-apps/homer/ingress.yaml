@@ -6,7 +6,7 @@ metadata:
   name: homer
   namespace: homer
 spec:
-  ingressClassName: nginx
+  ingressClassName: traefik
   rules:
     - host: homer.k8s.javydekoning.com
       http:
