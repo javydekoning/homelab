@@ -13,3 +13,4 @@ helmCharts:
 
 resources:
   - ns.yaml
+  - certificate.yaml
