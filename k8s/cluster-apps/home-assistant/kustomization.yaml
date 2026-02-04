@@ -7,9 +7,10 @@ helmCharts:
     repo: http://pajikos.github.io/home-assistant-helm-chart/
     version: 0.3.41
     releaseName: home-assistant
-    namespace: smarthome
+    namespace: home-assistant
     valuesFile: values.yaml
     includeCRDs: true
 
 resources:
+  - ns.yaml
   - volume.yaml
