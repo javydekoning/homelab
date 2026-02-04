@@ -9,7 +9,7 @@ helmCharts:
     releaseName: traefik-external
     namespace: traefik-external
     valuesFile: values.yaml
-    includeCRDs: false
+    includeCRDs: true
 
 resources:
   - ns.yaml
