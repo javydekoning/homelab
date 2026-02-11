@@ -2,7 +2,7 @@ image:
   # -- image repository
   repository: ghcr.io/home-operations/plex
   # -- image tag
-  tag: "rolling@sha256:fa62165df48d04e9a418805951e903f831dec0e0601f4dc4245f9948d7fd719b"
+  tag: "rolling@sha256:8cb062f2b0660bd7811387e6c799da0ce5f18112078fe21485c11adcc83a9c1c"
   # -- image pull policy
   pullPolicy: Always
 
