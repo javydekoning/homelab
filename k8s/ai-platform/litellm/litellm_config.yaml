@@ -1,37 +1,25 @@
 model_list:
+  - model_name: claude-opus-latest
+    litellm_params:
+      model: os.environ/CLAUDE_OPUS_LATEST_INF_ARN
+      aws_region_name: eu-west-1
+      aws_access_key_id: os.environ/AWS_ACCESS_KEY_ID
+      aws_secret_access_key: os.environ/AWS_SECRET_ACCESS_KEY
+  - model_name: claude-sonnet-latest
+    litellm_params:
+      model: os.environ/CLAUDE_SONNET_LATEST_INF_ARN
+      aws_region_name: eu-west-1
+      aws_access_key_id: os.environ/AWS_ACCESS_KEY_ID
+      aws_secret_access_key: os.environ/AWS_SECRET_ACCESS_KEY
+  - model_name: claude-haiku-latest
+    litellm_params:
+      model: os.environ/CLAUDE_HAIKU_LATEST_INF_ARN
+      aws_region_name: eu-west-1
+      aws_access_key_id: os.environ/AWS_ACCESS_KEY_ID
+      aws_secret_access_key: os.environ/AWS_SECRET_ACCESS_KEY
   - model_name: amazon-nova-lite
     litellm_params:
       model: os.environ/NOVA_LITE_INF_ARN
-      aws_region_name: eu-west-1
-      aws_access_key_id: os.environ/AWS_ACCESS_KEY_ID
-      aws_secret_access_key: os.environ/AWS_SECRET_ACCESS_KEY
-  - model_name: anthropic-claude-haiku-v4.5
-    litellm_params:
-      model: os.environ/CLAUDE_HAIKU_V45_INF_ARN
-      aws_region_name: eu-west-1
-      aws_access_key_id: os.environ/AWS_ACCESS_KEY_ID
-      aws_secret_access_key: os.environ/AWS_SECRET_ACCESS_KEY
-  - model_name: anthropic-claude-sonnet-v4.5
-    litellm_params:
-      model: os.environ/CLAUDE_SONNET_V45_INF_ARN
-      aws_region_name: eu-west-1
-      aws_access_key_id: os.environ/AWS_ACCESS_KEY_ID
-      aws_secret_access_key: os.environ/AWS_SECRET_ACCESS_KEY
-  - model_name: anthropic-claude-sonnet-v4
-    litellm_params:
-      model: os.environ/CLAUDE_SONNET_V4_INF_ARN
-      aws_region_name: eu-west-1
-      aws_access_key_id: os.environ/AWS_ACCESS_KEY_ID
-      aws_secret_access_key: os.environ/AWS_SECRET_ACCESS_KEY
-  - model_name: amazon-titan-embed-text-v2
-    litellm_params:
-      model: bedrock/amazon.titan-embed-text-v2:0
-      aws_region_name: eu-west-1
-      aws_access_key_id: os.environ/AWS_ACCESS_KEY_ID
-      aws_secret_access_key: os.environ/AWS_SECRET_ACCESS_KEY
-  - model_name: ollama-finetuned-llama3-8b
-    litellm_params:
-      model: os.environ/CLAUDE_HAIKU_V45_INF_ARN
       aws_region_name: eu-west-1
       aws_access_key_id: os.environ/AWS_ACCESS_KEY_ID
       aws_secret_access_key: os.environ/AWS_SECRET_ACCESS_KEY

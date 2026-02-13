@@ -52,7 +52,13 @@ spec:
               mountPath: /app/librechat.yaml
               subPath: librechat.yaml
               readOnly: true
+            - name: librechat-images
+              mountPath: /app/client/public/images
       volumes:
         - name: librechat-config-volume
           configMap:
             name: librechat-config
+        - name: librechat-images
+          hostPath:
+            path: /config/librechat
+            type: DirectoryOrCreate

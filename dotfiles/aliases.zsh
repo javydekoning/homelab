@@ -1,5 +1,7 @@
 # Aliases
 alias shutdown=poweroff
+
+# Git aliases
 alias gitconfig='
     git config --global user.email "javydekoning+github@gmail.com" &&
     git config --global user.name "javydekoning" &&
@@ -18,10 +20,11 @@ else
   alias k=kubectl
 fi
 
+# Dev aliases
 alias tf='terraform'
 alias runlinter='npx mega-linter-runner --fix'
 
-# Cachy aliases
+# Cachy linux aliases
 alias cleanup='sudo pacman -Rns (pacman -Qtdq)'
 alias dir='dir --color=auto'
 alias egrep='egrep --color=auto'
@@ -32,5 +35,3 @@ alias hw='hwinfo --short'
 alias untar='tar -zxvf '
 alias update='sudo pacman -Syu'
 alias wget='wget -c '
-alias kgn-nebius='k get nodes -L nebius.com/resource-preset,node.kubernetes.io/instance-type,slurm.nebius.ai/nodeset'
-alias ssh-slurm-login='ssh root@$(terraform state show module.login_script.terraform_data.lb_service_ip | grep "input" | grep -oE "[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+" | head -n 1) -i ~/.ssh/id_ed25519'
