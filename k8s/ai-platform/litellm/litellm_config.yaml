@@ -39,7 +39,7 @@ mcp_servers:
     description: "AWS Knowledge MCP Server"
     auth_type: "none"
   home_assistant:
-    url: "http://home-assistant.smarthome.svc.cluster.local:8123/mcp_server/sse"
+    url: "http://home-assistant.home-assistant.svc.cluster.local:8123/mcp_server/sse"
     transport: "sse"
     description: "Home Assistant MCP Server"
     auth_type: "bearer_token"
