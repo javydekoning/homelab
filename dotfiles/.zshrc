@@ -12,6 +12,13 @@ if [ ! -d "$ZSH_AUTOSUGGESTIONS_DIR" ]; then
   git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_AUTOSUGGESTIONS_DIR"
 fi
 
+# Install F-Sy-H (Fast Syntax Highlighting) if not already installed
+FSY_H_DIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/F-Sy-H
+if [ ! -d "$FSY_H_DIR" ]; then
+  echo "Installing F-Sy-H (Fast Syntax Highlighting)..."
+  git clone https://github.com/z-shell/F-Sy-H.git "$FSY_H_DIR"
+fi
+
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -36,6 +43,7 @@ plugins=(
   kubectl
   helm
   zsh-autosuggestions
+  F-Sy-H
 )
 
 source $ZSH/oh-my-zsh.sh
