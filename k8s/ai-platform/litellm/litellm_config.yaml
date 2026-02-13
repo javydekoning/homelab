@@ -44,10 +44,9 @@ mcp_servers:
     description: "Home Assistant MCP Server"
     auth_type: "bearer_token"
     auth_value: "os.environ/HASS_API_KEY"
-  timenpx:
-    transport: "stdio"
-    command: "npx"
-    args: ["-y", "@theo.foobar/mcp-time"]
+  karakeep:
+    command: npx
+    args: ["-y", "@karakeep/mcp"]
     env:
       KARAKEEP_API_ADDR: "https://karakeep.lab.javydekoning.com"
       KARAKEEP_API_KEY: "os.environ/KARAKEEP_API_KEY"

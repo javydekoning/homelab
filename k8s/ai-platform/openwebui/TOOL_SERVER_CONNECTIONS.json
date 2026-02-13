@@ -1,7 +1,7 @@
 [
   {
     "type": "openapi",
-    "url": "http://mcpo.openwebui.svc.cluster.local:8000/time",
+    "url": "http://litellm.litellm.svc.cluster.local:4000/mcp/time",
     "spec_type": "url",
     "spec": "",
     "path": "openapi.json",
@@ -16,7 +16,7 @@
   },
   {
     "type": "openapi",
-    "url": "http://mcpo.openwebui.svc.cluster.local:8000/memory",
+    "url": "http://litellm.litellm.svc.cluster.local:4000/mcp/litellm_docs",
     "spec_type": "url",
     "spec": "",
     "path": "openapi.json",
@@ -25,13 +25,43 @@
     "config": { "enable": true },
     "info": {
       "id": "",
-      "name": "memory-server",
-      "description": "A basic implementation of persistent memory using a local knowledge graph."
+      "name": "litellm-docs",
+      "description": "LiteLLM documentation MCP server via GitMCP."
     }
   },
   {
     "type": "openapi",
-    "url": "http://mcpo.openwebui.svc.cluster.local:8000/karakeep",
+    "url": "http://litellm.litellm.svc.cluster.local:4000/mcp/aws_knowledge_mcp",
+    "spec_type": "url",
+    "spec": "",
+    "path": "openapi.json",
+    "auth_type": "none",
+    "key": "",
+    "config": { "enable": true },
+    "info": {
+      "id": "",
+      "name": "aws-knowledge",
+      "description": "AWS Knowledge MCP Server."
+    }
+  },
+  {
+    "type": "openapi",
+    "url": "http://litellm.litellm.svc.cluster.local:4000/mcp/home_assistant",
+    "spec_type": "url",
+    "spec": "",
+    "path": "openapi.json",
+    "auth_type": "none",
+    "key": "",
+    "config": { "enable": true },
+    "info": {
+      "id": "",
+      "name": "home-assistant",
+      "description": "Home Assistant MCP Server."
+    }
+  },
+  {
+    "type": "openapi",
+    "url": "http://litellm.litellm.svc.cluster.local:4000/mcp/karakeep",
     "spec_type": "url",
     "spec": "",
     "path": "openapi.json",
@@ -41,7 +71,7 @@
     "info": {
       "id": "",
       "name": "karakeep",
-      "description": "Karakeep MCP server, used to interact with Karakeep"
+      "description": "Karakeep MCP server, used to interact with Karakeep."
     }
   }
 ]
