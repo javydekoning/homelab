@@ -51,15 +51,16 @@ initial_setup=#!/usr/bin/bash
   --kubelet-arg="allowed-unsafe-sysctls=net.ipv4.conf.*" \
   --default-local-storage-path=/config/k8s-volumes-nvme
 
-  # Clone homelab repo
+  # Clone repositories
   git clone https://github.com/javydekoning/homelab.git ~/homelab
+  git clone https://github.com/javydekoning/dotfiles.git ~/dotfiles
 
   # Install dotfiles, zsh, oh-my-zsh, powerlevel10k
-  cd ~/homelab/dotfiles
+  cd ~/dotfiles
   bash install.sh
 
   # Install kubecolor
-  cd ~/homelab/dotfiles
+  cd ~/homelab/scripts
   bash install_kubecolor.sh
 
   # Bootstrap Argo CD
