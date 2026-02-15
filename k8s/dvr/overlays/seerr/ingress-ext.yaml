@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-ext
+  namespace: dvr
+  labels:
+    app: seerr
+spec:
+  ingressClassName: traefik-external
+  tls:
+    - hosts:
+        - js.lab.javydekoning.com
+  rules:
+    - host: js.lab.javydekoning.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: seerr-service
+                port:
+                  name: http
