@@ -18,4 +18,4 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /app/config
-              subPath: jellyseerr  # keep existing config path for in-place migration
+              subPath: jellyseerr # keep existing config path for in-place migration
