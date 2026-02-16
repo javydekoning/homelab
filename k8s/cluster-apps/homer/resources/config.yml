@@ -72,7 +72,7 @@ services:
         url: "https://n8n.k8s.javydekoning.com"
         target: "_blank"
       - name: "KaraKeep"
-        logo: "https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/karakeep.png"
+        logo: "https://raw.githubusercontent.com/homarr-labs/dashboard-icons/refs/heads/main/svg/karakeep.svg"
         subtitle: "Web archival"
         url: "https://karakeep.lab.javydekoning.com"
         target: "_blank"
