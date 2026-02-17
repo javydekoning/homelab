@@ -12,6 +12,7 @@ helmCharts:
     includeCRDs: true
 
 resources:
+  - namespace.yaml
   - external-secret.yaml
 
 # Bucket = javydekoning-s3-csi-bucket
