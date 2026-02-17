@@ -29,6 +29,14 @@ alertmanager:
     #
     secrets:
       - telegram-bot-token
+    volumes:
+      - name: alertmanager-data
+        hostPath:
+          path: /config/alertmanager
+          type: DirectoryOrCreate
+    volumeMounts:
+      - name: alertmanager-data
+        mountPath: /alertmanager
 
   ingress:
     enabled: true
