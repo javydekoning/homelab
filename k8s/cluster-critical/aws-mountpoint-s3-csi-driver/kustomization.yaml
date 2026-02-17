@@ -13,3 +13,5 @@ helmCharts:
 
 resources:
   - external-secret.yaml
+
+# Bucket = javydekoning-s3-csi-bucket

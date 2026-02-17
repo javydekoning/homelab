@@ -1,0 +1,20 @@
+# Re-implementation suggestions (see README or comments for rationale)
+
+mountpointPod:
+  namespace: mount-s3
+  # createNamespace: true  # default; chart creates namespace with Pod Security
+
+# Disable legacy v1 (systemd) mount support if you have no v1 volumes.
+# Reduces code paths; set true if you still have v1 volumes to migrate.
+supportLegacySystemDMounts: false
+
+# Optional: homelab often has no EKS node labels; empty affinity = schedule on all nodes.
+# Default chart affinity excludes Fargate/hybrid; safe to override for non-EKS.
+node:
+  affinity: {}
+
+# Optional: match chart default explicitly (your ExternalSecret already uses these keys).
+# awsAccessSecret:
+#   name: aws-secret
+#   keyId: key_id
+#   accessKey: access_key
