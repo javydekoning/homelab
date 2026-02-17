@@ -41,6 +41,8 @@ alertmanager:
           resources:
             requests:
               storage: 1Gi
+          # Pin to our pre-created S3 PV so the claim binds to it instead of default StorageClass
+          volumeName: s3-pv-kube-prometheus-stack-alertmanager
 
   ingress:
     enabled: true

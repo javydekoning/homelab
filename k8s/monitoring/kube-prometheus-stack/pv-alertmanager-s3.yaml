@@ -9,7 +9,7 @@ spec:
     storage: 10Gi
   claimRef:
     namespace: monitoring
-    name: s3-pvc-kube-prometheus-stack-alertmanager-kube-prometheus-stack-alertmanager-0
+    name: s3-pvc-kube-prometheus-stack-alertmanager-alertmanager-kube-prometheus-stack-alertmanager-0
   mountOptions:
     - region eu-west-1
     - prefix kube-prometheus-stack-alertmanager/
