@@ -3,9 +3,9 @@ kind: Namespace
 metadata:
   name: mount-s3
   labels:
-    # Loosen Pod Security so the CSI controller can run.
-    # You can tighten this later if the upstream chart becomes fully restricted-compliant.
-    pod-security.kubernetes.io/enforce: baseline
-    pod-security.kubernetes.io/audit: restricted
-    pod-security.kubernetes.io/warn: restricted
+    # CSI node plugins require privileged access (hostPID, hostPath, privileged containers).
+    # This cannot be tightened — it's inherent to how CSI DaemonSets operate.
+    pod-security.kubernetes.io/enforce: privileged
+    pod-security.kubernetes.io/audit: privileged
+    pod-security.kubernetes.io/warn: privileged
 
