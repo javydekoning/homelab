@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: s3-pv-kube-prometheus-stack-alertmanager
+spec:
+  accessModes:
+    - ReadWriteMany
+  capacity:
+    storage: 10Gi
+  claimRef:
+    namespace: monitoring
+    name: s3-pvc-kube-prometheus-stack-alertmanager-kube-prometheus-stack-alertmanager-0
+  mountOptions:
+    - region eu-west-1
+    - prefix kube-prometheus-stack-alertmanager/
+  csi:
+    driver: s3.csi.aws.com
+    volumeHandle: s3-csi-driver-volume-kube-prometheus-stack-alertmanager
+    volumeAttributes:
+      bucketName: javydekoning-s3-csi-bucket
+      # Local cache configuration, similar to Frigate
+      cache: emptyDir
+      cacheEmptyDirSizeLimit: 100Mi
+      cacheEmptyDirMedium: "Memory"
+

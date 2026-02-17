@@ -13,3 +13,4 @@ helmCharts:
 
 resources:
   - secret.yaml
+  - pv-alertmanager-s3.yaml

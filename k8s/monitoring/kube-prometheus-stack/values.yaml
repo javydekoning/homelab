@@ -29,11 +29,15 @@ alertmanager:
     #
     secrets:
       - telegram-bot-token
+    # Use a statically-provisioned S3 CSI volume for Alertmanager data.
+    # The corresponding PersistentVolume is defined in pv-alertmanager-s3.yaml.
     storage:
       volumeClaimTemplate:
+        metadata:
+          name: s3-pvc-kube-prometheus-stack-alertmanager
         spec:
-          storageClassName: local-path
-          accessModes: ["ReadWriteOnce"]
+          storageClassName: ""
+          accessModes: ["ReadWriteMany"]
           resources:
             requests:
               storage: 1Gi
