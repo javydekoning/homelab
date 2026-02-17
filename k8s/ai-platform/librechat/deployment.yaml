@@ -60,5 +60,5 @@ spec:
             name: librechat-config
         - name: librechat-images
           hostPath:
-            path: /config/librechat
+            path: /config/librechat/images
             type: DirectoryOrCreate
