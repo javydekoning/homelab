@@ -59,4 +59,4 @@ spec:
         - name: shm
           emptyDir:
             medium: Memory
-            sizeLimit: 128Mi
+            sizeLimit: 256Mi
