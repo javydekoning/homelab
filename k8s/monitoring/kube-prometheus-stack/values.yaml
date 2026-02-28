@@ -23,6 +23,11 @@ alertmanager:
             chat_id: -1001375636328
     route:
       receiver: default
+      routes:
+        - receiver: "null"
+          matchers:
+            - alertname = "InfoInhibitor"
+
   alertmanagerSpec:
     # Secrets is a list of Secrets in the same namespace as the Alertmanager object, which shall be mounted into the
     # Alertmanager Pods. The Secrets are mounted into /etc/alertmanager/secrets/.
