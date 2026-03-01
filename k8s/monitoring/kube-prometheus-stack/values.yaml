@@ -26,8 +26,7 @@ alertmanager:
       routes:
         - receiver: "null"
           matchers:
-            - alertname = "InfoInhibitor"
-            - alertname = "Watchdog"
+            - alertname =~ "InfoInhibitor|Watchdog"
 
   alertmanagerSpec:
     # Secrets is a list of Secrets in the same namespace as the Alertmanager object, which shall be mounted into the
