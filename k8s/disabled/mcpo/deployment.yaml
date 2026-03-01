@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: mcpo
-          image: ghcr.io/open-webui/mcpo:main@sha256:f2c86ef16fd12c6dbfd55caec817bc5d09114327ffed03301b6e339a66bf95ae
+          image: ghcr.io/open-webui/mcpo:main@sha256:1e82c9555c19e50b80745705f32b47a2647589f35279527b5118ecd3a71bd467
           command: ["mcpo"]
           args: ["--config", "/app/config.json"]
           ports:
