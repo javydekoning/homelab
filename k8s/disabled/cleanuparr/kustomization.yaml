@@ -9,7 +9,7 @@ resources:
 images:
   - name: app
     newName: ghcr.io/cleanuparr/cleanuparr
-    newTag: latest@sha256:7701be7b364b2ac2097ff13b80f2d3e98de0f51ac331743b4ea0291fccd57692
+    newTag: latest@sha256:18978713a216ec507511523deb112e6115b84d5284c21aaffe455d132dbfb4be
 
 configMapGenerator:
   - name: env-configmap
