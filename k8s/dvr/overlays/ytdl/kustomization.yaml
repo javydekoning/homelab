@@ -9,7 +9,7 @@ resources:
 images:
   - name: app
     newName: ghcr.io/alexta69/metube
-    newTag: latest@sha256:3de82b0a8c1339a501e0b6ac00e8fa65676144c9ef78f7cc0b6003348d01a97f
+    newTag: latest@sha256:984b2dd65d8f7975fdee5231190d79573ca7450ceb07927a334003d42b9cb874
 
 configMapGenerator:
   - name: env-configmap
