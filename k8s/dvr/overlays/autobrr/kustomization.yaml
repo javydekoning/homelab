@@ -9,7 +9,7 @@ resources:
 images:
   - name: app
     newName: ghcr.io/autobrr/autobrr
-    newTag: latest@sha256:c7edec5fc23326b87e0b71c4c6c011223f53aa17d17ad8d15df81d0c7e021d85
+    newTag: latest@sha256:712cf8ffa11eba28e286d632dc8ad6b17fb6d754573848a07ec91043eb03d87e
 
 configMapGenerator:
   - name: env-configmap
