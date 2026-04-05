@@ -21,7 +21,7 @@ spec:
           env:
             - name: TZ
               value: Europe/Amsterdam
-          image: b4bz/homer:latest@sha256:5c3a0fb561e0d09d00d3392684420186622fae45af70b2c3680b80961ddeeb6c
+          image: b4bz/homer:latest@sha256:659b488ebc52be44ca050b9a990e44c152d99eaa6af0225809168a57f09b67a8
           imagePullPolicy: IfNotPresent
           livenessProbe:
             exec:
