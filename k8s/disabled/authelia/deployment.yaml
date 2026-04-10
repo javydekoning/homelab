@@ -37,7 +37,7 @@ spec:
               name: authelia-data
       containers:
         - name: authelia
-          image: ghcr.io/authelia/authelia:latest@sha256:4f80931cb4180a83b3504962cce1efb3092364387658f1d28ca48584028e382a
+          image: ghcr.io/authelia/authelia:latest@sha256:ac379ba7680cea6ea21a29b65bf6daabb5aec5b4412c5591ec71df4fd156c789
           imagePullPolicy: IfNotPresent
           env:
             - name: X_AUTHELIA_CONFIG
