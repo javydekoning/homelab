@@ -1,0 +1,14 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: zigbee2mqtt-exporter
+  namespace: smarthome
+  labels:
+    release: kube-prometheus-stack
+spec:
+  selector:
+    matchLabels:
+      app: zigbee2mqtt
+  endpoints:
+    - port: metrics
+      interval: 60s

@@ -20,6 +20,16 @@ spec:
               mountPath: /dev/ttyUSB0
             - name: udev
               mountPath: /run/udev
+        - name: zigbee2mqtt-exporter
+          image: ghcr.io/d0ugal/zigbee2mqtt-exporter:v3.4.41
+          ports:
+            - name: metrics
+              containerPort: 8087
+          env:
+            - name: Z2M_EXPORTER_WEBSOCKET_URL
+              value: "ws://localhost:8080/api"
+            - name: Z2M_EXPORTER_LOG_LEVEL
+              value: "info"
       volumes:
         - name: usb
           hostPath:
