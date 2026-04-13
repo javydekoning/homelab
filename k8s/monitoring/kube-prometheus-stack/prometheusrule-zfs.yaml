@@ -1,0 +1,25 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: zfs-alerts
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+spec:
+  groups:
+    - name: zfs.rules
+      rules:
+        - alert: ZFSZpoolFaulted
+          expr: node_zfs_zpool_state{state!="online"}
+          for: 5m
+          labels:
+            severity: critical
+            service: zfs
+          annotations:
+            summary: "🔴 ZFS Zpool Faulted: {{ $labels.zpool }}"
+            description: |
+              💾 ZFS Zpool Issue
+              - ⏰ Duration: > 5 minutes
+              - Zpool: {{ $labels.zpool }}
+              - State: {{ $labels.state }}
+              - Instance: {{ $labels.instance }}
