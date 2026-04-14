@@ -10,7 +10,7 @@ spec:
     - name: zfs.rules
       rules:
         - alert: ZFSZpoolFaulted
-          expr: node_zfs_zpool_state{state!="online"}
+          expr: node_zfs_zpool_state{state!="online"} > 0
           for: 5m
           labels:
             severity: critical
