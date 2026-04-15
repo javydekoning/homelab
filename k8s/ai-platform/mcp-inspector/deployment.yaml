@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: mcp-inspector
-          image: ghcr.io/modelcontextprotocol/inspector:latest@sha256:4feb90a3c8f3ffd0dbc796dce40d159c9e27acaeaa464962b9b601a02f96aceb
+          image: ghcr.io/modelcontextprotocol/inspector:latest@sha256:dcb1b425cc64ebdfce51955dfbfb50a83e3752aae5aab1c2f563a50a5bfbcbfc
           ports:
             - containerPort: 6274
               name: client
