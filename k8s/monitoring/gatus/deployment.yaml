@@ -16,7 +16,7 @@ spec:
         app.kubernetes.io/name: gatus
     spec:
       containers:
-        - image: ghcr.io/twin/gatus:latest@sha256:ce650981b5018de1c9e725f1c64015f9051e21e1a4d2bc9eea70dee0d51e7c40
+        - image: ghcr.io/twin/gatus:latest@sha256:a7b660e042f5580abf03fa7190e797a50fb23180c334cc8b0fbd14b0a0d00f12
           imagePullPolicy: IfNotPresent
           name: gatus
           ports:
