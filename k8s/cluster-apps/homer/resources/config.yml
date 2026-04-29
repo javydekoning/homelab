@@ -109,7 +109,7 @@ services:
       - name: "Pocket ID"
         logo: "https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/svg/pocket-id.svg"
         subtitle: "Authentication"
-        url: "https://pocket-id.k8s.javydekoning.com"
+        url: "https://pocket-id.lab.javydekoning.com"
         target: "_blank"
       - name: GitHub Repo
         logo: "https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/svg/github.svg"
