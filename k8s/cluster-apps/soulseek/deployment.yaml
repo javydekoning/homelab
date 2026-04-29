@@ -5,6 +5,8 @@ metadata:
   namespace: soulseek
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: soulseek
@@ -28,6 +30,12 @@ spec:
               name: listening
             - containerPort: 61123
               name: obfuscated
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              memory: 512Mi
           volumeMounts:
             - name: appdata
               mountPath: /data/.SoulseekQt

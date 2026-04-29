@@ -4,7 +4,7 @@ metadata:
   name: soulseek
   namespace: soulseek
 spec:
-  ingressClassName: nginx
+  ingressClassName: traefik
   tls:
     - hosts:
         - soulseek.k8s.javydekoning.com
