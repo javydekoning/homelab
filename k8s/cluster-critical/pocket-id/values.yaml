@@ -34,3 +34,6 @@ ingress:
   tls:
     - hosts:
         - pocket-id.lab.javydekoning.com
+
+secret:
+  create: false
