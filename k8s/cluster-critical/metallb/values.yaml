@@ -1,2 +1,7 @@
 prometheusRule:
   enabled: false
+
+frr-k8s:
+  prometheus:
+    serviceMonitor:
+      enabled: false
