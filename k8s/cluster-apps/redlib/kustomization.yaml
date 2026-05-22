@@ -7,3 +7,8 @@ resources:
   - deployment.yaml
   - service.yaml
   - ingress.yaml
+
+configMapGenerator:
+  - envs:
+      - ./resources/redlib.env
+    name: redlib-envs

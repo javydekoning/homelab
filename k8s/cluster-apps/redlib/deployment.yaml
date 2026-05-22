@@ -19,11 +19,11 @@ spec:
     spec:
       containers:
         - name: redlib
-          image: ghcr.io/redlib-org/redlib:latest
+          image: quay.io/redlib/redlib:latest
           imagePullPolicy: Always
-          env:
-            - name: TZ
-              value: Europe/Amsterdam
+          envFrom:
+            - configMapRef:
+                name: redlib-envs
           ports:
             - containerPort: 8080
               name: http
@@ -51,4 +51,10 @@ spec:
             requests:
               cpu: 50m
               memory: 128Mi
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
       restartPolicy: Always
