@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: redlib
+  name: redlib
+  namespace: redlib
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redlib
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: redlib
+    spec:
+      containers:
+        - name: redlib
+          image: ghcr.io/redlib-org/redlib:latest
+          imagePullPolicy: Always
+          env:
+            - name: TZ
+              value: Europe/Amsterdam
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /settings
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            timeoutSeconds: 3
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /settings
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+          resources:
+            limits:
+              cpu: 200m
+              memory: 256Mi
+            requests:
+              cpu: 50m
+              memory: 128Mi
+      restartPolicy: Always
