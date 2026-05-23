@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: slskd
-          image: ghcr.io/slskd/slskd:latest
+          image: slskd/slskd:latest
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
