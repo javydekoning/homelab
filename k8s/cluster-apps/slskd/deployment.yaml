@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: slskd
+  name: slskd
+  namespace: slskd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: slskd
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: slskd
+    spec:
+      containers:
+        - name: slskd
+          image: ghcr.io/slskd/slskd:latest
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: slskd-envs
+          ports:
+            - containerPort: 5030
+              name: http
+              protocol: TCP
+            - containerPort: 50300
+              name: slsk
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 60
+            timeoutSeconds: 3
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+          volumeMounts:
+            - name: appdata
+              mountPath: /app
+            - name: downloads
+              mountPath: /downloads
+            - name: shared
+              mountPath: /shared
+      restartPolicy: Always
+      volumes:
+        - name: appdata
+          hostPath:
+            path: /config/slskd
+            type: DirectoryOrCreate
+        - name: downloads
+          hostPath:
+            path: /downloads/music
+            type: DirectoryOrCreate
+        - name: shared
+          hostPath:
+            path: /downloads/music
+            type: DirectoryOrCreate

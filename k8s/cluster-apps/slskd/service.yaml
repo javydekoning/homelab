@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: slskd
+  name: slskd
+  namespace: slskd
+spec:
+  ports:
+    - name: http
+      port: 5030
+      protocol: TCP
+      targetPort: http
+    - name: slsk
+      port: 50300
+      protocol: TCP
+      targetPort: slsk
+  selector:
+    app: slskd
+  type: ClusterIP
