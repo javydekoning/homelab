@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: evcc
-          image: evcc/evcc:latest@sha256:1a46a1dcbdc5bd76c641c90a1091991ee0e84c9971712f4d7b493585ad0f5379
+          image: evcc/evcc:latest@sha256:9c56c9cdf04d6c036b220adb37bc71e57697e37219d78a9e3290777a566e737e
           command:
             - evcc
           ports:
