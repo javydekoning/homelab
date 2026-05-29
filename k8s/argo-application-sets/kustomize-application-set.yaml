@@ -63,3 +63,9 @@ spec:
             - "/spec/dataFrom/0/extract/conversionStrategy"
             - "/spec/dataFrom/0/extract/decodingStrategy"
             - "/spec/dataFrom/0/extract/metadataPolicy"
+        # Ignore Intel GPU operator mutations on GpuDevicePlugin CR
+        - group: "deviceplugin.intel.com"
+          kind: "GpuDevicePlugin"
+          jsonPointers:
+            - "/status"
+            - "/metadata/annotations"
