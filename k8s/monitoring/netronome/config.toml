@@ -10,10 +10,10 @@ port = 7575
 #base_url = "/"
 
 [logging]
-level = "info"  # trace, debug, info, warn, error, fatal, panic
+level = "debug"  # trace, debug, info, warn, error, fatal, panic
 
 [auth]
-whitelist = ["192.168.1.0/24","192.168.100.0/24","192.168.120.0/24"]
+whitelist = ["192.168.1.0/24","192.168.100.0/24","192.168.120.0/24","10.0.0.0/8"]
 
 [speedtest]
 timeout = 30
