@@ -3,6 +3,9 @@ kind: Deployment
 metadata:
   name: deployment
 spec:
+  replicas: 0
+  strategy:
+    type: Recreate
   template:
     spec:
       containers:
