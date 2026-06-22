@@ -51,7 +51,7 @@ spec:
               value: "true"
             - name: MEILI_EXPERIMENTAL_DUMPLESS_UPGRADE
               value: "true"
-          image: getmeili/meilisearch:v1.47@sha256:4931c0afd68b12d3db4a608268c6785bba26d3f3b43a228eff62ec38d5a47d8d
+          image: getmeili/meilisearch:v1.48@sha256:de720d7995069c5d8f2a52e937a511f80dbb3d266ee392876d3ef8850ce8c4b2
           ports:
             - containerPort: 7700
               name: meili
