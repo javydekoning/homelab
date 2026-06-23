@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: deployment
 spec:
-  replicas: 0
+  replicas: 1
   strategy:
     type: Recreate
   template:

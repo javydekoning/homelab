@@ -4,7 +4,7 @@ metadata:
   name: qbittorrent
   namespace: qbittorrent
 spec:
-  replicas: 0
+  replicas: 1
   strategy:
     type: Recreate
   template:
