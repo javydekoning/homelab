@@ -21,6 +21,25 @@ alertmanager:
         telegram_configs:
           - bot_token_file: /etc/alertmanager/secrets/telegram-bot-token/token.txt
             chat_id: -5135920065
+            parse_mode: 'HTML'
+            message: |-
+              {{ define "telegram.homelab.message" -}}
+              {{- if gt (len .Alerts.Firing) 0 -}}
+              🔥 <b>Firing ({{ len .Alerts.Firing }})</b>
+              {{ range .Alerts.Firing -}}
+              • <b>{{ .Labels.alertname }}</b>{{ if .Labels.severity }} [{{ .Labels.severity }}]{{ end }}{{ if .Labels.namespace }} — {{ .Labels.namespace }}{{ end }}
+              {{- if .Annotations.summary }}
+                {{ .Annotations.summary }}{{ end }}
+              {{ end -}}
+              {{- end -}}
+              {{- if gt (len .Alerts.Resolved) 0 -}}
+              ✅ <b>Resolved ({{ len .Alerts.Resolved }})</b>
+              {{ range .Alerts.Resolved -}}
+              • <b>{{ .Labels.alertname }}</b>{{ if .Labels.namespace }} — {{ .Labels.namespace }}{{ end }}
+              {{ end -}}
+              {{- end -}}
+              {{- end -}}
+              {{ template "telegram.homelab.message" . }}
     route:
       receiver: default
       routes:
@@ -34,20 +53,12 @@ alertmanager:
     #
     secrets:
       - telegram-bot-token
-    # Use a statically-provisioned S3 CSI volume for Alertmanager data.
-    # The corresponding PersistentVolume is defined in pv-alertmanager-s3.yaml.
-    storage:
-      volumeClaimTemplate:
-        metadata:
-          name: s3-pvc-kube-prometheus-stack-alertmanager
-        spec:
-          storageClassName: ""
-          accessModes: ["ReadWriteMany"]
-          resources:
-            requests:
-              storage: 1Gi
-          # Pin to our pre-created S3 PV so the claim binds to it instead of default StorageClass
-          volumeName: s3-pv-kube-prometheus-stack-alertmanager
+    # Use emptyDir for Alertmanager state storage.
+    # S3 FUSE (aws-s3-csi-driver) does not support atomic rename, which causes
+    # nflog/silences maintenance to fail with "function not implemented".
+    # emptyDir is sufficient for a homelab; silences/notification-log are lost
+    # on pod restart but that is an acceptable trade-off.
+    storage: {}
 
   ingress:
     enabled: true
