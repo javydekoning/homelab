@@ -22,24 +22,7 @@ alertmanager:
           - bot_token_file: /etc/alertmanager/secrets/telegram-bot-token/token.txt
             chat_id: -5135920065
             parse_mode: 'HTML'
-            message: |-
-              {{ define "telegram.homelab.message" -}}
-              {{- if gt (len .Alerts.Firing) 0 -}}
-              🔥 <b>Firing ({{ len .Alerts.Firing }})</b>
-              {{ range .Alerts.Firing -}}
-              • <b>{{ .Labels.alertname }}</b>{{ if .Labels.severity }} [{{ .Labels.severity }}]{{ end }}{{ if .Labels.namespace }} — {{ .Labels.namespace }}{{ end }}
-              {{- if .Annotations.summary }}
-                {{ .Annotations.summary }}{{ end }}
-              {{ end -}}
-              {{- end -}}
-              {{- if gt (len .Alerts.Resolved) 0 -}}
-              ✅ <b>Resolved ({{ len .Alerts.Resolved }})</b>
-              {{ range .Alerts.Resolved -}}
-              • <b>{{ .Labels.alertname }}</b>{{ if .Labels.namespace }} — {{ .Labels.namespace }}{{ end }}
-              {{ end -}}
-              {{- end -}}
-              {{- end -}}
-              {{ template "telegram.homelab.message" . }}
+            message: '{{ template "telegram.homelab.message" . }}'
     route:
       receiver: default
       routes:
@@ -47,18 +30,37 @@ alertmanager:
           matchers:
             - alertname =~ "InfoInhibitor|Watchdog"
 
+  # Custom Telegram template: concise format to stay under Telegram's 4096-char limit.
+  # The default __text_alert_list dumps all labels + full annotations, which overflows.
+  templateFiles:
+    homelab.tmpl: |-
+      {{ define "telegram.homelab.message" -}}
+      {{- if gt (len .Alerts.Firing) 0 -}}
+      🔥 <b>Firing ({{ len .Alerts.Firing }})</b>
+      {{ range .Alerts.Firing -}}
+      • <b>{{ .Labels.alertname }}</b>{{ if .Labels.severity }} [{{ .Labels.severity }}]{{ end }}{{ if .Labels.namespace }} — {{ .Labels.namespace }}{{ end }}
+      {{- if .Annotations.summary }}
+        {{ .Annotations.summary }}{{ end }}
+      {{ end -}}
+      {{- end -}}
+      {{- if gt (len .Alerts.Resolved) 0 -}}
+      ✅ <b>Resolved ({{ len .Alerts.Resolved }})</b>
+      {{ range .Alerts.Resolved -}}
+      • <b>{{ .Labels.alertname }}</b>{{ if .Labels.namespace }} — {{ .Labels.namespace }}{{ end }}
+      {{ end -}}
+      {{- end -}}
+      {{- end }}
+
   alertmanagerSpec:
     # Secrets is a list of Secrets in the same namespace as the Alertmanager object, which shall be mounted into the
     # Alertmanager Pods. The Secrets are mounted into /etc/alertmanager/secrets/.
     #
     secrets:
       - telegram-bot-token
-    # Use emptyDir for Alertmanager state storage.
-    # S3 FUSE (aws-s3-csi-driver) does not support atomic rename, which causes
-    # nflog/silences maintenance to fail with "function not implemented".
-    # emptyDir is sufficient for a homelab; silences/notification-log are lost
-    # on pod restart but that is an acceptable trade-off.
-    storage: {}
+    # Storage intentionally omitted → Alertmanager uses emptyDir by default.
+    # Previously used S3 FUSE (aws-s3-csi-driver) but it doesn't support atomic
+    # rename, causing nflog/silences maintenance errors every 15 minutes.
+    # Silences/notification-log are lost on pod restart — acceptable for homelab.
 
   ingress:
     enabled: true
