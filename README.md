@@ -41,7 +41,7 @@ _... And a little bit of_ ☁️ AWS, and GitHub Actions_ 🤖
 
 Today is automated via Jailmaker. Bootstrap script can be found in `truenas/k3s-jail-config`.
 
-## Bootstrap "External Secrets" secret
+## Dependency - bootstrapped "External Secrets" secret
 
 Create an IAM user with the following policy attached:
 
@@ -74,7 +74,7 @@ printf "%s" "Enter ACCESS_KEY: "
 read ACCESS_KEY
 
 printf "%s" "Enter SECRET_KEY: "
-read SECRET_KEY
+read -s SECRET_KEY
 
 kubectl create ns external-secrets
 kubectl create secret generic awssm-secret -n external-secrets \
