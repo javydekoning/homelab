@@ -24,7 +24,7 @@ spec:
           envFrom:
             - secretRef:
                 name: litellm-secret
-          image: ghcr.io/berriai/litellm:main-stable@sha256:f46d672e9d12a84e5dde046ff3865e0bf323e49f9f9b8eb08cd33c1713ea9627
+          image: ghcr.io/berriai/litellm:main-stable@sha256:b6e44a97d551dfaa37a13dd02c0d05b2e7e38f5e900aaaea6fd39431ff6207fa
           ports:
             - containerPort: 4000
               name: http
