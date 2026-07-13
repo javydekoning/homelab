@@ -23,7 +23,7 @@ spec:
           envFrom:
             - configMapRef:
                 name: rutorrent-envs
-          image: ghcr.io/crazy-max/rtorrent-rutorrent:latest@sha256:dce317b7edd61aaae4831b0b5db0ff0fd84956bb61df2b020ef2cefcfa886829
+          image: ghcr.io/crazy-max/rtorrent-rutorrent:latest@sha256:db63539cacdba7324a37f66303055c8cf7ed35f9ec44127e759ed9d27b75e4d8
           livenessProbe:
             exec:
               command:
