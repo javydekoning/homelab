@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nutritrace
+  name: nutritrace
+  namespace: nutritrace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nutritrace
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: nutritrace
+    spec:
+      containers:
+        - name: nutritrace
+          image: ghcr.io/traceapps/nutritrace:latest
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: nutritrace-config
+            - secretRef:
+                name: nutritrace-credentials
+          ports:
+            - containerPort: 3001
+              name: http
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /data/db
+              name: db
+            - mountPath: /data/uploads
+              name: uploads
+      restartPolicy: Always
+      volumes:
+        - name: db
+          hostPath:
+            path: /config/nutritrace/db
+            type: DirectoryOrCreate
+        - name: uploads
+          hostPath:
+            path: /config/nutritrace/uploads
+            type: DirectoryOrCreate

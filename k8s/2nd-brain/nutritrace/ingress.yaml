@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nutritrace
+  namespace: nutritrace
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - nutritrace.k8s.javydekoning.com
+  rules:
+    - host: nutritrace.k8s.javydekoning.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nutritrace
+                port:
+                  name: http
