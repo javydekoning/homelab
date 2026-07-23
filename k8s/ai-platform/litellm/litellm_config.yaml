@@ -5,24 +5,32 @@ model_list:
       aws_region_name: eu-west-1
       aws_access_key_id: os.environ/AWS_ACCESS_KEY_ID
       aws_secret_access_key: os.environ/AWS_SECRET_ACCESS_KEY
+      requestMetadata:
+        Application: "LiteLLM"
   - model_name: claude-sonnet-latest
     litellm_params:
       model: os.environ/CLAUDE_SONNET_LATEST_INF_ARN
       aws_region_name: eu-west-1
       aws_access_key_id: os.environ/AWS_ACCESS_KEY_ID
       aws_secret_access_key: os.environ/AWS_SECRET_ACCESS_KEY
+      requestMetadata:
+        Application: "LiteLLM"
   - model_name: claude-haiku-latest
     litellm_params:
       model: os.environ/CLAUDE_HAIKU_LATEST_INF_ARN
       aws_region_name: eu-west-1
       aws_access_key_id: os.environ/AWS_ACCESS_KEY_ID
       aws_secret_access_key: os.environ/AWS_SECRET_ACCESS_KEY
+      requestMetadata:
+        Application: "LiteLLM"
   - model_name: amazon-nova-lite
     litellm_params:
       model: os.environ/NOVA_LITE_INF_ARN
       aws_region_name: eu-west-1
       aws_access_key_id: os.environ/AWS_ACCESS_KEY_ID
       aws_secret_access_key: os.environ/AWS_SECRET_ACCESS_KEY
+      requestMetadata:
+        Application: "LiteLLM"
 
 mcp_servers:
   litellm_docs:

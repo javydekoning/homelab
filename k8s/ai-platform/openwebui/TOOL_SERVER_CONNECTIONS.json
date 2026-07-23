@@ -1,12 +1,12 @@
 [
   {
-    "type": "openapi",
+    "type": "mcp",
     "url": "http://litellm.litellm.svc.cluster.local:4000/mcp/time",
     "spec_type": "url",
     "spec": "",
     "path": "openapi.json",
-    "auth_type": "none",
-    "key": "",
+    "auth_type": "bearer",
+    "key": "${env:LITELLM_MASTER_KEY}",
     "config": { "enable": true },
     "info": {
       "id": "",
@@ -15,13 +15,13 @@
     }
   },
   {
-    "type": "openapi",
+    "type": "mcp",
     "url": "http://litellm.litellm.svc.cluster.local:4000/mcp/litellm_docs",
     "spec_type": "url",
     "spec": "",
     "path": "openapi.json",
-    "auth_type": "none",
-    "key": "",
+    "auth_type": "bearer",
+    "key": "${env:LITELLM_MASTER_KEY}",
     "config": { "enable": true },
     "info": {
       "id": "",
@@ -30,13 +30,13 @@
     }
   },
   {
-    "type": "openapi",
+    "type": "mcp",
     "url": "http://litellm.litellm.svc.cluster.local:4000/mcp/aws_knowledge_mcp",
     "spec_type": "url",
     "spec": "",
     "path": "openapi.json",
-    "auth_type": "none",
-    "key": "",
+    "auth_type": "bearer",
+    "key": "${env:LITELLM_MASTER_KEY}",
     "config": { "enable": true },
     "info": {
       "id": "",
@@ -45,13 +45,13 @@
     }
   },
   {
-    "type": "openapi",
+    "type": "mcp",
     "url": "http://litellm.litellm.svc.cluster.local:4000/mcp/home_assistant",
     "spec_type": "url",
     "spec": "",
     "path": "openapi.json",
-    "auth_type": "none",
-    "key": "",
+    "auth_type": "bearer",
+    "key": "${env:LITELLM_MASTER_KEY}",
     "config": { "enable": true },
     "info": {
       "id": "",
@@ -60,13 +60,13 @@
     }
   },
   {
-    "type": "openapi",
+    "type": "mcp",
     "url": "http://litellm.litellm.svc.cluster.local:4000/mcp/karakeep",
     "spec_type": "url",
     "spec": "",
     "path": "openapi.json",
-    "auth_type": "none",
-    "key": "",
+    "auth_type": "bearer",
+    "key": "${env:LITELLM_MASTER_KEY}",
     "config": { "enable": true },
     "info": {
       "id": "",
