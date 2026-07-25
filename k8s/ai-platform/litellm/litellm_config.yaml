@@ -6,8 +6,6 @@ model_list:
       aws_access_key_id: os.environ/AWS_ACCESS_KEY_ID
       aws_secret_access_key: os.environ/AWS_SECRET_ACCESS_KEY
       aws_bedrock_project_id: proj_nfcg5eournac4w26d2y6
-      requestMetadata:
-        Application: "LiteLLM"
   - model_name: claude-opus-latest
     litellm_params:
       model: os.environ/CLAUDE_OPUS_LATEST_INF_ARN
