@@ -5,7 +5,13 @@ model_list:
       aws_region_name: eu-west-1
       aws_access_key_id: os.environ/AWS_ACCESS_KEY_ID
       aws_secret_access_key: os.environ/AWS_SECRET_ACCESS_KEY
+      # aws_bedrock_project_id is emitted by LiteLLM as the wrong header
+      # ("anthropic-workspace" instead of "anthropic-workspace-id"), so Mantle
+      # ignores it and bills the default project. See BerriAI/litellm#31947.
+      # Send the correct header explicitly until the upstream fix ships.
       aws_bedrock_project_id: proj_nfcg5eournac4w26d2y6
+      extra_headers:
+        anthropic-workspace-id: proj_nfcg5eournac4w26d2y6
   - model_name: claude-opus-latest
     litellm_params:
       model: os.environ/CLAUDE_OPUS_LATEST_INF_ARN
