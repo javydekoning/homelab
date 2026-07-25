@@ -8,13 +8,13 @@ spec:
     # serving tools from the healthy ones instead of failing the session.
     failureMode: FailOpen
     targets:
-      # External, no auth. GitMCP exposes the LiteLLM docs over SSE.
+      # External, no auth. GitMCP serves streamable HTTP at the repo path.
       - name: litellm-docs
         static:
           host: gitmcp.io
           port: 443
           path: /BerriAI/litellm
-          protocol: SSE
+          protocol: StreamableHTTP
           policies:
             tls: {}
       # External, no auth. AWS Knowledge MCP server (streamable HTTP).
