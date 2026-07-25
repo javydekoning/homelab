@@ -1,0 +1,26 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: agentgateway-system
+
+helmCharts:
+  # CRDs first: AgentgatewayBackend/Policy/Parameters. The controller creates
+  # the `agentgateway` GatewayClass at runtime once it is up.
+  - name: agentgateway-crds
+    repo: oci://cr.agentgateway.dev/charts
+    version: v1.3.1
+    releaseName: agentgateway-crds
+    namespace: agentgateway-system
+    includeCRDs: true
+  - name: agentgateway
+    repo: oci://cr.agentgateway.dev/charts
+    version: v1.3.1
+    releaseName: agentgateway
+    namespace: agentgateway-system
+    valuesFile: values.yaml
+    includeCRDs: true
+
+resources:
+  # Upstream Gateway API CRDs (Gateway, GatewayClass, HTTPRoute, ...).
+  # agentgateway builds on Gateway API; these are not installed elsewhere.
+  - https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.5.0/standard-install.yaml
+  - ns.yaml

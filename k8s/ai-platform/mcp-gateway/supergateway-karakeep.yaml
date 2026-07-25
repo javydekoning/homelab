@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mcp-karakeep
+  labels:
+    app: mcp-karakeep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mcp-karakeep
+  template:
+    metadata:
+      labels:
+        app: mcp-karakeep
+    spec:
+      containers:
+        - name: supergateway
+          image: supercorp/supergateway:3.4.3@sha256:095acf4471e142553c1a5514aa5e480abbc5885d00549d4a3481cc70eac53889
+          args:
+            - "--stdio"
+            - "npx -y @karakeep/mcp"
+            - "--outputTransport"
+            - "streamableHttp"
+            - "--port"
+            - "8000"
+          env:
+            # Talk to Karakeep in-cluster rather than via the external ingress.
+            - name: KARAKEEP_API_ADDR
+              value: http://karakeep.karakeep.svc.cluster.local:3000
+            - name: KARAKEEP_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: mcp-gateway-secret
+                  key: KARAKEEP_API_KEY
+          ports:
+            - containerPort: 8000
+              name: mcp
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mcp-karakeep
+  labels:
+    app: mcp-karakeep
+spec:
+  type: ClusterIP
+  selector:
+    app: mcp-karakeep
+  ports:
+    - name: mcp
+      port: 8000
+      targetPort: 8000
+      protocol: TCP
+      # Tells agentgateway this Service speaks MCP (streamable HTTP).
+      appProtocol: agentgateway.dev/mcp

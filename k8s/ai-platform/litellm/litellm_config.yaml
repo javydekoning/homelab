@@ -45,25 +45,5 @@ model_list:
       requestMetadata:
         Application: "LiteLLM"
 
-mcp_servers:
-  litellm_docs:
-    url: "https://gitmcp.io/BerriAI/litellm"
-    transport: "sse"
-    auth_type: "none"
-  aws_knowledge_mcp:
-    url: "https://knowledge-mcp.global.api.aws"
-    transport: "http"
-    description: "AWS Knowledge MCP Server"
-    auth_type: "none"
-  home_assistant:
-    url: "http://home-assistant.home-assistant.svc.cluster.local:8123/mcp_server/sse"
-    transport: "sse"
-    description: "Home Assistant MCP Server"
-    auth_type: "bearer_token"
-    auth_value: "os.environ/HASS_API_KEY"
-  karakeep:
-    command: npx
-    args: ["-y", "@karakeep/mcp"]
-    env:
-      KARAKEEP_API_ADDR: "https://karakeep.lab.javydekoning.com"
-      KARAKEEP_API_KEY: "os.environ/KARAKEEP_API_KEY"
+# MCP servers were moved to a dedicated agentgateway deployment.
+# See k8s/ai-platform/mcp-gateway/ and k8s/cluster-critical/agentgateway/.

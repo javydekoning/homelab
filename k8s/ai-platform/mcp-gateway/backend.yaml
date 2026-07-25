@@ -1,0 +1,47 @@
+apiVersion: agentgateway.dev/v1alpha1
+kind: AgentgatewayBackend
+metadata:
+  name: mcp
+spec:
+  mcp:
+    # Skip failed targets (e.g. an unreachable external server) and keep
+    # serving tools from the healthy ones instead of failing the session.
+    failureMode: FailOpen
+    targets:
+      # External, no auth. GitMCP exposes the LiteLLM docs over SSE.
+      - name: litellm-docs
+        static:
+          host: gitmcp.io
+          port: 443
+          path: /BerriAI/litellm
+          protocol: SSE
+          policies:
+            tls: {}
+      # External, no auth. AWS Knowledge MCP server (streamable HTTP).
+      - name: aws-knowledge
+        static:
+          host: knowledge-mcp.global.api.aws
+          port: 443
+          path: /
+          protocol: StreamableHTTP
+          policies:
+            tls: {}
+      # In-cluster Home Assistant MCP (SSE) with a bearer token. The
+      # mcp-gateway-secret holds the full "Bearer <token>" Authorization value.
+      - name: home-assistant
+        static:
+          host: home-assistant.home-assistant.svc.cluster.local
+          port: 8123
+          path: /mcp_server/sse
+          protocol: SSE
+          policies:
+            auth:
+              secretRef:
+                name: mcp-gateway-secret
+      # Karakeep is a stdio-only MCP server, wrapped by SuperGateway to expose
+      # streamable HTTP. Selected by label from its Service in this namespace.
+      - name: karakeep
+        selector:
+          services:
+            matchLabels:
+              app: mcp-karakeep

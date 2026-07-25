@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mcp-gateway-ingress
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - mcp.k8s.javydekoning.com
+  rules:
+    - host: mcp.k8s.javydekoning.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                # Data-plane proxy Service provisioned by the Gateway resource.
+                name: mcp-gateway
+                port:
+                  number: 80

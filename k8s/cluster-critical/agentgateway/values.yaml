@@ -1,0 +1,6 @@
+# agentgateway control plane. The controller creates the `agentgateway`
+# GatewayClass at runtime; data-plane proxies are provisioned per Gateway
+# resource (see k8s/ai-platform/mcp-gateway/gateway.yaml).
+controller:
+  replicaCount: 1
+  logLevel: info
