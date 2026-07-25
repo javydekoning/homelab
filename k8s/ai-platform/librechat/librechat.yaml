@@ -13,30 +13,12 @@ interface:
   mcpServers:
     placeholder: "MCP Servers"
 
+# All MCP servers are federated by the agentgateway MCP gateway
+# (see k8s/ai-platform/mcp-gateway/). LibreChat no longer hosts any itself.
 mcpServers:
-  time:
-    command: uvx
-    args: ["mcp-server-time", "--local-timezone=Europe/Amsterdam"]
-  litellm_docs:
-    command: npx
-    args: ["mcp-remote", https://gitmcp.io/danny-avila/LibreChat"]
-  librechat_docs:
-    command: npx
-    args: ["mcp-remote", https://gitmcp.io/danny-avila/LibreChat"]
-  aws_knowledge_mcp:
+  mcp_gateway:
     type: streamable-http
-    url: "https://knowledge-mcp.global.api.aws"
-  home_assistant:
-    type: sse
-    url: "http://home-assistant.home-assistant.svc.cluster.local:8123/mcp_server/sse"
-    headers:
-      Authorization: "Bearer ${HASS_API_KEY}"
-  karakeep:
-    command: npx
-    args: ["-y", "@karakeep/mcp"]
-    env:
-      KARAKEEP_API_ADDR: "https://karakeep.lab.javydekoning.com"
-      KARAKEEP_API_KEY: "${KARAKEEP_API_KEY}"
+    url: "http://mcp-gateway.mcp-gateway.svc.cluster.local/mcp"
 
 # Example Registration Object Structure (optional)
 registration:
