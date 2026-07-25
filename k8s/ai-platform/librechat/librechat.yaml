@@ -20,6 +20,12 @@ mcpServers:
     type: streamable-http
     url: "http://mcp-gateway.mcp-gateway.svc.cluster.local/mcp"
 
+# LibreChat's SSRF protection blocks private hostnames by default; exempt the
+# in-cluster gateway (resolves to a private ClusterIP on port 80).
+mcpSettings:
+  allowedAddresses:
+    - "mcp-gateway.mcp-gateway.svc.cluster.local:80"
+
 # Example Registration Object Structure (optional)
 registration:
   socialLogins: ["openid"]
