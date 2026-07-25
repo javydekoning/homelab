@@ -2,6 +2,23 @@ main:
   count: 1
   editorBaseUrl: "https://n8n.k8s.javydekoning.com"
 
+  # Give n8n time to boot before probes can kill it mid-startup
+  # (seen restart-looping after a powercut/sandbox recreate)
+  livenessProbe:
+    httpGet:
+      path: /healthz
+      port: http
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    failureThreshold: 6
+  readinessProbe:
+    httpGet:
+      path: /healthz/readiness
+      port: http
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    failureThreshold: 6
+
   persistence:
     enabled: true
     volumeName: "n8n-data"
