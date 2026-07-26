@@ -12,7 +12,7 @@ model_list:
       aws_bedrock_project_id: proj_nfcg5eournac4w26d2y6
       extra_headers:
         anthropic-workspace-id: proj_nfcg5eournac4w26d2y6
-  - model_name: nutritrace-claude-opus-5
+  - model_name: nutritrace-claude-opus
     litellm_params:
       model: bedrock/mantle/anthropic.claude-opus-latest
       aws_region_name: eu-west-1
