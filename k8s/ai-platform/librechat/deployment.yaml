@@ -59,6 +59,4 @@ spec:
           configMap:
             name: librechat-config
         - name: librechat-images
-          hostPath:
-            path: /config/librechat/images
-            type: DirectoryOrCreate
+          emptyDir: {}
