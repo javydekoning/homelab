@@ -18,8 +18,7 @@ model_list:
       aws_region_name: eu-west-1
       aws_access_key_id: os.environ/AWS_ACCESS_KEY_ID
       aws_secret_access_key: os.environ/AWS_SECRET_ACCESS_KEY
-      extra_headers:
-        anthropic-workspace-id: proj_6ndw24kw5sktspomktbl
+      #aws_bedrock_project_id: proj_6ndw24kw5sktspomktbl
     model_info:
       supports_vision: True
   - model_name: claude-opus-latest
