@@ -12,9 +12,9 @@ model_list:
       aws_bedrock_project_id: proj_nfcg5eournac4w26d2y6
       extra_headers:
         anthropic-workspace-id: proj_nfcg5eournac4w26d2y6
-  - model_name: nutritrace-claude-opus
+  - model_name: nutritrace-default
     litellm_params:
-      model: bedrock_mantle/anthropic.claude-opus-5
+      model: bedrock_mantle/anthropic.claude-sonnet-5
       aws_region_name: eu-west-1
       aws_access_key_id: os.environ/AWS_ACCESS_KEY_ID
       aws_secret_access_key: os.environ/AWS_SECRET_ACCESS_KEY
