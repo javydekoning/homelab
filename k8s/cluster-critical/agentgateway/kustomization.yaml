@@ -13,7 +13,7 @@ helmCharts:
     includeCRDs: true
   - name: agentgateway
     repo: oci://cr.agentgateway.dev/charts
-    version: v1.4.1
+    version: v2.2.1
     releaseName: agentgateway
     namespace: agentgateway-system
     valuesFile: values.yaml
