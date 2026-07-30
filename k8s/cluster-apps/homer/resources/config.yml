@@ -12,10 +12,6 @@ logo: "logo.png"
 icon: fas fa-server" # Optional icon
 
 header: true
-footer: >-
-  <p style="text-align:center"><img
-  src="https://raw.githubusercontent.com/mrpbennett/catppuccin-homer/main/assets/footers/gray0_ctp_on_line.png"
-  alt="Catppuccin" style="max-width:600px;width:100%"></p>
 columns: auto
 connectivityCheck: true
 
