@@ -57,7 +57,7 @@ services:
         url: "https://openwebui.k8s.javydekoning.com"
         target: "_blank"
       - name: "LiteLLM"
-        logo: "https://phoenix.arize.com/wp-content/uploads/2025/03/litellm.png"
+        logo: "https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/svg/litlellm.svg"
         subtitle: "LLM & MCP Gateway"
         url: "https://litellm.k8s.javydekoning.com"
         target: "_blank"
