@@ -60,6 +60,9 @@ spec:
             - mountPath: /www/assets/config.yml
               name: config
               subPath: config.yml
+            - mountPath: /www/assets/catppuccin-mocha.css
+              name: config
+              subPath: catppuccin-mocha.css
       restartPolicy: Always
       volumes:
         - configMap:
