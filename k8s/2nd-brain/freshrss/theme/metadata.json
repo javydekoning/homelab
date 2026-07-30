@@ -1,0 +1,8 @@
+{
+	"name": "Catppuccin-Mocha",
+	"author": "catppuccin",
+	"description": "Catppuccin Mocha flavour (layered over the Nord base theme)",
+	"version": 1.0,
+	"files": ["frss.css", "nord.css", "catppuccin-mocha.css"],
+	"theme-color": "#1e1e2e"
+}
