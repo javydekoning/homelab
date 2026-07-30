@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: freshrss
+  name: freshrss
+  namespace: freshrss
+spec:
+  selector:
+    matchLabels:
+      app: freshrss
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: freshrss
+    spec:
+      containers:
+        - name: freshrss
+          image: ghcr.io/freshrss/freshrss:edge@sha256:43aafd3485b0d05b19d81b73e3a10063ef33267b7402ba899d4a0a7f51521a67
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: freshrss-config
+            - secretRef:
+                name: freshrss-credentials
+          env:
+            # First-run provisioning only. The default user MUST match the
+            # pocket-id preferred_username claim or OIDC admin access is lost.
+            - name: FRESHRSS_INSTALL
+              value: |-
+                --api-enabled
+                --auth-type http_auth
+                --base-url https://rss.lab.javydekoning.com
+                --default-user javy
+                --language en
+            - name: FRESHRSS_USER
+              value: |-
+                --user javy
+                --language en
+          ports:
+            - containerPort: 80
+              name: http
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /i/
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /i/
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 15
+            timeoutSeconds: 5
+          volumeMounts:
+            - mountPath: /var/www/FreshRSS/data
+              name: appdata
+            - mountPath: /var/www/FreshRSS/extensions
+              name: extensions
+            # Self-contained Catppuccin Mocha theme (base + Nord + overlay),
+            # mounted so it is selectable from Settings > Display without
+            # manually pasting CSS.
+            - mountPath: /var/www/FreshRSS/p/themes/Catppuccin-Mocha
+              name: theme
+              readOnly: true
+      restartPolicy: Always
+      volumes:
+        - name: appdata
+          hostPath:
+            path: /config/freshrss/data
+            type: DirectoryOrCreate
+        - name: extensions
+          hostPath:
+            path: /config/freshrss/extensions
+            type: DirectoryOrCreate
+        - name: theme
+          configMap:
+            name: freshrss-theme
