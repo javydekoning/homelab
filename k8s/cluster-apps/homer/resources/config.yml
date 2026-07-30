@@ -194,7 +194,7 @@ services:
         url: "https://prometheus.k8s.javydekoning.com"
         target: "_blank"
       - name: "Alert Manager"
-        logo: "https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/svg/alertmanager.svg"
+        logo: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/google-alerts.svg"
         subtitle: "Alerts & notifications"
         url: "https://alertmanager.k8s.javydekoning.com"
         target: "_blank"
