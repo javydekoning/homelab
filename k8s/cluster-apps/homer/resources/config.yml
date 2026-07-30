@@ -23,7 +23,36 @@ links:
 
 defaults:
   layout: columns # Either 'columns', or 'list'
-  colorTheme: auto # One of 'auto', 'light', or 'dark'
+  colorTheme: dark # One of 'auto', 'light', or 'dark'
+
+# Catppuccin Mocha palette (https://github.com/catppuccin/catppuccin)
+colors:
+  light:
+    highlight-primary: "#cba6f7" # mauve
+    highlight-secondary: "#89b4fa" # blue
+    highlight-hover: "#b4befe" # lavender
+    background: "#1e1e2e" # base
+    card-background: "#313244" # surface0
+    text: "#cdd6f4" # text
+    text-header: "#cdd6f4" # text
+    text-title: "#cdd6f4" # text
+    text-subtitle: "#bac2de" # subtext1
+    card-shadow: rgba(17, 17, 27, 0.4) # crust
+    link: "#89b4fa" # blue
+    link-hover: "#f5c2e7" # pink
+  dark:
+    highlight-primary: "#cba6f7" # mauve
+    highlight-secondary: "#89b4fa" # blue
+    highlight-hover: "#b4befe" # lavender
+    background: "#1e1e2e" # base
+    card-background: "#313244" # surface0
+    text: "#cdd6f4" # text
+    text-header: "#cdd6f4" # text
+    text-title: "#cdd6f4" # text
+    text-subtitle: "#bac2de" # subtext1
+    card-shadow: rgba(17, 17, 27, 0.4) # crust
+    link: "#89b4fa" # blue
+    link-hover: "#f5c2e7" # pink
 
 # Services
 # First level array represent a group.
