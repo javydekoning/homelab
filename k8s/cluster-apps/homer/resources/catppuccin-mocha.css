@@ -3,10 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
 
 /* Catppuccin Mocha theme for Homer
- * Source: https://github.com/mrpbennett/catppuccin-homer (flavours/catppuccin-mocha.css)
- * The upstream header-image block (#bighead background romb.png) is removed since
- * that asset is not mounted; per the upstream comment, --highlight-primary is then
- * set to surface0 instead of transparent. */
+ * Source: https://github.com/mrpbennett/catppuccin-homer (flavours/catppuccin-mocha.css) */
 
 #app.theme-default.dark {
   --catppuccin-base: #1e1e2e;
@@ -23,7 +20,7 @@
   --catppuccin-yellow: #f9e2af;
   --catppuccin-text-dark: var(--catppuccin-surface2);
 
-  --highlight-primary: var(--catppuccin-surface0);
+  --highlight-primary: transparent;
   --highlight-secondary: var(--catppuccin-surface0);
   --highlight-hover: var(--catppuccin-surface0);
   --background: var(--catppuccin-base);
@@ -37,6 +34,12 @@
 }
 
 /* Header */
+
+#app.theme-default.dark #bighead {
+  background-image: url('https://raw.githubusercontent.com/mrpbennett/catppuccin-homer/main/assets/images/backgrounds/romb.png');
+  background-size: cover;
+  background-position: center;
+}
 
 #app.theme-default.dark .logo {
   color: var(--catppuccin-mauve);
