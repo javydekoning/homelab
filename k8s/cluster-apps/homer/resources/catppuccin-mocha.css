@@ -1,0 +1,172 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
+
+/* Catppuccin Mocha theme for Homer
+ * Source: https://github.com/mrpbennett/catppuccin-homer (flavours/catppuccin-mocha.css)
+ * The upstream header-image block (#bighead background romb.png) is removed since
+ * that asset is not mounted; per the upstream comment, --highlight-primary is then
+ * set to surface0 instead of transparent. */
+
+#app.theme-default.dark {
+  --catppuccin-base: #1e1e2e;
+  --catppuccin-surface0: #313244;
+  --catppuccin-surface1: #45475a;
+  --catppuccin-surface2: #585b70;
+  --catppuccin-text: #cdd6f4;
+  --catppuccin-teal: #94e2d5;
+  --catppuccin-green: #a6e3a1;
+  --catppuccin-peach: #fab387;
+  --catppuccin-pink: #f5c2e7;
+  --catppuccin-mauve: #cba6f7;
+  --catppuccin-red: #f38ba8;
+  --catppuccin-yellow: #f9e2af;
+  --catppuccin-text-dark: var(--catppuccin-surface2);
+
+  --highlight-primary: var(--catppuccin-surface0);
+  --highlight-secondary: var(--catppuccin-surface0);
+  --highlight-hover: var(--catppuccin-surface0);
+  --background: var(--catppuccin-base);
+  --card-background: var(--catppuccin-surface0);
+  --text: var(--catppuccin-text);
+  --text-header: var(--catppuccin-text);
+  --text-title: var(--catppuccin-text);
+  --text-subtitle: var(--catppuccin-teal);
+  --link: var(--catppuccin-green);
+  --link-hover: var(--catppuccin-green);
+}
+
+/* Header */
+
+#app.theme-default.dark .logo {
+  color: var(--catppuccin-mauve);
+}
+
+#app.theme-default.dark .first-line .headline {
+  color: var(--catppuccin-yellow);
+}
+
+#app.theme-default.dark .navbar-start i {
+  color: var(--catppuccin-teal);
+}
+
+#app.theme-default.dark [title='Auto-switch'] {
+  color: var(--catppuccin-mauve);
+}
+
+#app.theme-default.dark [title='Dark theme'] {
+  color: var(--catppuccin-peach);
+}
+
+#app.theme-default.dark .navbar-item .fa-columns {
+  color: var(--catppuccin-green);
+}
+
+#app.theme-default.dark .navbar-item .fa-list {
+  color: var(--catppuccin-teal);
+}
+
+#app.theme-default.dark .search-bar .search-label:before {
+  color: var(--catppuccin-yellow);
+}
+
+#app.theme-default.dark .search-bar input {
+  background-color: var(--catppuccin-base);
+}
+
+#app.theme-default.dark .search-bar > input:nth-child(2) {
+  color: var(--catppuccin-text);
+}
+
+#app.theme-default.dark .search-bar input:focus-visible {
+  outline: none;
+}
+
+/* Message */
+
+#app.theme-default.dark .message-header {
+  color: var(--catppuccin-text);
+  background-color: var(--catppuccin-surface0);
+  border-style: none none solid none;
+  border-width: thin;
+}
+
+#app.theme-default.dark .is-info .message-header {
+  border-color: var(--catppuccin-teal);
+}
+
+#app.theme-default.dark .is-info .message-header i {
+  color: var(--catppuccin-teal);
+}
+
+#app.theme-default.dark .is-success .message-header {
+  border-color: var(--catppuccin-green);
+}
+
+#app.theme-default.dark .is-success .message-header i {
+  color: var(--catppuccin-green);
+}
+
+#app.theme-default.dark .is-warning .message-header {
+  border-color: var(--catppuccin-peach);
+}
+
+#app.theme-default.dark .is-warning .message-header i {
+  color: var(--catppuccin-peach);
+}
+
+#app.theme-default.dark .is-danger .message-header {
+  border-color: var(--catppuccin-red);
+}
+
+#app.theme-default.dark .is-danger .message-header i {
+  color: var(--catppuccin-red);
+}
+
+/* Cards */
+
+#app.theme-default.dark .tag {
+  background-color: var(--catppuccin-pink);
+  color: var(--catppuccin-text-dark);
+}
+
+#app.theme-default.dark .status.unknown::before {
+  background-color: var(--catppuccin-yellow);
+  border-color: var(--catppuccin-yellow);
+  box-shadow: 0 0 5px 1px var(--catppuccin-yellow);
+}
+
+#app.theme-default.dark .status.bad::before {
+  background-color: var(--catppuccin-red);
+  border-color: var(--catppuccin-red);
+  box-shadow: 0 0 5px 1px var(--catppuccin-red);
+}
+
+#app.theme-default.dark .status.running::before {
+  background-color: var(--catppuccin-green);
+  border-color: var(--catppuccin-green);
+  box-shadow: 0 0 5px 1px var(--catppuccin-green);
+}
+
+#app.theme-default.dark .card:hover {
+  background-color: var(--catppuccin-surface1);
+}
+
+/* Footer */
+#app.theme-default.dark .footer {
+  color: var(--catppuccin-text);
+}
+
+/* Adds spacing to the bottom of cards */
+body #app .card-content {
+  margin-bottom: 0.55rem;
+}
+
+/* Custom font using Fira Code */
+body #bighead .navbar a {
+  font-family: 'Fira Code', monospace;
+}
+
+body #app .title {
+  font-family: 'Fira Code', monospace;
+}

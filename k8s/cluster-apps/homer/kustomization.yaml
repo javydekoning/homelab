@@ -12,3 +12,4 @@ configMapGenerator:
   - name: homer-config
     files:
       - config.yml=./resources/config.yml
+      - catppuccin-mocha.css=./resources/catppuccin-mocha.css
