@@ -9,7 +9,7 @@
 title: "Homelab app dashboard"
 subtitle: "Running on k3s!"
 logo: "logo.png"
-icon: fas fa-server" # Optional icon
+icon: "fas fa-server" # Optional icon
 
 header: true
 columns: auto
@@ -19,7 +19,9 @@ links:
   - name: "Github"
     icon: "fas fa-book"
     url: "https://github.com/javydekoning/homelab"
-
+  - name: "Dashboard Icons"
+    icon: "fas fa-image"
+    url: "https://dashboardicons.com/"
 defaults:
   layout: columns # Either 'columns', or 'list'
   colorTheme: dark # Catppuccin Mocha stylesheet targets the dark theme
