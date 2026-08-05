@@ -89,7 +89,7 @@ services:
     icon: "fas fa-brain"
     items:
       - name: "KaraKeep"
-        logo: "https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/svg/karakeep.svg"
+        logo: "https://cdn.jsdelivr.net/gh/selfhst/icons/svg/karakeep.svg"
         subtitle: "Web archival"
         url: "https://karakeep.lab.javydekoning.com"
         target: "_blank"
