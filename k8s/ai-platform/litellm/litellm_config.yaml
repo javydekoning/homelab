@@ -9,9 +9,8 @@ model_list:
       # ("anthropic-workspace" instead of "anthropic-workspace-id"), so Mantle
       # ignores it and bills the default project. See BerriAI/litellm#31947.
       # Send the correct header explicitly until the upstream fix ships.
-      aws_bedrock_project_id: proj_nfcg5eournac4w26d2y6
-      extra_headers:
-        anthropic-workspace-id: proj_nfcg5eournac4w26d2y6
+    model_info:
+      supports_vision: True
   - model_name: nutritrace-default
     litellm_params:
       model: bedrock/mantle/anthropic.claude-sonnet-5
@@ -45,6 +44,8 @@ model_list:
       aws_secret_access_key: os.environ/AWS_SECRET_ACCESS_KEY
       requestMetadata:
         Application: "LiteLLM"
+    model_info:
+      supports_vision: True
   - model_name: amazon-nova-lite
     litellm_params:
       model: os.environ/NOVA_LITE_INF_ARN
@@ -54,5 +55,5 @@ model_list:
       requestMetadata:
         Application: "LiteLLM"
 
-# MCP servers were moved to a dedicated agentgateway deployment.
-# See k8s/ai-platform/mcp-gateway/ and k8s/cluster-critical/agentgateway/.
+router_settings:
+  fallbacks: [{"nutritrace-default": ["claude-opus-5","claude-haiku-latest"]}]
