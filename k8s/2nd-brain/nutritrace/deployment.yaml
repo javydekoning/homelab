@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: nutritrace
-          image: ghcr.io/traceapps/nutritrace:dev@sha256:f59c7676a99dc024adafc7394c90fbb6efbe9d06b31aa918e8446fbbdef8bcc5
+          image: ghcr.io/traceapps/nutritrace:dev@sha256:0da1bde8ff17fd073d94c48c89657d1c9e355164fca8f0581765eefd8bbc24b9
           imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:
