@@ -148,6 +148,11 @@ services:
         subtitle: "Manage Torrents"
         url: "https://qui.k8s.javydekoning.com"
         target: "_blank"
+      - name: "Termix"
+        logo: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/termix.svg"
+        subtitle: "SSH manager"
+        url: "https://termix.k8s.javydekoning.com"
+        target: "_blank"
   - name: "Smart Home & IoT"
     icon: "fas fa-home"
     items:
