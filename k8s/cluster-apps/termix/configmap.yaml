@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: termix-config
+  namespace: termix
+data:
+  TZ: "Europe/Amsterdam"
+  PORT: "8080"
+  # No Guacamole/remote-desktop backend deployed yet — SSH only for now.
+  ENABLE_GUACAMOLE: "false"
+
+  # OIDC / OpenID Connect (pocket-id). This is the env-var fallback provider;
+  # it only takes effect until a provider is added via Admin Settings.
+  # Client id/secret are injected from AWS Secrets Manager via the
+  # termix-credentials secret (see external-secret.yaml).
+  OIDC_ISSUER_URL: "https://pocket-id.lab.javydekoning.com"
+  OIDC_AUTHORIZATION_URL: "https://pocket-id.lab.javydekoning.com/authorize"
+  OIDC_TOKEN_URL: "https://pocket-id.lab.javydekoning.com/api/oidc/token"
+  OIDC_USERINFO_URL: "https://pocket-id.lab.javydekoning.com/api/oidc/userinfo"
+  OIDC_IDENTIFIER_PATH: "sub"
+  OIDC_NAME_PATH: "name"
+  OIDC_SCOPES: "openid email profile"
+  # Behind Traefik with TLS terminated at the edge.
+  OIDC_FORCE_HTTPS: "true"
+  # Allow OIDC to provision the first users; tighten once accounts exist.
+  OIDC_ALLOW_REGISTRATION: "true"
+  OIDC_ALLOWED_USERS: "*"

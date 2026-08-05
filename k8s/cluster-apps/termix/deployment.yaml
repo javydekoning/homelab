@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: termix
+  namespace: termix
+  labels:
+    app: termix
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: termix
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: termix
+    spec:
+      containers:
+        - name: termix
+          image: ghcr.io/lukegus/termix:latest
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: termix-config
+            - secretRef:
+                name: termix-credentials
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 15
+            timeoutSeconds: 5
+          volumeMounts:
+            - name: appdata
+              mountPath: /app/data
+      restartPolicy: Always
+      volumes:
+        - name: appdata
+          hostPath:
+            path: /config/termix/data
+            type: DirectoryOrCreate

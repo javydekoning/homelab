@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: termix
+  namespace: termix
+  labels:
+    app: termix
+spec:
+  selector:
+    app: termix
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http

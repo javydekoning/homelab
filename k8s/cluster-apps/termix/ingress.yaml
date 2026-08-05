@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: termix
+  namespace: termix
+  labels:
+    app: termix
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - termix.k8s.javydekoning.com
+  rules:
+    - host: termix.k8s.javydekoning.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: termix
+                port:
+                  name: http
