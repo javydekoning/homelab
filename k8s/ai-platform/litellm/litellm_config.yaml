@@ -56,4 +56,5 @@ model_list:
         Application: "LiteLLM"
 
 router_settings:
-  fallbacks: [{"nutritrace-default": ["claude-opus-5","claude-haiku-latest"]}]
+  fallbacks:
+    [{ "nutritrace-default": ["claude-opus-5", "claude-haiku-latest"] }]
