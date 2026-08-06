@@ -38,13 +38,11 @@ server:
           - argocd.k8s.javydekoning.com
 
   autoscaling:
-    enabled: true
-    minReplicas: 1
+    enabled: false
 
 repoServer:
   autoscaling:
-    enabled: true
-    minReplicas: 1
+    enabled: false
 
 applicationSet:
   replicaCount: 1
