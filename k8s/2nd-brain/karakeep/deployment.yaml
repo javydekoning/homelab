@@ -53,7 +53,7 @@ spec:
               value: "true"
             - name: MEILI_UPGRADE_DB
               value: "true"
-          image: getmeili/meilisearch:v1.52@sha256:cf81029c86eb099bfb7f454214338620285f07b94031f58ac52f5f8a063af44f
+          image: getmeili/meilisearch:v1.52@sha256:4b97a53f5a64a5f0228da6d1db2fde016695d287aecb11a83bca368148542f7e
           ports:
             - containerPort: 7700
               name: meili
