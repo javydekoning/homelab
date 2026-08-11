@@ -38,6 +38,20 @@ spec:
             auth:
               secretRef:
                 name: mcp-gateway-secret
+      # In-cluster NutriTrace MCP (streamable HTTP, stateless POST-only) with
+      # a bearer token. Requires MCP_ENABLED=1 on the NutriTrace server and a
+      # token holding at least one mcp:* scope.
+      - name: nutritrace
+        static:
+          host: nutritrace.nutritrace.svc.cluster.local
+          port: 3001
+          path: /api/mcp
+          protocol: StreamableHTTP
+          policies:
+            auth:
+              secretRef:
+                name: mcp-gateway-secret
+                key: NUTRITRACE_MCP_API_KEY
       # Karakeep is a stdio-only MCP server, wrapped by SuperGateway to expose
       # streamable HTTP. Selected by label from its Service in this namespace.
       - name: karakeep
