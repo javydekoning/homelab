@@ -8,7 +8,7 @@ resources:
   - ingress.yaml
   - secret.yaml
 
-configmapGenerator:
+configMapGenerator:
   - name: qbittorrent-qui-config
     files:
       - config.toml

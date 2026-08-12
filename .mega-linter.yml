@@ -1,25 +1,45 @@
 ENABLE:
   - BASH
-  - DOCKERFILE
   - EDITORCONFIG
   - JSON
   - MARKDOWN
   - SPELL
   - YAML
 
+ENABLE_LINTERS:
+  - ACTION_ACTIONLINT
+  - ENV_DOTENV_LINTER
+  - KUBERNETES_KUBECONFORM
+  - REPOSITORY_TRUFFLEHOG
+
 DISABLE_LINTERS:
   - SPELL_CSPELL
-  - SPELL_LYCHEE
+  - SPELL_PROSELINT
+  - SPELL_VALE
   - YAML_V8R
+
+# ValueWithoutQuotes is wrong for kustomize `envs:` sources: quotes there are
+# literal, so a quoted value reaches the container with the quote characters
+# included (`OAUTH_PROVIDER_NAME: '"Pocket ID"'`).
+ENV_DOTENV_LINTER_ARGUMENTS:
+  - --ignore-checks
+  - ValueWithoutQuotes
 
 JSON_V8R_FILTER_REGEX_EXCLUDE: "gen\\-config.json"
 JSON_PRETTIER_ARGUMENTS: ["--trailing-comma", "none"]
 
-MARKDOWN_MARKDOWN_LINK_CHECK_ARGUMENTS: "-q"
+# Manifests live in k8s/, not the default `kubernetes/` sub-directory.
+KUBERNETES_DIRECTORY: k8s
+# Kustomize patch fragments, overlay-completed bases (selectors come from
+# `labels.includeSelectors`) and Helm values files are not standalone manifests.
+KUBERNETES_KUBECONFORM_FILTER_REGEX_EXCLUDE: "(patch|/base/deployment\\.ya?ml$|/values\\.ya?ml$|/Chart\\.ya?ml$|gen\\-config\\.json$)"
+KUBERNETES_KUBECONFORM_ARGUMENTS:
+  - -ignore-missing-schemas
+
 MARKDOWN_MARKDOWNLINT_DISABLE_ERRORS: false
 
-SPELL_MISSPELL_ARGUMENTS: |
-  -i "realies,mosquitto"
+SPELL_LYCHEE_ARGUMENTS:
+  - -E
 
 SARIF_REPORTER: true
 

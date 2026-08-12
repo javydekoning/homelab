@@ -1,0 +1,19 @@
+# URLs lychee cannot reach from CI. One regex per line.
+
+# Own domains: internal-only services, OIDC callback endpoints that reject a
+# bare GET, and hosts behind self-signed certs. Covers apex and subdomains.
+https?://([a-z0-9-]+\.)*javydekoning\.com
+
+# Cluster-internal addresses, resolvable only from inside the cluster.
+https?://([a-z0-9-]+\.)*svc\.cluster\.local
+https?://kubernetes\.default\.svc
+https?://loki:
+https?://0\.0\.0\.0
+
+# Helm chart repos: `repo:` roots serve index.yaml but 404 on the bare URL, so
+# a hit here is not a broken link. Listed per-repo rather than excluding all of
+# github.io, which would also stop checking genuine documentation links.
+https?://awslabs\.github\.io/mountpoint-s3-csi-driver
+https?://kubernetes-sigs\.github\.io/node-feature-discovery/charts
+https?://anza-labs\.github\.io/charts
+https?://pajikos\.github\.io/home-assistant-helm-chart

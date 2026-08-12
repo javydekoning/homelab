@@ -1,0 +1,4 @@
+[codespell]
+# `hass` is the Home Assistant abbreviation, not a typo of `hash`.
+ignore-words-list = hass
+skip = ./.git,./k8s/**/charts,*.png,*.webp,*.css
