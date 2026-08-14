@@ -82,3 +82,38 @@ kubectl create secret generic awssm-secret -n external-secrets \
 ```
 
 Multiple services like Cert-Manager and DDNS rely on external secrets that are bootstrapped via the above.
+
+## Backup & Restore
+
+Backups are managed by Kopia.
+
+If a restore is needed, before Kubernetes cluster is live, use the below script/instructions:
+
+```sh
+# Requires awscli, kopia & jq to be installed on the host.
+# 1. Pull creds straight from Secrets Manager
+SECRET=$(aws secretsmanager get-secret-value \
+  --secret-id k8s-homelab-secrets \
+  --region eu-west-1 \
+  --query SecretString --output text)
+
+KOPIA_PASSWORD=$(echo "$SECRET" | jq -r '.kopia.KOPIA_PASSWORD')
+ACCESS_KEY=$(echo "$SECRET" | jq -r '.kopia.KOPIA_BUCKET_ACCESS_KEY_ID')
+SECRET_KEY=$(echo "$SECRET" | jq -r '.kopia.KOPIA_BUCKET_SECRET_ACCESS_KEY')
+BUCKET=$(echo "$SECRET" | jq -r '.kopia.KOPIA_BUCKET')
+
+# 2. Export env var to child-process
+export KOPIA_PASSWORD
+
+# 3. Connect to the repo
+kopia repository connect s3 \
+  --bucket="$BUCKET" \
+  --prefix=kopia/ \
+  --endpoint=s3.eu-west-1.amazonaws.com \
+  --access-key="$ACCESS_KEY" \
+  --secret-access-key="$SECRET_KEY"
+
+# 4. List snapshots, then restore
+kopia snapshot list --all
+kopia restore <snapshot-id> /path/to/restore/target
+```
