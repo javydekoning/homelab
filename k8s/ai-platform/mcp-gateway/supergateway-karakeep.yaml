@@ -24,6 +24,12 @@ spec:
             - "streamableHttp"
             - "--port"
             - "8000"
+          resources:
+            requests:
+              cpu: 10m
+              memory: 64Mi
+            limits:
+              memory: 256Mi
           env:
             # Talk to Karakeep in-cluster rather than via the external ingress.
             - name: KARAKEEP_API_ADDR
