@@ -1,0 +1,8 @@
+excludeNamespaces: "kube-system,trivy-system"
+
+operator:
+  scanJobsConcurrentLimit: 3
+  scanJobTTL: "10m"
+
+serviceMonitor:
+  enabled: true

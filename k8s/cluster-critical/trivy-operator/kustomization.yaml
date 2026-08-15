@@ -1,0 +1,44 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: trivy-system
+
+helmCharts:
+  - name: trivy-operator
+    repo: https://aquasecurity.github.io/helm-charts/
+    version: 0.35.0
+    releaseName: trivy-operator
+    namespace: trivy-system
+    valuesFile: values.yaml
+    includeCRDs: true
+  - name: trivy-operator-dashboard
+    repo: oci://ghcr.io/raoulx24/charts
+    version: 1.9.0
+    releaseName: trivy-operator-dashboard
+    namespace: trivy-system
+    valuesFile: dashboard-values.yaml
+
+resources:
+  - ns.yaml
+
+patches:
+  # kustomize ignores helm.sh/hook, so the chart's test-connection Pod would
+  # otherwise be applied as a real resource and sit there Completed/Error.
+  - target:
+      kind: Pod
+      name: trivy-operator-dashboard-test-connection
+    patch: |
+      $patch: delete
+      apiVersion: v1
+      kind: Pod
+      metadata:
+        name: trivy-operator-dashboard-test-connection
+  # The dashboard chart's templates omit metadata.namespace, and kustomize's
+  # `namespace:` field does not transform helm-inflated output. Without this the
+  # resources inherit the apply-time default namespace instead of trivy-system.
+  - target:
+      name: trivy-operator-dashboard.*
+      kind: (ServiceAccount|Secret|Service|Deployment|Ingress|PersistentVolumeClaim)
+    patch: |
+      - op: add
+        path: /metadata/namespace
+        value: trivy-system
