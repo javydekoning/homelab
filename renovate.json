@@ -6,8 +6,8 @@
   },
   "kubernetes": {
     "managerFilePatterns": [
-      "/k8s/.+/custom\\.yaml$/",
-      "/k8s/.+/deployment\\.yaml$/"
+      "/^k8s/.+\\.yaml$/",
+      "!/(^|/)values\\.yaml$/"
     ]
   },
   "packageRules": [
