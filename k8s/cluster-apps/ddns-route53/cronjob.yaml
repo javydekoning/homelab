@@ -12,7 +12,7 @@ spec:
           restartPolicy: Never
           containers:
             - name: ddns-route53
-              image: ghcr.io/crazy-max/ddns-route53:latest@sha256:466159d8f2b271f024b1950f72e56d909facee658ed8be693a875b9b86ea03a6
+              image: ghcr.io/crazy-max/ddns-route53:latest@sha256:34edab2d59208f72e4f5ec6618e4347e1bfd751a66d3de8542cd64c2e2d3bac2
               imagePullPolicy: IfNotPresent
               envFrom:
                 - configMapRef:
