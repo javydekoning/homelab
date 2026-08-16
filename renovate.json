@@ -5,10 +5,7 @@
     "managerFilePatterns": ["/(^|/)values\\.yaml$/"]
   },
   "kubernetes": {
-    "managerFilePatterns": [
-      "/^k8s/.+\\.yaml$/",
-      "!/(^|/)values\\.yaml$/"
-    ]
+    "managerFilePatterns": ["/^k8s/.+\\.yaml$/", "!/(^|/)values\\.yaml$/"]
   },
   "packageRules": [
     {
