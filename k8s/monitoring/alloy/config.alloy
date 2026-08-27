@@ -124,6 +124,16 @@ loki.process "pod_logs" {
     }
   }
 
+  // trivy-system scan jobs: the operator's scan-job pods emit base64-encoded
+  // binary scan/report artifacts to stdout, not real application logs - no
+  // level word, no diagnostic value, just noise from the known lock-contention
+  // issue (see repo notes). Drop entirely.
+  stage.match {
+    selector = "{namespace=\"trivy-system\"}"
+
+    stage.drop {}
+  }
+
   // kopia: maintenance-run status output has no level word at all, e.g.
   // 'Finished full maintenance.' / 'GC found 2805 unused contents (1.4 GB)'.
   // Everything this container logs is routine operational status.
