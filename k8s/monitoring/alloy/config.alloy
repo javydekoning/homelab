@@ -100,6 +100,15 @@ loki.process "pod_logs" {
     }
   }
 
+  // loki-canary: self-check probe pod (DaemonSet from the Loki chart, not ours).
+  // It just logs its own query-loop status to stdout with no level word, and
+  // has no diagnostic value in Loki itself - drop entirely rather than parse.
+  stage.match {
+    selector = "{namespace=\"monitoring\", app_kubernetes_io_component=\"canary\"}"
+
+    stage.drop {}
+  }
+
   // changedetection.io app container: werkzeug/Flask access log format:
   // '10.42.0.1 - - [27/Aug/2026 11:07:37] "GET / HTTP/1.1" 200 -'
   // No level word at all, so Loki's detected_level misses it entirely.
