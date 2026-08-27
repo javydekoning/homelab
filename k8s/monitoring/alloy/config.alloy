@@ -88,6 +88,18 @@ loki.process "pod_logs" {
       }
   }
 
+  // Common noise across every app: kubelet's own health/readiness probes hit each
+  // pod's HTTP endpoint constantly and show up in access logs with a distinctive
+  // User-Agent. Drop these cluster-wide before any per-app parsing runs, rather
+  // than repeating this in every app-specific stage.match block.
+  stage.match {
+    selector = `{cluster="default"} |~ "kube-probe"`
+
+    stage.drop {
+      expression = "kube-probe"
+    }
+  }
+
   // changedetection.io app container: werkzeug/Flask access log format:
   // '10.42.0.1 - - [27/Aug/2026 11:07:37] "GET / HTTP/1.1" 200 -'
   // No level word at all, so Loki's detected_level misses it entirely.
@@ -214,11 +226,6 @@ loki.process "pod_logs" {
 
       stage.regex {
         expression = `^\S+ - - \[[^\]]+\] "[^"]*" (?P<status>\d+) \d+ "[^"]*" "(?P<agent>[^"]*)"`
-      }
-
-      stage.drop {
-        source     = "agent"
-        expression = "kube-probe"
       }
 
       stage.static_labels {
