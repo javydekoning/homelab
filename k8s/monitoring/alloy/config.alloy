@@ -124,6 +124,46 @@ loki.process "pod_logs" {
     }
   }
 
+  // jellyfin: two log formats in one container.
+  // 1) '[14:06:07] [INF] [35] Emby.Server...: message' (Emby/Jellyfin server log)
+  // 2) '[NLP]: [2026-08-27] :: [14:07:38] - [INFO] message' (NFO scraper plugin)
+  stage.match {
+    selector = "{namespace=\"dvr\", container=\"jellyfin\"}"
+
+    stage.match {
+      selector = `{namespace="dvr", container="jellyfin"} |~ "^\\[NLP\\]"`
+
+      stage.regex {
+        expression = `- \[(?P<level>DEBUG|INFO|WARN|ERROR|CRITICAL)\]`
+      }
+
+      stage.labels {
+        values = {
+          level = "",
+        }
+      }
+    }
+
+    stage.match {
+      selector = `{namespace="dvr", container="jellyfin"} |~ "^\\[\\d{2}:\\d{2}:\\d{2}\\] \\["`
+
+      stage.regex {
+        expression = `^\[\d{2}:\d{2}:\d{2}\]\s+\[(?P<level>DBG|INF|WRN|ERR|CRT)\]`
+      }
+
+      stage.template {
+        source = "level"
+        template = `{{ if eq .level "DBG" }}debug{{ else if eq .level "INF" }}info{{ else if eq .level "WRN" }}warn{{ else if eq .level "ERR" }}error{{ else if eq .level "CRT" }}critical{{ else }}info{{ end }}`
+      }
+
+      stage.labels {
+        values = {
+          level = "",
+        }
+      }
+    }
+  }
+
   // trivy-system scan jobs: the operator's scan-job pods emit base64-encoded
   // binary scan/report artifacts to stdout, not real application logs - no
   // level word, no diagnostic value, just noise from the known lock-contention
