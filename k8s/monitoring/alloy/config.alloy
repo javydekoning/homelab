@@ -171,7 +171,9 @@ loki.process "pod_logs" {
   stage.match {
     selector = "{namespace=\"trivy-system\"}"
 
-    stage.drop {}
+    stage.drop {
+      expression = ".+"
+    }
   }
 
   // kopia: maintenance-run status output has no level word at all, e.g.
@@ -193,7 +195,9 @@ loki.process "pod_logs" {
   stage.match {
     selector = "{namespace=\"monitoring\", container=\"canary\"}"
 
-    stage.drop {}
+    stage.drop {
+      expression = ".+"
+    }
   }
 
   // changedetection.io app container: werkzeug/Flask access log format:
