@@ -100,6 +100,28 @@ loki.process "pod_logs" {
     }
   }
 
+  // node-feature-discovery: standard Go klog format, e.g.
+  // 'I0827 11:28:43.094395 1 nfd-worker.go:785] "feature discovery completed"'
+  // First letter is the level: I/W/E/F (info/warn/error/fatal).
+  stage.match {
+    selector = "{namespace=\"node-feature-discovery\"}"
+
+    stage.regex {
+      expression = `^(?P<level>[IWEF])\d{4}`
+    }
+
+    stage.template {
+      source = "level"
+      template = `{{ if eq .level "I" }}info{{ else if eq .level "W" }}warn{{ else if eq .level "E" }}error{{ else if eq .level "F" }}critical{{ else }}info{{ end }}`
+    }
+
+    stage.labels {
+      values = {
+        level = "",
+      }
+    }
+  }
+
   // loki-canary: self-check probe pod (DaemonSet from the Loki chart, not ours).
   // It just logs its own query-loop status to stdout with no level word, and
   // has no diagnostic value in Loki itself - drop entirely rather than parse.
