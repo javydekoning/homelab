@@ -229,6 +229,40 @@ loki.process "pod_logs" {
     }
   }
 
+  // netronome: Go/zerolog console format, e.g.
+  // '2026-08-27T10:17:59Z INFO ../src/internal/scheduler/scheduler.go:458 > message ...'
+  // No native JSON option in netronome's config.toml [logging] section (only `level`).
+  stage.match {
+    selector = "{namespace=\"monitoring\", app=\"netronome\"}"
+
+    stage.regex {
+      expression = `^\S+ (?P<level>TRACE|DEBUG|INFO|WARN|ERROR|FATAL|PANIC) `
+    }
+
+    stage.labels {
+      values = {
+        level = "",
+      }
+    }
+  }
+
+  // seerr: winston/overseerr-style bracketed levels, e.g.
+  // '2026-08-27T10:15:04.684Z [debug][Jellyfin Sync]: message'
+  // No native JSON toggle found (only LOG_LEVEL env var).
+  stage.match {
+    selector = "{namespace=\"dvr\", app=\"seerr\"}"
+
+    stage.regex {
+      expression = `^\S+ \[(?P<level>debug|info|warn|error)\]`
+    }
+
+    stage.labels {
+      values = {
+        level = "",
+      }
+    }
+  }
+
   forward_to = [loki.write.default.receiver]
 }
 
