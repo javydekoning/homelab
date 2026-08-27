@@ -88,13 +88,20 @@ loki.process "pod_logs" {
       }
   }
 
-  // zigbee2mqtt logs: "2026-08-27 10:36:48.041 [2026-08-27 08:36:48] debug: zh:controller: ..."
-  // Double timestamp + bare level word confuses Loki's built-in level detection.
+  // zigbee2mqtt logs: "[2026-08-27 08:38:58] \x1b[34mdebug\x1b[39m: zh:controller: ..."
+  // Loki's built-in detected_level heuristic doesn't match this format (ANSI
+  // color codes wrap the level word), so all zigbee2mqtt lines were landing
+  // in detected_level="unknown".
   stage.match {
     selector = "{app=\"zigbee2mqtt\"}"
 
+    stage.replace {
+      expression = `\x1b\[[0-9;]*m`
+      replace    = ""
+    }
+
     stage.regex {
-      expression = `^(?P<ts>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}) \[[^\]]+\] (?P<level>debug|info|warn|warning|error): (?P<message>.*)$`
+      expression = `^\[(?P<ts>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\] (?P<level>debug|info|warn|warning|error):\s*(?P<message>.*)$`
     }
 
     stage.labels {
@@ -105,7 +112,7 @@ loki.process "pod_logs" {
 
     stage.timestamp {
       source = "ts"
-      format = "2006-01-02 15:04:05.000"
+      format = "2006-01-02 15:04:05"
     }
   }
 
