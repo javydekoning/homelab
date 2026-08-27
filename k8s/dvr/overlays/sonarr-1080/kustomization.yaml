@@ -24,6 +24,8 @@ labels:
   - includeSelectors: true
     pairs:
       app: sonarr-1080
+  - pairs:
+      app.kubernetes.io/name: sonarr-1080
 
 patches:
   - path: deployment-patch.yaml

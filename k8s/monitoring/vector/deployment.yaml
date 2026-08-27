@@ -14,6 +14,7 @@ spec:
     metadata:
       labels:
         app: vector
+        app.kubernetes.io/name: vector
     spec:
       containers:
         - name: vector

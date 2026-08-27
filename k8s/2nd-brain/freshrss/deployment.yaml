@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: freshrss
+    app.kubernetes.io/name: freshrss
   name: freshrss
   namespace: freshrss
 spec:
@@ -15,6 +16,7 @@ spec:
     metadata:
       labels:
         app: freshrss
+        app.kubernetes.io/name: freshrss
     spec:
       containers:
         - name: freshrss

@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: homer
+    app.kubernetes.io/name: homer
   name: homer
   namespace: homer
 spec:
@@ -15,6 +16,7 @@ spec:
     metadata:
       labels:
         app: homer
+        app.kubernetes.io/name: homer
     spec:
       containers:
         - name: homer

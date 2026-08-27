@@ -24,6 +24,8 @@ labels:
   - includeSelectors: true
     pairs:
       app: prowlarr
+  - pairs:
+      app.kubernetes.io/name: prowlarr
 
 patches:
   - path: deployment-patch.yaml

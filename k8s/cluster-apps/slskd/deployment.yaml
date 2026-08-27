@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: slskd
+    app.kubernetes.io/name: slskd
   name: slskd
   namespace: slskd
 spec:
@@ -16,6 +17,7 @@ spec:
     metadata:
       labels:
         app: slskd
+        app.kubernetes.io/name: slskd
     spec:
       containers:
         - name: slskd

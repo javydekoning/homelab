@@ -4,6 +4,7 @@ metadata:
   name: mcp-karakeep
   labels:
     app: mcp-karakeep
+    app.kubernetes.io/name: mcp-karakeep
 spec:
   replicas: 1
   selector:
@@ -13,6 +14,7 @@ spec:
     metadata:
       labels:
         app: mcp-karakeep
+        app.kubernetes.io/name: mcp-karakeep
     spec:
       containers:
         - name: supergateway

@@ -21,3 +21,5 @@ labels:
   - includeSelectors: true
     pairs:
       app: qbittorrent-main
+  - pairs:
+      app.kubernetes.io/name: qbittorrent-main

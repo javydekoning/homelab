@@ -23,6 +23,8 @@ labels:
   - includeSelectors: true
     pairs:
       app: zigbee2mqtt
+  - pairs:
+      app.kubernetes.io/name: zigbee2mqtt
 
 patches:
   - path: deployment-patch.yaml

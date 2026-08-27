@@ -24,6 +24,8 @@ labels:
   - includeSelectors: true
     pairs:
       app: bazarr-1080
+  - pairs:
+      app.kubernetes.io/name: bazarr-1080
 
 patches:
   - path: deployment-patch.yaml

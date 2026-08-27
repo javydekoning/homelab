@@ -18,6 +18,8 @@ labels:
   - includeSelectors: true
     pairs:
       app: frigate
+  - pairs:
+      app.kubernetes.io/name: frigate
 
 patches:
   - path: deployment-patch.yaml

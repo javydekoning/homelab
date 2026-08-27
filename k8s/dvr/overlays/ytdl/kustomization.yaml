@@ -27,6 +27,8 @@ labels:
   - includeSelectors: true
     pairs:
       app: metube
+  - pairs:
+      app.kubernetes.io/name: metube
 
 patches:
   - path: deployment-patch.yaml

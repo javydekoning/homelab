@@ -12,6 +12,7 @@ spec:
     metadata:
       labels:
         app: kromgo
+        app.kubernetes.io/name: kromgo
     spec:
       containers:
         - name: kromgo

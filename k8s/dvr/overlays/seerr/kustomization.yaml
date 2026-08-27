@@ -24,6 +24,8 @@ labels:
   - includeSelectors: true
     pairs:
       app: seerr
+  - pairs:
+      app.kubernetes.io/name: seerr
 
 patches:
   - path: deployment-patch.yaml

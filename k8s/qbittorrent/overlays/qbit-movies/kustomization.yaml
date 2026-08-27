@@ -47,3 +47,5 @@ labels:
   - includeSelectors: true
     pairs:
       app: qbittorrent-movies
+  - pairs:
+      app.kubernetes.io/name: qbittorrent-movies

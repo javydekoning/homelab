@@ -5,6 +5,7 @@ metadata:
   namespace: termix
   labels:
     app: termix
+    app.kubernetes.io/name: termix
 spec:
   replicas: 1
   selector:
@@ -16,6 +17,7 @@ spec:
     metadata:
       labels:
         app: termix
+        app.kubernetes.io/name: termix
     spec:
       containers:
         - name: termix

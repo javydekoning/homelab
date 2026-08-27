@@ -5,6 +5,7 @@ metadata:
   namespace: monitoring
   labels:
     app: netronome
+    app.kubernetes.io/name: netronome
 spec:
   selector:
     matchLabels:
@@ -19,6 +20,7 @@ spec:
     metadata:
       labels:
         app: netronome
+        app.kubernetes.io/name: netronome
     spec:
       securityContext:
         runAsUser: 0

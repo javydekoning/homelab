@@ -4,6 +4,7 @@ metadata:
   name: changedetection
   labels:
     app: changedetection
+    app.kubernetes.io/name: changedetection
 spec:
   selector:
     matchLabels:
@@ -18,6 +19,7 @@ spec:
     metadata:
       labels:
         app: changedetection
+        app.kubernetes.io/name: changedetection
     spec:
       containers:
         - name: playwright-chrome

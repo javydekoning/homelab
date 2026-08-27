@@ -8,6 +8,10 @@ spec:
   jobTemplate:
     spec:
       template:
+        metadata:
+          labels:
+            app: ddns-route53
+            app.kubernetes.io/name: ddns-route53
         spec:
           restartPolicy: Never
           containers:

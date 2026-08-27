@@ -24,6 +24,8 @@ labels:
   - includeSelectors: true
     pairs:
       app: jellyfin
+  - pairs:
+      app.kubernetes.io/name: jellyfin
 
 patches:
   - path: deployment-patch.yaml

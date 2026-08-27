@@ -25,6 +25,8 @@ labels:
   - includeSelectors: true
     pairs:
       app: audiobookshelf
+  - pairs:
+      app.kubernetes.io/name: audiobookshelf
 
 patches:
   - path: deployment-patch.yaml

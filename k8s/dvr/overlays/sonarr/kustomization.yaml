@@ -24,6 +24,8 @@ labels:
   - includeSelectors: true
     pairs:
       app: sonarr
+  - pairs:
+      app.kubernetes.io/name: sonarr
 
 patches:
   - path: deployment-patch.yaml

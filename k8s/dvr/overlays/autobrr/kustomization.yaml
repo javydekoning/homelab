@@ -24,6 +24,8 @@ labels:
   - includeSelectors: true
     pairs:
       app: autobrr
+  - pairs:
+      app.kubernetes.io/name: autobrr
 
 patches:
   - path: deployment-patch.yaml

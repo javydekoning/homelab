@@ -4,6 +4,7 @@ metadata:
   name: qbittorrent-qui
   labels:
     app: qbittorrent-qui
+    app.kubernetes.io/name: qbittorrent-qui
 spec:
   replicas: 1
   selector:
@@ -13,6 +14,7 @@ spec:
     metadata:
       labels:
         app: qbittorrent-qui
+        app.kubernetes.io/name: qbittorrent-qui
     spec:
       containers:
         - name: qui

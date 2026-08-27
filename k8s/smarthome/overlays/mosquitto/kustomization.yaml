@@ -26,6 +26,8 @@ labels:
   - includeSelectors: true
     pairs:
       app: mosquitto
+  - pairs:
+      app.kubernetes.io/name: mosquitto
 
 patches:
   - path: deployment-patch.yaml

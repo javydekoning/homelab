@@ -24,6 +24,8 @@ labels:
   - includeSelectors: true
     pairs:
       app: radarr-1080
+  - pairs:
+      app.kubernetes.io/name: radarr-1080
 
 patches:
   - path: deployment-patch.yaml
