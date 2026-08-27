@@ -244,6 +244,23 @@ loki.process "pod_logs" {
     }
   }
 
+  // litellm: e.g. '\x1b[92m21:11:08 - LiteLLM Proxy:DEBUG\x1b[0m: message'
+  // Output includes ANSI color escape codes wrapping the timestamp+level
+  // token, same root cause as netronome/seerr - regex must tolerate them.
+  stage.match {
+    selector = "{namespace=\"litellm\", container=\"litellm\"}"
+
+    stage.regex {
+      expression = `LiteLLM Proxy:(?P<level>DEBUG|INFO|WARNING|ERROR|CRITICAL)`
+    }
+
+    stage.labels {
+      values = {
+        level = "",
+      }
+    }
+  }
+
   // changedetection.io playwright-chrome (browserless) container: debug-namespace
   // style logs with no level word, e.g. 'TIMESTAMP browserless:server message'.
   // Everything this container logs is operational/debug-level noise.
