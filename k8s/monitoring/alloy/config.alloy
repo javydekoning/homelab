@@ -124,6 +124,19 @@ loki.process "pod_logs" {
     }
   }
 
+  // kopia: maintenance-run status output has no level word at all, e.g.
+  // 'Finished full maintenance.' / 'GC found 2805 unused contents (1.4 GB)'.
+  // Everything this container logs is routine operational status.
+  stage.match {
+    selector = "{namespace=\"kopia\", container=\"kopia\"}"
+
+    stage.static_labels {
+      values = {
+        level = "info",
+      }
+    }
+  }
+
   // loki-canary: self-check probe pod (DaemonSet from the Loki chart, not ours).
   // It just logs its own query-loop status to stdout with no level word, and
   // has no diagnostic value in Loki itself - drop entirely rather than parse.
