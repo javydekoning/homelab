@@ -100,11 +100,13 @@ loki.process "pod_logs" {
     }
   }
 
-  // node-feature-discovery: standard Go klog format, e.g.
+  // klog-formatted apps (standard Go klog prefix), e.g.
   // 'I0827 11:28:43.094395 1 nfd-worker.go:785] "feature discovery completed"'
-  // First letter is the level: I/W/E/F (info/warn/error/fatal).
+  // First letter is the level: I/W/E/F (info/warn/error/fatal). One shared rule
+  // covering every namespace using this format - add more via the alternation
+  // below rather than duplicating the block.
   stage.match {
-    selector = "{namespace=\"node-feature-discovery\"}"
+    selector = `{namespace=~"node-feature-discovery|intel-device-plugins|mount-s3"}`
 
     stage.regex {
       expression = `^(?P<level>[IWEF])\d{4}`
