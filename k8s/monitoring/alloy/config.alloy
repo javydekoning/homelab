@@ -302,10 +302,12 @@ loki.process "pod_logs" {
     }
   }
 
-  // freshrss: Apache httpd + mod_auth_openidc.
+  // freshrss: Apache httpd + mod_auth_openidc + FreshRSS's own syslog-style app log.
   // 1) Apache error-log style: '[Thu Aug 27 11:45:52.407872 2026] [auth_openidc:warn] [pid ...] message'
   // 2) Apache access log: '<ip> - - [ts] "<method> <path> HTTP/1.1" <status> ... "kube-probe/1.36"'
   //    (drop kube-probe health-check noise, it's not useful signal)
+  // 3) FreshRSS's own app log via syslog, e.g. 'FreshRSS[379]: FreshRSS SimplePie uses cache for ...'
+  //    No level word at all, so tag static info.
   stage.match {
     selector = "{namespace=\"freshrss\", container=\"freshrss\"}"
 
@@ -340,12 +342,15 @@ loki.process "pod_logs" {
 
   // netronome: Go/zerolog console format, e.g.
   // '2026-08-27T10:17:59Z INFO ../src/internal/scheduler/scheduler.go:458 > message ...'
+  // Note: output includes ANSI color escape codes wrapping words (e.g.
+  // "\x1b[32mINFO\x1b[0m"), so the regex must tolerate/skip escape sequences
+  // rather than assuming plain text immediately follows the timestamp.
   // No native JSON option in netronome's config.toml [logging] section (only `level`).
   stage.match {
     selector = "{namespace=\"monitoring\", app=\"netronome\"}"
 
     stage.regex {
-      expression = `^\S+ (?P<level>TRACE|DEBUG|INFO|WARN|ERROR|FATAL|PANIC) `
+      expression = `(?:\x1b\[[0-9;]*m)*\S+(?:\x1b\[[0-9;]*m)*\s+(?:\x1b\[[0-9;]*m)*(?P<level>TRACE|DEBUG|INFO|WARN|ERROR|FATAL|PANIC)(?:\x1b\[[0-9;]*m)*`
     }
 
     stage.labels {
@@ -362,7 +367,7 @@ loki.process "pod_logs" {
     selector = "{namespace=\"dvr\", container=\"seerr\"}"
 
     stage.regex {
-      expression = `^\S+ \[(?P<level>debug|info|warn|error)\]`
+      expression = `\S+ \[(?P<level>debug|info|warn|error)\]`
     }
 
     stage.labels {
