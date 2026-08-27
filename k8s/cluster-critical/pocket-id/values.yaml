@@ -1,7 +1,9 @@
 timeZone: "Europe/Amsterdam"
 analyticsDisabled: true
 host: "pocket-id.lab.javydekoning.com"
-logJson: true
+config:
+  core:
+    logJson: true
 persistence:
   data:
     # -- Enable/disable PVC creation for data.
