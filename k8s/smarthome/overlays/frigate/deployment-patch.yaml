@@ -4,6 +4,9 @@ metadata:
   name: deployment
 spec:
   template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: frigate
     spec:
       # use initContainer to make config.yml rw (editable in browser)
       initContainers:

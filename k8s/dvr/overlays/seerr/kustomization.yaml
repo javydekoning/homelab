@@ -16,7 +16,7 @@ configMapGenerator:
   - name: env-configmap
     literals:
       - TZ=Europe/Amsterdam
-      - LOG_LEVEL=debug
+      - LOG_LEVEL=info
 
 namePrefix: seerr-
 

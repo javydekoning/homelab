@@ -4,6 +4,9 @@ metadata:
   name: deployment
 spec:
   template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: sonarr
     spec:
       containers:
         - name: app

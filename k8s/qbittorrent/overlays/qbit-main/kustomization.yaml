@@ -16,6 +16,19 @@ patches:
     target:
       kind: Deployment
       name: qbittorrent
+  - patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: qbittorrent
+      spec:
+        template:
+          metadata:
+            labels:
+              app.kubernetes.io/name: qbittorrent-main
+    target:
+      kind: Deployment
+      name: qbittorrent
 
 labels:
   - includeSelectors: true

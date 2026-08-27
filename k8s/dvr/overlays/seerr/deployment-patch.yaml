@@ -4,6 +4,9 @@ metadata:
   name: deployment
 spec:
   template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: seerr
     spec:
       # Seerr runs as non-root (node user UID 1000); config dir must be writable by 1000:1000
       securityContext:

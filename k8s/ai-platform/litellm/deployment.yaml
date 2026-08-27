@@ -4,6 +4,7 @@ metadata:
   name: litellm
   labels:
     app: litellm
+    app.kubernetes.io/name: litellm
 spec:
   replicas: 1
   selector:
@@ -13,6 +14,7 @@ spec:
     metadata:
       labels:
         app: litellm
+        app.kubernetes.io/name: litellm
     spec:
       containers:
         - name: litellm

@@ -23,6 +23,19 @@ patches:
       kind: Deployment
       name: qbittorrent
   - patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: qbittorrent
+      spec:
+        template:
+          metadata:
+            labels:
+              app.kubernetes.io/name: qbittorrent-tv
+    target:
+      kind: Deployment
+      name: qbittorrent
+  - patch: |-
       - op: replace
         path: /spec/ports/0/port
         value: 8389
