@@ -2,6 +2,13 @@ ingressClass:
   enabled: true
   isDefaultClass: true
 
+logs:
+  general:
+    format: json
+  access:
+    enabled: true
+    format: json
+
 service:
   spec:
     loadBalancerIP: 192.168.100.200
