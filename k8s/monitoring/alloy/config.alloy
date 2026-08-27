@@ -88,6 +88,27 @@ loki.process "pod_logs" {
       }
   }
 
+  // zigbee2mqtt logs: "2026-08-27 10:36:48.041 [2026-08-27 08:36:48] debug: zh:controller: ..."
+  // Double timestamp + bare level word confuses Loki's built-in level detection.
+  stage.match {
+    selector = "{app=\"zigbee2mqtt\"}"
+
+    stage.regex {
+      expression = `^(?P<ts>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}) \[[^\]]+\] (?P<level>debug|info|warn|warning|error): (?P<message>.*)$`
+    }
+
+    stage.labels {
+      values = {
+        level = "",
+      }
+    }
+
+    stage.timestamp {
+      source = "ts"
+      format = "2006-01-02 15:04:05.000"
+    }
+  }
+
   forward_to = [loki.write.default.receiver]
 }
 
