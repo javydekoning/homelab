@@ -88,6 +88,63 @@ loki.process "pod_logs" {
       }
   }
 
+  // changedetection.io app container: werkzeug/Flask access log format:
+  // '10.42.0.1 - - [27/Aug/2026 11:07:37] "GET / HTTP/1.1" 200 -'
+  // No level word at all, so Loki's detected_level misses it entirely.
+  // Also drop noisy successful polling requests (HTTP 200) to cut volume;
+  // anything left (4xx/5xx) is worth keeping and gets tagged as a warning.
+  stage.match {
+    selector = "{namespace=\"change-detection\", container=\"changedetection\"}"
+
+    stage.regex {
+      expression = `^(?P<ip>\S+) \S+ \S+ \[(?P<ts>[^\]]+)\] "(?P<method>\S+) (?P<path>\S+) [^"]+" (?P<status>\d+) `
+    }
+
+    stage.drop {
+      source     = "status"
+      expression = "^200$"
+    }
+
+    stage.static_labels {
+      values = {
+        level = "warn",
+      }
+    }
+
+    stage.timestamp {
+      source = "ts"
+      format = "02/Jan/2006 15:04:05"
+    }
+  }
+
+  // changedetection.io selenium container: 'HH:MM:SS.mmm LEVEL [Class] - message'
+  stage.match {
+    selector = "{namespace=\"change-detection\", container=\"selenium\"}"
+
+    stage.regex {
+      expression = `^\d{2}:\d{2}:\d{2}\.\d{3} (?P<level>INFO|WARN|ERROR|DEBUG) `
+    }
+
+    stage.labels {
+      values = {
+        level = "",
+      }
+    }
+  }
+
+  // changedetection.io playwright-chrome (browserless) container: debug-namespace
+  // style logs with no level word, e.g. 'TIMESTAMP browserless:server message'.
+  // Everything this container logs is operational/debug-level noise.
+  stage.match {
+    selector = "{namespace=\"change-detection\", container=\"playwright-chrome\"}"
+
+    stage.static_labels {
+      values = {
+        level = "debug",
+      }
+    }
+  }
+
   forward_to = [loki.write.default.receiver]
 }
 
