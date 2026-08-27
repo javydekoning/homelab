@@ -104,7 +104,7 @@ loki.process "pod_logs" {
   // It just logs its own query-loop status to stdout with no level word, and
   // has no diagnostic value in Loki itself - drop entirely rather than parse.
   stage.match {
-    selector = "{namespace=\"monitoring\", app_kubernetes_io_component=\"canary\"}"
+    selector = "{namespace=\"monitoring\", container=\"canary\"}"
 
     stage.drop {}
   }
