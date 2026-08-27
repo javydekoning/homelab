@@ -270,6 +270,30 @@ loki.process "pod_logs" {
     }
   }
 
+  // librechat mongodb: already emits JSON, but severity is a single-letter code
+  // in the "s" field (D/I/W/E/F), which Loki's detected_level doesn't recognize
+  // as a level word. Map it to the full name it expects.
+  stage.match {
+    selector = "{namespace=\"librechat\", container=\"mongodb\"}"
+
+    stage.json {
+      expressions = {
+        sev = "s",
+      }
+    }
+
+    stage.template {
+      source = "level"
+      template = `{{ if eq .sev "D" }}debug{{ else if eq .sev "I" }}info{{ else if eq .sev "W" }}warn{{ else if eq .sev "E" }}error{{ else if eq .sev "F" }}critical{{ else }}info{{ end }}`
+    }
+
+    stage.labels {
+      values = {
+        level = "",
+      }
+    }
+  }
+
   forward_to = [loki.write.default.receiver]
 }
 
