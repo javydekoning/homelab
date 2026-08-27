@@ -145,6 +145,49 @@ loki.process "pod_logs" {
     }
   }
 
+  // frigate: two log formats in one container.
+  // 1) nginx-style access log, incl. noisy empty-request 400s from health probes.
+  // 2) frigate's own '[2026-08-27 09:19:51] frigate.video ERROR : message' format.
+  stage.match {
+    selector = "{namespace=\"smarthome\", container=\"frigate\"}"
+
+    // Access log line: '<ip> - - [ts] "<method> <path> HTTP/1.1" <status> ...'
+    stage.match {
+      selector = `{namespace="smarthome", container="frigate"} |~ "^\\S+ - - \\["`
+
+      stage.regex {
+        expression = `^\S+ - - \[[^\]]+\] "(?P<method>[^"]*)" (?P<status>\d+) `
+      }
+
+      // Drop empty-request health-probe noise (method is blank, status 400)
+      stage.drop {
+        source     = "method"
+        expression = "^$"
+      }
+
+      stage.static_labels {
+        values = {
+          level = "info",
+        }
+      }
+    }
+
+    // Frigate's own logger line: '[2026-08-27 09:19:51] frigate.video ERROR : message'
+    stage.match {
+      selector = `{namespace="smarthome", container="frigate"} |~ "^\\[\\d{4}-"`
+
+      stage.regex {
+        expression = `^\[[^\]]+\]\s+\S+\s+(?P<level>DEBUG|INFO|WARNING|ERROR|CRITICAL)\s*:`
+      }
+
+      stage.labels {
+        values = {
+          level = "",
+        }
+      }
+    }
+  }
+
   forward_to = [loki.write.default.receiver]
 }
 
