@@ -31,9 +31,8 @@ _... And a little bit of_ ☁️ AWS, and GitHub Actions_ 🤖
 <div align="center">
 
 ![Truenas zpool main](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.lab.javydekoning.com%2Fzfs_health&style=for-the-badge&logo=truenas&logoColor=white&color=blue&style=flat&label=Truenas%20zpool%20main)
+![ZFS ARC Hit Ratio](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.lab.javydekoning.com%2Fzfs_arc_hit_ratio&style=for-the-badge&logo=truenas&logoColor=white&color=blue&style=flat&label=ZFS%20ARC%20Hit%20Ratio)
 ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m796359034-bf4a20fb15ecb491d5f31727?style=flat&logo=Ubiquiti&logoColor=white&label=Uptime%20(30%20days))
-![Uptime Robot status](https://img.shields.io/uptimerobot/status/m796359034-bf4a20fb15ecb491d5f31727?style=flat&logo=plex&logoColor=white&label=Plex)
-![Uptime Robot status](https://img.shields.io/uptimerobot/status/m796359034-bf4a20fb15ecb491d5f31727?style=flat&logo=jellyfin&logoColor=white&label=Jellyfin)
 ![Power consumption](https://img.shields.io/endpoint?url=https%3A%2F%2Fkromgo.lab.javydekoning.com%2Fcurrent_power_consumption_watts&style=for-the-badge&logo=lightning&logoColor=white&color=blue&style=flat&label=Current%20homelab%20power%20consumption)
 </div>
 
