@@ -188,6 +188,47 @@ loki.process "pod_logs" {
     }
   }
 
+  // freshrss: Apache httpd + mod_auth_openidc.
+  // 1) Apache error-log style: '[Thu Aug 27 11:45:52.407872 2026] [auth_openidc:warn] [pid ...] message'
+  // 2) Apache access log: '<ip> - - [ts] "<method> <path> HTTP/1.1" <status> ... "kube-probe/1.36"'
+  //    (drop kube-probe health-check noise, it's not useful signal)
+  stage.match {
+    selector = "{namespace=\"freshrss\", container=\"freshrss\"}"
+
+    stage.match {
+      selector = `{namespace="freshrss", container="freshrss"} |~ "^\\[\\w+ \\w+"`
+
+      stage.regex {
+        expression = `^\[\w+ \w+ \d+ [\d:.]+ \d+\] \[[^:]+:(?P<level>debug|info|notice|warn|error|crit|alert|emerg)\]`
+      }
+
+      stage.labels {
+        values = {
+          level = "",
+        }
+      }
+    }
+
+    stage.match {
+      selector = `{namespace="freshrss", container="freshrss"} |~ "^\\S+ - - \\["`
+
+      stage.regex {
+        expression = `^\S+ - - \[[^\]]+\] "[^"]*" (?P<status>\d+) \d+ "[^"]*" "(?P<agent>[^"]*)"`
+      }
+
+      stage.drop {
+        source     = "agent"
+        expression = "kube-probe"
+      }
+
+      stage.static_labels {
+        values = {
+          level = "info",
+        }
+      }
+    }
+  }
+
   forward_to = [loki.write.default.receiver]
 }
 
