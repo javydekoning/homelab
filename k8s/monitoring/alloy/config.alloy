@@ -257,7 +257,7 @@ loki.process "pod_logs" {
   // '2026-08-27T10:15:04.684Z [debug][Jellyfin Sync]: message'
   // No native JSON toggle found (only LOG_LEVEL env var).
   stage.match {
-    selector = "{namespace=\"dvr\", app=\"seerr\"}"
+    selector = "{namespace=\"dvr\", container=\"seerr\"}"
 
     stage.regex {
       expression = `^\S+ \[(?P<level>debug|info|warn|error)\]`
