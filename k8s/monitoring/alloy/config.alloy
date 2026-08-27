@@ -264,11 +264,13 @@ loki.process "pod_logs" {
     selector = "{namespace=\"smarthome\", container=\"frigate\"}"
 
     // Access log line: '<ip> - - [ts] "<method> <path> HTTP/1.1" <status> ...'
+    // Note: lines carry a leading per-line ingestion timestamp before the
+    // actual content, so selectors/regexes must NOT anchor with ^.
     stage.match {
-      selector = `{namespace="smarthome", container="frigate"} |~ "^\\S+ - - \\["`
+      selector = `{namespace="smarthome", container="frigate"} |~ "\\S+ - - \\["`
 
       stage.regex {
-        expression = `^\S+ - - \[[^\]]+\] "(?P<method>[^"]*)" (?P<status>\d+) `
+        expression = `\S+ - - \[[^\]]+\] "(?P<method>[^"]*)" (?P<status>\d+) `
       }
 
       // Drop empty-request health-probe noise (method is blank, status 400)
@@ -286,10 +288,10 @@ loki.process "pod_logs" {
 
     // Frigate's own logger line: '[2026-08-27 09:19:51] frigate.video ERROR : message'
     stage.match {
-      selector = `{namespace="smarthome", container="frigate"} |~ "^\\[\\d{4}-"`
+      selector = `{namespace="smarthome", container="frigate"} |~ "\\[\\d{4}-"`
 
       stage.regex {
-        expression = `^\[[^\]]+\]\s+\S+\s+(?P<level>DEBUG|INFO|WARNING|ERROR|CRITICAL)\s*:`
+        expression = `\[[^\]]+\]\s+\S+\s+(?P<level>DEBUG|INFO|WARNING|ERROR|CRITICAL)\s*:`
       }
 
       stage.labels {
