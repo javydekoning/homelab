@@ -2,12 +2,12 @@ ingressClass:
   enabled: true
   isDefaultClass: true
 
-logs:
-  general:
-    format: json
-  access:
-    enabled: true
-    format: json
+log:
+  format: json
+
+accessLog:
+  enabled: true
+  format: json
 
 service:
   spec:
