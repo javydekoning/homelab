@@ -362,12 +362,14 @@ loki.process "pod_logs" {
 
   // seerr: winston/overseerr-style bracketed levels, e.g.
   // '2026-08-27T10:15:04.684Z [debug][Jellyfin Sync]: message'
+  // Output includes ANSI color escape codes wrapping the level word
+  // (e.g. "\x1b[32minfo\x1b[39m"), so the regex must tolerate them.
   // No native JSON toggle found (only LOG_LEVEL env var).
   stage.match {
     selector = "{namespace=\"dvr\", container=\"seerr\"}"
 
     stage.regex {
-      expression = `\S+ \[(?P<level>debug|info|warn|error)\]`
+      expression = `\S+ \[(?:\x1b\[[0-9;]*m)*(?P<level>debug|info|warn|error)(?:\x1b\[[0-9;]*m)*\]`
     }
 
     stage.labels {
