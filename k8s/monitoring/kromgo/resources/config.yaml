@@ -14,7 +14,7 @@ metrics:
     label: state
     title: zfs pool main
   - name: zfs_arc_hit_ratio
-    query: node_zfs_arc_hits / (node_zfs_arc_hits + node_zfs_arc_misses)
+    query: 100 * (rate(node_zfs_arc_hits[30m]) / (rate(node_zfs_arc_hits[30m]) + rate(node_zfs_arc_misses[30m])))
     suffix: "%"
     title: ZFS ARC Hit Ratio
   - name: current_power_consumption_watts
