@@ -26,18 +26,15 @@ spec:
           protocol: StreamableHTTP
           policies:
             tls: {}
-      # In-cluster Home Assistant MCP (SSE) with a bearer token. The
-      # mcp-gateway-secret holds the full "Bearer <token>" Authorization value.
+      # Home Assistant's MCP webhook, fronted by an in-cluster nginx proxy
+      # (proxy-home-assistant.yaml): the webhook URL itself is the credential,
+      # so it cannot be spelled out in a static target here. Selected by label
+      # from its Service in this namespace.
       - name: home-assistant
-        static:
-          host: home-assistant.home-assistant.svc.cluster.local
-          port: 8123
-          path: /mcp_server/sse
-          protocol: SSE
-          policies:
-            auth:
-              secretRef:
-                name: mcp-gateway-secret
+        selector:
+          services:
+            matchLabels:
+              app: mcp-home-assistant
       # In-cluster NutriTrace MCP (streamable HTTP, stateless POST-only) with
       # a bearer token. Requires MCP_ENABLED=1 on the NutriTrace server and a
       # token holding at least one mcp:* scope.

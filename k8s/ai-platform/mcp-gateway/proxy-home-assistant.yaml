@@ -1,0 +1,106 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mcp-home-assistant-nginx
+data:
+  default.conf: |
+    server {
+        listen 8000;
+
+        # agentgateway connects to /mcp: the default path for a Service with
+        # appProtocol agentgateway.dev/mcp speaking streamable HTTP.
+        location = /mcp {
+            # proxy_pass line rendered by the ExternalSecret, since the Home
+            # Assistant webhook id in the upstream path is the credential.
+            include /etc/nginx/upstream/upstream.conf;
+            proxy_http_version 1.1;
+            proxy_set_header Connection "";
+            # MCP replies can be SSE streams; pass them through unbuffered.
+            proxy_buffering off;
+            proxy_read_timeout 1h;
+        }
+
+        location = /healthz {
+            access_log off;
+            return 200 "ok\n";
+        }
+    }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mcp-home-assistant
+  labels:
+    app: mcp-home-assistant
+    app.kubernetes.io/name: mcp-home-assistant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mcp-home-assistant
+  template:
+    metadata:
+      labels:
+        app: mcp-home-assistant
+        app.kubernetes.io/name: mcp-home-assistant
+    spec:
+      containers:
+        - name: nginx
+          securityContext:
+            capabilities:
+              drop:
+                - ALL
+            runAsNonRoot: true
+            runAsUser: 101
+          image: nginxinc/nginx-unprivileged:1.30.4-alpine@sha256:93722936b82ec8a1178d48448e619226680d2de3706a1640800e186cd5fa7fd3
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+              name: mcp
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              memory: 64Mi
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+          volumeMounts:
+            - name: nginx-config
+              mountPath: /etc/nginx/conf.d
+              readOnly: true
+            - name: upstream
+              mountPath: /etc/nginx/upstream
+              readOnly: true
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: mcp-home-assistant-nginx
+        - name: upstream
+          secret:
+            secretName: mcp-gateway-secret
+            items:
+              # nginx reads its config once at startup, so the pod must be
+              # restarted if the webhook URL is rotated in Secrets Manager.
+              - key: HA_MCP_UPSTREAM_CONF
+                path: upstream.conf
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mcp-home-assistant
+  labels:
+    app: mcp-home-assistant
+spec:
+  type: ClusterIP
+  selector:
+    app: mcp-home-assistant
+  ports:
+    - name: mcp
+      port: 8000
+      targetPort: 8000
+      protocol: TCP
+      # Tells agentgateway this Service speaks MCP (streamable HTTP).
+      appProtocol: agentgateway.dev/mcp

@@ -9,4 +9,5 @@ resources:
   - httproute.yaml
   - backend.yaml
   - supergateway-karakeep.yaml
+  - proxy-home-assistant.yaml
   - ingress.yaml
