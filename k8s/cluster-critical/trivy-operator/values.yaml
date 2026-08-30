@@ -8,6 +8,13 @@ operator:
 trivy:
   server:
     replicas: 1
+    extraServerVolumes:
+      volumes:
+        - name: dotcache
+          emptyDir: {}
+      volumeMounts:
+        - name: dotcache
+          mountPath: /.cache
 
 serviceMonitor:
   enabled: true
