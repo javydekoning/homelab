@@ -3,6 +3,11 @@ excludeNamespaces: "kube-system,trivy-system"
 operator:
   scanJobsConcurrentLimit: 1
   scanJobTTL: "10m"
+  builtInTrivyServer: true
+
+trivy:
+  server:
+    replicas: 1
 
 serviceMonitor:
   enabled: true
