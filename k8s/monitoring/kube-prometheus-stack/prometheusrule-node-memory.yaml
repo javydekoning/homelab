@@ -1,0 +1,24 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: node-memory-alerts
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+spec:
+  groups:
+    - name: node-memory.rules
+      rules:
+        - alert: NodeMemoryAvailableLow
+          expr: node_memory_MemAvailable_bytes < 2147483648
+          for: 5m
+          labels:
+            severity: warning
+            service: node
+          annotations:
+            summary: "🟠 Low available memory on {{ $labels.instance }}"
+            description: |
+              🧠 Node memory pressure
+              - ⏰ Duration: > 5 minutes
+              - Available: {{ $value | humanize1024 }}B
+              - Instance: {{ $labels.instance }}

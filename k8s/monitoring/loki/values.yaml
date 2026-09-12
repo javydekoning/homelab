@@ -55,6 +55,7 @@ gateway:
 
 chunksCache:
   connectionLimit: 1024
+  allocatedMemory: 512
 resultsCache:
   connectionLimit: 1024
 
