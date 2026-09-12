@@ -27,6 +27,9 @@ spec:
             - secretRef:
                 name: litellm-secret
           image: ghcr.io/berriai/litellm:main-stable@sha256:a3715fa7ad8387941ab697259bd2881d68931657247a41984f90fae6d11c62bf
+          resources:
+            limits:
+              memory: 512Mi
           ports:
             - containerPort: 4000
               name: http

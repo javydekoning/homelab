@@ -20,6 +20,9 @@ spec:
       containers:
         - name: openwebui
           image: ghcr.io/open-webui/open-webui:main@sha256:1a6399d237dc392a2313e0ca826020b3fd5d22536357840eb63393d18dc8b924
+          resources:
+            limits:
+              memory: 512Mi
           ports:
             - containerPort: 8080
               name: http

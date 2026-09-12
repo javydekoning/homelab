@@ -96,6 +96,9 @@ grafana:
 prometheus:
   prometheusSpec:
     serviceMonitorSelectorNilUsesHelmValues: false
+    resources:
+      limits:
+        memory: 512Mi
   ingress:
     enabled: true
     ingressClassName: traefik

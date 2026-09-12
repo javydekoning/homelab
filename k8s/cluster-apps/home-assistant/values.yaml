@@ -24,6 +24,10 @@ persistence:
   enabled: true
   existingVolume: "home-assistant-config"
 
+resources:
+  limits:
+    memory: 512Mi
+
 serviceMonitor:
   enabled: true
   scrapeInterval: 10s
