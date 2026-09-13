@@ -25,13 +25,12 @@ spec:
           # maintained alternative; mcpo and mcp-remote were ruled out (mcpo stalled,
           # mcp-remote runs the opposite direction - HTTP->stdio, not what we need).
           image: ghcr.io/sparfenyuk/mcp-proxy:latest
-          args:
-            - "--port=8000"
-            - "--host=0.0.0.0"
-            - "--"
-            - "npx"
-            - "-y"
-            - "@karakeep/mcp"
+          command:
+            - "sh"
+            - "-c"
+            - |
+              apk add --no-cache nodejs npm >/dev/null 2>&1 && \
+              exec /app/.venv/bin/mcp-proxy --port=8000 --host=0.0.0.0 -- npx -y @karakeep/mcp
           resources:
             requests:
               cpu: 10m
