@@ -60,7 +60,7 @@ spec:
               memory: 50Mi
             limits:
               cpu: 4000m
-              memory: 8Gi
+              memory: 512Mi
           envFrom:
             - secretRef:
                 name: "kopia-credentials"
