@@ -11,7 +11,7 @@ spec:
       rules:
         - alert: ZigbeeDeviceOffline
           expr: zigbee2mqtt_device_up == 0
-          for: 10m
+          for: 24h
           labels:
             severity: warning
             service: zigbee2mqtt
@@ -19,7 +19,7 @@ spec:
             summary: "📡 Zigbee device offline: {{ $labels.device }}"
             description: |
               🔌 Zigbee Device Offline
-              - ⏰ Duration: > 10 minutes
+              - ⏰ Duration: > 24 hours
               - Device: {{ $labels.device }}
         - alert: ZigbeeDeviceOTAAvailable
           expr: zigbee2mqtt_device_ota_update_available == 1
