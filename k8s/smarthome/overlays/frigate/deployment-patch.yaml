@@ -34,7 +34,7 @@ spec:
             limits:
               gpu.intel.com/i915: 1
               cpu: 500m
-              memory: 768Mi
+              memory: 1024Mi
           ports:
             - name: http
               containerPort: 5000
