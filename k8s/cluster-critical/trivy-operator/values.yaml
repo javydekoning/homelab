@@ -7,7 +7,7 @@ operator:
 
 resources:
   limits:
-    memory: 1024Mi
+    memory: 1536Mi
 
 trivy:
   server:
