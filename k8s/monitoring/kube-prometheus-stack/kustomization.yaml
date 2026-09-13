@@ -16,3 +16,4 @@ resources:
   - pv-alertmanager-s3.yaml
   - prometheusrule-zfs.yaml
   - prometheusrule-node-memory.yaml
+  - prometheusrule-pod-oom.yaml

@@ -1,0 +1,25 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: pod-oom-alerts
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+spec:
+  groups:
+    - name: pod-oom.rules
+      rules:
+        - alert: PodOOMKilled
+          expr: |
+            kube_pod_container_status_last_terminated_reason{reason="OOMKilled"} == 1
+          for: 0m
+          labels:
+            severity: warning
+            service: pod-oom
+          annotations:
+            summary: "🟠 Pod container OOMKilled: {{ $labels.namespace }}/{{ $labels.pod }}"
+            description: |
+              💥 Container was OOM killed
+              - Namespace: {{ $labels.namespace }}
+              - Pod: {{ $labels.pod }}
+              - Container: {{ $labels.container }}
