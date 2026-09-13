@@ -5,6 +5,10 @@ operator:
   scanJobTTL: "10m"
   builtInTrivyServer: true
 
+resources:
+  limits:
+    memory: 512Mi
+
 trivy:
   server:
     replicas: 1
