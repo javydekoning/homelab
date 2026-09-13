@@ -98,7 +98,7 @@ prometheus:
     serviceMonitorSelectorNilUsesHelmValues: false
     resources:
       limits:
-        memory: 1024Mi
+        memory: 2Gi
   ingress:
     enabled: true
     ingressClassName: traefik
