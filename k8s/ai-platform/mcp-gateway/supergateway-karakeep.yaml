@@ -17,15 +17,21 @@ spec:
         app.kubernetes.io/name: mcp-karakeep
     spec:
       containers:
-        - name: supergateway
-          image: supercorp/supergateway:3.4.3@sha256:095acf4471e142553c1a5514aa5e480abbc5885d00549d4a3481cc70eac53889
+        - name: mcp-proxy
+          # Migrated off supercorp/supergateway: unmaintained + confirmed memory leak.
+          # karakeep/mcp has no native streamable-http transport (tracked upstream:
+          # https://github.com/karakeep-app/karakeep/issues/1965), so we still need a
+          # stdio->HTTP bridge. mcp-proxy (sparfenyuk/mcp-proxy) is the actively
+          # maintained alternative; mcpo and mcp-remote were ruled out (mcpo stalled,
+          # mcp-remote runs the opposite direction - HTTP->stdio, not what we need).
+          image: ghcr.io/sparfenyuk/mcp-proxy:latest
           args:
-            - "--stdio"
-            - "npx -y @karakeep/mcp"
-            - "--outputTransport"
-            - "streamableHttp"
-            - "--port"
-            - "8000"
+            - "--port=8000"
+            - "--host=0.0.0.0"
+            - "--"
+            - "npx"
+            - "-y"
+            - "@karakeep/mcp"
           resources:
             requests:
               cpu: 10m
