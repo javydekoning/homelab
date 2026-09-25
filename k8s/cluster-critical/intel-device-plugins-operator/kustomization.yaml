@@ -12,3 +12,19 @@ helmCharts:
 
 resources:
   - ns.yaml
+
+patches:
+  - target:
+      kind: MutatingWebhookConfiguration
+      name: inteldeviceplugins-mutating-webhook-configuration
+    patch: |-
+      - op: add
+        path: /metadata/annotations/argocd.argoproj.io~1compare-options
+        value: ServerSideDiff=false
+  - target:
+      kind: ValidatingWebhookConfiguration
+      name: inteldeviceplugins-validating-webhook-configuration
+    patch: |-
+      - op: add
+        path: /metadata/annotations/argocd.argoproj.io~1compare-options
+        value: ServerSideDiff=false
