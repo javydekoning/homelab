@@ -69,3 +69,17 @@ spec:
           jsonPointers:
             - "/status"
             - "/metadata/annotations"
+        # Skip diffing webhooks[] on intel-device-plugins webhook configs entirely —
+        # ArgoCD's server-side-diff dry-run apply chokes on API-server-defaulted
+        # fields (sideEffects/clientConfig/admissionReviewVersions), causing
+        # intermittent sync/compare failures. Live resource is always correct.
+        - group: "admissionregistration.k8s.io"
+          kind: "MutatingWebhookConfiguration"
+          name: "inteldeviceplugins-mutating-webhook-configuration"
+          jsonPointers:
+            - "/webhooks"
+        - group: "admissionregistration.k8s.io"
+          kind: "ValidatingWebhookConfiguration"
+          name: "inteldeviceplugins-validating-webhook-configuration"
+          jsonPointers:
+            - "/webhooks"
