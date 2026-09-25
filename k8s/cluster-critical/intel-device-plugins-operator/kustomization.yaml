@@ -21,6 +21,9 @@ patches:
       - op: add
         path: /metadata/annotations/argocd.argoproj.io~1compare-options
         value: ServerSideDiff=false
+      - op: add
+        path: /metadata/annotations/argocd.argoproj.io~1sync-options
+        value: Validate=false
   - target:
       kind: ValidatingWebhookConfiguration
       name: inteldeviceplugins-validating-webhook-configuration
@@ -28,3 +31,6 @@ patches:
       - op: add
         path: /metadata/annotations/argocd.argoproj.io~1compare-options
         value: ServerSideDiff=false
+      - op: add
+        path: /metadata/annotations/argocd.argoproj.io~1sync-options
+        value: Validate=false
