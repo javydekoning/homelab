@@ -96,6 +96,15 @@ grafana:
 prometheus:
   prometheusSpec:
     serviceMonitorSelectorNilUsesHelmValues: false
+    retention: 30d
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: local-path
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 20Gi
     resources:
       limits:
         memory: 2Gi
@@ -118,4 +127,6 @@ prometheusOperator:
 
 prometheus-node-exporter:
   hostRootFsMount:
-    enabled: false
+    enabled: true
+  extraArgs:
+    - --path.rootfs=/host/root
