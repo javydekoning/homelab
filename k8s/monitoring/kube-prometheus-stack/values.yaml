@@ -128,5 +128,3 @@ prometheusOperator:
 prometheus-node-exporter:
   hostRootFsMount:
     enabled: true
-  extraArgs:
-    - --path.rootfs=/host/root
