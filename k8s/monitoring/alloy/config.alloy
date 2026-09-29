@@ -162,6 +162,20 @@ loki.process "pod_logs" {
         }
       }
     }
+
+    // 3) ffmpeg/libav transcoder stderr passthrough - no timestamp/level
+    // prefix at all (e.g. "Consider increasing the value for the
+    // 'analyzeduration'...", "[matroska,webm @ 0x...] Could not find codec
+    // parameters..."). Routine transcode diagnostics, not real errors.
+    stage.match {
+      selector = `{namespace="dvr", container="jellyfin"} |~ "^(Consider increasing|\\[matroska|\\[NULL|\\[hevc|\\[h264|\\[aac|Guessed Channel|Last message repeated)"`
+
+      stage.static_labels {
+        values = {
+          level = "info",
+        }
+      }
+    }
   }
 
   // trivy-system scan jobs: the operator's scan-job pods emit base64-encoded
