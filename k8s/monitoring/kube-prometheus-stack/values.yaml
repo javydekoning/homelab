@@ -85,6 +85,23 @@ grafana:
       - hosts:
           - grafana.k8s.javydekoning.com
 
+  envFromSecret: grafana-oidc
+
+  grafana.ini:
+    server:
+      root_url: https://grafana.k8s.javydekoning.com
+    auth.generic_oauth:
+      enabled: true
+      name: Pocket ID
+      allow_sign_up: true
+      auto_login: false
+      scopes: "openid email profile groups"
+      auth_url: https://pocket-id.lab.javydekoning.com/authorize
+      token_url: https://pocket-id.lab.javydekoning.com/api/oidc/token
+      api_url: https://pocket-id.lab.javydekoning.com/api/oidc/userinfo
+      use_pkce: true
+      role_attribute_path: "contains(groups[*], 'admins') && 'Admin' || 'Viewer'"
+
   additionalDataSources:
     - name: Loki
       type: loki

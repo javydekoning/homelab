@@ -13,6 +13,7 @@ helmCharts:
 
 resources:
   - secret.yaml
+  - external-secret-oidc.yaml
   - pv-alertmanager-s3.yaml
   - prometheusrule-zfs.yaml
   - prometheusrule-node-memory.yaml
