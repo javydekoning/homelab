@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: freshrss
-          image: ghcr.io/freshrss/freshrss:edge@sha256:6796a6c8a9e03d44ccaeb8e761c89b5ec7428625674eaa88e460712cfced19a0
+          image: ghcr.io/freshrss/freshrss:edge@sha256:66a87303a474c9ea6169c316b8302f56cad36d28f4328f91b82104e4ea8b2e82
           imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:
