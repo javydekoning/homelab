@@ -12,7 +12,7 @@ network:
   port: 7070
 
 # log settings
-log: info
+log: debug
 
 interval: 15m
 # Instructions for obtaining a Enphase Envoy token via web UI:
