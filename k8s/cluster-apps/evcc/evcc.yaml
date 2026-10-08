@@ -10,9 +10,14 @@ network:
   host: 0.0.0.0
   # port is the port number
   port: 7070
+  externalUrl: https://evcc.k8s.javydekoning.com
 
 # log settings
-log: trace
+log: debug
+levels:
+  renault: trace
+  lp-1: trace
+  alfen: trace
 
 interval: 15m
 # Instructions for obtaining a Enphase Envoy token via web UI:
