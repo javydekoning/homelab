@@ -1,19 +1,7 @@
 model_list:
-  - model_name: claude-opus-5
-    litellm_params:
-      model: bedrock/mantle/anthropic.claude-opus-5
-      aws_region_name: eu-west-1
-      aws_access_key_id: os.environ/AWS_ACCESS_KEY_ID
-      aws_secret_access_key: os.environ/AWS_SECRET_ACCESS_KEY
-      # aws_bedrock_project_id is emitted by LiteLLM as the wrong header
-      # ("anthropic-workspace" instead of "anthropic-workspace-id"), so Mantle
-      # ignores it and bills the default project. See BerriAI/litellm#31947.
-      # Send the correct header explicitly until the upstream fix ships.
-    model_info:
-      supports_vision: True
   - model_name: nutritrace-default
     litellm_params:
-      model: bedrock/mantle/anthropic.claude-sonnet-5
+      model: bedrock/mantle/anthropic.claude-sonnet-5-5
       aws_region_name: eu-west-1
       aws_access_key_id: os.environ/AWS_ACCESS_KEY_ID
       aws_secret_access_key: os.environ/AWS_SECRET_ACCESS_KEY
@@ -46,17 +34,9 @@ model_list:
         Application: "LiteLLM"
     model_info:
       supports_vision: True
-  - model_name: amazon-nova-lite
+  - model_name: openai-luna-latest
     litellm_params:
-      model: os.environ/NOVA_LITE_INF_ARN
-      aws_region_name: eu-west-1
-      aws_access_key_id: os.environ/AWS_ACCESS_KEY_ID
-      aws_secret_access_key: os.environ/AWS_SECRET_ACCESS_KEY
-      requestMetadata:
-        Application: "LiteLLM"
-  - model_name: gpt-5.6-luna
-    litellm_params:
-      model: bedrock/global.openai.gpt-5.6-luna
+      model: bedrock/global.openai.gpt-6-luna
       aws_region_name: eu-west-1
       aws_access_key_id: os.environ/AWS_ACCESS_KEY_ID
       aws_secret_access_key: os.environ/AWS_SECRET_ACCESS_KEY
