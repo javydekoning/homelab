@@ -25,7 +25,7 @@ spec:
           securityContext:
             runAsNonRoot: true
             runAsUser: 999
-          image: mongo:latest@sha256:f90507905ce6e52e4a63d0ff8964fc254fa4d37ccbe56c56f4bc0186eb02edea
+          image: mongo:latest@sha256:41a529c5c0130d23043be1634dbec8be661cc6fba392d8e2d9637b5038545db4
           imagePullPolicy: IfNotPresent
           ports:
             - name: mongodb
