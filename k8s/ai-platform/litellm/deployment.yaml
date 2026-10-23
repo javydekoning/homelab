@@ -29,7 +29,7 @@ spec:
           image: ghcr.io/berriai/litellm:main-stable@sha256:7294b90f868c5c38c99b83021c7ba46f9b439e95f8e32964c925c7d2563a03f7
           resources:
             limits:
-              memory: 512Mi
+              memory: 1Gi
           ports:
             - containerPort: 4000
               name: http
