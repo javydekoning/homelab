@@ -24,7 +24,7 @@ spec:
             - name: udev
               mountPath: /run/udev
         - name: zigbee2mqtt-exporter
-          image: ghcr.io/d0ugal/zigbee2mqtt-exporter:latest@sha256:73ab34ba4f0d6804268af585eee7eed233bf0ee7d3422341c6325320e0edbfeb
+          image: ghcr.io/d0ugal/zigbee2mqtt-exporter:latest@sha256:c03a13b615a9621fdf3930ffecfc9ab789a5f87f0891ede18ecef97ef11f3346
           ports:
             - name: metrics
               containerPort: 8087
