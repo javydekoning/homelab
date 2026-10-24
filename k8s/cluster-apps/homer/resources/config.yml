@@ -100,6 +100,11 @@ services:
         subtitle: "Nutrition tracking"
         url: "https://nutritrace.k8s.javydekoning.com"
         target: "_blank"
+      - name: "openGym"
+        icon: "fas fa-dumbbell"
+        subtitle: "Workout tracking"
+        url: "https://opengym.k8s.javydekoning.com"
+        target: "_blank"
   - name: "Infra & GitOps"
     icon: "fas fa-cloud"
     items:

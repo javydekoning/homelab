@@ -1,0 +1,99 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: opengym
+  namespace: opengym
+  labels:
+    app: opengym
+    app.kubernetes.io/name: opengym
+spec:
+  # Single replica + Recreate: the API stores its data as JSON files and two
+  # processes must never write them at once.
+  replicas: 1
+  selector:
+    matchLabels:
+      app: opengym
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: opengym
+        app.kubernetes.io/name: opengym
+    spec:
+      containers:
+        - name: api
+          # Keep api and web on the same release.
+          image: ghcr.io/duartesantos8/opengym-api:1.4.2@sha256:57f4dd3fb9e4a6f48aa139b09de60398098ba85457f9498c1bcd4ac86c948f12
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: opengym-config
+          ports:
+            - name: api
+              containerPort: 3000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: api
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: api
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+          volumeMounts:
+            - name: data
+              mountPath: /data
+          resources:
+            requests:
+              memory: 128Mi
+            limits:
+              memory: 512Mi
+        - name: web
+          image: ghcr.io/duartesantos8/opengym-web:1.4.2@sha256:748c77417d40969d9840f064fd0cafecd84e47ac786d424688d0cff0d6b53299
+          imagePullPolicy: IfNotPresent
+          env:
+            # nginx runs as uid 101 and can't bind <1024 here.
+            - name: NGINX_PORT
+              value: "8080"
+            # Same pod, so the API is on localhost; an IP means nginx needs no RESOLVER.
+            - name: BACKEND
+              value: "127.0.0.1"
+            - name: PORT
+              value: "3000"
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+          resources:
+            requests:
+              memory: 32Mi
+            limits:
+              memory: 128Mi
+      restartPolicy: Always
+      volumes:
+        # Users, passkeys, workouts, uploads and the session secret — back this up.
+        - name: data
+          hostPath:
+            path: /config/opengym/data
+            type: DirectoryOrCreate
