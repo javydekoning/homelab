@@ -13,6 +13,7 @@ helmCharts:
 resources:
   - ns.yaml
   - external-secret.yaml
+  - volume.yaml
 
 # The chart doesn't template metadata.namespace and kustomize's namespace
 # field isn't applied to helm output, so set it explicitly.

@@ -30,12 +30,13 @@ lapi:
     limits:
       memory: 500Mi
   persistentVolume:
+    # Static hostPath PVs (volume.yaml); nvme-local-path can't provision dynamically
     data:
       enabled: true
-      storageClassName: nvme-local-path
+      existingClaim: crowdsec-lapi-data-pvc
     config:
       enabled: true
-      storageClassName: nvme-local-path
+      existingClaim: crowdsec-lapi-config-pvc
   metrics:
     enabled: true
     serviceMonitor:

@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: crowdsec-data-pv
+  labels:
+    app: crowdsec
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: nvme-local-path
+  hostPath:
+    path: /config/crowdsec/data
+    type: DirectoryOrCreate
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: crowdsec-lapi-data-pvc
+  namespace: crowdsec
+  labels:
+    app: crowdsec
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: nvme-local-path
+  volumeName: crowdsec-data-pv
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: crowdsec-config-pv
+  labels:
+    app: crowdsec
+spec:
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: nvme-local-path
+  hostPath:
+    path: /config/crowdsec/config
+    type: DirectoryOrCreate
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: crowdsec-lapi-config-pvc
+  namespace: crowdsec
+  labels:
+    app: crowdsec
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+  storageClassName: nvme-local-path
+  volumeName: crowdsec-config-pv
