@@ -1,0 +1,25 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: crowdsec
+
+helmCharts:
+  - name: crowdsec
+    repo: https://crowdsecurity.github.io/helm-charts
+    version: 0.24.2
+    releaseName: crowdsec
+    namespace: crowdsec
+    valuesFile: values.yaml
+
+resources:
+  - ns.yaml
+  - external-secret.yaml
+
+# The chart doesn't template metadata.namespace and kustomize's namespace
+# field isn't applied to helm output, so set it explicitly.
+patches:
+  - target:
+      kind: ConfigMap|Service|PersistentVolumeClaim|Deployment|DaemonSet|Pod
+    patch: |-
+      - op: add
+        path: /metadata/namespace
+        value: crowdsec

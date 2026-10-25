@@ -1,0 +1,65 @@
+container_runtime: containerd
+
+config:
+  config.yaml.local: |
+    api:
+      server:
+        auto_registration: # Activate if not using TLS for authentication
+          enabled: true
+          token: "${REGISTRATION_TOKEN}" # /!\ Do not modify this variable (auto-generated and handled by the chart)
+          allowed_ranges:
+            - "127.0.0.1/32"
+            - "10.42.0.0/16" # k3s pod CIDR
+
+secrets:
+  externalSecret:
+    name: crowdsec-secrets
+
+lapi:
+  env:
+    # Pre-registers the traefik-external bouncer with a known key (phase 2)
+    - name: BOUNCER_KEY_traefik
+      valueFrom:
+        secretKeyRef:
+          name: crowdsec-secrets
+          key: BOUNCER_KEY_traefik
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      memory: 500Mi
+  persistentVolume:
+    data:
+      enabled: true
+      storageClassName: nvme-local-path
+    config:
+      enabled: true
+      storageClassName: nvme-local-path
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+
+agent:
+  # Only the external ingress; internal traefik traffic is trusted
+  acquisition:
+    - namespace: traefik-external
+      podName: traefik-external-*
+      program: traefik
+  env:
+    - name: COLLECTIONS
+      value: "crowdsecurity/traefik crowdsecurity/base-http-scenarios crowdsecurity/http-cve crowdsecurity/whitelist-good-actors"
+    # cri-logs: containerd log format; whitelists: never act on private ranges (LAN, pods, services)
+    - name: PARSERS
+      value: "crowdsecurity/cri-logs crowdsecurity/whitelists"
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      memory: 250Mi
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true

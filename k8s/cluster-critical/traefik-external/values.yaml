@@ -9,6 +9,12 @@ log:
 accessLog:
   enabled: true
   format: json
+  fields:
+    headers:
+      # Needed by CrowdSec scenarios (bad user agents, crawlers)
+      names:
+        User-Agent: keep
+        Referer: keep
 
 service:
   spec:
