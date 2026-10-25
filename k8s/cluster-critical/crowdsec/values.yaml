@@ -23,6 +23,16 @@ lapi:
         secretKeyRef:
           name: crowdsec-secrets
           key: BOUNCER_KEY_traefik
+    # Enroll into the CrowdSec Console (app.crowdsec.net)
+    - name: ENROLL_KEY
+      valueFrom:
+        secretKeyRef:
+          name: crowdsec-secrets
+          key: ENROLL_KEY
+    - name: ENROLL_INSTANCE_NAME
+      value: homelab-k8s-cluster
+    - name: ENROLL_TAGS
+      value: k8s homelab
   resources:
     requests:
       cpu: 50m
