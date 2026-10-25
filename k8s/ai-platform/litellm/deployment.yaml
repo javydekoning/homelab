@@ -26,7 +26,7 @@ spec:
           envFrom:
             - secretRef:
                 name: litellm-secret
-          image: ghcr.io/berriai/litellm:main-stable@sha256:74d0696a9f0afcc993c7659d246f0c542f003368298633e852228250779f1032
+          image: ghcr.io/berriai/litellm:main-stable@sha256:c169fb3adc514fcf210377c203f3de406d54f10bfdacf13948a4a839db9af7de
           resources:
             limits:
               memory: 1Gi
