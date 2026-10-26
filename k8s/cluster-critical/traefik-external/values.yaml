@@ -22,18 +22,10 @@ service:
     externalTrafficPolicy: Local
 
 ports:
+  # HTTPS only: port 80 isn't forwarded on the router, so don't publish it
   web:
-    http:
-      redirections:
-        entryPoint:
-          to: websecure
-          scheme: https
-          permanent: true
-      forwardedHeaders:
-        trustedIPs:
-          - "10.0.0.0/8"
-          - "172.16.0.0/12"
-          - "192.168.0.0/16"
+    expose:
+      default: false
   websecure:
     http:
       tls:
