@@ -64,6 +64,15 @@ agent:
     # cri-logs: containerd log format; whitelists: never act on private ranges (LAN, pods, services)
     - name: PARSERS
       value: "crowdsecurity/cri-logs crowdsecurity/whitelists"
+  # Extra alert context (target host, matched router) shown in the Console
+  extraVolumes:
+    - name: alert-context
+      configMap:
+        name: crowdsec-alert-context
+  extraVolumeMounts:
+    - name: alert-context
+      mountPath: /etc/crowdsec/console/context.yaml
+      subPath: context.yaml
   resources:
     requests:
       cpu: 50m
