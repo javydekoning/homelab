@@ -56,7 +56,7 @@ spec:
             limits:
               memory: 512Mi
         - name: web
-          image: ghcr.io/duartesantos8/opengym-web:1.4.2@sha256:748c77417d40969d9840f064fd0cafecd84e47ac786d424688d0cff0d6b53299
+          image: ghcr.io/duartesantos8/opengym-web:1.4.3@sha256:e77ef879d10549acc88a888e0cd4d566592c5680bee6436b05071678fcf8b512
           imagePullPolicy: IfNotPresent
           env:
             # nginx runs as uid 101 and can't bind <1024 here.
