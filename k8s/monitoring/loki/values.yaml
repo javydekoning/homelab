@@ -14,10 +14,7 @@ loki:
         object_store: filesystem # we're storing on filesystem so there's no real persistence here.
         schema: v13
 
-minio:
-  enabled: false
-
-deploymentMode: SingleBinary
+deploymentMode: Monolithic
 
 singleBinary:
   replicas: 1

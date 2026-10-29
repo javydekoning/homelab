@@ -6,9 +6,9 @@ metadata:
 data:
   # Added on top of the hub http_base context (path, user agent, method, status)
   context.yaml: |
-    context:
-      target_fqdn:
-        - evt.Meta.target_fqdn
-      # Empty when no router matched, i.e. traefik answered 404 itself
-      traefik_router:
-        - evt.Meta.traefik_router_name
+    # console/context.yaml is a flat map (key -> [expr]); the `context:` wrapper is only valid in /etc/crowdsec/contexts/*.yaml
+    target_fqdn:
+      - evt.Meta.target_fqdn
+    # Empty when no router matched, i.e. traefik answered 404 itself
+    traefik_router:
+      - evt.Meta.traefik_router_name
