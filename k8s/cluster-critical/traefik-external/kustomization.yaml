@@ -5,7 +5,7 @@ namespace: traefik-external
 helmCharts:
   - name: traefik
     repo: https://traefik.github.io/charts
-    version: 42.1.3
+    version: 42.2.0
     releaseName: traefik-external
     namespace: traefik-external
     valuesFile: values.yaml
