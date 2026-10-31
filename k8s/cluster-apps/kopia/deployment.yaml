@@ -97,7 +97,8 @@ spec:
             type: DirectoryOrCreate
         - name: cache
           emptyDir:
-            sizeLimit: 5Gi
+            # kopia caches capped in repository.config: content+metadata 2Gi soft / 3Gi hard each (+ ~250Mi uncapped indexes)
+            sizeLimit: 10Gi
         - name: devshm
           emptyDir:
             medium: Memory
