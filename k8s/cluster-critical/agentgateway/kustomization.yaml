@@ -20,7 +20,8 @@ helmCharts:
     includeCRDs: true
 
 resources:
-  # Upstream Gateway API CRDs (Gateway, GatewayClass, HTTPRoute, ...).
-  # agentgateway builds on Gateway API; these are not installed elsewhere.
-  - https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.5.0/standard-install.yaml
+  # Gateway API CRDs (Gateway, GatewayClass, HTTPRoute, ...) are NOT managed here:
+  # k3s ships them via its bundled `gateway-api-crd` HelmChart (kube-system) and
+  # upgrades them with k3s. Installing an older bundle here gets denied by the
+  # safe-upgrades ValidatingAdmissionPolicy.
   - ns.yaml
