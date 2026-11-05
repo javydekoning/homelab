@@ -15,3 +15,16 @@ resources:
   - l2advertisement.yaml
   - ip-pool.yaml
   - ns.yaml
+
+patches:
+  # statuscleaner uses hostNetwork + hostPort 19443. On a single node the default
+  # RollingUpdate (maxUnavailable rounds to 0) deadlocks: new pod can't bind the port
+  # while the old one holds it. Chart exposes no strategy value for this Deployment.
+  - target:
+      kind: Deployment
+      name: metallb-frr-k8s-statuscleaner
+    patch: |-
+      - op: replace
+        path: /spec/strategy
+        value:
+          type: Recreate
